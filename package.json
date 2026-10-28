@@ -1,0 +1,27 @@
+{
+	"name": "mare-realtime",
+	"private": true,
+	"version": "0.1.0",
+	"type": "module",
+	"description": "A real-time spectral ocean (three.js, GPU FFT) for generating simulated UAV trajectories, onboard imagery and ground truth over different ocean conditions.",
+	"scripts": {
+		"dev": "vite dev",
+		"build": "vite build",
+		"preview": "vite preview",
+		"check": "tsc -p jsconfig.json --noEmit",
+		"test": "node --test tests/",
+		"test:e2e": "playwright test"
+	},
+	"devDependencies": {
+		"@playwright/test": "^1.60.0",
+		"@sveltejs/vite-plugin-svelte": "^7.1.2",
+		"@types/node": "^24.0.0",
+		"@types/three": "^0.186.0",
+		"svelte": "^5.56.1",
+		"typescript": "^6.0.3",
+		"vite": "^8.0.16"
+	},
+	"dependencies": {
+		"three": "^0.186.1"
+	}
+}
