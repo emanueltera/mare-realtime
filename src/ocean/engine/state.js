@@ -16,7 +16,7 @@ import { angleDelta, lerp, lerpAngle, wrap360 } from './util.js';
  * @property {number} heading
  * @property {number} x
  * @property {number} y
- * @property {'straight' | 'orbit' | 'weave' | 'track'} path
+ * @property {'straight' | 'orbit' | 'weave' | 'track' | 'trajectory'} path
  * @property {number} orbitRadius
  * @property {1 | -1} orbitDirection
  * @property {string | undefined} track
@@ -68,7 +68,7 @@ export function resolveLight(light, override = {}) {
 export function resolveAircraft(spec) {
 	const s = { ...aircraftDefaults, ...spec };
 	return {
-		altitude: s.altitude,
+		altitude: s.altitude ?? 0,
 		speed: s.speed,
 		heading: s.heading,
 		x: s.x,

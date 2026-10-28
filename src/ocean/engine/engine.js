@@ -1,11 +1,18 @@
 /**
- * The ocean engine: the simulator running live behind every slide, with the UAV over
- * it and the cameras that film it. Client-only (three.js, WebGL2); OceanStage.svelte
- * loads it with a dynamic import.
+ * The ocean engine: the simulated sea, with the UAV over it and the cameras that film
+ * it. Client-only (three.js, WebGL2); the app's OceanStage.svelte loads it with a
+ * dynamic import, the batch page (src/batch/page.js) drives it by hand.
+ *
+ * Two ways to drive it. Interactive (the app): the engine runs its own animation-frame
+ * loop on wall-clock time, adapts its quality to the frame rate and blends between
+ * scenes. Manual (`options.manual`, for generating data): nothing moves until the caller
+ * says so — `advance(dt)` steps everything by exactly dt, `renderFrame()` draws, and
+ * `frameTruth()` reports the camera that drew it. A manual engine reads no clock and
+ * draws no random numbers, so the same calls give the same pixels (see docs/ARCHITECTURE.md).
  *
  * A frame:
- *  1. Blend the scene: sea and light ease toward the current scene (or the current
- *     randomised sample) with live slide overrides layered on top.
+ *  1. Blend the scene: sea and light ease toward the current scene with the app's live
+ *     overrides (control.js) layered on top.
  *  2. Step every flight still on screen and blend their states, so the aircraft never
  *     teleports; then every camera rig, each filming its own scene's aircraft carried
  *     onto the blended one, and blend their poses into the camera.
@@ -22,7 +29,7 @@
  * where the current camera is). A floating origin keeps shader coordinates small.
  */
 import * as THREE from 'three';
-import { attitudeQuaternion, blendStates, createAircraftModel, createFlight, emptyState } from '../aircraft.js';
+import { attitudeQuaternion, blendStates, createAircraftModel, createFlight, emptyState, trajectoryFlight } from '../aircraft.js';
 import { oceanControl, oceanReadout } from '../control.js';
 import { DEFAULT_TRANSITION } from '../scene.js';
 import { seaStats } from '../spectrum.js';
@@ -34,12 +41,13 @@ import { HorizonHud } from './hud.js';
 import { LineSet } from './lines.js';
 import { Exposure, PostPass, modeIndex } from './post.js';
 import { AdaptiveQuality, PRESETS, qualityFromUrl } from './quality.js';
-import { randomSample } from './randomizer.js';
 import { advanceReplay, createReplay, replayLines, replayPosition } from './replay.js';
 import { isTimed } from '../aircraft/track.js';
 import { OnboardRig, attitudeOf, blendPoses, createRig, emptyPose } from './rigs.js';
+import { SeaProbe } from './probe.js';
 import { SeaSampler } from './sampler.js';
 import { CLOUD_PERIOD, EnvironmentMap, SKY_GLSL, SkyLut, WATER_GLSL, createSkyUniforms, horizonDip } from './sky.js';
+import { cameraTruth } from './truth.js';
 import {
 	LIGHT_ANGLES,
 	SEA_ANGLES,
@@ -69,6 +77,10 @@ import { JACOBIAN_WEIGHTS, WaveSimulation } from './waves.js';
  * @property {SceneSpec} spec
  * @property {ResolvedAircraft | null} aircraft
  * @property {import('../aircraft.js').Flight | null} flight
+ * @property {ReturnType<typeof trajectoryFlight> | null} follow the same flight when it
+ *   follows a precomputed trajectory (path 'trajectory'), else null
+ * @property {{ e: number, n: number, u: number } | null} velocity ground velocity, m/s, when
+ *   the flight knows it (a trajectory's samples), for a chase rig starting settled
  * @property {{ east: number, north: number }} shift
  * @property {import('./rigs.js').Rig} rig
  * @property {LineSet | null} tracks
@@ -77,6 +89,8 @@ import { JACOBIAN_WEIGHTS, WaveSimulation } from './waves.js';
  * @property {import('./replay.js').Replay | null} replay the scene's recorded (timed) tracks and their clock
  * @property {number} elapsed simulation seconds since the layer was created (its flight's time)
  * @property {AircraftState} abs absolute aircraft state, refreshed every frame
+ * @property {boolean} [seeked] the interactive engine's flight was put at a time since the
+ *   last frame: that frame shows it there rather than stepping it on
  */
 
 /**
@@ -113,10 +127,47 @@ import { JACOBIAN_WEIGHTS, WaveSimulation } from './waves.js';
 
 /**
  * @typedef {object} EngineOptions
- * @property {boolean} [reducedMotion]
+ * @property {boolean} [reducedMotion] slow and soften the motion (interactive only)
+ * @property {boolean} [manual] drive the engine by hand, for generating data: no
+ *   animation-frame loop, no adaptive quality, no scene blending, no reduced-motion time
+ *   scale, pixel ratio 1; see advance, renderFrame, frameTruth and capture
+ * @property {'high' | 'low'} [quality] manual: the preset from quality.js, fixed for the
+ *   run; default 'high' (its render scale is not applied: `size` is the buffer)
+ * @property {number} [seed] the sea's Gaussian field (waves.js): the same seed and sea
+ *   time give the same sea; default 20240611
+ * @property {[number, number]} [size] manual: the drawing buffer, width and height in
+ *   pixels, whatever the page layout; default [1280, 720]
+ * @property {boolean} [preserveDrawingBuffer] keep the canvas after it is composited, so
+ *   it can be read back later than the task that drew it; default false
  */
 
+/**
+ * The ground truth of a rendered frame (docs/ARCHITECTURE.md). Positions in absolute
+ * east/north/up metres; the camera in OpenCV axes (x right, y down, z forward).
+ * @typedef {object} FrameTruth
+ * @property {number} t trajectory (flight) seconds of this frame
+ * @property {number} seaTime the sea's clock, s
+ * @property {AircraftState | null} aircraft the aircraft state rendered, or null without one
+ * @property {import('./truth.js').CameraTruth} camera
+ * @property {number} seaHeightUnderCamera m above mean sea level, the simulated surface
+ *   straight below the camera: every cascade the frame was drawn from, read back off the
+ *   GPU (probe.js)
+ * @property {number} heightAboveSea camera height above that surface, m
+ * @property {import('./state.js').ResolvedSea} sea the sea state rendered
+ * @property {{ significantHeight: number, peakPeriod: number, peakWavelength: number, beaufort: number }} seaStats
+ * @property {import('./state.js').ResolvedLight} light the lighting rendered
+ */
+
+/** Live overrides as a manual engine sees them: none (they are the app's sliders). */
+const NO_CONTROL = /** @type {typeof oceanControl} */ ({ sea: {}, light: {}, splitMode: null, splitPosition: null });
+
 const ACCENT = parseColor('#4fd8e6');
+
+/**
+ * The longest step the simulation takes at once, s. The interactive loop never steps
+ * further (it clamps a frame's time to this); a manual `advance` sub-steps to it.
+ */
+const MAX_STEP = 0.1;
 const _forward = new THREE.Vector3();
 const _quat = new THREE.Quaternion();
 const _euler = new THREE.Euler();
@@ -130,10 +181,6 @@ const BLOOM_STRENGTH = 0.06;
 /** Range, m, beyond which every other drop line under a track fades (see buildTracks). */
 const DROP_LOD = 2500;
 
-/** Randomised samples change every this many seconds. */
-const SAMPLE_INTERVAL = 3.2;
-const SAMPLE_BLEND = 0.7;
-
 export class OceanEngine {
 	/**
 	 * @param {EngineHost} host
@@ -141,7 +188,12 @@ export class OceanEngine {
 	 */
 	constructor(host, options = {}) {
 		this.host = host;
-		this.reducedMotion = Boolean(options.reducedMotion);
+		/** Driven by hand (advance / renderFrame) rather than by its own frame loop. */
+		this.manual = Boolean(options.manual);
+		this.reducedMotion = !this.manual && Boolean(options.reducedMotion);
+		/** @type {[number, number]} */
+		this.size = [Math.max(1, Math.round(options.size?.[0] ?? 1280)), Math.max(1, Math.round(options.size?.[1] ?? 720))];
+		this.seed = options.seed ?? 20240611;
 		this.disposed = false;
 		this.failed = false;
 
@@ -152,7 +204,7 @@ export class OceanEngine {
 			depth: false,
 			stencil: false,
 			powerPreference: 'high-performance',
-			preserveDrawingBuffer: false
+			preserveDrawingBuffer: Boolean(options.preserveDrawingBuffer)
 		});
 		if (!renderer.extensions.has('EXT_color_buffer_float')) {
 			renderer.dispose();
@@ -166,17 +218,30 @@ export class OceanEngine {
 				.map((s) => (s ?? '').trim())
 				.filter(Boolean)
 				.join('\n');
-			console.error(`Mayfly ocean: shader error\n${log}`);
+			console.error(`Ocean engine: shader error\n${log}`);
 			this.fail('shader compile error');
 		};
 		this.renderer = renderer;
 
-		const urlQuality = qualityFromUrl();
-		this.quality = new AdaptiveQuality(PRESETS[urlQuality ?? 'high'], urlQuality !== null);
+		if (this.manual) {
+			// A fixed preset: a run's frames must not change quality half way through.
+			const name = options.quality ?? 'high';
+			if (!(name in PRESETS)) throw new Error(`unknown quality preset '${name}'`);
+			this.quality = new AdaptiveQuality(PRESETS[name], true);
+		} else {
+			const urlQuality = qualityFromUrl();
+			this.quality = new AdaptiveQuality(PRESETS[urlQuality ?? options.quality ?? 'high'], urlQuality !== null);
+		}
 
 		// --- simulation ----------------------------------------------------------------
-		this.waves = new WaveSimulation(renderer, { size: this.quality.preset.fftSize, cascades: this.quality.preset.cascades });
+		this.waves = new WaveSimulation(renderer, {
+			size: this.quality.preset.fftSize,
+			cascades: this.quality.preset.cascades,
+			seed: this.seed
+		});
 		this.sampler = new SeaSampler(this.waves.noise, this.waves.size, this.waves.patches[0]);
+		/** The surface height under the camera for a manual engine's frame truth. */
+		this.probe = new SeaProbe(renderer);
 		this.foamField = new FoamField(renderer, { size: this.quality.preset.foamSize });
 		/** Metres the foam (and its lace) has drifted downwind, east and north. */
 		this.foamShiftE = 0;
@@ -268,6 +333,15 @@ export class OceanEngine {
 		// --- state -----------------------------------------------------------------------
 		this.simTime = 0;
 		this.clock = 0;
+		/** Manual: seconds advanced since the last renderFrame (the exposure meter's step). */
+		this.pendingDt = 0;
+		/** The sea time the GPU sea was last stepped to (see renderFrame). */
+		this.simulatedAt = NaN;
+		/**
+		 * What the last frame drew, for frameTruth.
+		 * @type {{ t: number, seaTime: number, aircraft: AircraftState | null, sea: import('./state.js').ResolvedSea, light: import('./state.js').ResolvedLight, stats: { significantHeight: number, peakPeriod: number, peakWavelength: number, beaufort: number }, seaUnder?: number } | null}
+		 */
+		this.drawn = null;
 		/** @type {number | null} */
 		this.last = null;
 		this.fps = 60;
@@ -319,11 +393,6 @@ export class OceanEngine {
 		this.splitModeName = '';
 		this.sweepClock = 0;
 
-		this.sample = 0;
-		this.sampleClock = 0;
-		/** @type {import('./randomizer.js').Sample | null} */
-		this.sampleState = null;
-
 		this.readoutClock = 0;
 		this.fogClock = 0;
 		/** @type {THREE.PerspectiveCamera | null} */
@@ -333,8 +402,14 @@ export class OceanEngine {
 		this.status = /** @type {'loading' | 'running' | 'fallback' | 'error'} */ ('loading');
 
 		// --- DOM -------------------------------------------------------------------------
-		this.resizeObserver = new ResizeObserver(() => this.resize());
-		this.resizeObserver.observe(host.root);
+		// A manual engine's buffer is `size`, whatever the page does, and its time is the
+		// caller's: it watches neither the layout, the pixel ratio nor the page's visibility.
+		/** @type {ResizeObserver | null} */
+		this.resizeObserver = null;
+		if (!this.manual) {
+			this.resizeObserver = new ResizeObserver(() => this.resize());
+			this.resizeObserver.observe(host.root);
+		}
 		// A window dragged to a screen with another pixel ratio (a 1× projector, a Retina
 		// laptop) keeps its CSS size, so the observer never fires: watch the ratio itself.
 		/** @type {MediaQueryList | null} */
@@ -343,11 +418,11 @@ export class OceanEngine {
 			this.watchDpr();
 			this.resize();
 		};
-		this.watchDpr();
+		if (!this.manual) this.watchDpr();
 		this.onVisibility = () => {
 			this.last = null;
 		};
-		document.addEventListener('visibilitychange', this.onVisibility);
+		if (!this.manual) document.addEventListener('visibilitychange', this.onVisibility);
 		this.onContextLost = (/** @type {Event} */ event) => {
 			event.preventDefault();
 			this.lost = true;
@@ -356,8 +431,8 @@ export class OceanEngine {
 		this.lost = false;
 		host.canvas.addEventListener('webglcontextlost', this.onContextLost);
 		// Taking the camera: while interactive, a drag anywhere on the stage steers the camera,
-		// including over slide copy (the deck lays its slides over the canvas), but never one
-		// that starts on a control. Listening on the window is what makes that possible.
+		// including over whatever the page lays over the canvas, but never one that starts
+		// on a control. Listening on the window is what makes that possible.
 		this.drag = /** @type {{ id: number, x: number, y: number } | null} */ (null);
 		this.onPointerDown = (/** @type {PointerEvent} */ e) => {
 			if (!this.interactive || this.drag) return;
@@ -391,43 +466,193 @@ export class OceanEngine {
 			// Distance (chase), height (free) or lens (onboard), within sane limits.
 			this.offsets.zoom = clamp(this.offsets.zoom * Math.exp(e.deltaY * 0.0012), 0.4, 3.5);
 		};
-		window.addEventListener('pointerdown', this.onPointerDown);
-		window.addEventListener('pointermove', this.onPointerMove);
-		window.addEventListener('pointerup', this.onPointerUp);
-		window.addEventListener('pointercancel', this.onPointerUp);
-		window.addEventListener('wheel', this.onWheel, { passive: false });
+		if (!this.manual) {
+			window.addEventListener('pointerdown', this.onPointerDown);
+			window.addEventListener('pointermove', this.onPointerMove);
+			window.addEventListener('pointerup', this.onPointerUp);
+			window.addEventListener('pointercancel', this.onPointerUp);
+			window.addEventListener('wheel', this.onWheel, { passive: false });
+		}
 		/** The element the taken camera's cursor and touch-action go on: the stage and what covers it. */
 		this.helmSurface = host.root.parentElement ?? host.root;
 		this.setInteractive(false);
 
 		this.resize();
+		// The browser may hand back a smaller drawing buffer than asked for (Chromium caps
+		// it near 2²⁵ pixels) without saying so. The frame would then be a crop of the view
+		// while its truth (K, width, height) described the whole: refuse rather than lie.
+		if (this.manual) {
+			const gl = renderer.getContext();
+			const [w, h] = this.size;
+			if (gl.drawingBufferWidth !== w || gl.drawingBufferHeight !== h) {
+				const got = `${gl.drawingBufferWidth}×${gl.drawingBufferHeight}`;
+				this.dispose(true);
+				throw new Error(`the browser gave a ${got} drawing buffer for a ${w}×${h} frame (more pixels than it allows; 7680×4320 is known to fit)`);
+			}
+		}
 		/** @type {number} */
-		this.raf = requestAnimationFrame(this.frame);
+		this.raf = this.manual ? 0 : requestAnimationFrame(this.frame);
 		// The engine itself, for poking at uniforms from the console while developing.
-		if (import.meta.env?.DEV) /** @type {any} */ (window).__mayflyEngine = this;
+		if (import.meta.env?.DEV) /** @type {any} */ (window).__mareEngine = this;
 	}
 
 	// ------------------------------------------------------------------ public API
 
 	/**
-	 * Show a scene, blending in from whatever is on screen.
+	 * Show a scene, blending in from whatever is on screen. A manual engine enters it at
+	 * once: sea, light, overlays, render mode and camera all snap to it, and its aircraft
+	 * and camera are placed before this returns.
 	 * @param {SceneSpec} spec
 	 */
 	setScene(spec) {
 		if (this.spec === spec) return;
 		const first = this.spec === null;
 		this.spec = spec;
-		this.sample = 0;
-		this.sampleClock = 0;
-		this.sampleState = null;
-		const duration = first ? 0 : (spec.transition ?? DEFAULT_TRANSITION) * (this.reducedMotion ? 0.55 : 1);
-		if (spec.randomize) {
-			this.sample = 1;
-			this.enter(this.sampleScene(spec), duration);
-		} else {
-			this.enter(spec, duration);
-		}
+		const duration = first || this.manual ? 0 : (spec.transition ?? DEFAULT_TRANSITION) * (this.reducedMotion ? 0.55 : 1);
+		this.enter(spec, duration);
 		this.quality.settle(Math.max(2.5, duration + 1));
+		if (this.manual) this.update(0, 0);
+	}
+
+	/**
+	 * Put the sea's clock at `seconds` (the waves, the clouds' drift and everything else
+	 * that reads simulation time). The foam on the water is not rewound with it: run the
+	 * sea for a few seconds (`advance`) before frames that should show it settled.
+	 * @param {number} seconds
+	 */
+	setSeaTime(seconds) {
+		this.simTime = seconds;
+	}
+
+	/**
+	 * Put the current scene's flight (a trajectory, or any other path) and its recorded
+	 * tracks at `t` seconds since they began. The interactive engine plays on from there.
+	 * The manual engine also restarts the camera rigs there, settled (a chase camera as if
+	 * it had been following all along), and places the camera before this returns.
+	 * @param {number} t
+	 */
+	seek(t) {
+		const layer = this.currentLayer;
+		if (!layer) return;
+		if (layer.flight) {
+			const s = layer.flight.seek(t);
+			this.placeLayer(layer, s);
+		} else {
+			layer.elapsed = Math.max(0, t);
+		}
+		if (layer.replay) advanceReplay(layer.replay, layer.elapsed);
+		if (this.manual) {
+			layer.rig = createRig(layer.spec.camera);
+			this.update(0, 0);
+		} else {
+			layer.seeked = true;
+		}
+	}
+
+	/**
+	 * Manual: step everything by exactly `dt` seconds — the sea's clock and the GPU sea,
+	 * the foam on it, the flights, the camera rigs — on both the engine's
+	 * clock and simulation time, in sub-steps of at most 0.1 s, so the same span gives the
+	 * same sea however it is sliced into frames. The exposure meter steps by the time
+	 * advanced since the last frame when the next frame is drawn (it meters that frame).
+	 * @param {number} dt seconds, >= 0
+	 * @param {{ flight?: boolean }} [options] `flight: false` holds the flights and recorded
+	 *   tracks where they are while the sea runs (a warm-up before frame 0)
+	 */
+	advance(dt, options = {}) {
+		this.assertManual('advance');
+		if (!(dt >= 0)) throw new Error(`advance(dt) needs dt >= 0, got ${dt}`);
+		this.pendingDt += dt;
+		const hold = options.flight === false;
+		// In sub-steps of at most MAX_STEP, so a frame rate's step size does not change the
+		// sea: the foam's decay, drift and spread are first-order steps that only hold for
+		// short ones, and each whitecap it gathers belongs to the waves of its own instant.
+		// The step ends exactly dt after it began on both clocks.
+		const n = Math.max(1, Math.ceil(dt / MAX_STEP - 1e-9));
+		const clock0 = this.clock;
+		const sim0 = this.simTime;
+		let done = 0;
+		for (let k = 1; k <= n; k++) {
+			const at = k === n ? dt : (dt * k) / n;
+			const h = at - done;
+			done = at;
+			this.clock = clock0 + at;
+			this.simTime = sim0 + at;
+			this.update(h, h, hold ? 0 : h);
+			this.simulate(h);
+		}
+	}
+
+	/**
+	 * Manual: draw the current state now, synchronously, into the canvas.
+	 * @param {{ mode?: import('../scene.js').RenderMode }} [options] what the frame shows
+	 *   (default the scene's `mode`); a manual engine switches modes instantly
+	 */
+	renderFrame(options = {}) {
+		this.assertManual('renderFrame');
+		if (this.failed || this.lost || this.disposed) throw new Error('ocean engine: no WebGL context to render with');
+		if (!this.spec) throw new Error('renderFrame() before setScene()');
+		if (options.mode) {
+			this.modeA = this.modeB = modeIndex(options.mode);
+			this.modeMix = 1;
+		}
+		// The sea on the GPU is stepped by advance; after setSeaTime, or before any advance,
+		// bring it to the sea time being drawn (foam needs advancing to build up, though).
+		if (this.simulatedAt !== this.simTime) this.simulate(0);
+		this.draw(this.pendingDt);
+		this.pendingDt = 0;
+		this.frames++;
+		if (this.failed) throw new Error('ocean engine: rendering failed');
+		this.setStatus('running');
+	}
+
+	/**
+	 * The ground truth of the frame just drawn: the camera that drew it (pose and
+	 * intrinsics, see truth.js), the aircraft, the sea and the light.
+	 * @returns {FrameTruth}
+	 */
+	frameTruth() {
+		const drawn = this.drawn;
+		if (!drawn) throw new Error('frameTruth() before a frame was drawn');
+		const res = this.post.uniforms.uResolution.value;
+		const camera = cameraTruth(this.camera, { east: this.originE, north: this.originN }, res.x, res.y);
+		const [east, north, up] = camera.position;
+		// The sea under the camera, read off the cascades this frame was drawn from (the
+		// CPU sampler's few long components miss the waves that matter in the lighter seas).
+		// Once a frame: every call for the same frame gives the same number.
+		if (drawn.seaUnder === undefined) {
+			if (this.simulatedAt !== drawn.seaTime) throw new Error('frameTruth() after the sea moved on: call it before the next advance()');
+			drawn.seaUnder = this.probe.sample(this.waves, { east: this.originE, north: this.originN }, [[east, north]])[0].height;
+		}
+		const seaUnder = drawn.seaUnder;
+		return {
+			t: drawn.t,
+			seaTime: drawn.seaTime,
+			aircraft: drawn.aircraft ? { ...drawn.aircraft } : null,
+			camera,
+			seaHeightUnderCamera: seaUnder,
+			heightAboveSea: up - seaUnder,
+			sea: { ...drawn.sea },
+			seaStats: { ...drawn.stats },
+			light: { ...drawn.light }
+		};
+	}
+
+	/**
+	 * The canvas as a PNG. Call it straight after renderFrame (in the same task) unless the
+	 * engine was made with `preserveDrawingBuffer`: the browser may clear the canvas once
+	 * it has been composited.
+	 * @returns {Promise<Blob>}
+	 */
+	capture() {
+		return new Promise((resolve, reject) => {
+			this.host.canvas.toBlob((blob) => (blob ? resolve(blob) : reject(new Error('canvas capture failed'))), 'image/png');
+		});
+	}
+
+	/** @param {string} method */
+	assertManual(method) {
+		if (!this.manual) throw new Error(`${method}() needs an engine made with { manual: true }`);
 	}
 
 	/** Listen for the next change of the screen's pixel ratio (a query matches one ratio). */
@@ -457,7 +682,7 @@ export class OceanEngine {
 
 	/**
 	 * Whether a pointer or wheel event belongs to the taken camera: inside the stage, and not on
-	 * a control a slide put in the presenter's hand.
+	 * a control the page puts over it (the app's panel, its timeline).
 	 * @param {Event} e
 	 */
 	ownsPointer(e) {
@@ -477,7 +702,7 @@ export class OceanEngine {
 		if (this.disposed) return;
 		this.disposed = true;
 		cancelAnimationFrame(this.raf);
-		this.resizeObserver.disconnect();
+		this.resizeObserver?.disconnect();
 		document.removeEventListener('visibilitychange', this.onVisibility);
 		this.dprQuery?.removeEventListener('change', this.onDprChange);
 		this.dprQuery = null;
@@ -494,8 +719,8 @@ export class OceanEngine {
 		c.style.pointerEvents = 'none';
 		this.hud.clear();
 		if (typeof window !== 'undefined') {
-			delete (/** @type {any} */ (window).__mayfly);
-			if (/** @type {any} */ (window).__mayflyEngine === this) delete (/** @type {any} */ (window).__mayflyEngine);
+			delete (/** @type {any} */ (window).__mare);
+			if (/** @type {any} */ (window).__mareEngine === this) delete (/** @type {any} */ (window).__mareEngine);
 		}
 		if (this.lost) {
 			// The context these were made in is gone and every GPU object went with it;
@@ -507,6 +732,7 @@ export class OceanEngine {
 		this.disposeNode(this.root);
 		this.waves.dispose();
 		this.foamField.dispose();
+		this.probe.dispose();
 		this.skyLut.dispose();
 		this.environment.dispose();
 		this.noiseTexture.dispose();
@@ -536,6 +762,8 @@ export class OceanEngine {
 	 * @param {number} duration seconds
 	 */
 	enter(spec, duration) {
+		// A manual engine never blends: every frame it draws is of one scene.
+		if (this.manual) duration = 0;
 		const layer = this.createLayer(spec);
 		if (this.root && duration > 0) {
 			const previous = this.root;
@@ -578,7 +806,7 @@ export class OceanEngine {
 			if (layer.rig.mode === 'chase' && layer.aircraft) chase = true;
 		});
 		const root = this.host.root;
-		const dpr = this.quality.pixelRatio(Math.max(1, root.clientWidth), Math.max(1, root.clientHeight));
+		const dpr = this.manual ? 1 : this.quality.pixelRatio(Math.max(1, root.clientWidth), Math.max(1, root.clientHeight));
 		const samples = chase || dpr < 1.5 ? 4 : 0;
 		if (samples === this.airTarget.samples) return;
 		this.airTarget.samples = samples;
@@ -590,14 +818,24 @@ export class OceanEngine {
 
 	/**
 	 * Build a layer, shifting its frame so its aircraft (or free camera) starts where
-	 * the current one is.
+	 * the current one is. A trajectory is flown where it is, unshifted, and so is every
+	 * scene of a manual engine: their positions are the ground truth.
 	 * @param {SceneSpec} spec
 	 * @returns {Layer}
 	 */
 	createLayer(spec) {
 		const aircraft = spec.aircraft ? resolveAircraft(spec.aircraft) : null;
+		/** @type {import('../aircraft.js').Flight | null} */
 		let flight = null;
-		if (aircraft && spec.aircraft) {
+		/** @type {Layer['follow']} */
+		let follow = null;
+		if (aircraft && spec.aircraft && aircraft.path === 'trajectory') {
+			const source = spec.aircraft.trajectory;
+			if (!source) throw new Error("aircraft.path 'trajectory' needs aircraft.trajectory");
+			// The app loops a trajectory; a manual engine holds it at its ends.
+			follow = trajectoryFlight(source, { loop: !this.manual });
+			flight = follow;
+		} else if (aircraft && spec.aircraft) {
 			flight = createFlight(
 				{ ...spec.aircraft, turbulence: aircraft.turbulence * (this.reducedMotion ? 0.35 : 1) },
 				spec.tracks ?? [],
@@ -624,7 +862,7 @@ export class OceanEngine {
 		}
 		/** @type {{ east: number, north: number }} */
 		const shift = { east: 0, north: 0 };
-		if (this.root) {
+		if (this.root && !this.manual && !follow) {
 			if (flight && this.aircraft && this.aircraft.presence > 0.05) {
 				shift.east = this.aircraft.state.x - flight.state.x;
 				shift.north = this.aircraft.state.y - flight.state.y;
@@ -652,11 +890,14 @@ export class OceanEngine {
 		const elapsed = flight ? flight.state.time : 0;
 		if (replay) advanceReplay(replay, elapsed);
 		const tracks = this.buildTracks(spec, replay);
-		return {
+		/** @type {Layer} */
+		const layer = {
 			kind: 'layer',
 			spec,
 			aircraft,
 			flight,
+			follow,
+			velocity: null,
 			shift,
 			rig,
 			tracks,
@@ -665,6 +906,34 @@ export class OceanEngine {
 			elapsed,
 			abs: emptyState()
 		};
+		this.placeLayer(layer, flight ? flight.state : null);
+		return layer;
+	}
+
+	/**
+	 * A layer's aircraft after its flight moved: the absolute state (its frame shifted),
+	 * and, for a trajectory, the gimbal and ground velocity of the sample it is at.
+	 * @param {Layer} layer
+	 * @param {AircraftState | null} s the flight's state
+	 */
+	placeLayer(layer, s) {
+		if (s) {
+			Object.assign(layer.abs, s);
+			layer.abs.x = s.x + layer.shift.east;
+			layer.abs.y = s.y + layer.shift.north;
+			layer.elapsed = s.time;
+		}
+		const follow = layer.follow;
+		if (!follow || !layer.aircraft) return;
+		const sample = follow.sample;
+		const g = layer.aircraft.gimbal;
+		if (Number.isFinite(sample.gimbalPitch)) g.pitch = /** @type {number} */ (sample.gimbalPitch);
+		if (Number.isFinite(sample.gimbalYaw)) g.yaw = /** @type {number} */ (sample.gimbalYaw);
+		if (Number.isFinite(sample.gimbalFov)) g.fov = /** @type {number} */ (sample.gimbalFov);
+		layer.velocity =
+			Number.isFinite(sample.vE) && Number.isFinite(sample.vN)
+				? { e: /** @type {number} */ (sample.vE), n: /** @type {number} */ (sample.vN), u: sample.vU ?? 0 }
+				: null;
 	}
 
 	/**
@@ -775,7 +1044,7 @@ export class OceanEngine {
 				scale: node.aircraft.scale,
 				footprint: node.aircraft.footprint ? 1 : 0,
 				presence: 1,
-				turbulence: node.aircraft.turbulence
+				turbulence: node.follow ? 0 : node.aircraft.turbulence
 			};
 		}
 		const a = this.aircraftOf(node.a);
@@ -816,7 +1085,7 @@ export class OceanEngine {
 			// A rig films its own scene's aircraft, so its smoothing only ever sees that
 			// flight; the pose is then carried onto the aircraft actually on screen (the
 			// blend of every scene's), keeping the framing however far a transition moves it.
-			ctx.aircraft = { state: node.abs, gimbal: node.aircraft.gimbal, scale: node.aircraft.scale };
+			ctx.aircraft = { state: node.abs, gimbal: node.aircraft.gimbal, scale: node.aircraft.scale, velocity: node.velocity };
 			const pose = node.rig.update(ctx);
 			ctx.aircraft = blended;
 			pose.east += blended.state.x - node.abs.x;
@@ -869,7 +1138,7 @@ export class OceanEngine {
 			return;
 		}
 		const now = ms / 1000;
-		const rawDt = this.last === null ? 1 / 60 : clamp(now - this.last, 0, 0.1);
+		const rawDt = this.last === null ? 1 / 60 : clamp(now - this.last, 0, MAX_STEP);
 		this.last = now;
 		// The mean frame time, not the mean of the rates: a 60/30 Hz mix averages 45 fps, and
 		// averaging rates would read it as 50.
@@ -885,7 +1154,8 @@ export class OceanEngine {
 
 		try {
 			this.update(rawDt, dt);
-			this.render(rawDt);
+			this.simulate(dt);
+			this.draw(rawDt);
 		} catch (error) {
 			console.error(error);
 			this.fail(error instanceof Error ? error.message : String(error));
@@ -900,26 +1170,17 @@ export class OceanEngine {
 	};
 
 	/**
-	 * @param {number} rawDt wall-clock seconds
+	 * Everything but the GPU: the scene blend, sea and light, flights, camera rigs,
+	 * overlays. A manual engine snaps where the interactive one eases.
+	 * @param {number} rawDt wall-clock seconds (a manual engine's dt)
 	 * @param {number} dt simulation seconds
+	 * @param {number} [flightDt] seconds to step the flights and recorded tracks; default dt
 	 */
-	update(rawDt, dt) {
+	update(rawDt, dt, flightDt = dt) {
 		const spec = this.spec;
 		if (!spec || !this.root || !this.currentLayer) return;
-
-		// Randomised samples: a new one every few seconds, blended in quickly.
-		if (spec.randomize) {
-			this.sampleClock += rawDt;
-			const interval = SAMPLE_INTERVAL * (this.reducedMotion ? 2 : 1);
-			if (this.sampleClock >= interval) {
-				this.sampleClock = 0;
-				this.sample++;
-				const derived = this.sampleScene(spec);
-				this.enter(derived, SAMPLE_BLEND * (this.reducedMotion ? 1.4 : 1));
-				this.seaFrom = copySea(this.sea);
-				this.lightFrom = copyLight(this.light);
-			}
-		}
+		const manual = this.manual;
+		const control = manual ? NO_CONTROL : oceanControl;
 
 		// Transition weight.
 		const tr = this.transition;
@@ -936,10 +1197,8 @@ export class OceanEngine {
 		}
 
 		// Sea and light.
-		const sceneSea = this.sampleState ? this.sampleState.sea : resolveSea(spec.sea);
-		const sceneLight = this.sampleState ? this.sampleState.light : resolveLight(spec.light);
-		const seaTarget = resolveSea(sceneSea, oceanControl.sea);
-		const lightTarget = resolveLight(sceneLight, oceanControl.light);
+		const seaTarget = resolveSea(spec.sea, control.sea);
+		const lightTarget = resolveLight(spec.light, control.light);
 		if (p < 1) {
 			this.sea = blendSea(this.seaFrom, seaTarget, w);
 			// The light leads the camera, settling by two thirds of the way: a camera still
@@ -947,7 +1206,7 @@ export class OceanEngine {
 			// sees the sun's whole glitter patch, blown out, before the new view arrives.
 			this.light = blendLight(this.lightFrom, lightTarget, smootherstep(p / 0.65));
 		} else {
-			const k = 1 - Math.exp(-rawDt / 0.3);
+			const k = manual ? 1 : 1 - Math.exp(-rawDt / 0.3);
 			approach(this.sea, seaTarget, k, SEA_ANGLES);
 			approach(this.light, lightTarget, k, LIGHT_ANGLES);
 		}
@@ -955,28 +1214,28 @@ export class OceanEngine {
 		// Flights and recorded-track clocks, then the blended aircraft every rig films.
 		// Each scene keeps its own clock through a transition.
 		this.forEachLayer(this.root, (layer) => {
-			if (layer.flight) {
-				const s = layer.flight.step(dt);
-				Object.assign(layer.abs, s);
-				layer.abs.x = s.x + layer.shift.east;
-				layer.abs.y = s.y + layer.shift.north;
-				layer.elapsed = s.time;
+			if (layer.seeked) {
+				// The app drives this flight's clock (it seeks every frame, playing or paused):
+				// show the time it asked for, not a frame past it.
+				layer.seeked = false;
+			} else if (layer.flight) {
+				this.placeLayer(layer, layer.flight.step(flightDt));
 			} else {
-				layer.elapsed += dt;
+				layer.elapsed += flightDt;
 			}
 			if (layer.replay) advanceReplay(layer.replay, layer.elapsed);
 		});
 		this.aircraft = this.aircraftOf(this.root);
 		if (this.aircraft) this.aimGimbal(this.aircraft);
 
-		// The presenter's camera offsets ease home when the presenter lets go.
+		// The user's camera offsets ease home when they let go of the camera.
 		if (!this.interactive) {
 			this.offsets.yaw = damp(this.offsets.yaw, 0, 0.6, rawDt);
 			this.offsets.pitch = damp(this.offsets.pitch, 0, 0.6, rawDt);
 			this.offsets.zoom = Math.exp(damp(Math.log(this.offsets.zoom), 0, 0.6, rawDt));
 		}
 
-		this.sampler.update(this.sea, this.clock);
+		this.sampler.update(this.sea, this.clock, manual ? 0 : 0.25);
 		const seaHs = this.stats.significantHeight;
 		/** @type {import('./rigs.js').RigContext} */
 		const ctx = {
@@ -1006,8 +1265,8 @@ export class OceanEngine {
 
 		// Overlays and the split view fade with the scene: what leaves goes in the first two
 		// thirds of a transition, what arrives comes in over the last two thirds. Changes
-		// outside a transition (a slide's channel picker) ease on their own clock.
-		const kOverlay = 1 - Math.exp(-rawDt / 0.32);
+		// outside a transition (the app's channel picker) ease on their own clock.
+		const kOverlay = manual ? 1 : 1 - Math.exp(-rawDt / 0.32);
 		const overlays = new Set(spec.overlays ?? []);
 		/** @param {number} from @param {number} to @param {number} current */
 		const fade = (from, to, current) => {
@@ -1026,9 +1285,13 @@ export class OceanEngine {
 			this.modeMix = 0;
 		}
 		this.modeMix = Math.min(1, this.modeMix + rawDt / 0.6);
+		if (manual) {
+			this.modeA = this.modeB;
+			this.modeMix = 1;
+		}
 
-		const splitModeName = oceanControl.splitMode ?? spec.split?.mode ?? null;
-		const hasSplit = Boolean(spec.split || oceanControl.splitMode);
+		const splitModeName = control.splitMode ?? spec.split?.mode ?? null;
+		const hasSplit = Boolean(spec.split || control.splitMode);
 		if (splitModeName) {
 			const idx = modeIndex(splitModeName);
 			if (idx !== this.splitB) {
@@ -1037,7 +1300,7 @@ export class OceanEngine {
 				this.splitMix = this.splitAmount < 0.02 ? 1 : 0;
 			}
 		}
-		this.splitMix = Math.min(1, this.splitMix + rawDt / 0.6);
+		this.splitMix = manual ? 1 : Math.min(1, this.splitMix + rawDt / 0.6);
 		this.splitAmount = fade(this.splitFrom, hasSplit ? 1 : 0, this.splitAmount);
 		const shownSplit = hasSplit && splitModeName ? splitModeName : '';
 		if (shownSplit !== this.splitModeName) {
@@ -1050,14 +1313,13 @@ export class OceanEngine {
 		if (!hasSplit) {
 			// A split on its way out holds still while it fades.
 			targetPos = this.splitPos;
-		} else if (oceanControl.splitPosition !== null) {
-			targetPos = oceanControl.splitPosition;
+		} else if (control.splitPosition !== null) {
+			targetPos = control.splitPosition;
 		} else if (spec.split?.sweep) {
 			this.sweepClock += rawDt * (this.reducedMotion ? 0.4 : 1);
 			// Ease back and forth across the middle right of the frame, eight seconds each
-			// way: clear of the copy column on the left (the labels slide's card ends near
-			// 0.47), and never so far right that the label channel is a sliver: it always
-			// fills at least the right 28% of the frame.
+			// way: over the right half of the frame, and never so far right that the label
+			// channel is a sliver: it always fills at least the right 28% of the frame.
 			const lo = 0.52;
 			const span = 0.2;
 			const phase = (this.sweepClock / 8) % 2;
@@ -1067,36 +1329,7 @@ export class OceanEngine {
 			const u = (tri + rest) % 2;
 			targetPos = lo + span * smootherstep(u < 1 ? u : 2 - u);
 		}
-		this.splitPos = this.splitAmount < 0.02 ? targetPos : damp(this.splitPos, targetPos, 0.25, rawDt);
-	}
-
-	/**
-	 * The scene for the current randomised sample: the slide's scene with the sample's
-	 * sea and sky, and its camera — the aircraft's altitude, speed, gusts, gimbal and
-	 * lens for an onboard rig, height, pitch and lens for a free one.
-	 * @param {SceneSpec} spec
-	 * @returns {SceneSpec}
-	 */
-	sampleScene(spec) {
-		const sample = randomSample(this.sample, resolveSea(spec.sea), resolveLight(spec.light));
-		this.sampleState = sample;
-		/** @type {SceneSpec} */
-		const derived = { ...spec };
-		if (spec.camera.mode === 'onboard' && spec.aircraft) {
-			const o = sample.onboard;
-			derived.aircraft = {
-				...spec.aircraft,
-				altitude: o.altitude,
-				speed: o.speed,
-				turbulence: o.turbulence,
-				gimbal: { ...spec.aircraft.gimbal, pitch: o.gimbalPitch, fov: o.fov }
-			};
-			derived.camera = { mode: 'onboard', stabilized: o.stabilized };
-		} else if (spec.camera.mode !== 'chase' && spec.camera.mode !== 'onboard') {
-			const f = sample.free;
-			derived.camera = { ...spec.camera, height: f.height, pitch: f.pitch, fov: f.fov };
-		}
-		return derived;
+		this.splitPos = this.splitAmount < 0.02 || manual ? targetPos : damp(this.splitPos, targetPos, 0.25, rawDt);
 	}
 
 	/**
@@ -1112,11 +1345,13 @@ export class OceanEngine {
 		});
 	}
 
-	/** @param {number} rawDt */
-	render(rawDt) {
-		const renderer = this.renderer;
-		const spec = this.spec;
-		if (!spec) return;
+	/**
+	 * Step the sea on the GPU by dt seconds of simulation time: the FFT at the current sea
+	 * time, the drifting break gate and the foam on the water around the camera.
+	 * @param {number} dt simulation seconds
+	 */
+	simulate(dt) {
+		if (!this.spec) return;
 
 		// --- the sea state ---------------------------------------------------------------
 		const seaKey = Object.values(this.sea)
@@ -1129,7 +1364,7 @@ export class OceanEngine {
 		}
 		this.waves.setSea(this.sea);
 
-		// --- camera and floating origin ---------------------------------------------
+		// --- floating origin ------------------------------------------------------------
 		const pose = this.pose;
 		if (Math.abs(pose.east - this.originE) > 2000 || Math.abs(pose.north - this.originN) > 2000) {
 			const ne = Math.round(pose.east);
@@ -1138,6 +1373,55 @@ export class OceanEngine {
 			this.originE = ne;
 			this.originN = nn;
 		}
+		const seaUnder = this.sampler.sample(pose.east, pose.north, this.simTime).height;
+		const heightAbove = Math.max(0.3, pose.up - seaUnder);
+
+		// --- simulation ------------------------------------------------------------------
+		this.waves.update(this.simTime);
+		this.simulatedAt = this.simTime;
+		// The break gate drifts slowly so the same water does not always break.
+		this.gateScroll = (this.gateScroll + dt * 1.7) % GATE_PERIOD;
+		this.surface.uniforms.uGateOffset.value.set(
+			mod(this.originE + this.gateScroll, GATE_PERIOD),
+			mod(this.originN + this.gateScroll * 0.6, GATE_PERIOD)
+		);
+		const su2 = this.surface.uniforms;
+		this.waves.offsets(this.originE, this.originN, [su2.uOffset0.value, su2.uOffset1.value, su2.uOffset2.value, su2.uOffset3.value]);
+		// Foam: whitecaps where the crests break, and what they leave on the water.
+		const fwd = _forward.set(0, 0, -1).applyQuaternion(pose.quaternion);
+		const flat = Math.hypot(fwd.x, fwd.z) || 1;
+		this.foamField.update({
+			dt,
+			camEast: pose.east,
+			camNorth: pose.north,
+			camHeight: heightAbove,
+			forwardEast: fwd.x / flat,
+			forwardNorth: -fwd.z / flat,
+			forwardDown: -fwd.y,
+			originEast: this.originE,
+			originNorth: this.originN,
+			waves: this.waves,
+			offsets: [su2.uOffset0.value, su2.uOffset1.value, su2.uOffset2.value, su2.uOffset3.value],
+			jacobianWeights: JACOBIAN_WEIGHTS,
+			foamTexture: this.foamTexture,
+			gateOffset: su2.uGateOffset.value
+		});
+		this.foamShiftE += this.waves.foamDrift.x * dt;
+		this.foamShiftN += this.waves.foamDrift.y * dt;
+	}
+
+	/**
+	 * Draw the frame: camera, sky, sea, aircraft and overlays into their targets, then the
+	 * exposure meter, glare and the final composite into the canvas; then the HUD.
+	 * @param {number} rawDt seconds since the last frame drawn (the meter's and overlays' step)
+	 */
+	draw(rawDt) {
+		const renderer = this.renderer;
+		const spec = this.spec;
+		if (!spec) return;
+
+		// --- camera ---------------------------------------------------------------------
+		const pose = this.pose;
 		const cam = this.camera;
 		cam.position.copy(this.toWorld(pose.east, pose.north, pose.up));
 		cam.quaternion.copy(pose.quaternion);
@@ -1193,42 +1477,12 @@ export class OceanEngine {
 		// The meter does the rest (see Exposure); the scene's own setting is a bias on it.
 		this.exposure = this.light.exposure;
 
-		// --- simulation ------------------------------------------------------------------
-		const simDt = rawDt * (this.reducedMotion ? 0.35 : 1);
-		this.waves.update(this.simTime);
-		// The break gate drifts slowly so the same water does not always break.
-		this.gateScroll = (this.gateScroll + simDt * 1.7) % GATE_PERIOD;
-		this.surface.uniforms.uGateOffset.value.set(
-			mod(this.originE + this.gateScroll, GATE_PERIOD),
-			mod(this.originN + this.gateScroll * 0.6, GATE_PERIOD)
-		);
+		// --- the sea's textures (stepped in simulate) ---------------------------------------
 		const su2 = this.surface.uniforms;
-		this.waves.offsets(this.originE, this.originN, [su2.uOffset0.value, su2.uOffset1.value, su2.uOffset2.value, su2.uOffset3.value]);
-		// Foam: whitecaps where the crests break, and what they leave on the water.
-		const fwd = _forward.set(0, 0, -1).applyQuaternion(pose.quaternion);
-		const flat = Math.hypot(fwd.x, fwd.z) || 1;
-		this.foamField.update({
-			dt: simDt,
-			camEast: pose.east,
-			camNorth: pose.north,
-			camHeight: heightAbove,
-			forwardEast: fwd.x / flat,
-			forwardNorth: -fwd.z / flat,
-			forwardDown: -fwd.y,
-			originEast: this.originE,
-			originNorth: this.originN,
-			waves: this.waves,
-			offsets: [su2.uOffset0.value, su2.uOffset1.value, su2.uOffset2.value, su2.uOffset3.value],
-			jacobianWeights: JACOBIAN_WEIGHTS,
-			foamTexture: this.foamTexture,
-			gateOffset: su2.uGateOffset.value
-		});
 		su2.uFoamField0.value = this.foamField.texture(0);
 		su2.uFoamField1.value = this.foamField.texture(1);
 		su2.uFoamRect0.value.copy(this.foamField.rects[0]);
 		su2.uFoamRect1.value.copy(this.foamField.rects[1]);
-		this.foamShiftE += this.waves.foamDrift.x * simDt;
-		this.foamShiftN += this.waves.foamDrift.y * simDt;
 		const patches = this.waves.patches;
 		su2.uPatch.value.set(patches[0], patches[1] ?? 1, patches[2] ?? 1, patches[3] ?? 1);
 		const L = (/** @type {number} */ i) => patches[i] ?? 1;
@@ -1343,7 +1597,24 @@ export class OceanEngine {
 		pu.uGridAmount.value = this.overlays.grid;
 		const shift = this.currentLayer?.shift ?? { east: 0, north: 0 };
 		pu.uGridShift.value.set(mod(this.originE - shift.east, 100), mod(this.originN - shift.north, 100));
+		// A label channel written out as data carries its value, not a dither on it.
+		pu.uDither.value = this.manual && (this.modeA !== 0 || this.modeB !== 0) ? 0 : 1;
 		this.post.render(renderer);
+
+		const layer = this.currentLayer;
+		this.drawn = {
+			t: layer ? (layer.flight ? layer.flight.state.time : layer.elapsed) : 0,
+			seaTime: this.simTime,
+			aircraft: air ? { ...air.state } : null,
+			sea: { ...this.sea },
+			light: { ...this.light },
+			stats: {
+				significantHeight: this.stats.significantHeight,
+				peakPeriod: this.stats.peakPeriod,
+				peakWavelength: this.stats.peakWavelength,
+				beaufort: this.stats.beaufort
+			}
+		};
 
 		this.host.root.style.setProperty('--split-x', `${(this.splitPos * 100).toFixed(3)}%`);
 		this.host.root.style.setProperty('--split-o', this.splitAmount.toFixed(3));
@@ -1390,7 +1661,7 @@ export class OceanEngine {
 		const ls = this.lightState;
 		if (!ls) return;
 		const envKey = `${this.light.sunElevation.toFixed(1)}|${this.light.sunAzimuth.toFixed(0)}|${this.light.overcast.toFixed(2)}|${this.light.haze.toFixed(2)}`;
-		const envChanged = this.environment.update(envKey, this.clock);
+		const envChanged = this.environment.update(envKey, this.clock, this.manual ? 0 : 0.35);
 		const key = `${this.lightKey}|${envChanged}`;
 		if (key !== this.lightingKey || envChanged) {
 			this.lightingKey = key;
@@ -1434,8 +1705,6 @@ export class OceanEngine {
 			if (replay && window) layer.tracks.setWindow(replay.time, window[0], window[1], replay.visible);
 			else layer.tracks.setWindow(replay?.time ?? 0, 1e9, 1e9, 1);
 			layer.tracks.setClear(replay ? (layer.spec.trackClock?.clear ?? 0) : 0);
-			// A replay's tracks wander wherever the flight went: keep them faint behind the copy.
-			layer.tracks.setScrim(layer.spec.scrim ?? 'none', replay ? 0.9 : 0);
 		});
 
 		// Markers on tracks the aircraft isn't flying.
@@ -1565,7 +1834,7 @@ export class OceanEngine {
 	}
 
 	/**
-	 * The aircraft's gimbal camera pose as its own rig computes it (no presenter offsets),
+	 * The aircraft's gimbal camera pose as its own rig computes it (no user camera offsets),
 	 * stabilised as the current onboard rig is, or as a typical gimbal when no onboard
 	 * view is on screen.
 	 * @param {BlendedAircraft} air
@@ -1607,19 +1876,22 @@ export class OceanEngine {
 	}
 
 	drawHud() {
-		const amount = this.overlays.horizon;
+		const amount = this.spec?.hud === false ? 0 : this.overlays.horizon;
 		if (amount < 0.002) {
 			this.hud.clear();
 			return;
 		}
 		const root = this.host.root;
+		const [hudWidth, hudHeight, hudDpr] = this.manual
+			? [this.size[0], this.size[1], 1]
+			: [root.clientWidth, root.clientHeight, Math.min(window.devicePixelRatio || 1, 2)];
 		const att = attitudeOf(this.pose.quaternion);
 		const seaUnder = this.sampler.sample(this.pose.east, this.pose.north, this.simTime).height;
 		const height = Math.max(0.3, this.pose.up - seaUnder);
 		this.hud.draw({
-			width: root.clientWidth,
-			height: root.clientHeight,
-			dpr: Math.min(window.devicePixelRatio || 1, 2),
+			width: hudWidth,
+			height: hudHeight,
+			dpr: hudDpr,
 			alpha: amount,
 			quaternion: this.pose.quaternion,
 			fov: this.pose.fov,
@@ -1633,8 +1905,8 @@ export class OceanEngine {
 	}
 
 	/**
-	 * Publish what is on screen: to the slides about 8 times a second, and to
-	 * window.__mayfly for tests.
+	 * Publish what is on screen: to the app's readout about 8 times a second, and to
+	 * window.__mare for tests.
 	 * @param {number} rawDt
 	 */
 	publish(rawDt) {
@@ -1673,11 +1945,10 @@ export class OceanEngine {
 		const replay = this.currentLayer?.replay ?? null;
 		r.trackTime = replay ? replay.time : -1;
 		r.trackGap = replay ? replay.gap : -1;
-		r.sample = this.spec?.randomize ? this.sample : 0;
 		r.mode = this.spec?.mode ?? 'shaded';
 		r.fps = Math.round(this.fps);
 		if (typeof window !== 'undefined') {
-			/** @type {any} */ (window).__mayfly = {
+			/** @type {any} */ (window).__mare = {
 				readout: { ...r },
 				stats: {
 					frames: this.frames,
@@ -1704,9 +1975,10 @@ export class OceanEngine {
 	resize(settle = true) {
 		if (this.disposed) return;
 		const root = this.host.root;
-		const w = Math.max(1, root.clientWidth);
-		const h = Math.max(1, root.clientHeight);
-		const dpr = this.quality.pixelRatio(w, h);
+		// A manual engine draws exactly `size`, one buffer pixel per CSS pixel.
+		const w = this.manual ? this.size[0] : Math.max(1, root.clientWidth);
+		const h = this.manual ? this.size[1] : Math.max(1, root.clientHeight);
+		const dpr = this.manual ? 1 : this.quality.pixelRatio(w, h);
 		this.renderer.setPixelRatio(dpr);
 		this.renderer.setSize(w, h, false);
 		const bw = Math.max(1, Math.round(w * dpr));
@@ -1726,7 +1998,7 @@ export class OceanEngine {
 	/** @param {number} cascades */
 	rebuildWaves(cascades) {
 		this.waves.dispose();
-		this.waves = new WaveSimulation(this.renderer, { size: this.quality.preset.fftSize, cascades });
+		this.waves = new WaveSimulation(this.renderer, { size: this.quality.preset.fftSize, cascades, seed: this.seed });
 		this.sampler = new SeaSampler(this.waves.noise, this.waves.size, this.waves.patches[0]);
 		this.surface.build(cascades);
 		this.seaKey = '';

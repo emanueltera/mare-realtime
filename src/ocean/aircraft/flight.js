@@ -1,6 +1,7 @@
 /**
  * How the UAV flies: a kinematic path (straight, orbit, weave or a recorded track),
- * flown in coordinated turns, with gust response on top. No three.js here, so the
+ * flown in coordinated turns, with gust response on top; or a precomputed trajectory,
+ * followed exactly (`trajectoryFlight`). No three.js here, so the
  * flight can be checked in node.
  *
  * Determinism: every quantity is a function of elapsed time. The paths and the gusts
@@ -90,7 +91,7 @@ function besselJ(n, x) {
 }
 
 /**
- * @typedef {Required<Omit<import('../scene.js').AircraftSpec, 'track'>> & { track?: string }} FullSpec
+ * @typedef {Required<Omit<import('../scene.js').AircraftSpec, 'track' | 'trajectory'>> & { track?: string }} FullSpec
  */
 
 /**
@@ -294,7 +295,7 @@ function timedPath(track, clock) {
  */
 export function createFlight(spec, tracks = [], trackClock) {
 	/** @type {FullSpec} */
-	const s = { ...aircraftDefaults, ...spec };
+	const s = { ...aircraftDefaults, ...spec, altitude: spec.altitude ?? 0 };
 	const track = s.path === 'track' ? tracks.find((t) => t.id === s.track && t.points.length > 1) : undefined;
 	const clock = track && isTimed(track) ? resolveClock(trackClock, tracks) : null;
 
@@ -376,6 +377,56 @@ export function createFlight(spec, tracks = [], trackClock) {
 		state,
 		step(dt) {
 			return evaluate(Math.max(0, state.time + dt));
+		},
+		seek(t) {
+			return evaluate(Math.max(0, t));
 		}
 	};
+}
+
+/**
+ * Fly a precomputed trajectory (`src/trajectory/`, or anything with its shape): the
+ * aircraft is exactly where the trajectory says at every moment. No gusts, no roll
+ * dynamics, no smoothing here: the trajectory already flew the aircraft, and what it
+ * gives is the ground truth the frames are rendered from.
+ *
+ * Time runs from 0 to `duration`, and `state.time` is always the t the sample was taken
+ * at. `seek` puts it at a time, held within [0, duration] (a seek to the end shows the
+ * end, not the start again). `step` plays on: looped (the interactive app, when nothing
+ * seeks it) it wraps past the end; otherwise (data generation) it holds there.
+ * @param {import('../scene.js').TrajectorySource} trajectory
+ * @param {{ loop?: boolean }} [options]
+ * @returns {import('../aircraft.js').Flight & { sample: import('../scene.js').TrajectoryState }}
+ */
+export function trajectoryFlight(trajectory, { loop = false } = {}) {
+	const duration = Math.max(0, trajectory.duration);
+	const state = emptyState();
+	/** @param {number} t @param {boolean} wrap */
+	const place = (t, wrap) => {
+		if (wrap && duration > 0) t = ((t % duration) + duration) % duration;
+		else t = Math.max(0, Math.min(duration, t));
+		const sample = trajectory.stateAt(t);
+		flight.sample = sample;
+		state.x = sample.x;
+		state.y = sample.y;
+		state.altitude = sample.altitude;
+		state.heading = compass(sample.heading);
+		state.pitch = sample.pitch;
+		state.bank = sample.bank;
+		state.speed = sample.airspeed;
+		state.turnRate = sample.turnRate;
+		state.time = t;
+		state.visible = 1;
+		return state;
+	};
+	const flight = {
+		state,
+		sample: trajectory.stateAt(0),
+		/** @param {number} dt */
+		step: (dt) => place(state.time + dt, loop && state.time + dt > duration),
+		/** @param {number} t */
+		seek: (t) => place(t, false)
+	};
+	place(0, false);
+	return flight;
 }

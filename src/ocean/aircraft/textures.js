@@ -1,6 +1,6 @@
 /**
  * Small CanvasTextures for the UAV: fuselage panel lines (bump + a whisper of colour),
- * the MAYFLY tail marking, a soft glow for the lights and the propeller's motion-blur
+ * the tail marking, a soft glow for the lights and the propeller's motion-blur
  * disc. Created per model and disposed with it. Client-side only (needs a canvas).
  */
 import * as THREE from 'three';
@@ -130,7 +130,7 @@ export function fuselageMaps({ zNose, zTail }) {
 }
 
 /**
- * The tail marking: "MAYFLY" in small dark letters on the outer face of a tail panel.
+ * The tail marking: a hull code ("UAV-01") in small dark letters on the outer face of a tail panel.
  * UVs on a lifting surface: u runs round the airfoil (0 at the trailing edge over the
  * upper/outer skin to 0.5 at the leading edge), v along the span from the apex (0) to
  * the boom (1).
@@ -155,7 +155,7 @@ export function tailMarking(mirrored) {
 	ctx.textAlign = 'center';
 	ctx.textBaseline = 'middle';
 	if ('letterSpacing' in ctx) /** @type {any} */ (ctx).letterSpacing = '7px';
-	ctx.fillText('MAYFLY', 0, 0);
+	ctx.fillText('UAV-01', 0, 0);
 	ctx.fillRect(-118, 28, 236, 3);
 	ctx.restore();
 	const map = new THREE.CanvasTexture(c);

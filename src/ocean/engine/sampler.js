@@ -51,12 +51,14 @@ export class SeaSampler {
 	 * Rebuild the component table for a sea state (throttled; cheap to call per frame).
 	 * @param {import('./waves.js').ResolvedSea} sea
 	 * @param {number} now seconds
+	 * @param {number} [minInterval] seconds between rebuilds while the sea is changing; the
+	 *   manual engine passes 0, so the table always matches the sea being rendered
 	 */
-	update(sea, now) {
+	update(sea, now, minInterval = 0.25) {
 		const key = [sea.windSpeed, sea.windDirection, sea.fetch, sea.spread, sea.swellHeight, sea.swellDirection, sea.swellPeriod]
 			.map((v) => v.toFixed(3))
 			.join(',');
-		if (key === this.key || (now - this.lastUpdate < 0.25 && this.count > 0)) return;
+		if (key === this.key || (now - this.lastUpdate < minInterval && this.count > 0)) return;
 		this.key = key;
 		this.lastUpdate = now;
 		const wind = windSeaParams(sea.windSpeed, sea.fetch);

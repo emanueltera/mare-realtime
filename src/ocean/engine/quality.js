@@ -76,7 +76,7 @@ export class AdaptiveQuality {
 		return dpr * this.renderScale;
 	}
 
-	/** Give the frame rate a few seconds to settle, e.g. after a resize or a slide change. */
+	/** Give the frame rate a few seconds to settle, e.g. after a resize or a scene change. */
 	settle(seconds = 2.5) {
 		this.grace = Math.max(this.grace, seconds);
 		this.slowFor = 0;
@@ -87,7 +87,7 @@ export class AdaptiveQuality {
 	 * Feed a frame. Returns 'scale', 'fft' or 'cascades' when the engine should step down:
 	 * first the render scale (to 0.6), then the FFT size (to 128²), then a cascade.
 	 *
-	 * Slow is frames missing 60 Hz, not only a low average: a deck alternating 60 and
+	 * Slow is frames missing 60 Hz, not only a low average: a stage alternating 60 and
 	 * 30 Hz frames averages 45–50 fps and judders on every moving camera.
 	 * @param {number} dt seconds (unscaled)
 	 * @param {number} fps the mean frame rate (one over the mean frame time)

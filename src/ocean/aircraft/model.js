@@ -1,6 +1,5 @@
 /**
- * The deck's fixed-wing UAV: a generic small airframe drawn for the presentation (not
- * a particular aircraft), about a 3.1 m span and 1.75 m long. A slender pod fuselage with an
+ * The fixed-wing UAV: a generic small airframe (not a particular aircraft), about a 3.1 m span and 1.75 m long. A slender pod fuselage with an
  * EO/IR gimbal ball under the nose, a high-aspect-ratio tapered wing (NACA 2412) with
  * dihedral, upturned winglets, flaps and ailerons, twin tail booms joined by an
  * inverted-V tail with ruddervators, and a two-blade pusher propeller between the
@@ -220,7 +219,7 @@ const mirrored = (p) => new THREE.Vector3(-p.x, p.y, p.z);
 /** @returns {import('../aircraft.js').AircraftModel} */
 export function createAircraftModel() {
 	const object = new THREE.Group();
-	object.name = 'mayfly-uav';
+	object.name = 'uav';
 
 	/** @type {THREE.BufferGeometry[]} */
 	const geometries = [];

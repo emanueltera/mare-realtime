@@ -1,0 +1,12 @@
+{
+	"name": "sea-state-sweep",
+	"description": "Every wind sea from glassy to gale under a high and a low sun, flying the same survey at 120 m and 32 m/s (fast enough to outfly the gale's wind aloft).",
+	"base": {
+		"trajectory": { "duration": 60, "altitude": 120, "airspeed": 32, "pattern": "survey" },
+		"render": { "fps": 5 }
+	},
+	"sweep": {
+		"sea": ["glassy", "calm", "light", "moderate", "fresh", "strong", "gale"],
+		"light": ["midday", "low-sun"]
+	}
+}

@@ -1,7 +1,7 @@
 /**
  * The ground-truth channels the simulator renders alongside every frame. One table
- * feeds both sides: the shader builds its colour ramps from `stops`, and the slides
- * draw their legends from the same stops, so a legend can never disagree with the
+ * feeds both sides: the shader builds its colour ramps from `stops`, and any legend
+ * is drawn from the same stops, so a legend can never disagree with the
  * picture it describes.
  *
  * `range` is the value at the first and last stop. Ramps are sampled linearly in

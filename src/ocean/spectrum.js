@@ -1,7 +1,7 @@
 /**
- * The wave physics the simulator and the slides share: one set of formulas, so the
- * spectrum chart on the simulation slide, the sea-state readouts and the ocean on
- * screen all describe the same sea.
+ * The wave physics the simulator, the presets and the readouts share: one set of
+ * formulas, so the sea-state numbers (conditions presets, meta.json, the app's panel)
+ * and the ocean on screen all describe the same sea.
  *
  * The wind sea is a fetch-limited JONSWAP spectrum (Hasselmann et al., 1973). Past
  * full development — a nondimensional fetch gF/U² of about 1.7e4, where JONSWAP's
@@ -237,7 +237,9 @@ export function peakOmega(spectrum) {
  */
 
 /**
- * The numbers a slide quotes about a sea state.
+ * The simulated sea's summary statistics (significant height, peak period and wavelength,
+ * Beaufort force): what the app's conditions panel, the README's preset table and each
+ * run's meta.json report, from the same spectrum the engine draws.
  * @param {import('./scene.js').SeaState} sea
  * @returns {SeaStats}
  */

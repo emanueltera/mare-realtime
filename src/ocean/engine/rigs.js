@@ -28,6 +28,9 @@ import { DEG, angleDelta, clamp, damp, lerp, wrap360 } from './util.js';
  * @property {import('../aircraft.js').AircraftState} state x/y absolute east/north metres
  * @property {{ pitch: number, yaw: number, fov: number }} gimbal
  * @property {number} scale
+ * @property {{ e: number, n: number, u: number } | null} [velocity] the aircraft's ground
+ *   velocity, m/s, when its flight knows it (a trajectory): a chase rig that starts (or
+ *   restarts after a seek) takes it as the motion it has been following all along
  */
 
 /**
@@ -39,7 +42,7 @@ import { DEG, angleDelta, clamp, damp, lerp, wrap360 } from './util.js';
  * @property {(east: number, north: number) => number} seaHeight instantaneous sea height, m
  * @property {(east: number, north: number) => { pitch: number, roll: number, heave: number }} [seaMotion]
  *   how a small float at a point would pitch, roll and heave, for sway
- * @property {{ yaw: number, pitch: number, zoom: number }} offsets offsets from the presenter taking the camera
+ * @property {{ yaw: number, pitch: number, zoom: number }} offsets offsets from the user taking the camera
  * @property {number} aspect width / height
  * @property {boolean} reducedMotion
  * @property {{ east: number, north: number }} shift where this scene's frame sits in the world
@@ -209,12 +212,21 @@ export class ChaseRig {
 		const tu = other ? (st.altitude + other.up) / 2 : st.altitude;
 		// A looped recording jumps back to its start: cut to it rather than fly across.
 		const cut = this.pos && Math.hypot(st.x - this.prev.e, st.y - this.prev.n) > CUT_DISTANCE;
+		const start = !this.pos || !this.aim || Boolean(cut);
 		if (!this.pos || !this.aim || cut) {
 			this.pos = [new Spring(te), new Spring(tn), new Spring(tu)];
 			this.aim = [new Spring(te), new Spring(tn), new Spring(tu)];
 			this.heading = new Spring(st.heading);
 			this.prev = { e: st.x, n: st.y, u: st.altitude, t: ctx.time };
-			this.vel = { e: 0, n: 0, u: 0 };
+			const v = a.velocity;
+			this.vel = v && !cut ? { e: v.e, n: v.n, u: v.u } : { e: 0, n: 0, u: 0 };
+			// Given the velocity, the springs start as if they had been tracking the aircraft
+			// at it, so this step's motion is no surprise to them (as after a cut, below).
+			const vel = [this.vel.e, this.vel.n, this.vel.u];
+			for (let i = 0; i < 3; i++) {
+				this.pos[i].target -= vel[i] * dt;
+				this.aim[i].target -= vel[i] * dt;
+			}
 			this.reach = -1;
 			this.settle = cut ? CUT_SETTLE : 0;
 		}
@@ -222,7 +234,7 @@ export class ChaseRig {
 		// cut, taken raw from frame to frame (the first frame has nothing to measure).
 		const settling = this.settle > 0;
 		const k = settling ? 1 : 1 - Math.exp(-dt / 0.25);
-		const fresh = settling && this.prev.t === ctx.time;
+		const fresh = start || (settling && this.prev.t === ctx.time);
 		if (!fresh) {
 			this.vel.e += ((st.x - this.prev.e) / dt - this.vel.e) * k;
 			this.vel.n += ((st.y - this.prev.n) / dt - this.vel.n) * k;

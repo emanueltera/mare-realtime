@@ -1,0 +1,9 @@
+{
+	"name": "random-100",
+	"description": "One hundred domain-randomised runs: sea, sky, altitude, airspeed, gimbal, heading and pattern all drawn from seed 7.",
+	"base": {
+		"trajectory": { "duration": 30 },
+		"render": { "width": 960, "height": 540, "fps": 5 }
+	},
+	"random": { "count": 100, "seed": 7 }
+}

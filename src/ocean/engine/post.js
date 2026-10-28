@@ -80,6 +80,7 @@ uniform float uSplitPos;
 uniform float uSplitAmount;
 uniform vec2 uResolution;
 uniform float uTime;
+uniform float uDither;
 uniform int uToneMapper;
 // Decals on the water.
 uniform vec2 uTanHalf;
@@ -248,11 +249,11 @@ void main() {
 		outCol = mix(outCol, outCol * 0.4, shadow * uSplitAmount);
 		outCol = mix(outCol, vec3(0.93, 0.97, 1.0), line * uSplitAmount);
 	}
-	// Triangular dither, ±1 LSB.
+	// Triangular dither, ±1 LSB (off for label channels written out as data).
 	vec2 seed = gl_FragCoord.xy + fract(uTime) * 61.0;
 	float n1 = fract(sin(dot(seed, vec2(12.9898, 78.233))) * 43758.5453);
 	float n2 = fract(sin(dot(seed, vec2(39.3468, 11.135))) * 24634.6345);
-	outCol += (n1 + n2 - 1.0) / 255.0;
+	outCol += (n1 + n2 - 1.0) / 255.0 * uDither;
 	fragColor = vec4(outCol, 1.0);
 }`;
 
@@ -369,6 +370,7 @@ export class PostPass {
 			uSplitAmount: { value: 0 },
 			uResolution: { value: new THREE.Vector2(1, 1) },
 			uTime: { value: 0 },
+			uDither: { value: 1 },
 			uToneMapper: { value: 0 },
 			uTanHalf: { value: new THREE.Vector2(1, 1) },
 			uCameraWorld: { value: new THREE.Matrix4() },

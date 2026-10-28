@@ -122,7 +122,6 @@ uniform vec4 uWindow;
 uniform vec2 uFade;  // range at which lines start and finish fading, m
 uniform vec2 uResolution;
 uniform float uClear; // timed lines: seconds just behind the window's now over which they fade in
-uniform vec4 uScrim;  // timed lines: faded where the copy sits: from, to (0–1 from that edge), strength, edge (1 left, 2 right, 3 bottom)
 out vec4 fragColor;
 
 float coverage(float d) {
@@ -155,11 +154,6 @@ void main() {
 		// Leave the last moments before the clock clear, so an aircraft flying the line has
 		// a silhouette against the sea rather than ending a ribbon of its own colour.
 		if (uClear > 0.0) alpha *= smoothstep(0.3 * uClear, uClear, behind);
-		if (uScrim.w > 0.5) {
-			vec2 uv = gl_FragCoord.xy / max(uResolution, vec2(1.0));
-			float u = uScrim.w < 1.5 ? uv.x : uScrim.w < 2.5 ? 1.0 - uv.x : uv.y;
-			alpha *= 1.0 - uScrim.z * (1.0 - smoothstep(uScrim.x, uScrim.y, u));
-		}
 	}
 	if (vPrev.z > 0.5) {
 		// The previous segment (from vPrev to this one's start), drawn just before, already
@@ -227,8 +221,7 @@ export class LineSet {
 				uLiftRange: { value: options.liftRange ?? 0 },
 				uFade: { value: new THREE.Vector2(...(options.fade ?? [1e7, 2e7])) },
 				uWindow: { value: new THREE.Vector4(0, 1e9, 1e9, 1) },
-				uClear: { value: 0 },
-				uScrim: { value: new THREE.Vector4(0, 1, 0, 0) }
+				uClear: { value: 0 }
 			},
 			transparent: true,
 			depthWrite: false,
@@ -324,20 +317,6 @@ export class LineSet {
 	 */
 	setClear(seconds) {
 		this.material.uniforms.uClear.value = seconds;
-	}
-
-	/**
-	 * Timed lines only: fade them toward the side of the frame the slide's copy sits on,
-	 * so a recorded pass that crosses behind the text is faint there.
-	 * @param {'left' | 'right' | 'bottom' | 'none'} side
-	 * @param {number} strength 0–1: how much of the line's alpha is taken away at that edge
-	 */
-	setScrim(side, strength) {
-		const edge = { left: 1, right: 2, bottom: 3, none: 0 }[side] ?? 0;
-		// Full fade up to 36% of the way in from that edge (the copy column), none past 56%;
-		// from the bottom, up to 25% and none past 40%.
-		const [from, to] = side === 'bottom' ? [0.25, 0.4] : [0.36, 0.56];
-		/** @type {THREE.Vector4} */ (this.material.uniforms.uScrim.value).set(from, to, strength, strength > 0 ? edge : 0);
 	}
 
 	/** @param {number} opacity */

@@ -1,0 +1,10 @@
+{
+	"name": "quick",
+	"description": "Smoke test: one 10 s straight flight over the moderate sea, small and fast.",
+	"base": {
+		"sea": "moderate",
+		"light": "morning",
+		"trajectory": { "duration": 10, "altitude": 120, "pattern": "transit" },
+		"render": { "width": 640, "height": 360, "fps": 5, "warmup": 4 }
+	}
+}

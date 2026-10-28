@@ -5,7 +5,7 @@
  * it lies on the rendered horizon. Around it: a pitch ladder, a bank scale with its
  * pointer, a fixed miniature-aircraft reference at the boresight and the numbers. The
  * roll and pitch are the camera's (its gimbal is only partly stabilised), labelled so,
- * since a slide may show the airframe's own attitude beside them.
+ * since the app shows the airframe's own attitude beside them.
  */
 import * as THREE from 'three';
 import { DEG, clamp } from './util.js';
@@ -143,7 +143,7 @@ export class HorizonHud {
 			const offset = Math.hypot(px - cx, py - cy);
 			const gap = 92 * unit * (1 - Math.min(1, Math.max(0, (offset - 30 * unit) / (60 * unit))));
 			// Faded out toward the frame edges, and across the left third on a wide
-			// frame, where the slide copy sits, so it never strikes through a headline.
+			// frame, which is kept clear for whatever the page lays over it there.
 			const edge = ctx.createLinearGradient(0, 0, w, 0);
 			const left = w > 900 ? 0.3 : 0.02;
 			edge.addColorStop(left, `rgba(${ACCENT}, 0)`);
@@ -222,10 +222,10 @@ export class HorizonHud {
 		ctx.closePath();
 		ctx.fill();
 
-		// Numbers, up and right of the boresight so the slide copy on the left stays clear,
-		// on a soft dark backing so they read over whitecaps. On a phone-width screen the
-		// slide is one panel across the whole frame and the block would show through it
-		// behind the copy, so it is left out there.
+		// Numbers, up and right of the boresight so the left of the frame stays clear, on a
+		// soft dark backing so they read over whitecaps. On a phone-width screen a panel
+		// over the page covers the whole frame and the block would show through it, so it
+		// is left out there.
 		if (w < 720) return;
 		ctx.textAlign = 'left';
 		ctx.font = `${14 * text}px ${this.font}`;

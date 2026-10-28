@@ -1,8 +1,9 @@
 /**
- * The fixed-wing UAV Mayfly flies on: its 3D model and its flight. This is the entry
+ * The fixed-wing UAV: its 3D model and its flight. This is the entry
  * point the ocean engine codes against; the implementation lives in `./aircraft/`:
  * - `attitude.js` — empty state, state blending, the attitude quaternion;
- * - `flight.js` — the paths (straight, orbit, weave, track), coordinated turns and gusts;
+ * - `flight.js` — the paths (straight, orbit, weave, track), coordinated turns and gusts,
+ *   and precomputed trajectories followed exactly;
  * - `model.js` — the procedural airframe, its moving parts and its lights;
  * - `geometry.js`, `textures.js`, `turbulence.js` — what those are built from.
  * This module imports three, so only the client-side engine may load it.
@@ -63,8 +64,10 @@
  * @typedef {object} Flight
  * @property {AircraftState} state the current state, updated in place by `step`
  * @property {(dt: number) => AircraftState} step advance by dt seconds and return `state`
+ * @property {(t: number) => AircraftState} seek put the flight at t seconds since it began
+ *   and return `state` (a pure function of t, like `step`)
  */
 
 export { emptyState, blendStates, attitudeQuaternion } from './aircraft/attitude.js';
-export { createFlight } from './aircraft/flight.js';
+export { createFlight, trajectoryFlight } from './aircraft/flight.js';
 export { createAircraftModel } from './aircraft/model.js';

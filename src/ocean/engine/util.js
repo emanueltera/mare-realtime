@@ -89,7 +89,7 @@ export function gaussian(random) {
 
 /**
  * Parse a CSS colour (#rgb, #rrggbb, #rrggbbaa, rgb(), rgba()) into sRGB 0–1 channels.
- * Anything unrecognised comes back as the deck accent.
+ * Anything unrecognised comes back as the HUD's accent colour.
  * @param {string} css
  * @returns {{ r: number, g: number, b: number, a: number }}
  */

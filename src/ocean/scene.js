@@ -1,17 +1,18 @@
 /**
- * The contract between the deck and the ocean behind it. Every slide names a scene;
- * the stage blends from whatever it is showing to that scene over `transition`
- * seconds, so a slide change is a change of weather and camera rather than a cut.
+ * The contract between the ocean engine and whoever drives it (the app's preview, the
+ * batch page): a scene is the sea, the light, the aircraft and the camera. The
+ * interactive engine blends from whatever it is showing to a new scene over
+ * `transition` seconds, so a change is a change of weather and camera rather than a cut;
+ * the manual engine (data generation) enters it at once.
  *
- * Mayfly's platform is a fixed-wing UAV flying over open water, so a scene can put
- * that aircraft in the sky (`aircraft`) and hang the camera off it: a chase camera
- * for the cinematic views, or the aircraft's own gimbal camera for what Mayfly
- * actually sees.
+ * The platform is a fixed-wing UAV flying over open water, so a scene can put that
+ * aircraft in the sky (`aircraft`) and hang the camera off it: a chase camera for the
+ * cinematic views, or the aircraft's own gimbal camera for what the UAV actually sees.
  *
  * Conventions, used everywhere a direction or position appears:
  * - Positions are metres in a local east/north frame on the mean sea surface:
  *   `x` east, `y` north. (The three.js world maps that to x = east, z = -north,
- *   with +y up; nothing outside `src/lib/ocean/` needs to know.)
+ *   with +y up; nothing outside `src/ocean/` needs to know.)
  * - Directions are compass degrees: 0 = north, 90 = east.
  * - Sea directions are the way the waves *travel*, not the meteorological
  *   "wind from" — so `windDirection: 90` is a sea running eastward.
@@ -52,7 +53,7 @@
  * @property {number} [y] north position of the camera, m; default 0
  * @property {number} [drift] m/s the camera travels along its heading, like a camera
  *   carried along; default 0
- * @property {number} [orbit] deg/s of slow yaw, for slides that circle the scene; default 0
+ * @property {number} [orbit] deg/s of slow yaw, for a free camera that circles the scene; default 0
  * @property {number} [sway] 0–1, how much the camera rides the sea like one on a buoy:
  *   heave, pitch and roll coupled to the current sea state; default 0
  */
@@ -85,7 +86,7 @@
  */
 
 /**
- * The aircraft's own camera, on its gimbal (see `AircraftSpec.gimbal`) — what Mayfly
+ * The aircraft's own camera, on its gimbal (see `AircraftSpec.gimbal`) — what the UAV
  * sees. Requires `aircraft`. The aircraft model is not drawn from this view.
  * @typedef {object} OnboardRig
  * @property {'onboard'} mode
@@ -98,19 +99,27 @@
  */
 
 /**
- * A fixed-wing UAV, the platform Mayfly flies on. Drawn at true size (about a 3 m
+ * A fixed-wing UAV. Drawn at true size (about a 3 m
  * span) unless `scale` says otherwise, flying a coordinated path: it banks into turns
  * (tan φ = V·ω/g), its control surfaces and propeller move, its navigation lights
  * show at low sun, and `turbulence` adds gust response.
  * @typedef {object} AircraftSpec
- * @property {number} altitude metres above mean sea level
+ * @property {number} [altitude] metres above mean sea level; required, except with
+ *   `path: 'trajectory'`, where the trajectory gives it
  * @property {number} [speed] airspeed, m/s; default 24
  * @property {number} [heading] compass degrees the nose points at the start; default 0
  * @property {number} [x] metres east of the origin at the start; default 0
  * @property {number} [y] metres north of the origin at the start; default 0
- * @property {'straight' | 'orbit' | 'weave' | 'track'} [path] default 'straight'.
+ * @property {'straight' | 'orbit' | 'weave' | 'track' | 'trajectory'} [path] default 'straight'.
  *   `orbit` loiters on a circle round (x, y); `weave` flies gentle S-turns about its
- *   heading; `track` flies along `tracks[track]` at the track's altitudes
+ *   heading; `track` flies along `tracks[track]` at the track's altitudes; `trajectory`
+ *   is placed exactly where `trajectory` says at every moment (see TrajectorySource):
+ *   no engine gusts, no smoothing, no shift of the scene's frame, and the gimbal follows
+ *   the samples' gimbalPitch / gimbalYaw / gimbalFov. `x`, `y`, `heading`, `speed`,
+ *   `turbulence` and `gimbal` are then ignored (gimbal only where a sample lacks it)
+ * @property {TrajectorySource} [trajectory] the flight to place the aircraft on, for
+ *   'trajectory'. The interactive engine loops it over `duration` (`engine.seek(t)` moves
+ *   it); the manual engine holds it at its ends
  * @property {number} [orbitRadius] metres, for 'orbit'; default 180
  * @property {1 | -1} [orbitDirection] 1 clockwise seen from above, −1 anticlockwise; default 1
  * @property {string} [track] id of a TrackOverlay to fly, for 'track'; the aircraft replaces
@@ -126,9 +135,37 @@
  */
 
 /**
+ * A precomputed flight, as `src/trajectory/` makes one (`createTrajectory`), or anything
+ * with the same shape. Only what is listed here is read.
+ * @typedef {object} TrajectorySource
+ * @property {number} duration seconds
+ * @property {(t: number) => TrajectoryState} stateAt the state at t seconds since the start
+ */
+
+/**
+ * The fields of a trajectory sample (`src/trajectory/`'s TrajectorySample) that the
+ * engine reads. Positions in the east/north/up frame above; attitude as AircraftState.
+ * @typedef {object} TrajectoryState
+ * @property {number} x metres east
+ * @property {number} y metres north
+ * @property {number} altitude metres above mean sea level
+ * @property {number} heading compass degrees of the nose
+ * @property {number} pitch degrees, nose up positive
+ * @property {number} bank degrees, right wing down positive
+ * @property {number} airspeed m/s
+ * @property {number} turnRate deg/s of heading, positive right
+ * @property {number} [vE] ground velocity, m/s east (lets a chase rig start settled)
+ * @property {number} [vN] m/s north
+ * @property {number} [vU] m/s up
+ * @property {number} [gimbalPitch] degrees, negative looks down
+ * @property {number} [gimbalYaw] degrees from the nose, positive right
+ * @property {number} [gimbalFov] vertical field of view, degrees
+ */
+
+/**
  * What the frame shows. `shaded` is the photoreal render; the rest are the
  * ground-truth channels the simulator emits for training, coloured by
- * `channels.js` so the slide legends and the shader agree.
+ * `channels.js` so legends and the shader agree.
  * @typedef {'shaded' | 'height' | 'velocity' | 'normals' | 'foam' | 'depth'} RenderMode
  */
 
@@ -165,7 +202,7 @@
  * The playback clock for timed tracks (recorded flights). Starts at `start` seconds into
  * the recording when the scene opens and runs at `rate` × real time; when it reaches
  * `loop[1]` it returns to `loop[0]` (the aircraft and markers fade out and back in, as on
- * a looped track), so a slide can replay one interesting stretch of a long flight.
+ * a looped track), so a scene can replay one interesting stretch of a long flight.
  * @typedef {object} TrackClock
  * @property {number} [start] seconds into the recording; default the first track time
  * @property {number} [rate] playback speed, 1 = real time; default 1
@@ -178,9 +215,6 @@
  * @property {number} [clear] seconds just before the clock to leave undrawn (fading in
  *   behind them), so the aircraft flying a timed track has a silhouette against the sea
  *   rather than ending a ribbon of its own colour; default 0
- *
- * With a `scrim`, a replay's timed tracks also fade toward that side of the frame, so a
- * pass that crosses behind the slide's copy is faint there.
  */
 
 /**
@@ -202,13 +236,9 @@
  * @property {OverlayName[]} [overlays]
  * @property {TrackOverlay[]} [tracks]
  * @property {TrackClock} [trackClock] playback of timed tracks; ignored without them
- * @property {boolean} [randomize] cycle domain-randomised samples (sea, light, camera and,
- *   with an onboard rig, the aircraft's altitude, speed, gimbal and turbulence) every few
- *   seconds, ignoring the scene's values except as the starting point
- * @property {number} [dim] 0–1 uniform darkening so copy reads over the water; default 0
- * @property {'left' | 'right' | 'bottom' | 'none'} [scrim] a soft gradient behind the
- *   side of the frame the copy sits on; default 'none'
  * @property {number} [transition] seconds to blend in from the previous scene; default 2.4
+ * @property {boolean} [hud] false never draws the HUD canvas, whatever `overlays` says;
+ *   default true
  */
 
 /** @type {Required<Pick<SeaState, 'fetch' | 'spread' | 'swellHeight' | 'swellDirection' | 'swellPeriod' | 'choppiness'>>} */
@@ -233,7 +263,7 @@ export const chaseDefaults = { lag: 0.5, fov: 42, orbit: 0, frame: [0.3, -0.05] 
 /** @type {Required<Omit<OnboardRig, 'mode'>>} */
 export const onboardDefaults = { stabilized: 0.55 };
 
-/** @type {Required<Omit<AircraftSpec, 'altitude' | 'track'>>} */
+/** @type {Required<Omit<AircraftSpec, 'altitude' | 'track' | 'trajectory'>>} */
 export const aircraftDefaults = {
 	speed: 24,
 	heading: 0,

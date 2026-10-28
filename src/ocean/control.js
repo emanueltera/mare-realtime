@@ -6,7 +6,7 @@
  * set here is layered over the current scene.
  *
  * `oceanReadout` is written by the engine a few times a second: what is actually on
- * screen right now, including the parameters of the current randomised sample.
+ * screen right now.
  */
 
 /**
@@ -62,7 +62,6 @@ export function resetOceanControl() {
  *   right now (see `TrackClock`); -1 when the scene has none
  * @property {number} trackGap metres between a `gapTo` track's marker and the track it
  *   points at, right now; -1 when there is none
- * @property {number} sample index of the current randomised sample; 0 when not randomising
  * @property {import('./scene.js').RenderMode} mode
  * @property {number} fps smoothed frames per second
  */
@@ -93,7 +92,6 @@ export const oceanReadout = {
 	cameraMode: 'free',
 	trackTime: -1,
 	trackGap: -1,
-	sample: 0,
 	mode: 'shaded',
 	fps: 0
 };

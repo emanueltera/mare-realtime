@@ -11,7 +11,7 @@
  * The material samples every cascade, builds the normal and the slope covariance
  * (LEAN-style second moments, so detail that mip-maps away turns into roughness), finds
  * the crests breaking right now and the foam they left (`foam.js`), and writes three
- * targets: the shaded radiance, and the ground-truth channels the deck's label views
+ * targets: the shaded radiance, and the ground-truth channels the label modes
  * show (normal + foam, height + vertical velocity + range + water mask).
  */
 import * as THREE from 'three';

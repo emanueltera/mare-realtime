@@ -213,6 +213,9 @@ export class FoamField {
 		u.uInject.value = waves.foamEnabled * RESIDUAL;
 		u.uFoamTex.value = s.foamTexture;
 		/** @type {THREE.Vector2} */ (u.uGateOffset.value).copy(s.gateOffset);
+		// Decay, drift and spread are first-order steps, good for short ones only: both
+		// drivers keep a step at or under 0.1 s (the interactive loop clamps its frame time,
+		// a manual advance sub-steps), and this clamp only guards against a caller that does not.
 		const dt = Math.min(s.dt, 0.1);
 		u.uKeep.value = Math.exp(-dt / waves.foamLifetime);
 		/** @type {THREE.Vector2} */ (u.uDrift.value).copy(waves.foamDrift).multiplyScalar(dt);

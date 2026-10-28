@@ -1,0 +1,14 @@
+{
+	"name": "conditions-grid",
+	"description": "Four seas (two with swell) under three skies, three flight patterns, two seeds each.",
+	"base": {
+		"trajectory": { "duration": 30, "altitude": 150 },
+		"render": { "width": 960, "height": 540, "fps": 5 }
+	},
+	"sweep": {
+		"sea": ["calm", "moderate", "strong", "cross-swell"],
+		"light": ["midday", "overcast", "low-sun"],
+		"trajectory.pattern": ["transit", "loiter", "survey"],
+		"seed": [1, 2]
+	}
+}
