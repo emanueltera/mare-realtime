@@ -325,7 +325,7 @@ void main() {
 
 	gFoamAlbedo = mix(0.5, 1.0, foamDensity);
 	vec3 radiance = shadeWater(vWorld, V, N, sig, crest, foamVis, shadow);
-	// The bubble cloud under and around whitecaps lifts the water toward turquoise.
+	// The bubble cloud under and around whitecaps lifts the water toward a pale aqua blue.
 	float bubbles = smoothstep(0.25, 0.9, coverage) * (1.0 - foamVis);
 	radiance += uSssColor * (uSunE * shadow * max(uSunDir.y, 0.0) + uSkyE) * bubbles * 0.05;
 	vec3 col = applyHaze(radiance, -V, dist, max(vWorld.y, 0.0));

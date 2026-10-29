@@ -112,7 +112,10 @@ export function createSkyUniforms() {
 		uSunDiscRadiance: { value: new THREE.Vector3() },
 		uSunVisible: { value: 1 },
 		uWaterColor: { value: new THREE.Vector3(0.0011, 0.0068, 0.0165) },
-		uSssColor: { value: new THREE.Vector3(0.06, 0.42, 0.36) },
+		// Light scattered back out of clear open-ocean water peaks in the blue, green well
+		// under it (as uWaterColor); a green-dominant tint reads as coastal, chlorophyll-rich
+		// water, and showed as teal halos round whitecaps and a teal cast looking down.
+		uSssColor: { value: new THREE.Vector3(0.045, 0.32, 0.56) },
 		uFoamTex: { value: /** @type {THREE.Texture | null} */ (null) },
 		uFarVariance: { value: new THREE.Vector3(0.01, 0.01, 0) },
 		uHs: { value: 1 }
