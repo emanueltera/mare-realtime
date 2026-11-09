@@ -1,0 +1,42 @@
+train runs 4500 dt min/max 0.09999999999999964 0.10000000000000053 frames/run [81] masked mean 0.0005 frac runs masked>0.01 0.013 gsd 0.043 0.328
+val runs 150 dt min/max 0.09999999999999964 0.10000000000000053 frames/run [81] masked mean 0.0007 frac runs masked>0.01 0.02 gsd 0.047 0.321
+test-iid runs 300 dt min/max 0.09999999999999964 0.10000000000000053 frames/run [81] masked mean 0.0003 frac runs masked>0.01 0.007 gsd 0.047 0.324
+test-sea runs 150 dt min/max 0.09999999999999964 0.10000000000000053 frames/run [81] masked mean 0.0001 frac runs masked>0.01 0.0 gsd 0.046 0.321
+test-alt runs 150 dt min/max 0.09999999999999964 0.10000000000000053 frames/run [81] masked mean 0.0002 frac runs masked>0.01 0.007 gsd 0.354 0.642
+test-rate runs 400 dt min/max 0.09999999999999964 0.10000000000000053 frames/run [81] masked mean 0.0004 frac runs masked>0.01 0.01 gsd 0.046 0.321
+e1-core runs 432 dt min/max 0.09999999999999964 0.10000000000000142 frames/run [121] masked mean 0.0 frac runs masked>0.01 0.0 gsd 0.048 0.404
+pilot runs 16 dt min/max 0.09999999999999964 0.10000000000000053 frames/run [81] masked mean 0.0035 frac runs masked>0.01 0.125 gsd 0.048 0.276
+run_id shared across sets: 0 []
+traj_seed shared across sets: 0 []
+sea_seed shared across sets: 0 []
+train dup sea_seed 0 dup traj_seed 0
+val dup sea_seed 0 dup traj_seed 0
+test-iid dup sea_seed 0 dup traj_seed 0
+test-sea dup sea_seed 0 dup traj_seed 0
+test-alt dup sea_seed 0 dup traj_seed 0
+test-rate dup sea_seed 300 dup traj_seed 300
+e1-core dup sea_seed 431 dup traj_seed 431
+pilot dup sea_seed 0 dup traj_seed 0
+train corr(masked, gs) 0.05127027423052669 corr(masked, gimbal) 0.15316578280190413
+train corr(gsd, gs) 0.009757265962728707 corr(wind, gs) 0.0461550599223175
+theta-heading circ corr train: 0.013985675128463056
+train held-out-regime runs: 0 max wind 15.998 max swellT(with swell) 13.999 alt range 30.007 199.669
+val held-out-regime runs: 0 max wind 15.93 max swellT(with swell) 13.968 alt range 30.747 198.469
+test-iid held-out-regime runs: 0 max wind 15.996 max swellT(with swell) 13.997 alt range 30.182 199.916
+test-alt held-out-regime runs: 0 max wind 15.972 max swellT(with swell) 13.974 alt range 220.42 399.09
+test-rate held-out-regime runs: 0 max wind 15.679 max swellT(with swell) 13.981 alt range 30.395 199.126
+test-sea all heldout: True
+set                e1-core      pilot    test-alt    test-iid   test-rate    test-sea        train         val
+overcast count  432.000000  16.000000  150.000000  300.000000  400.000000  150.000000  4500.000000  150.000000
+         mean     0.075000   0.318625    0.357860    0.397930    0.349960    0.374567     0.376809    0.369000
+         std      0.025029   0.233916    0.262893    0.313399    0.276976    0.291257     0.286927    0.281046
+         min      0.050000   0.017000    0.001000    0.004000    0.001000    0.002000     0.000000    0.001000
+         25%      0.050000   0.137500    0.143500    0.121500    0.136000    0.131500     0.134750    0.133250
+         50%      0.075000   0.285000    0.275500    0.319500    0.249500    0.273500     0.303000    0.270500
+         75%      0.100000   0.408750    0.529250    0.708750    0.507750    0.604000     0.598250    0.589750
+         max      0.100000   0.754000    0.962000    1.000000    0.963000    0.994000     1.000000    0.995000
+haze     count  432.000000  16.000000  150.000000  300.000000  400.000000  150.000000  4500.000000  150.000000
+         mean     0.250000   0.492750    0.405927    0.408773    0.429120    0.352180     0.405512    0.397007
+         std      0.100116   0.198512    0.225706    0.208173    0.218842    0.211835     0.220063    0.203152
+         min      0.150000   0.123000    0.007000    0.004000    0.010000    0.004000     0.000000    0.003000
+         25%      0.150000   0.350750    0.228250    0.25

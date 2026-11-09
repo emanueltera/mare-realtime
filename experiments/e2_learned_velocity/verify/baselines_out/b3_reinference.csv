@@ -1,0 +1,7 @@
+set,windows,rows_stored,unmatched,max_abs_diff_b3,nan_mismatch,max_abs_diff_const
+val,11100,11100,0,0.0,0,0.0
+test-iid,22200,22200,0,0.0,0,0.0
+test-sea,11100,11100,0,0.0,0,0.0
+test-alt,11100,11100,0,0.0,0,0.0
+test-rate,29600,29600,0,0.0,0,0.0
+e1-core,49248,49248,0,0.0,0,0.0

@@ -1,0 +1,54 @@
+{
+	"name": "e1-decomp",
+	"description": "E1 decomposition: the core camera with label modes normals (wave slope only, no foam, no lighting) and foam (foam only) drawn beside the shaded image, so flow can be run on each layer alone. 4 seas x 4 altitudes x 30 m/s x heading 60 (down-wave) x 2 suns = 32 runs.",
+	"base": {
+		"trajectory": {
+			"duration": 12,
+			"pattern": "transit",
+			"wind": "none",
+			"turbulence": 0,
+			"airspeedVariation": 0,
+			"gimbal": {
+				"pitch": -90,
+				"yaw": 0,
+				"fov": 92,
+				"stabilized": 1
+			}
+		},
+		"render": {
+			"width": 720,
+			"height": 1280,
+			"fps": 10,
+			"warmup": 8,
+			"modes": [
+				"shaded",
+				"normals",
+				"foam"
+			]
+		}
+	},
+	"sweep": {
+		"sea": [
+			"calm",
+			"moderate",
+			"strong",
+			"cross-swell"
+		],
+		"light": [
+			"midday",
+			"low-sun"
+		],
+		"trajectory.altitude": [
+			30,
+			60,
+			120,
+			250
+		],
+		"trajectory.airspeed": [
+			30
+		],
+		"trajectory.start.heading": [
+			60
+		]
+	}
+}

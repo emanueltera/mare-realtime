@@ -1,0 +1,22 @@
+{
+ "K": 8,
+ "gaps": "1,2,4,7",
+ "iters": 4,
+ "crop": 256,
+ "amp": 1,
+ "backbone": "frozen",
+ "trained_on": "cache",
+ "cache": "/workspace/data/e2/flowhead/cache-smoke",
+ "out": "/workspace/data/e2/flowhead/head-smoke",
+ "batch": 64,
+ "minutes": 6.0,
+ "steps": 20000,
+ "lr": 0.0005,
+ "wd": 0.0001,
+ "warmup": 300,
+ "nll_weight": 0.1,
+ "val_every": 500,
+ "train_limit": 0,
+ "val_on_train": true,
+ "seed": 0
+}

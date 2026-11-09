@@ -1,0 +1,18 @@
+val: 7500 windows in 200s (checkpoint epoch 6, tta False); pattern missing 0.0000, truth inside stage-0 grid 1.0000
+set  K  runs  b_median    b_p90  b_pct_median  drift_pct_median  frac_b_le_017  frac_bpct_le_028
+val 32   150  0.477137 1.377088      1.262061          1.606811           0.14          0.053333
+test-iid: 15000 windows in 377s (checkpoint epoch 6, tta False); pattern missing 0.0000, truth inside stage-0 grid 1.0000
+     set  K  runs  b_median    b_p90  b_pct_median  drift_pct_median  frac_b_le_017  frac_bpct_le_028
+test-iid 32   300   0.46922 1.367924      1.382448          1.582255       0.153333          0.063333
+test-sea: 7500 windows in 186s (checkpoint epoch 6, tta False); pattern missing 0.0000, truth inside stage-0 grid 1.0000
+     set  K  runs  b_median    b_p90  b_pct_median  drift_pct_median  frac_b_le_017  frac_bpct_le_028
+test-sea 32   150  0.584727 1.492427      1.518321          2.130971       0.133333          0.066667
+test-alt: 7500 windows in 202s (checkpoint epoch 6, tta False); pattern missing 0.0000, truth inside stage-0 grid 1.0000
+     set  K  runs  b_median    b_p90  b_pct_median  drift_pct_median  frac_b_le_017  frac_bpct_le_028
+test-alt 32   150  1.242662 7.422308      3.865329          4.246395           0.04          0.006667
+test-rate: 20000 windows in 534s (checkpoint epoch 6, tta False); pattern missing 0.0000, truth inside stage-0 grid 1.0000
+      set  K  runs  b_median    b_p90  b_pct_median  drift_pct_median  frac_b_le_017  frac_bpct_le_028
+test-rate 32   400  0.741171 2.043763      2.211583          2.849118           0.06             0.025
+e1-core: 38880 windows in 842s (checkpoint epoch 6, tta False); pattern missing 0.0000, truth inside stage-0 grid 1.0000
+    set  K  runs  b_median    b_p90  b_pct_median  drift_pct_median  frac_b_le_017  frac_bpct_le_028
+e1-core 32   432  0.260112 1.129235      0.833762          0.888016       0.310185          0.101852

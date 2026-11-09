@@ -1,0 +1,21 @@
+{
+ "out": "/workspace/data/e2/spectral/k16",
+ "K": 16,
+ "stages": "reg",
+ "bin": 2,
+ "pad": 4,
+ "band": 1.0,
+ "hid": 96,
+ "bs": 16,
+ "lr": 0.0006,
+ "epochs": 20,
+ "samples": 20000,
+ "max_minutes": 55.0,
+ "teacher_steps": 3000,
+ "val_step": 7,
+ "workers": 4,
+ "train_runs": null,
+ "val_on_train": false,
+ "bench": 0,
+ "seed": 0
+}

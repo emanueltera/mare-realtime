@@ -1,0 +1,58 @@
+method,set,runs,b_median,b_p90,frac_b_le_017,rms_median,source
+B-ft,val,150,0.9848596151096755,1.8084924355266678,0.02,1.3395988692559557,comparison_by_set.csv
+B-ft,test-iid,300,1.0764587687490534,2.0861295293893183,0.013333333333333334,1.4035396939030282,comparison_by_set.csv
+B-ft,test-rate,400,0.8223853009788291,2.6123763816197867,0.065,1.1737200788775892,comparison_by_set.csv
+B-ft,e1-core,432,1.3405360028837037,3.254436829176491,0.004629629629629629,1.5755622536908724,comparison_by_set.csv
+C-classical,val,150,1.371677543535512,2.1690843734305445,0.03333333333333333,1.9740656469518418,comparison_by_set.csv
+C-K16,val,150,0.3227579023399676,0.8399552261161602,0.24,0.7915218691486261,comparison_by_set.csv
+C-K16,test-iid,300,0.346074759763613,0.9382832019044631,0.26,0.7436941911603451,comparison_by_set.csv
+C-K16,test-sea,150,0.33108953987773226,1.119662067026999,0.18,1.0086245769043072,comparison_by_set.csv
+C-K16,test-alt,150,1.001453138812237,2.7006102364510514,0.04,1.479588548094291,comparison_by_set.csv
+C-K16,test-rate,400,0.5302580744247876,1.4531456414489177,0.1025,1.001123641441756,comparison_by_set.csv
+C-K16,e1-core,432,0.3253394684995078,1.1467574937774787,0.3263888888888889,0.6329864920321883,comparison_by_set.csv
+e1_flow_ufmrefine980_g1,e1-core,432,2.03024,3.5329520000000008,0.0,,comparison_by_set.csv
+e1_flow_searaft_g1,e1-core,414,1.67601,3.114852,0.0024154589371980675,,comparison_by_set.csv
+e1_shell_dispersive_T3.2,e1-core,432,0.613586,2.089260000000001,0.2361111111111111,,comparison_by_set.csv
+C-classical,e1-core (every 10th window),432,0.7883865529529375,1.956627217358225,0.18981481481481483,0.9862482987560139,spectral-classical/e1-core-every10th/per_run.csv
+A (window RMS),val,150,,,,0.3873669987565109,comparison_by_set.csv
+A (window RMS),test-iid,300,,,,0.3423793444316515,comparison_by_set.csv
+A (window RMS),test-sea,150,,,,0.6301829829965819,comparison_by_set.csv
+A (window RMS),test-alt,150,,,,0.3552170017270351,comparison_by_set.csv
+A (window RMS),test-rate,400,,,,1.4933751695733641,comparison_by_set.csv
+A (window RMS),e1-core,432,,,,0.28738832676022824,comparison_by_set.csv
+C (window RMS),val,150,,,,0.659140734412968,comparison_by_set.csv
+C (window RMS),test-iid,300,,,,0.594809100035526,comparison_by_set.csv
+C (window RMS),test-sea,150,,,,0.8064354709643368,comparison_by_set.csv
+C (window RMS),test-alt,150,,,,1.0337262673460608,comparison_by_set.csv
+C (window RMS),test-rate,400,,,,1.0096031550759317,comparison_by_set.csv
+C (window RMS),e1-core,432,,,,0.3658232135436635,comparison_by_set.csv
+B (window RMS),val,150,,,,1.5486783214611624,comparison_by_set.csv
+B (window RMS),test-iid,300,,,,1.605208233381708,comparison_by_set.csv
+B (window RMS),test-sea,150,,,,1.5637442835451174,comparison_by_set.csv
+B (window RMS),test-alt,150,,,,2.7413806933669544,comparison_by_set.csv
+B (window RMS),test-rate,400,,,,1.2522826492949184,comparison_by_set.csv
+B (window RMS),e1-core,432,,,,1.8643474902319093,comparison_by_set.csv
+B0 (window RMS),val,150,,,,1.4678033863785758,comparison_by_set.csv
+B0 (window RMS),test-iid,300,,,,1.5060194136158402,comparison_by_set.csv
+B0 (window RMS),test-sea,150,,,,1.6179422412483437,comparison_by_set.csv
+B0 (window RMS),test-alt,150,,,,2.6900097471100595,comparison_by_set.csv
+B0 (window RMS),test-rate,400,,,,1.112075376655371,comparison_by_set.csv
+B0 (window RMS),e1-core,432,,,,1.456876717325634,comparison_by_set.csv
+B1 (window RMS),val,150,,,,1.8737587317297615,comparison_by_set.csv
+B1 (window RMS),test-iid,300,,,,1.8972266652366518,comparison_by_set.csv
+B1 (window RMS),test-sea,150,,,,1.812449955053527,comparison_by_set.csv
+B1 (window RMS),test-alt,150,,,,3.273902774171936,comparison_by_set.csv
+B1 (window RMS),test-rate,400,,,,1.3387952764724513,comparison_by_set.csv
+B1 (window RMS),e1-core,432,,,,2.1103812313806216,comparison_by_set.csv
+B2 (window RMS),val,150,,,,1.724555791541626,comparison_by_set.csv
+B2 (window RMS),test-iid,300,,,,1.5923403119044297,comparison_by_set.csv
+B2 (window RMS),test-sea,150,,,,1.8322129512054726,comparison_by_set.csv
+B2 (window RMS),test-alt,150,,,,2.2365396888054105,comparison_by_set.csv
+B2 (window RMS),test-rate,400,,,,1.4989449365386283,comparison_by_set.csv
+B2 (window RMS),e1-core,432,,,,0.6656355830212506,comparison_by_set.csv
+B3 (window RMS),val,150,,,,1.7251278096262135,comparison_by_set.csv
+B3 (window RMS),test-iid,300,,,,1.7587677648949116,comparison_by_set.csv
+B3 (window RMS),test-sea,150,,,,1.6990756266914249,comparison_by_set.csv
+B3 (window RMS),test-alt,150,,,,3.0151008763331895,comparison_by_set.csv
+B3 (window RMS),test-rate,400,,,,1.433515865322772,comparison_by_set.csv
+B3 (window RMS),e1-core,432,,,,2.1504571384156623,comparison_by_set.csv

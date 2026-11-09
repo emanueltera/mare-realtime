@@ -1,0 +1,195 @@
+{
+	"name": "e3-pilot",
+	"description": "E3 pilot: 4 runs, 12 s at 10 fps, 720x1280 portrait, vfov 92, camera hard-mounted at pitch -90..-60, altitude 30-200 m (log-uniform), airspeed 15-60 m/s, wind aloft from the sea. Written by make_jobs.mjs.",
+	"base": {
+		"trajectory": {
+			"duration": 12,
+			"wind": "sea",
+			"gimbal": {
+				"yaw": 0,
+				"fov": 92,
+				"stabilized": 0
+			}
+		},
+		"render": {
+			"width": 720,
+			"height": 1280,
+			"fps": 10,
+			"warmup": 8,
+			"quality": "high",
+			"modes": [
+				"shaded"
+			]
+		}
+	},
+	"runs": [
+		{
+			"sea": {
+				"windSpeed": 18.423,
+				"windDirection": 193.343,
+				"fetch": 82.077,
+				"spread": 8,
+				"swellHeight": 1.745,
+				"swellDirection": 155.587,
+				"swellPeriod": 10.031,
+				"choppiness": 0.995
+			},
+			"light": {
+				"sunElevation": 28.05,
+				"sunAzimuth": 236.906,
+				"overcast": 0.116,
+				"haze": 0.783,
+				"exposure": 1
+			},
+			"trajectory": {
+				"seed": 348752466,
+				"pattern": {
+					"type": "lawnmower",
+					"legLength": 900,
+					"spacing": 200,
+					"legs": 4
+				},
+				"altitude": 154.798,
+				"airspeed": 50.598,
+				"turbulence": 0.374,
+				"start": {
+					"heading": 160.527
+				},
+				"gimbal": {
+					"pitch": -63.996
+				}
+			},
+			"render": {
+				"seaSeed": 368993077
+			},
+			"id": "w18-sun28-a155-v51-survey"
+		},
+		{
+			"sea": {
+				"windSpeed": 17.757,
+				"windDirection": 181.422,
+				"fetch": 685.219,
+				"spread": 8,
+				"swellHeight": 0.258,
+				"swellDirection": 176.133,
+				"swellPeriod": 12.764,
+				"choppiness": 1.053
+			},
+			"light": {
+				"sunElevation": 53.762,
+				"sunAzimuth": 143.269,
+				"overcast": 0.899,
+				"haze": 0.712,
+				"exposure": 1
+			},
+			"trajectory": {
+				"seed": 604549213,
+				"pattern": {
+					"type": "racetrack",
+					"length": 900,
+					"radius": 200,
+					"direction": 1
+				},
+				"altitude": 82.143,
+				"airspeed": 28.882,
+				"turbulence": 0.549,
+				"start": {
+					"heading": 221.369
+				},
+				"gimbal": {
+					"pitch": -60.627
+				}
+			},
+			"render": {
+				"seaSeed": 624789824
+			},
+			"id": "w18-sun54-a82-v29-racetrack"
+		},
+		{
+			"sea": {
+				"windSpeed": 2.71,
+				"windDirection": 158.592,
+				"fetch": 190.005,
+				"spread": 8,
+				"swellHeight": 0,
+				"swellDirection": 71.028,
+				"swellPeriod": 14.351,
+				"choppiness": 1.069
+			},
+			"light": {
+				"sunElevation": 35.973,
+				"sunAzimuth": 182.057,
+				"overcast": 0.945,
+				"haze": 0.709,
+				"exposure": 1
+			},
+			"trajectory": {
+				"seed": 81715717,
+				"pattern": {
+					"type": "orbit",
+					"radius": 250,
+					"direction": 1
+				},
+				"altitude": 97.111,
+				"airspeed": 51.665,
+				"turbulence": 0.029,
+				"start": {
+					"heading": 113.452
+				},
+				"gimbal": {
+					"pitch": -60.782
+				}
+			},
+			"render": {
+				"seaSeed": 101956328
+			},
+			"id": "w3-sun36-a97-v52-loiter"
+		},
+		{
+			"sea": {
+				"windSpeed": 13.931,
+				"windDirection": 235.936,
+				"fetch": 146.624,
+				"spread": 8,
+				"swellHeight": 1.327,
+				"swellDirection": 174.369,
+				"swellPeriod": 15.294,
+				"choppiness": 1.318
+			},
+			"light": {
+				"sunElevation": -0.246,
+				"sunAzimuth": 209.805,
+				"overcast": 0.231,
+				"haze": 0.208,
+				"exposure": 1
+			},
+			"trajectory": {
+				"seed": 96684113,
+				"pattern": {
+					"type": "random",
+					"legLength": [
+						300,
+						900
+					],
+					"turn": [
+						-150,
+						150
+					]
+				},
+				"altitude": 159.456,
+				"airspeed": 32.185,
+				"turbulence": 0.73,
+				"start": {
+					"heading": 91.566
+				},
+				"gimbal": {
+					"pitch": -74.455
+				}
+			},
+			"render": {
+				"seaSeed": 116924724
+			},
+			"id": "w14-sun0-a159-v32-random"
+		}
+	]
+}

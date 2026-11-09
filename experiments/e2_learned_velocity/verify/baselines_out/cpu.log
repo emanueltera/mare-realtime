@@ -1,0 +1,483 @@
+== recomputed_overview
+                      method       set  K  runs  b_median    b_p90  frac_le_017  bpct_median  all_runs_present  truth_err_max  windows  nan_windows  rep_b_median  rep_b_p90  rep_frac  d_median  d_p90
+                b0-phasecorr       val  2   150  1.381152 2.274900     0.000000     3.910618              True            0.0    12000            0      1.381152   2.274900  0.000000       0.0    0.0
+                b0-phasecorr       val  8   150  1.260877 1.981621     0.000000     3.489429              True            0.0    11100            0      1.260877   1.981621  0.000000       0.0    0.0
+                b0-phasecorr       val 16   150  1.280396 1.996716     0.000000     3.539425              True            0.0     9900            0      1.280396   1.996716  0.000000       0.0    0.0
+                b0-phasecorr  test-iid  2   300  1.406605 2.286095     0.000000     4.068455              True            0.0    24000            0      1.406605   2.286095  0.000000       0.0    0.0
+                b0-phasecorr  test-iid  8   300  1.355631 2.071248     0.000000     3.732297              True            0.0    22200            0      1.355631   2.071248  0.000000       0.0    0.0
+                b0-phasecorr  test-iid 16   300  1.372747 2.062677     0.000000     3.808010              True            0.0    19800            0      1.372747   2.062677  0.000000       0.0    0.0
+                b0-phasecorr  test-sea  2   150  1.252483 2.164246     0.000000     3.492120              True            0.0    12000            0      1.252483   2.164246  0.000000       0.0    0.0
+                b0-phasecorr  test-sea  8   150  1.211087 1.992722     0.000000     3.133667              True            0.0    11100            0      1.211087   1.992722  0.000000       0.0    0.0
+                b0-phasecorr  test-sea 16   150  1.213629 1.956310     0.000000     3.103427              True            0.0     9900            0      1.213629   1.956310  0.000000       0.0    0.0
+                b0-phasecorr  test-alt  2   150  2.667646 3.223335     0.000000     7.150867              True            0.0    12000            0      2.667646   3.223335  0.000000       0.0    0.0
+                b0-phasecorr  test-alt  8   150  2.683121 3.209408     0.000000     7.145211              True            0.0    11100            0      2.683121   3.209408  0.000000       0.0    0.0
+                b0-phasecorr  test-alt 16   150  2.684664 3.247318     0.000000     7.109348              True            0.0     9900            0      2.684664   3.247318  0.000000       0.0    0.0
+                b0-phasecorr test-rate  2   400  0.954456 3.052202     0.205000     2.592348              True            0.0    32000            0      0.954456   3.052202  0.205000       0.0    0.0
+                b0-phasecorr test-rate  8   400  0.945053 2.635242     0.200000     2.587060              True            0.0    29600            0      0.945053   2.635242  0.200000       0.0    0.0
+                b0-phasecorr test-rate 16   400  0.940361 2.527321     0.180000     2.611391              True            0.0    26400            0      0.940361   2.527321  0.180000       0.0    0.0
+                b0-phasecorr   e1-core  2   432  1.439377 2.549585     0.000000     4.890491              True            0.0    51840            0      1.439377   2.549585  0.000000       0.0    0.0
+                b0-phasecorr   e1-core  8   432  1.393831 2.425985     0.000000     4.482555              True            0.0    49248            0      1.393831   2.425985  0.000000       0.0    0.0
+                b0-phasecorr   e1-core 16   432  1.406893 2.434072     0.000000     4.475251              True            0.0    45792            0      1.406893   2.434072  0.000000       0.0    0.0
+                  b1-searaft       val  2   150  1.852243 3.141149     0.000000     5.063415              True            0.0    12000            0      1.852243   3.141149  0.000000       0.0    0.0
+                  b1-searaft       val  8   150  1.829673 3.134237     0.000000     5.003375              True            0.0    11100            0      1.829673   3.134237  0.000000       0.0    0.0
+                  b1-searaft       val 16   150  1.818686 3.056666     0.000000     4.936963              True            0.0     9900            0      1.818686   3.056666  0.000000       0.0    0.0
+                  b1-searaft  test-iid  2   300  1.860414 3.085778     0.000000     5.412975              True            0.0    24000            0      1.860414   3.085778  0.000000       0.0    0.0
+                  b1-searaft  test-iid  8   300  1.840773 3.018068     0.000000     5.395238              True            0.0    22200            0      1.840773   3.018068  0.000000       0.0    0.0
+                  b1-searaft  test-iid 16   300  1.853630 2.981215     0.000000     5.399903              True            0.0    19800            0      1.853630   2.981215  0.000000       0.0    0.0
+                  b1-searaft  test-sea  2   150  1.653978 3.255805     0.000000     4.385835              True            0.0    12000            0      1.653978   3.255805  0.000000       0.0    0.0
+                  b1-searaft  test-sea  8   150  1.638392 3.009197     0.000000     4.315790              True            0.0    11100            0      1.638392   3.009197  0.000000       0.0    0.0
+                  b1-searaft  test-sea 16   150  1.619530 3.031997     0.000000     4.227405              True            0.0     9900            0      1.619530   3.031997  0.000000       0.0    0.0
+                  b1-searaft  test-alt  2   150  3.270934 4.279001     0.000000     9.305137              True            0.0    12000            0      3.270934   4.279001  0.000000       0.0    0.0
+                  b1-searaft  test-alt  8   150  3.272104 4.280807     0.000000     9.339458              True            0.0    11100            0      3.272104   4.280807  0.000000       0.0    0.0
+                  b1-searaft  test-alt 16   150  3.261855 4.284036     0.000000     9.455625              True            0.0     9900            0      3.261855   4.284036  0.000000       0.0    0.0
+                  b1-searaft test-rate  2   400  1.189668 4.329195     0.185000     3.575671              True            0.0    32000            0      1.189668   4.329195  0.185000       0.0    0.0
+                  b1-searaft test-rate  8   400  1.163956 4.311732     0.182500     3.550576              True            0.0    29600            0      1.163956   4.311732  0.182500       0.0    0.0
+                  b1-searaft test-rate 16   400  1.166228 4.237288     0.172500     3.517858              True            0.0    26400            0      1.166228   4.237288  0.172500       0.0    0.0
+                  b1-searaft   e1-core  2   432  2.110575 4.198051     0.000000     7.144133              True            0.0    51840            0      2.110575   4.198051  0.000000       0.0    0.0
+                  b1-searaft   e1-core  8   432  2.079740 3.921984     0.000000     7.055227              True            0.0    49248            0      2.079740   3.921984  0.000000       0.0    0.0
+                  b1-searaft   e1-core 16   432  2.071911 3.924728     0.000000     6.978815              True            0.0    45792            0      2.071911   3.924728  0.000000       0.0    0.0
+         b2-shell-dispersive       val 32   150  1.290373 2.118063     0.060000     3.360637              True            0.0      600            0      1.290373   2.118063  0.060000       0.0    0.0
+         b2-shell-dispersive       val 64   150  1.560073 3.645683     0.053333     4.298591              True            0.0      300            0      1.560073   3.645683  0.053333       0.0    0.0
+         b2-shell-dispersive  test-iid 32   300  1.216410 2.098297     0.070000     3.139163              True            0.0     1200            0      1.216410   2.098297  0.070000       0.0    0.0
+         b2-shell-dispersive  test-iid 64   300  1.399258 3.153451     0.046667     3.874608              True            0.0      600            0      1.399258   3.153451  0.046667       0.0    0.0
+                         ...       ... ..   ...       ...      ...          ...          ...               ...            ...      ...          ...           ...        ...       ...       ...    ...
+             b2-shell-static       val 32   150  1.366982 2.287589     0.006667     3.925761              True            0.0      600            0      1.366982   2.287589  0.006667       0.0    0.0
+             b2-shell-static       val 64   150  1.650980 3.703810     0.006667     5.273805              True            0.0      300            0      1.650980   3.703810  0.006667       0.0    0.0
+             b2-shell-static  test-iid 32   300  1.378201 2.252895     0.000000     3.914029              True            0.0     1200            0      1.378201   2.252895  0.000000       0.0    0.0
+             b2-shell-static  test-iid 64   300  1.672704 3.219737     0.000000     5.132801              True            0.0      600            0      1.672704   3.219737  0.000000       0.0    0.0
+             b2-shell-static  test-sea 32   150  1.318555 2.053325     0.000000     3.686575              True            0.0      600            0      1.318555   2.053325  0.000000       0.0    0.0
+             b2-shell-static  test-sea 64   150  1.547351 3.255808     0.000000     4.020448              True            0.0      300            0      1.547351   3.255808  0.000000       0.0    0.0
+             b2-shell-static  test-alt 32   150  2.616702 3.461949     0.000000     7.382475              True            0.0      600            0      2.616702   3.461949  0.000000       0.0    0.0
+             b2-shell-static  test-alt 64   150  2.738787 3.815413     0.000000     7.695260              True            0.0      300            0      2.738787   3.815413  0.000000       0.0    0.0
+             b2-shell-static test-rate 32   400  0.944059 2.396987     0.110000     2.526244              True            0.0     1600            0      0.944059   2.396987  0.110000       0.0    0.0
+             b2-shell-static test-rate 64   400  1.411012 3.508284     0.055000     3.997240              True            0.0      800            0      1.411012   3.508284  0.055000       0.0    0.0
+             b2-shell-static   e1-core 32   432  1.336133 2.207528     0.006944     4.222501              True            0.0     2592            0      1.336133   2.207528  0.006944       0.0    0.0
+             b2-shell-static   e1-core 64   432  1.353573 2.188322     0.013889     4.371018              True            0.0     1728            0      1.353573   2.188322  0.013889       0.0    0.0
+                      b3-mlp       val  8   150  1.604995 3.075916     0.013333     4.617240              True            0.0    11100            0      1.604995   3.075916  0.013333       0.0    0.0
+                      b3-mlp  test-iid  8   300  1.666045 3.286583     0.000000     5.081913              True            0.0    22200            0      1.666045   3.286583  0.000000       0.0    0.0
+                      b3-mlp  test-sea  8   150  1.431726 3.163539     0.006667     3.986502              True            0.0    11100            0      1.431726   3.163539  0.006667       0.0    0.0
+                      b3-mlp  test-alt  8   150  2.957618 4.793071     0.000000     8.305506              True            0.0    11100            0      2.957618   4.793071  0.000000       0.0    0.0
+                      b3-mlp test-rate  8   400  1.316862 4.113650     0.042500     3.706629              True            0.0    29600            0      1.316862   4.113650  0.042500       0.0    0.0
+                      b3-mlp   e1-core  8   432  2.102110 5.649677     0.002315     7.044555              True            0.0    49248            0      2.102110   5.649677  0.002315       0.0    0.0
+                    b3-const       val  8   150  1.830969 3.127843     0.000000     4.973211              True            0.0    11100            0      1.830969   3.127843  0.000000       0.0    0.0
+                    b3-const  test-iid  8   300  1.847316 3.019560     0.000000     5.381549              True            0.0    22200            0      1.847316   3.019560  0.000000       0.0    0.0
+                    b3-const  test-sea  8   150  1.628600 3.020586     0.000000     4.302759              True            0.0    11100            0      1.628600   3.020586  0.000000       0.0    0.0
+                    b3-const  test-alt  8   150  3.272594 4.288013     0.000000     9.333705              True            0.0    11100            0      3.272594   4.288013  0.000000       0.0    0.0
+                    b3-const test-rate  8   400  1.168233 4.297247     0.182500     3.513944              True            0.0    29600            0      1.168233   4.297247  0.182500       0.0    0.0
+                    b3-const   e1-core  8   432  2.084357 3.927894     0.000000     7.015916              True            0.0    49248            0      2.084357   3.927894  0.000000       0.0    0.0
+                 b3-mlp-full       val  8   150  1.630938 3.195720     0.006667     4.778196              True            0.0    11100            0      1.630938   3.195720  0.006667       0.0    0.0
+                 b3-mlp-full  test-iid  8   300  1.667006 3.278167     0.000000     5.065310              True            0.0    22200            0      1.667006   3.278167  0.000000       0.0    0.0
+                 b3-mlp-full  test-sea  8   150  1.412021 3.285153     0.013333     4.079979              True            0.0    11100            0      1.412021   3.285153  0.013333       0.0    0.0
+                 b3-mlp-full  test-alt  8   150  3.076814 4.808969     0.000000     7.994556              True            0.0    11100            0      3.076814   4.808969  0.000000       0.0    0.0
+                 b3-mlp-full test-rate  8   400  1.305000 4.167485     0.045000     3.795517              True            0.0    29600            0      1.305000   4.167485  0.045000       0.0    0.0
+                 b3-mlp-full   e1-core  8   432  2.066073 5.543253     0.000000     6.583555              True            0.0    49248            0      2.066073   5.543253  0.000000       0.0    0.0
+               b3-mlp-radial       val  8   150  1.604995 3.075916     0.013333     4.617240              True            0.0    11100            0      1.604995   3.075916  0.013333       0.0    0.0
+               b3-mlp-radial  test-iid  8   300  1.666045 3.286583     0.000000     5.081913              True            0.0    22200            0      1.666045   3.286583  0.000000       0.0    0.0
+               b3-mlp-radial  test-sea  8   150  1.431726 3.163539     0.006667     3.986502              True            0.0    11100            0      1.431726   3.163539  0.006667       0.0    0.0
+               b3-mlp-radial  test-alt  8   150  2.957618 4.793071     0.000000     8.305506              True            0.0    11100            0      2.957618   4.793071  0.000000       0.0    0.0
+               b3-mlp-radial test-rate  8   400  1.316862 4.113650     0.042500     3.706629              True            0.0    29600            0      1.316862   4.113650  0.042500       0.0    0.0
+               b3-mlp-radial   e1-core  8   432  2.102110 5.649677     0.002315     7.044555              True            0.0    49248            0      2.102110   5.649677  0.002315       0.0    0.0
+b2-shell-dispersive-kmax0475   e1-core 32   432  0.632899 1.894494     0.226852     1.666489              True            0.0     2592            0      0.632899   1.894494  0.226852       0.0    0.0
+b2-shell-dispersive-kmax0475   e1-core 64   432  0.700245 1.759714     0.243056     1.527587              True            0.0     1728            0      0.700245   1.759714  0.243056       0.0    0.0
+    b2-shell-static-kmax0475   e1-core 32   432  1.453637 2.611130     0.004630     4.724109              True            0.0     2592            0      1.453637   2.611130  0.004630       0.0    0.0
+    b2-shell-static-kmax0475   e1-core 64   432  1.389748 2.718265     0.016204     4.765474              True            0.0     1728            0      1.389748   2.718265  0.016204       0.0    0.0
+== recomputed_slices
+             method  K        slice  runs  b_median    b_p90  frac_le_017
+       b0-phasecorr  8 sea_rate=0.0   100  0.085276 0.258271     0.800000
+       b0-phasecorr  8 sea_rate=0.5   100  0.654482 1.022440     0.000000
+       b0-phasecorr  8 sea_rate=1.0   100  1.324241 2.115116     0.000000
+       b0-phasecorr  8 sea_rate=2.0   100  2.341854 3.563167     0.000000
+       b0-phasecorr  8      sun>=35   216  1.316819 2.070370     0.000000
+       b0-phasecorr  8     sun 5-15   216  1.489486 2.576099     0.000000
+         b1-searaft  8 sea_rate=0.0   100  0.087866 0.297056     0.730000
+         b1-searaft  8 sea_rate=0.5   100  0.858874 1.226075     0.000000
+         b1-searaft  8 sea_rate=1.0   100  1.772200 2.912195     0.000000
+         b1-searaft  8 sea_rate=2.0   100  3.800663 6.134112     0.000000
+         b1-searaft  8      sun>=35   216  2.142895 3.258037     0.000000
+         b1-searaft  8     sun 5-15   216  2.023237 4.183477     0.000000
+b2-shell-dispersive 32 sea_rate=0.0   100  0.528289 1.205389     0.110000
+b2-shell-dispersive 32 sea_rate=0.5   100  0.655638 1.538524     0.040000
+b2-shell-dispersive 32 sea_rate=1.0   100  1.187741 1.965918     0.090000
+b2-shell-dispersive 32 sea_rate=2.0   100  2.172653 3.948402     0.000000
+b2-shell-dispersive 32      sun>=35   216  0.144688 0.648963     0.574074
+b2-shell-dispersive 32     sun 5-15   216  1.275453 1.965132     0.111111
+    b2-shell-static 32 sea_rate=0.0   100  0.276778 0.875584     0.370000
+    b2-shell-static 32 sea_rate=0.5   100  0.760069 1.560140     0.040000
+    b2-shell-static 32 sea_rate=1.0   100  1.322653 2.221038     0.020000
+    b2-shell-static 32 sea_rate=2.0   100  1.804594 3.252119     0.010000
+    b2-shell-static 32      sun>=35   216  1.170924 2.017806     0.000000
+    b2-shell-static 32     sun 5-15   216  1.517869 2.414135     0.013889
+             b3-mlp  8 sea_rate=0.0   100  0.540682 1.314570     0.150000
+             b3-mlp  8 sea_rate=0.5   100  0.775370 1.628244     0.020000
+             b3-mlp  8 sea_rate=1.0   100  1.583586 2.862935     0.000000
+             b3-mlp  8 sea_rate=2.0   100  3.488240 5.939160     0.000000
+             b3-mlp  8      sun>=35   216  2.042480 5.743820     0.000000
+             b3-mlp  8     sun 5-15   216  2.173027 5.137831     0.004630
+           b3-const  8 sea_rate=0.0   100  0.090013 0.311420     0.730000
+           b3-const  8 sea_rate=0.5   100  0.859268 1.230332     0.000000
+           b3-const  8 sea_rate=1.0   100  1.778713 2.900728     0.000000
+           b3-const  8 sea_rate=2.0   100  3.794793 6.122056     0.000000
+           b3-const  8      sun>=35   216  2.143045 3.268289     0.000000
+           b3-const  8     sun 5-15   216  2.033746 4.172645     0.000000
+== b3_checkpoints
+{
+ "best": {
+  "config": {
+   "features": "radial",
+   "hidden": 128,
+   "depth": 2
+  },
+  "train_config": {
+   "features": "radial",
+   "hidden": 128,
+   "depth": 2,
+   "loss": "huber",
+   "epochs": 40
+  },
+  "const": [
+   -0.01296141163708328,
+   -0.008759931700996187
+  ]
+ },
+ "best-radial": {
+  "config": {
+   "features": "radial",
+   "hidden": 128,
+   "depth": 2
+  },
+  "train_config": {
+   "features": "radial",
+   "hidden": 128,
+   "depth": 2,
+   "loss": "huber",
+   "epochs": 40
+  },
+  "const": [
+   -0.01296141163708328,
+   -0.008759931700996187
+  ]
+ },
+ "best-full": {
+  "config": {
+   "features": "full",
+   "hidden": 128,
+   "depth": 2
+  },
+  "train_config": {
+   "features": "full",
+   "hidden": 128,
+   "depth": 2,
+   "loss": "huber",
+   "epochs": 40
+  },
+  "const": [
+   -0.01296141163708328,
+   -0.008759931700996187
+  ]
+ },
+ "best_equals_best_radial": true
+}
+/workspace/mare-realtime/experiments/e2_learned_velocity/verify/verify_baselines.py:166: Pandas4Warning: Starting with pandas version 4.0 all arguments of all will be keyword-only.
+  ~(np.isnan(j[["ex", "ey"]]).all(1) & np.isnan(j[["v_est_x", "v_est_y"]]).all(1))).sum()),
+/workspace/mare-realtime/experiments/e2_learned_velocity/verify/verify_baselines.py:166: Pandas4Warning: Starting with pandas version 4.0 all arguments of all will be keyword-only.
+  ~(np.isnan(j[["ex", "ey"]]).all(1) & np.isnan(j[["v_est_x", "v_est_y"]]).all(1))).sum()),
+/workspace/mare-realtime/experiments/e2_learned_velocity/verify/verify_baselines.py:166: Pandas4Warning: Starting with pandas version 4.0 all arguments of all will be keyword-only.
+  ~(np.isnan(j[["ex", "ey"]]).all(1) & np.isnan(j[["v_est_x", "v_est_y"]]).all(1))).sum()),
+/workspace/mare-realtime/experiments/e2_learned_velocity/verify/verify_baselines.py:166: Pandas4Warning: Starting with pandas version 4.0 all arguments of all will be keyword-only.
+  ~(np.isnan(j[["ex", "ey"]]).all(1) & np.isnan(j[["v_est_x", "v_est_y"]]).all(1))).sum()),
+/workspace/mare-realtime/experiments/e2_learned_velocity/verify/verify_baselines.py:166: Pandas4Warning: Starting with pandas version 4.0 all arguments of all will be keyword-only.
+  ~(np.isnan(j[["ex", "ey"]]).all(1) & np.isnan(j[["v_est_x", "v_est_y"]]).all(1))).sum()),
+/workspace/mare-realtime/experiments/e2_learned_velocity/verify/verify_baselines.py:166: Pandas4Warning: Starting with pandas version 4.0 all arguments of all will be keyword-only.
+  ~(np.isnan(j[["ex", "ey"]]).all(1) & np.isnan(j[["v_est_x", "v_est_y"]]).all(1))).sum()),
+/workspace/mare-realtime/experiments/e2_learned_velocity/verify/verify_baselines.py:166: Pandas4Warning: Starting with pandas version 4.0 all arguments of all will be keyword-only.
+  ~(np.isnan(j[["ex", "ey"]]).all(1) & np.isnan(j[["v_est_x", "v_est_y"]]).all(1))).sum()),
+/workspace/mare-realtime/experiments/e2_learned_velocity/verify/verify_baselines.py:166: Pandas4Warning: Starting with pandas version 4.0 all arguments of all will be keyword-only.
+  ~(np.isnan(j[["ex", "ey"]]).all(1) & np.isnan(j[["v_est_x", "v_est_y"]]).all(1))).sum()),
+/workspace/mare-realtime/experiments/e2_learned_velocity/verify/verify_baselines.py:166: Pandas4Warning: Starting with pandas version 4.0 all arguments of all will be keyword-only.
+  ~(np.isnan(j[["ex", "ey"]]).all(1) & np.isnan(j[["v_est_x", "v_est_y"]]).all(1))).sum()),
+/workspace/mare-realtime/experiments/e2_learned_velocity/verify/verify_baselines.py:166: Pandas4Warning: Starting with pandas version 4.0 all arguments of all will be keyword-only.
+  ~(np.isnan(j[["ex", "ey"]]).all(1) & np.isnan(j[["v_est_x", "v_est_y"]]).all(1))).sum()),
+/workspace/mare-realtime/experiments/e2_learned_velocity/verify/verify_baselines.py:166: Pandas4Warning: Starting with pandas version 4.0 all arguments of all will be keyword-only.
+  ~(np.isnan(j[["ex", "ey"]]).all(1) & np.isnan(j[["v_est_x", "v_est_y"]]).all(1))).sum()),
+/workspace/mare-realtime/experiments/e2_learned_velocity/verify/verify_baselines.py:166: Pandas4Warning: Starting with pandas version 4.0 all arguments of all will be keyword-only.
+  ~(np.isnan(j[["ex", "ey"]]).all(1) & np.isnan(j[["v_est_x", "v_est_y"]]).all(1))).sum()),
+== b3_reinference
+      set  windows  rows_stored  unmatched  max_abs_diff_b3  nan_mismatch  max_abs_diff_const
+      val    11100        11100          0              0.0             0                 0.0
+ test-iid    22200        22200          0              0.0             0                 0.0
+ test-sea    11100        11100          0              0.0             0                 0.0
+ test-alt    11100        11100          0              0.0             0                 0.0
+test-rate    29600        29600          0              0.0             0                 0.0
+  e1-core    49248        49248          0              0.0             0                 0.0
+/workspace/mare-realtime/experiments/e2_learned_velocity/baselines/correction.py:129: UserWarning: The given NumPy array is not writable, and PyTorch does not support non-writable tensors. This means writing to this tensor will result in undefined behavior. You may want to copy the array to protect its data or make it writable before converting it to a tensor. This type of warning will be suppressed for the rest of this program. (Triggered internally at /pytorch/torch/csrc/utils/tensor_numpy.cpp:213.)
+  tgt = torch.as_tensor(train.loc[ok, ["v_true_x", "v_true_y"]].to_numpy(), dtype=torch.float32) - vp
+== b3_retrain_selected
+{
+ "config": {
+  "features": "radial",
+  "hidden": 128,
+  "depth": 2,
+  "loss": "huber",
+  "epochs": 40
+ },
+ "selection": {
+  "val_b_median": 1.604995026798514,
+  "val_b_p90": 3.075915675513062,
+  "epoch": 6
+ },
+ "curve_epochs_1_10": [
+  {
+   "epoch": 1,
+   "train_loss": 1.5302020012623554,
+   "val_mse": 86.47086053509852,
+   "val_b_median": 1.8197218366227925,
+   "val_b_p90": 3.110510367461016
+  },
+  {
+   "epoch": 2,
+   "train_loss": 1.4824870639835392,
+   "val_mse": 87.28883015254756,
+   "val_b_median": 1.6807734616058883,
+   "val_b_p90": 2.979676888392397
+  },
+  {
+   "epoch": 3,
+   "train_loss": 1.455992649361894,
+   "val_mse": 86.37180043522052,
+   "val_b_median": 1.6631426099940474,
+   "val_b_p90": 3.0750049589589543
+  },
+  {
+   "epoch": 4,
+   "train_loss": 1.4546753018439353,
+   "val_mse": 85.05711532873798,
+   "val_b_median": 1.6758874140604356,
+   "val_b_p90": 3.1443496439568315
+  },
+  {
+   "epoch": 5,
+   "train_loss": 1.4519107337556443,
+   "val_mse": 82.30337849230408,
+   "val_b_median": 1.7081778747815375,
+   "val_b_p90": 3.1383200079553237
+  },
+  {
+   "epoch": 6,
+   "train_loss": 1.4476990932602065,
+   "val_mse": 78.92093294393153,
+   "val_b_median": 1.604995026798514,
+   "val_b_p90": 3.075915675513062
+  },
+  {
+   "epoch": 7,
+   "train_loss": 1.4429563520362785,
+   "val_mse": 75.45477968384122,
+   "val_b_median": 1.6254389982536366,
+   "val_b_p90": 3.2029251103058596
+  },
+  {
+   "epoch": 8,
+   "train_loss": 1.4376873701370514,
+   "val_mse": 69.37518370947934,
+   "val_b_median": 1.6717705634412448,
+   "val_b_p90": 3.1726106923532074
+  },
+  {
+   "epoch": 9,
+   "train_loss": 1.4305993807165471,
+   "val_mse": 64.86095614648038,
+   "val_b_median": 1.6297884460805647,
+   "val_b_p90": 3.0631980157161807
+  },
+  {
+   "epoch": 10,
+   "train_loss": 1.422594196448455,
+   "val_mse": 62.823816582206184,
+   "val_b_median": 1.6735403836186884,
+   "val_b_p90": 3.1575200894509416
+  }
+ ]
+}
+== hygiene
+{
+ "b3_train_runs": 1500,
+ "b3_train_runs_are_first_1500": true,
+ "b3_train_windows": 111000,
+ "overlap": [
+  {
+   "set": "val",
+   "col": "run_id",
+   "overlap_with_train": 0
+  },
+  {
+   "set": "val",
+   "col": "traj_seed",
+   "overlap_with_train": 0
+  },
+  {
+   "set": "val",
+   "col": "sea_seed",
+   "overlap_with_train": 0
+  },
+  {
+   "set": "test-iid",
+   "col": "run_id",
+   "overlap_with_train": 0
+  },
+  {
+   "set": "test-iid",
+   "col": "traj_seed",
+   "overlap_with_train": 0
+  },
+  {
+   "set": "test-iid",
+   "col": "sea_seed",
+   "overlap_with_train": 0
+  },
+  {
+   "set": "test-sea",
+   "col": "run_id",
+   "overlap_with_train": 0
+  },
+  {
+   "set": "test-sea",
+   "col": "traj_seed",
+   "overlap_with_train": 0
+  },
+  {
+   "set": "test-sea",
+   "col": "sea_seed",
+   "overlap_with_train": 0
+  },
+  {
+   "set": "test-alt",
+   "col": "run_id",
+   "overlap_with_train": 0
+  },
+  {
+   "set": "test-alt",
+   "col": "traj_seed",
+   "overlap_with_train": 0
+  },
+  {
+   "set": "test-alt",
+   "col": "sea_seed",
+   "overlap_with_train": 0
+  },
+  {
+   "set": "test-rate",
+   "col": "run_id",
+   "overlap_with_train": 0
+  },
+  {
+   "set": "test-rate",
+   "col": "traj_seed",
+   "overlap_with_train": 0
+  },
+  {
+   "set": "test-rate",
+   "col": "sea_seed",
+   "overlap_with_train": 0
+  },
+  {
+   "set": "e1-core",
+   "col": "run_id",
+   "overlap_with_train": 0
+  },
+  {
+   "set": "e1-core",
+   "col": "traj_seed",
+   "overlap_with_train": 0
+  },
+  {
+   "set": "e1-core",
+   "col": "sea_seed",
+   "overlap_with_train": 0
+  }
+ ],
+ "theta_ks": {
+  "train": {
+   "n": 4500,
+   "ks_p": 0.7485335909461022,
+   "min": 0.1082566469445645,
+   "max": 359.8742705646334
+  },
+  "val": {
+   "n": 150,
+   "ks_p": 0.6049401249029411,
+   "min": 2.9373598369346654,
+   "max": 358.3517029728347
+  },
+  "test-iid": {
+   "n": 300,
+   "ks_p": 0.15267711003953932,
+   "min": 1.3307609848398227,
+   "max": 359.15431163255033
+  },
+  "test-sea": {
+   "n": 150,
+   "ks_p": 0.8311810766765115,
+   "min": 0.42753197430348777,
+   "max": 359.5579431159242
+  },
+  "test-alt": {
+   "n": 150,
+   "ks_p": 0.27653335783949895,
+   "min": 4.446258226485624,
+   "max": 354.4121048955016
+  },
+  "test-rate": {
+   "n": 400,
+   "ks_p": 3.508506950228224e-11,
+   "min": 0.4204927189814889,
+   "max": 358.5452456985427
+  },
+  "e1-core": {
+   "n": 432,
+   "ks_p": 0.8020422193207567,
+   "min": 0.2110851238432776,
+   "max": 358.85125704056713
+  }
+ }
+}
+== window_medians
+      method      set  K  mine  stored  max_abs_diff  nan_disagree
+b0-phasecorr test-iid  2 24000   24000           0.0             0
+b0-phasecorr test-iid  8 22200   22200           0.0             0
+b0-phasecorr test-iid 16 19800   19800           0.0             0
+b0-phasecorr  e1-core  2 51840   51840           0.0             0
+b0-phasecorr  e1-core  8 49248   49248           0.0             0
+b0-phasecorr  e1-core 16 45792   45792           0.0             0
+b0-phasecorr      val  2 12000   12000           0.0             0
+b0-phasecorr      val  8 11100   11100           0.0             0
+b0-phasecorr      val 16  9900    9900           0.0             0
+  b1-searaft test-iid  2 24000   24000           0.0             0
+  b1-searaft test-iid  8 22200   22200           0.0             0
+  b1-searaft test-iid 16 19800   19800           0.0             0
+  b1-searaft  e1-core  2 51840   51840           0.0             0
+  b1-searaft  e1-core  8 49248   49248           0.0             0
+  b1-searaft  e1-core 16 45792   45792           0.0             0
+  b1-searaft      val  2 12000   12000           0.0             0
+  b1-searaft      val  8 11100   11100           0.0             0
+  b1-searaft      val 16  9900    9900           0.0             0
+== e1_crosscheck_recomputed
+{
+ "b1k2_runs": 414,
+ "pearson_all": -0.0012448792790738842,
+ "spearman_all": 0.8022869793644309,
+ "median_d_b": 0.13776675751530298,
+ "n_b_gt_10": 12,
+ "b_gt_10_range": [
+  12.623374240452678,
+  52.27337205456354
+ ],
+ "pearson_without_gt10": 0.8236775921636702
+}
+== b1_collapses
+      set  runs_b_gt_10     max_b
+      val             8 58.187170
+ test-iid            11 78.774451
+ test-sea             9 58.320898
+ test-alt             0  5.750418
+test-rate             8 44.531399
+  e1-core            26 67.423724

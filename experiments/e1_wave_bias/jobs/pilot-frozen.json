@@ -1,0 +1,82 @@
+{
+	"name": "e1-pilot-frozen",
+	"description": "E1 pilot, frozen sea: the same 6 runs with render.seaRate 0.",
+	"base": {
+		"light": "midday",
+		"render": {
+			"width": 720,
+			"height": 1280,
+			"fps": 10,
+			"warmup": 8,
+			"seaRate": 0
+		}
+	},
+	"sweep": {
+		"sea": [
+			"moderate",
+			"strong"
+		],
+		"trajectory": [
+			{
+				"duration": 12,
+				"pattern": "transit",
+				"wind": "none",
+				"turbulence": 0,
+				"airspeedVariation": 0,
+				"gimbal": {
+					"pitch": -90,
+					"yaw": 0,
+					"fov": 92,
+					"stabilized": 1
+				},
+				"altitude": 60,
+				"airspeed": 60,
+				"start": {
+					"x": 0,
+					"y": 0,
+					"heading": 60
+				}
+			},
+			{
+				"duration": 12,
+				"pattern": "transit",
+				"wind": "none",
+				"turbulence": 0,
+				"airspeedVariation": 0,
+				"gimbal": {
+					"pitch": -90,
+					"yaw": 0,
+					"fov": 92,
+					"stabilized": 1
+				},
+				"altitude": 120,
+				"airspeed": 30,
+				"start": {
+					"x": 0,
+					"y": 0,
+					"heading": 150
+				}
+			},
+			{
+				"duration": 12,
+				"pattern": "transit",
+				"wind": "none",
+				"turbulence": 0,
+				"airspeedVariation": 0,
+				"gimbal": {
+					"pitch": -90,
+					"yaw": 0,
+					"fov": 92,
+					"stabilized": 1
+				},
+				"altitude": 60,
+				"airspeed": 30,
+				"start": {
+					"x": 0,
+					"y": 0,
+					"heading": 240
+				}
+			}
+		]
+	}
+}

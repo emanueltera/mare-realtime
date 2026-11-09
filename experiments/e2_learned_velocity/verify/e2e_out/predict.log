@@ -1,0 +1,18 @@
+/workspace/mare-realtime/experiments/e2_learned_velocity/e2e/predict.py:42: UserWarning: The given NumPy array is not writable, and PyTorch does not support non-writable tensors. This means writing to this tensor will result in undefined behavior. You may want to copy the array to protect its data or make it writable before converting it to a tensor. This type of warning will be suppressed for the rest of this program. (Triggered internally at /pytorch/torch/csrc/utils/tensor_numpy.cpp:213.)
+  tiles = torch.from_numpy(np.asarray(ts.tiles(rid), dtype=np.float16)).to(device)
+{'method': 'e2e', 'set': 'test-iid', 'ckpt_step': 6300, 'rows_new': 22200, 'rows_orig': 22200, 'rows_joined': 22200, 'max_abs_dv': np.float64(0.03919792175292969), 'p99_abs_dv': np.float64(0.0067234230041503945), 'max_abs_dsigma': np.float64(0.011474132537841797)}
+{'method': 'e2e', 'set': 'e1-core', 'ckpt_step': 6300, 'rows_new': 49248, 'rows_orig': 49248, 'rows_joined': 49248, 'max_abs_dv': np.float64(0.04101061820983887), 'p99_abs_dv': np.float64(0.0064144134521484375), 'max_abs_dsigma': np.float64(0.01683366298675537)}
+{'method': 'e2e', 'set': 'test-alt', 'ckpt_step': 6300, 'rows_new': 11100, 'rows_orig': 11100, 'rows_joined': 11100, 'max_abs_dv': np.float64(0.06159019470214844), 'p99_abs_dv': np.float64(0.015380921363830556), 'max_abs_dsigma': np.float64(0.01022958755493164)}
+{'method': 'e2e-K2', 'set': 'test-iid', 'ckpt_step': 4200, 'rows_new': 24000, 'rows_orig': 24000, 'rows_joined': 24000, 'max_abs_dv': np.float64(0.031411170959472656), 'p99_abs_dv': np.float64(0.006885764598846484), 'max_abs_dsigma': np.float64(0.05869317054748535)}
+{'method': 'e2e-K2', 'set': 'test-alt', 'ckpt_step': 4200, 'rows_new': 12000, 'rows_orig': 12000, 'rows_joined': 12000, 'max_abs_dv': np.float64(0.0320892333984375), 'p99_abs_dv': np.float64(0.013100569248199433), 'max_abs_dsigma': np.float64(0.017834901809692383)}
+{'method': 'e2e-K4', 'set': 'test-iid', 'ckpt_step': 2800, 'rows_new': 23400, 'rows_orig': 23400, 'rows_joined': 23400, 'max_abs_dv': np.float64(0.016364097595214844), 'p99_abs_dv': np.float64(0.008047356605529837), 'max_abs_dsigma': np.float64(0.009355723857879639)}
+{'method': 'e2e-K4', 'set': 'test-alt', 'ckpt_step': 2800, 'rows_new': 11700, 'rows_orig': 11700, 'rows_joined': 11700, 'max_abs_dv': np.float64(0.023189544677734375), 'p99_abs_dv': np.float64(0.012063093185424794), 'max_abs_dsigma': np.float64(0.008568763732910156)}
+== repredict_vs_orig
+method      set  ckpt_step  rows_new  rows_orig  rows_joined  max_abs_dv  p99_abs_dv  max_abs_dsigma
+   e2e test-iid       6300     22200      22200        22200    0.039198    0.006723        0.011474
+   e2e  e1-core       6300     49248      49248        49248    0.041011    0.006414        0.016834
+   e2e test-alt       6300     11100      11100        11100    0.061590    0.015381        0.010230
+e2e-K2 test-iid       4200     24000      24000        24000    0.031411    0.006886        0.058693
+e2e-K2 test-alt       4200     12000      12000        12000    0.032089    0.013101        0.017835
+e2e-K4 test-iid       2800     23400      23400        23400    0.016364    0.008047        0.009356
+e2e-K4 test-alt       2800     11700      11700        11700    0.023190    0.012063        0.008569

@@ -1,0 +1,9 @@
+,0
+static_speed_median,1.8148470902274099
+base_correction_median,1.192013457421206
+"cos(static, base_correction)_median",-0.13375893765996577
+"cos(static, -pull)_median",-0.09713828003788316
+"frac cos(static,base_corr)>0.7",0.27789473684210525
+|static - base_correction| median,1.906345715827683
+"run-level cos(static, base_correction) median",-0.10261221724491823
+run-level |static|/|base_correction| median,1.447249363322194

@@ -1,0 +1,42 @@
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+/workspace/venv/lib/python3.12/site-packages/torch/functional.py:505: UserWarning: torch.meshgrid: in an upcoming release, it will be required to pass the indexing argument. (Triggered internally at /pytorch/aten/src/ATen/native/TensorShape.cpp:4381.)
+  return _VF.meshgrid(tensors, **kwargs)  # type: ignore[attr-defined]
+val: 50/150 runs, 31 s, 129.0 pairs/s, GPU peak 4.03 GiB
+val: 100/150 runs, 60 s, 132.6 pairs/s, GPU peak 4.03 GiB
+val: 150/150 runs, 120 s, 100.3 pairs/s, GPU peak 4.03 GiB
+val: wrote 12000 pairs to /workspace/data/e2/baselines/pairs/searaft/val.csv in 133 s; GPU peak 4.03 GiB
+val 138 s
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+/workspace/venv/lib/python3.12/site-packages/torch/functional.py:505: UserWarning: torch.meshgrid: in an upcoming release, it will be required to pass the indexing argument. (Triggered internally at /pytorch/aten/src/ATen/native/TensorShape.cpp:4381.)
+  return _VF.meshgrid(tensors, **kwargs)  # type: ignore[attr-defined]
+train: 50/1500 runs, 71 s, 56.5 pairs/s, GPU peak 4.03 GiB
+train: 100/1500 runs, 164 s, 48.7 pairs/s, GPU peak 4.03 GiB
+train: 150/1500 runs, 305 s, 39.4 pairs/s, GPU peak 4.03 GiB
+train: 200/1500 runs, 396 s, 40.4 pairs/s, GPU peak 4.03 GiB
+train: 250/1500 runs, 467 s, 42.9 pairs/s, GPU peak 4.03 GiB
+train: 300/1500 runs, 546 s, 43.9 pairs/s, GPU peak 4.03 GiB
+train: 350/1500 runs, 613 s, 45.7 pairs/s, GPU peak 4.03 GiB
+train: 400/1500 runs, 661 s, 48.4 pairs/s, GPU peak 4.03 GiB
+train: 450/1500 runs, 716 s, 50.3 pairs/s, GPU peak 4.03 GiB
+train: 500/1500 runs, 765 s, 52.3 pairs/s, GPU peak 4.03 GiB
+train: 550/1500 runs, 835 s, 52.7 pairs/s, GPU peak 4.03 GiB
+train: 600/1500 runs, 905 s, 53.0 pairs/s, GPU peak 4.03 GiB
+train: 650/1500 runs, 981 s, 53.0 pairs/s, GPU peak 4.03 GiB
+train: 700/1500 runs, 1075 s, 52.1 pairs/s, GPU peak 4.03 GiB
+train: 750/1500 runs, 1222 s, 49.1 pairs/s, GPU peak 4.03 GiB
+train: 800/1500 runs, 1391 s, 46.0 pairs/s, GPU peak 4.03 GiB
+train: 850/1500 runs, 1548 s, 43.9 pairs/s, GPU peak 4.03 GiB
+train: 900/1500 runs, 1725 s, 41.7 pairs/s, GPU peak 4.03 GiB
+train: 950/1500 runs, 1879 s, 40.4 pairs/s, GPU peak 4.03 GiB
+train: 1000/1500 runs, 2002 s, 40.0 pairs/s, GPU peak 4.03 GiB
+train: 1050/1500 runs, 2189 s, 38.4 pairs/s, GPU peak 4.03 GiB
+train: 1100/1500 runs, 2435 s, 36.1 pairs/s, GPU peak 4.03 GiB
+train: 1150/1500 runs, 2628 s, 35.0 pairs/s, GPU peak 4.03 GiB
+train: 1200/1500 runs, 2874 s, 33.4 pairs/s, GPU peak 4.03 GiB
+train: 1250/1500 runs, 3098 s, 32.3 pairs/s, GPU peak 4.03 GiB
+train: 1300/1500 runs, 3333 s, 31.2 pairs/s, GPU peak 4.03 GiB
+train: 1350/1500 runs, 3576 s, 30.2 pairs/s, GPU peak 4.03 GiB
+train: 1400/1500 runs, 3792 s, 29.5 pairs/s, GPU peak 4.03 GiB
+train: 1450/1500 runs, 4024 s, 28.8 pairs/s, GPU peak 4.03 GiB
+train: 1500/1500 runs, 4267 s, 28.1 pairs/s, GPU peak 4.03 GiB
+train: wrote 120000 pairs to /workspace/data/e2/baselines/pairs/searaft/train.csv in 4394 s; GPU peak 4.03 GiB

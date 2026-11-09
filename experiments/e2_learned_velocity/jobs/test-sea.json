@@ -1,0 +1,6292 @@
+{
+	"name": "e2-test-sea",
+	"description": "E2 test-sea: 150 runs, 8 s at 10 fps, 720x1280 portrait, vfov 92, gimbal pitch -90..-60, altitude 30-200 m (log-uniform), airspeed 15-60 m/s, wind aloft from the sea; only the held-out sea regime (wind >= 16 m/s or swell period >= 14 s). Written by make_jobs.mjs.",
+	"base": {
+		"trajectory": {
+			"duration": 8,
+			"wind": "sea",
+			"gimbal": {
+				"yaw": 0,
+				"fov": 92
+			}
+		},
+		"render": {
+			"width": 720,
+			"height": 1280,
+			"fps": 10,
+			"warmup": 8,
+			"quality": "high",
+			"modes": [
+				"shaded"
+			]
+		}
+	},
+	"runs": [
+		{
+			"sea": {
+				"windSpeed": 19.81,
+				"windDirection": 91.555,
+				"fetch": 361.667,
+				"spread": 8,
+				"swellHeight": 1.363,
+				"swellDirection": 65.809,
+				"swellPeriod": 11.292,
+				"choppiness": 0.868
+			},
+			"light": {
+				"sunElevation": 4.91,
+				"sunAzimuth": 84.833,
+				"overcast": 0.029,
+				"haze": 0.089,
+				"exposure": 1
+			},
+			"trajectory": {
+				"seed": 513727245,
+				"pattern": {
+					"type": "figure8",
+					"radius": 250
+				},
+				"altitude": 102.662,
+				"airspeed": 48.73,
+				"turbulence": 0.016,
+				"start": {
+					"heading": 272.591
+				},
+				"gimbal": {
+					"pitch": -62.589,
+					"stabilized": 0.652
+				}
+			},
+			"render": {
+				"seaSeed": 533967856
+			},
+			"id": "w20-sun5-a103-v49-figure8"
+		},
+		{
+			"sea": {
+				"windSpeed": 2.873,
+				"windDirection": 213.543,
+				"fetch": 167.301,
+				"spread": 8,
+				"swellHeight": 0.242,
+				"swellDirection": 225.577,
+				"swellPeriod": 15.464,
+				"choppiness": 0.617
+			},
+			"light": {
+				"sunElevation": 7.64,
+				"sunAzimuth": 141.947,
+				"overcast": 0.124,
+				"haze": 0.231,
+				"exposure": 1
+			},
+			"trajectory": {
+				"seed": 785510166,
+				"pattern": {
+					"type": "straight"
+				},
+				"altitude": 116.972,
+				"airspeed": 17.262,
+				"turbulence": 0.198,
+				"start": {
+					"heading": 357.812
+				},
+				"gimbal": {
+					"pitch": -79.603,
+					"stabilized": 0.545
+				}
+			},
+			"render": {
+				"seaSeed": 805750777
+			},
+			"id": "w3-sun8-a117-v17-transit"
+		},
+		{
+			"sea": {
+				"windSpeed": 3.831,
+				"windDirection": 290.724,
+				"fetch": 349.572,
+				"spread": 8,
+				"swellHeight": 1.208,
+				"swellDirection": 256.7,
+				"swellPeriod": 15.802,
+				"choppiness": 0.738
+			},
+			"light": {
+				"sunElevation": 5.383,
+				"sunAzimuth": 65.711,
+				"overcast": 0.072,
+				"haze": 0.096,
+				"exposure": 1
+			},
+			"trajectory": {
+				"seed": 910024767,
+				"pattern": {
+					"type": "random",
+					"legLength": [
+						300,
+						900
+					],
+					"turn": [
+						-150,
+						150
+					]
+				},
+				"altitude": 91.166,
+				"airspeed": 32.043,
+				"turbulence": 0.463,
+				"start": {
+					"heading": 314.635
+				},
+				"gimbal": {
+					"pitch": -64.034,
+					"stabilized": 0.591
+				}
+			},
+			"render": {
+				"seaSeed": 930265378
+			},
+			"id": "w4-sun5-a91-v32-random"
+		},
+		{
+			"sea": {
+				"windSpeed": 16.071,
+				"windDirection": 21.385,
+				"fetch": 441.127,
+				"spread": 8,
+				"swellHeight": 0,
+				"swellDirection": 326.945,
+				"swellPeriod": 11.381,
+				"choppiness": 0.966
+			},
+			"light": {
+				"sunElevation": -1.257,
+				"sunAzimuth": 206.917,
+				"overcast": 0.4,
+				"haze": 0.458,
+				"exposure": 1
+			},
+			"trajectory": {
+				"seed": 325975306,
+				"pattern": {
+					"type": "orbit",
+					"radius": 250,
+					"direction": 1
+				},
+				"altitude": 37.989,
+				"airspeed": 57.022,
+				"turbulence": 0.642,
+				"start": {
+					"heading": 275.09
+				},
+				"gimbal": {
+					"pitch": -66.512,
+					"stabilized": 0.97
+				}
+			},
+			"render": {
+				"seaSeed": 346215917
+			},
+			"id": "w16-sun-1-a38-v57-loiter"
+		},
+		{
+			"sea": {
+				"windSpeed": 3.794,
+				"windDirection": 65.043,
+				"fetch": 96.105,
+				"spread": 8,
+				"swellHeight": 0.898,
+				"swellDirection": 338.884,
+				"swellPeriod": 14.241,
+				"choppiness": 1.058
+			},
+			"light": {
+				"sunElevation": 40.183,
+				"sunAzimuth": 175.05,
+				"overcast": 0.767,
+				"haze": 0.374,
+				"exposure": 1
+			},
+			"trajectory": {
+				"seed": 175017406,
+				"pattern": {
+					"type": "orbit",
+					"radius": 250,
+					"direction": 1
+				},
+				"altitude": 57.689,
+				"airspeed": 28.866,
+				"turbulence": 0.796,
+				"start": {
+					"heading": 165.527
+				},
+				"gimbal": {
+					"pitch": -88.198,
+					"stabilized": 0.745
+				}
+			},
+			"render": {
+				"seaSeed": 195258017
+			},
+			"id": "w4-sun40-a58-v29-loiter"
+		},
+		{
+			"sea": {
+				"windSpeed": 9.247,
+				"windDirection": 103.896,
+				"fetch": 93.12,
+				"spread": 8,
+				"swellHeight": 1.323,
+				"swellDirection": 99.449,
+				"swellPeriod": 15.316,
+				"choppiness": 1.17
+			},
+			"light": {
+				"sunElevation": 52.995,
+				"sunAzimuth": 56.711,
+				"overcast": 0.18,
+				"haze": 0.144,
+				"exposure": 1
+			},
+			"trajectory": {
+				"seed": 500000344,
+				"pattern": {
+					"type": "figure8",
+					"radius": 250
+				},
+				"altitude": 33.999,
+				"airspeed": 22.489,
+				"turbulence": 0.649,
+				"start": {
+					"heading": 319.972
+				},
+				"gimbal": {
+					"pitch": -87.092,
+					"stabilized": 0.735
+				}
+			},
+			"render": {
+				"seaSeed": 520240955
+			},
+			"id": "w9-sun53-a34-v22-figure8"
+		},
+		{
+			"sea": {
+				"windSpeed": 18.34,
+				"windDirection": 199.718,
+				"fetch": 129.265,
+				"spread": 8,
+				"swellHeight": 0.905,
+				"swellDirection": 202.378,
+				"swellPeriod": 11.223,
+				"choppiness": 1.304
+			},
+			"light": {
+				"sunElevation": 46.189,
+				"sunAzimuth": 159.567,
+				"overcast": 0.118,
+				"haze": 0.245,
+				"exposure": 1
+			},
+			"trajectory": {
+				"seed": 88219535,
+				"pattern": {
+					"type": "figure8",
+					"radius": 250
+				},
+				"altitude": 93.659,
+				"airspeed": 41.637,
+				"turbulence": 0.444,
+				"start": {
+					"heading": 35.197
+				},
+				"gimbal": {
+					"pitch": -64.652,
+					"stabilized": 0.368
+				}
+			},
+			"render": {
+				"seaSeed": 108460146
+			},
+			"id": "w18-sun46-a94-v42-figure8"
+		},
+		{
+			"sea": {
+				"windSpeed": 8.451,
+				"windDirection": 25.633,
+				"fetch": 92.227,
+				"spread": 8,
+				"swellHeight": 1.65,
+				"swellDirection": 311.969,
+				"swellPeriod": 14.894,
+				"choppiness": 0.871
+			},
+			"light": {
+				"sunElevation": 31.28,
+				"sunAzimuth": 267.556,
+				"overcast": 0.58,
+				"haze": 0.256,
+				"exposure": 1
+			},
+			"trajectory": {
+				"seed": 999484591,
+				"pattern": {
+					"type": "orbit",
+					"radius": 250,
+					"direction": 1
+				},
+				"altitude": 94.837,
+				"airspeed": 24.126,
+				"turbulence": 0.077,
+				"start": {
+					"heading": 199.416
+				},
+				"gimbal": {
+					"pitch": -82.977,
+					"stabilized": 0.572
+				}
+			},
+			"render": {
+				"seaSeed": 1019725202
+			},
+			"id": "w8-sun31-a95-v24-loiter"
+		},
+		{
+			"sea": {
+				"windSpeed": 5.896,
+				"windDirection": 35.581,
+				"fetch": 63.001,
+				"spread": 8,
+				"swellHeight": 2.231,
+				"swellDirection": 41.033,
+				"swellPeriod": 15.101,
+				"choppiness": 1.163
+			},
+			"light": {
+				"sunElevation": 58.321,
+				"sunAzimuth": 232.841,
+				"overcast": 0.617,
+				"haze": 0.029,
+				"exposure": 1
+			},
+			"trajectory": {
+				"seed": 801318797,
+				"pattern": {
+					"type": "racetrack",
+					"length": 900,
+					"radius": 200,
+					"direction": 1
+				},
+				"altitude": 77.344,
+				"airspeed": 49.028,
+				"turbulence": 0.298,
+				"start": {
+					"heading": 23.63
+				},
+				"gimbal": {
+					"pitch": -77.838,
+					"stabilized": 0.458
+				}
+			},
+			"render": {
+				"seaSeed": 821559408
+			},
+			"id": "w6-sun58-a77-v49-racetrack"
+		},
+		{
+			"sea": {
+				"windSpeed": 16.154,
+				"windDirection": 51.853,
+				"fetch": 356.991,
+				"spread": 8,
+				"swellHeight": 0.236,
+				"swellDirection": 112.616,
+				"swellPeriod": 11.458,
+				"choppiness": 0.671
+			},
+			"light": {
+				"sunElevation": 6.446,
+				"sunAzimuth": 44.861,
+				"overcast": 0.027,
+				"haze": 0.058,
+				"exposure": 1
+			},
+			"trajectory": {
+				"seed": 352112374,
+				"pattern": {
+					"type": "orbit",
+					"radius": 250,
+					"direction": 1
+				},
+				"altitude": 73.915,
+				"airspeed": 30.064,
+				"turbulence": 0.122,
+				"start": {
+					"heading": 180.404
+				},
+				"gimbal": {
+					"pitch": -86.314,
+					"stabilized": 0.921
+				}
+			},
+			"render": {
+				"seaSeed": 372352985
+			},
+			"id": "w16-sun6-a74-v30-loiter"
+		},
+		{
+			"sea": {
+				"windSpeed": 12.999,
+				"windDirection": 122.166,
+				"fetch": 93.255,
+				"spread": 8,
+				"swellHeight": 2.373,
+				"swellDirection": 186.567,
+				"swellPeriod": 15.224,
+				"choppiness": 0.834
+			},
+			"light": {
+				"sunElevation": 4.427,
+				"sunAzimuth": 125.721,
+				"overcast": 0.179,
+				"haze": 0.526,
+				"exposure": 1
+			},
+			"trajectory": {
+				"seed": 815204710,
+				"pattern": {
+					"type": "orbit",
+					"radius": 250,
+					"direction": 1
+				},
+				"altitude": 31.006,
+				"airspeed": 31.525,
+				"turbulence": 0.099,
+				"start": {
+					"heading": 351.876
+				},
+				"gimbal": {
+					"pitch": -72.753,
+					"stabilized": 0.776
+				}
+			},
+			"render": {
+				"seaSeed": 835445321
+			},
+			"id": "w13-sun4-a31-v32-loiter"
+		},
+		{
+			"sea": {
+				"windSpeed": 17.774,
+				"windDirection": 155.339,
+				"fetch": 234.305,
+				"spread": 8,
+				"swellHeight": 0.744,
+				"swellDirection": 146.434,
+				"swellPeriod": 14.233,
+				"choppiness": 0.669
+			},
+			"light": {
+				"sunElevation": 50.561,
+				"sunAzimuth": 242.497,
+				"overcast": 0.2,
+				"haze": 0.445,
+				"exposure": 1
+			},
+			"trajectory": {
+				"seed": 399243869,
+				"pattern": {
+					"type": "lawnmower",
+					"legLength": 900,
+					"spacing": 200,
+					"legs": 4
+				},
+				"altitude": 82.462,
+				"airspeed": 51.871,
+				"turbulence": 0.73,
+				"start": {
+					"heading": 66.652
+				},
+				"gimbal": {
+					"pitch": -71.315,
+					"stabilized": 0.536
+				}
+			},
+			"render": {
+				"seaSeed": 419484480
+			},
+			"id": "w18-sun51-a82-v52-survey"
+		},
+		{
+			"sea": {
+				"windSpeed": 19.117,
+				"windDirection": 332.993,
+				"fetch": 164.734,
+				"spread": 8,
+				"swellHeight": 2.124,
+				"swellDirection": 246.024,
+				"swellPeriod": 10.476,
+				"choppiness": 1.39
+			},
+			"light": {
+				"sunElevation": 38.147,
+				"sunAzimuth": 63.696,
+				"overcast": 0.117,
+				"haze": 0.344,
+				"exposure": 1
+			},
+			"trajectory": {
+				"seed": 171110334,
+				"pattern": {
+					"type": "figure8",
+					"radius": 250
+				},
+				"altitude": 162.195,
+				"airspeed": 37.294,
+				"turbulence": 0.478,
+				"start": {
+					"heading": 135.618
+				},
+				"gimbal": {
+					"pitch": -61.289,
+					"stabilized": 0.819
+				}
+			},
+			"render": {
+				"seaSeed": 191350945
+			},
+			"id": "w19-sun38-a162-v37-figure8"
+		},
+		{
+			"sea": {
+				"windSpeed": 17.415,
+				"windDirection": 164.227,
+				"fetch": 463.06,
+				"spread": 8,
+				"swellHeight": 1.9,
+				"swellDirection": 100.621,
+				"swellPeriod": 15.586,
+				"choppiness": 0.831
+			},
+			"light": {
+				"sunElevation": 17.641,
+				"sunAzimuth": 235.627,
+				"overcast": 0.109,
+				"haze": 0.551,
+				"exposure": 1
+			},
+			"trajectory": {
+				"seed": 845270291,
+				"pattern": {
+					"type": "lawnmower",
+					"legLength": 900,
+					"spacing": 200,
+					"legs": 4
+				},
+				"altitude": 104.593,
+				"airspeed": 32.709,
+				"turbulence": 0.767,
+				"start": {
+					"heading": 128.254
+				},
+				"gimbal": {
+					"pitch": -73.007,
+					"stabilized": 0.379
+				}
+			},
+			"render": {
+				"seaSeed": 865510902
+			},
+			"id": "w17-sun18-a105-v33-survey"
+		},
+		{
+			"sea": {
+				"windSpeed": 18.91,
+				"windDirection": 50.062,
+				"fetch": 251.506,
+				"spread": 8,
+				"swellHeight": 0,
+				"swellDirection": 94.952,
+				"swellPeriod": 9.434,
+				"choppiness": 0.975
+			},
+			"light": {
+				"sunElevation": 54.693,
+				"sunAzimuth": 236.115,
+				"overcast": 0.136,
+				"haze": 0.433,
+				"exposure": 1
+			},
+			"trajectory": {
+				"seed": 887301655,
+				"pattern": {
+					"type": "straight"
+				},
+				"altitude": 33.923,
+				"airspeed": 34.274,
+				"turbulence": 0.719,
+				"start": {
+					"heading": 306.648
+				},
+				"gimbal": {
+					"pitch": -67.301,
+					"stabilized": 0.776
+				}
+			},
+			"render": {
+				"seaSeed": 907542266
+			},
+			"id": "w19-sun55-a34-v34-transit"
+		},
+		{
+			"sea": {
+				"windSpeed": 7.162,
+				"windDirection": 218.094,
+				"fetch": 158.083,
+				"spread": 8,
+				"swellHeight": 1.702,
+				"swellDirection": 306.973,
+				"swellPeriod": 14.216,
+				"choppiness": 1.383
+			},
+			"light": {
+				"sunElevation": 15.233,
+				"sunAzimuth": 62.69,
+				"overcast": 0.82,
+				"haze": 0.558,
+				"exposure": 1
+			},
+			"trajectory": {
+				"seed": 616793025,
+				"pattern": {
+					"type": "straight"
+				},
+				"altitude": 55.859,
+				"airspeed": 42.28,
+				"turbulence": 0.223,
+				"start": {
+					"heading": 339.334
+				},
+				"gimbal": {
+					"pitch": -79.059,
+					"stabilized": 0.344
+				}
+			},
+			"render": {
+				"seaSeed": 637033636
+			},
+			"id": "w7-sun15-a56-v42-transit"
+		},
+		{
+			"sea": {
+				"windSpeed": 11.563,
+				"windDirection": 168.526,
+				"fetch": 313.729,
+				"spread": 8,
+				"swellHeight": 1.32,
+				"swellDirection": 170.821,
+				"swellPeriod": 14.13,
+				"choppiness": 0.656
+			},
+			"light": {
+				"sunElevation": 10.504,
+				"sunAzimuth": 268.609,
+				"overcast": 0.911,
+				"haze": 0.3,
+				"exposure": 1
+			},
+			"trajectory": {
+				"seed": 966805580,
+				"pattern": {
+					"type": "straight"
+				},
+				"altitude": 55.481,
+				"airspeed": 23.144,
+				"turbulence": 0.476,
+				"start": {
+					"heading": 231.554
+				},
+				"gimbal": {
+					"pitch": -80.092,
+					"stabilized": 0.32
+				}
+			},
+			"render": {
+				"seaSeed": 987046191
+			},
+			"id": "w12-sun11-a55-v23-transit"
+		},
+		{
+			"sea": {
+				"windSpeed": 11.163,
+				"windDirection": 291.301,
+				"fetch": 101.605,
+				"spread": 8,
+				"swellHeight": 1.955,
+				"swellDirection": 277.999,
+				"swellPeriod": 15.512,
+				"choppiness": 1.086
+			},
+			"light": {
+				"sunElevation": 36.525,
+				"sunAzimuth": 154.161,
+				"overcast": 0.721,
+				"haze": 0.3,
+				"exposure": 1
+			},
+			"trajectory": {
+				"seed": 464137437,
+				"pattern": {
+					"type": "figure8",
+					"radius": 250
+				},
+				"altitude": 170.662,
+				"airspeed": 35.608,
+				"turbulence": 0.135,
+				"start": {
+					"heading": 10.541
+				},
+				"gimbal": {
+					"pitch": -62.345,
+					"stabilized": 0.664
+				}
+			},
+			"render": {
+				"seaSeed": 484378048
+			},
+			"id": "w11-sun37-a171-v36-figure8"
+		},
+		{
+			"sea": {
+				"windSpeed": 18.856,
+				"windDirection": 242.877,
+				"fetch": 401.184,
+				"spread": 8,
+				"swellHeight": 0.168,
+				"swellDirection": 283.724,
+				"swellPeriod": 8.907,
+				"choppiness": 1.222
+			},
+			"light": {
+				"sunElevation": 54.17,
+				"sunAzimuth": 168.373,
+				"overcast": 0.235,
+				"haze": 0.574,
+				"exposure": 1
+			},
+			"trajectory": {
+				"seed": 715339501,
+				"pattern": {
+					"type": "random",
+					"legLength": [
+						300,
+						900
+					],
+					"turn": [
+						-150,
+						150
+					]
+				},
+				"altitude": 58.167,
+				"airspeed": 32.008,
+				"turbulence": 0.702,
+				"start": {
+					"heading": 218.37
+				},
+				"gimbal": {
+					"pitch": -63.042,
+					"stabilized": 0.585
+				}
+			},
+			"render": {
+				"seaSeed": 735580112
+			},
+			"id": "w19-sun54-a58-v32-random"
+		},
+		{
+			"sea": {
+				"windSpeed": 18.65,
+				"windDirection": 327.956,
+				"fetch": 69.741,
+				"spread": 8,
+				"swellHeight": 1.789,
+				"swellDirection": 276.743,
+				"swellPeriod": 8.452,
+				"choppiness": 0.976
+			},
+			"light": {
+				"sunElevation": 36.211,
+				"sunAzimuth": 88.702,
+				"overcast": 0.055,
+				"haze": 0.24,
+				"exposure": 1
+			},
+			"trajectory": {
+				"seed": 569836002,
+				"pattern": {
+					"type": "racetrack",
+					"length": 900,
+					"radius": 200,
+					"direction": 1
+				},
+				"altitude": 158.325,
+				"airspeed": 32.048,
+				"turbulence": 0.757,
+				"start": {
+					"heading": 72.001
+				},
+				"gimbal": {
+					"pitch": -86.972,
+					"stabilized": 0.523
+				}
+			},
+			"render": {
+				"seaSeed": 590076613
+			},
+			"id": "w19-sun36-a158-v32-racetrack"
+		},
+		{
+			"sea": {
+				"windSpeed": 19.972,
+				"windDirection": 356.529,
+				"fetch": 148.774,
+				"spread": 8,
+				"swellHeight": 2.457,
+				"swellDirection": 84.402,
+				"swellPeriod": 14.955,
+				"choppiness": 1.137
+			},
+			"light": {
+				"sunElevation": 56.612,
+				"sunAzimuth": 306.033,
+				"overcast": 0.325,
+				"haze": 0.017,
+				"exposure": 1
+			},
+			"trajectory": {
+				"seed": 477389984,
+				"pattern": {
+					"type": "random",
+					"legLength": [
+						300,
+						900
+					],
+					"turn": [
+						-150,
+						150
+					]
+				},
+				"altitude": 85.388,
+				"airspeed": 47.579,
+				"turbulence": 0.678,
+				"start": {
+					"heading": 233.976
+				},
+				"gimbal": {
+					"pitch": -85.612,
+					"stabilized": 0.847
+				}
+			},
+			"render": {
+				"seaSeed": 497630595
+			},
+			"id": "w20-sun57-a85-v48-random"
+		},
+		{
+			"sea": {
+				"windSpeed": 18.686,
+				"windDirection": 226.343,
+				"fetch": 61.582,
+				"spread": 8,
+				"swellHeight": 0.941,
+				"swellDirection": 195.95,
+				"swellPeriod": 8.452,
+				"choppiness": 0.76
+			},
+			"light": {
+				"sunElevation": 52.511,
+				"sunAzimuth": 188.531,
+				"overcast": 0.878,
+				"haze": 0.3,
+				"exposure": 1
+			},
+			"trajectory": {
+				"seed": 439533830,
+				"pattern": {
+					"type": "straight"
+				},
+				"altitude": 33.865,
+				"airspeed": 53.771,
+				"turbulence": 0.443,
+				"start": {
+					"heading": 157.422
+				},
+				"gimbal": {
+					"pitch": -85.936,
+					"stabilized": 0.775
+				}
+			},
+			"render": {
+				"seaSeed": 459774441
+			},
+			"id": "w19-sun53-a34-v54-transit"
+		},
+		{
+			"sea": {
+				"windSpeed": 20,
+				"windDirection": 196.585,
+				"fetch": 455.439,
+				"spread": 8,
+				"swellHeight": 0,
+				"swellDirection": 241.001,
+				"swellPeriod": 11.966,
+				"choppiness": 1.11
+			},
+			"light": {
+				"sunElevation": 36.276,
+				"sunAzimuth": 338.508,
+				"overcast": 0.257,
+				"haze": 0.255,
+				"exposure": 1
+			},
+			"trajectory": {
+				"seed": 538417804,
+				"pattern": {
+					"type": "racetrack",
+					"length": 900,
+					"radius": 200,
+					"direction": 1
+				},
+				"altitude": 139.971,
+				"airspeed": 49.67,
+				"turbulence": 0.681,
+				"start": {
+					"heading": 331.301
+				},
+				"gimbal": {
+					"pitch": -68.113,
+					"stabilized": 0.784
+				}
+			},
+			"render": {
+				"seaSeed": 558658415
+			},
+			"id": "w20-sun36-a140-v50-racetrack"
+		},
+		{
+			"sea": {
+				"windSpeed": 2.445,
+				"windDirection": 244.66,
+				"fetch": 62.332,
+				"spread": 8,
+				"swellHeight": 1.056,
+				"swellDirection": 301.476,
+				"swellPeriod": 15.503,
+				"choppiness": 1.278
+			},
+			"light": {
+				"sunElevation": 43.73,
+				"sunAzimuth": 201.325,
+				"overcast": 0.405,
+				"haze": 0.145,
+				"exposure": 1
+			},
+			"trajectory": {
+				"seed": 47609500,
+				"pattern": {
+					"type": "orbit",
+					"radius": 250,
+					"direction": 1
+				},
+				"altitude": 95.392,
+				"airspeed": 39.794,
+				"turbulence": 0.07,
+				"start": {
+					"heading": 173.472
+				},
+				"gimbal": {
+					"pitch": -85.288,
+					"stabilized": 0.419
+				}
+			},
+			"render": {
+				"seaSeed": 67850111
+			},
+			"id": "w2-sun44-a95-v40-loiter"
+		},
+		{
+			"sea": {
+				"windSpeed": 16.709,
+				"windDirection": 70.21,
+				"fetch": 66.994,
+				"spread": 8,
+				"swellHeight": 1.529,
+				"swellDirection": 69.12,
+				"swellPeriod": 8.641,
+				"choppiness": 0.819
+			},
+			"light": {
+				"sunElevation": 57.206,
+				"sunAzimuth": 256.631,
+				"overcast": 0.385,
+				"haze": 0.374,
+				"exposure": 1
+			},
+			"trajectory": {
+				"seed": 525600373,
+				"pattern": {
+					"type": "random",
+					"legLength": [
+						300,
+						900
+					],
+					"turn": [
+						-150,
+						150
+					]
+				},
+				"altitude": 105.15,
+				"airspeed": 42.708,
+				"turbulence": 0.671,
+				"start": {
+					"heading": 148.133
+				},
+				"gimbal": {
+					"pitch": -67.663,
+					"stabilized": 0.956
+				}
+			},
+			"render": {
+				"seaSeed": 545840984
+			},
+			"id": "w17-sun57-a105-v43-random"
+		},
+		{
+			"sea": {
+				"windSpeed": 18.686,
+				"windDirection": 46.33,
+				"fetch": 237.364,
+				"spread": 8,
+				"swellHeight": 2.326,
+				"swellDirection": 356.211,
+				"swellPeriod": 13.584,
+				"choppiness": 0.953
+			},
+			"light": {
+				"sunElevation": 20.997,
+				"sunAzimuth": 307.263,
+				"overcast": 0.526,
+				"haze": 0.138,
+				"exposure": 1
+			},
+			"trajectory": {
+				"seed": 953882749,
+				"pattern": {
+					"type": "lawnmower",
+					"legLength": 900,
+					"spacing": 200,
+					"legs": 4
+				},
+				"altitude": 39.054,
+				"airspeed": 42.654,
+				"turbulence": 0.474,
+				"start": {
+					"heading": 164.809
+				},
+				"gimbal": {
+					"pitch": -80.566,
+					"stabilized": 0.839
+				}
+			},
+			"render": {
+				"seaSeed": 974123360
+			},
+			"id": "w19-sun21-a39-v43-survey"
+		},
+		{
+			"sea": {
+				"windSpeed": 13.935,
+				"windDirection": 126.793,
+				"fetch": 486.555,
+				"spread": 8,
+				"swellHeight": 1.558,
+				"swellDirection": 45.584,
+				"swellPeriod": 15.846,
+				"choppiness": 0.821
+			},
+			"light": {
+				"sunElevation": 59.32,
+				"sunAzimuth": 351.494,
+				"overcast": 0.169,
+				"haze": 0.276,
+				"exposure": 1
+			},
+			"trajectory": {
+				"seed": 765164564,
+				"pattern": {
+					"type": "lawnmower",
+					"legLength": 900,
+					"spacing": 200,
+					"legs": 4
+				},
+				"altitude": 35.209,
+				"airspeed": 41.005,
+				"turbulence": 0.625,
+				"start": {
+					"heading": 328.199
+				},
+				"gimbal": {
+					"pitch": -61.07,
+					"stabilized": 0.783
+				}
+			},
+			"render": {
+				"seaSeed": 785405175
+			},
+			"id": "w14-sun59-a35-v41-survey"
+		},
+		{
+			"sea": {
+				"windSpeed": 16.572,
+				"windDirection": 152.759,
+				"fetch": 528.932,
+				"spread": 8,
+				"swellHeight": 2.382,
+				"swellDirection": 188.301,
+				"swellPeriod": 11.804,
+				"choppiness": 0.836
+			},
+			"light": {
+				"sunElevation": 28.268,
+				"sunAzimuth": 302.018,
+				"overcast": 0.059,
+				"haze": 0.744,
+				"exposure": 1
+			},
+			"trajectory": {
+				"seed": 789411219,
+				"pattern": {
+					"type": "straight"
+				},
+				"altitude": 38.59,
+				"airspeed": 43.962,
+				"turbulence": 0.257,
+				"start": {
+					"heading": 120.218
+				},
+				"gimbal": {
+					"pitch": -69.16,
+					"stabilized": 0.908
+				}
+			},
+			"render": {
+				"seaSeed": 809651830
+			},
+			"id": "w17-sun28-a39-v44-transit"
+		},
+		{
+			"sea": {
+				"windSpeed": 10.337,
+				"windDirection": 344.135,
+				"fetch": 172.951,
+				"spread": 8,
+				"swellHeight": 1.901,
+				"swellDirection": 338.448,
+				"swellPeriod": 14.023,
+				"choppiness": 1.304
+			},
+			"light": {
+				"sunElevation": 12.242,
+				"sunAzimuth": 108.188,
+				"overcast": 0.141,
+				"haze": 0.671,
+				"exposure": 1
+			},
+			"trajectory": {
+				"seed": 731201729,
+				"pattern": {
+					"type": "figure8",
+					"radius": 250
+				},
+				"altitude": 93.83,
+				"airspeed": 52.711,
+				"turbulence": 0.195,
+				"start": {
+					"heading": 236.982
+				},
+				"gimbal": {
+					"pitch": -77.351,
+					"stabilized": 0.635
+				}
+			},
+			"render": {
+				"seaSeed": 751442340
+			},
+			"id": "w10-sun12-a94-v53-figure8"
+		},
+		{
+			"sea": {
+				"windSpeed": 10.168,
+				"windDirection": 251.066,
+				"fetch": 747.876,
+				"spread": 8,
+				"swellHeight": 1.294,
+				"swellDirection": 190.739,
+				"swellPeriod": 14.353,
+				"choppiness": 0.772
+			},
+			"light": {
+				"sunElevation": 14.321,
+				"sunAzimuth": 187.782,
+				"overcast": 0.863,
+				"haze": 0.583,
+				"exposure": 1
+			},
+			"trajectory": {
+				"seed": 166288711,
+				"pattern": {
+					"type": "figure8",
+					"radius": 250
+				},
+				"altitude": 156.043,
+				"airspeed": 55.753,
+				"turbulence": 0.579,
+				"start": {
+					"heading": 345.481
+				},
+				"gimbal": {
+					"pitch": -65.363,
+					"stabilized": 0.318
+				}
+			},
+			"render": {
+				"seaSeed": 186529322
+			},
+			"id": "w10-sun14-a156-v56-figure8"
+		},
+		{
+			"sea": {
+				"windSpeed": 4.08,
+				"windDirection": 303.83,
+				"fetch": 141.024,
+				"spread": 8,
+				"swellHeight": 1.052,
+				"swellDirection": 226.734,
+				"swellPeriod": 15.941,
+				"choppiness": 0.685
+			},
+			"light": {
+				"sunElevation": 10.787,
+				"sunAzimuth": 78.689,
+				"overcast": 0.023,
+				"haze": 0.5,
+				"exposure": 1
+			},
+			"trajectory": {
+				"seed": 711157474,
+				"pattern": {
+					"type": "random",
+					"legLength": [
+						300,
+						900
+					],
+					"turn": [
+						-150,
+						150
+					]
+				},
+				"altitude": 67.455,
+				"airspeed": 35.882,
+				"turbulence": 0.072,
+				"start": {
+					"heading": 207.332
+				},
+				"gimbal": {
+					"pitch": -62.406,
+					"stabilized": 0.79
+				}
+			},
+			"render": {
+				"seaSeed": 731398085
+			},
+			"id": "w4-sun11-a67-v36-random"
+		},
+		{
+			"sea": {
+				"windSpeed": 7.849,
+				"windDirection": 211.747,
+				"fetch": 108.815,
+				"spread": 8,
+				"swellHeight": 1.041,
+				"swellDirection": 190.672,
+				"swellPeriod": 15.032,
+				"choppiness": 1.232
+			},
+			"light": {
+				"sunElevation": 20.849,
+				"sunAzimuth": 259.157,
+				"overcast": 0.66,
+				"haze": 0.089,
+				"exposure": 1
+			},
+			"trajectory": {
+				"seed": 672063530,
+				"pattern": {
+					"type": "random",
+					"legLength": [
+						300,
+						900
+					],
+					"turn": [
+						-150,
+						150
+					]
+				},
+				"altitude": 97.456,
+				"airspeed": 29.389,
+				"turbulence": 0.493,
+				"start": {
+					"heading": 203.819
+				},
+				"gimbal": {
+					"pitch": -81.237,
+					"stabilized": 0.879
+				}
+			},
+			"render": {
+				"seaSeed": 692304141
+			},
+			"id": "w8-sun21-a97-v29-random"
+		},
+		{
+			"sea": {
+				"windSpeed": 18.153,
+				"windDirection": 8.473,
+				"fetch": 693.009,
+				"spread": 8,
+				"swellHeight": 0,
+				"swellDirection": 293.576,
+				"swellPeriod": 13.716,
+				"choppiness": 1.08
+			},
+			"light": {
+				"sunElevation": 0.435,
+				"sunAzimuth": 34.356,
+				"overcast": 0.4,
+				"haze": 0.734,
+				"exposure": 1
+			},
+			"trajectory": {
+				"seed": 189315571,
+				"pattern": {
+					"type": "straight"
+				},
+				"altitude": 96.741,
+				"airspeed": 48.343,
+				"turbulence": 0.567,
+				"start": {
+					"heading": 292.643
+				},
+				"gimbal": {
+					"pitch": -78.557,
+					"stabilized": 0.884
+				}
+			},
+			"render": {
+				"seaSeed": 209556182
+			},
+			"id": "w18-sun0-a97-v48-transit"
+		},
+		{
+			"sea": {
+				"windSpeed": 18.311,
+				"windDirection": 104.238,
+				"fetch": 151.677,
+				"spread": 8,
+				"swellHeight": 1.843,
+				"swellDirection": 18.64,
+				"swellPeriod": 13.97,
+				"choppiness": 0.764
+			},
+			"light": {
+				"sunElevation": 47.659,
+				"sunAzimuth": 277.425,
+				"overcast": 0.315,
+				"haze": 0.719,
+				"exposure": 1
+			},
+			"trajectory": {
+				"seed": 438059614,
+				"pattern": {
+					"type": "random",
+					"legLength": [
+						300,
+						900
+					],
+					"turn": [
+						-150,
+						150
+					]
+				},
+				"altitude": 40.482,
+				"airspeed": 56.791,
+				"turbulence": 0.074,
+				"start": {
+					"heading": 192.811
+				},
+				"gimbal": {
+					"pitch": -65.861,
+					"stabilized": 0.615
+				}
+			},
+			"render": {
+				"seaSeed": 458300225
+			},
+			"id": "w18-sun48-a40-v57-random"
+		},
+		{
+			"sea": {
+				"windSpeed": 16.254,
+				"windDirection": 318.281,
+				"fetch": 137.655,
+				"spread": 8,
+				"swellHeight": 2.455,
+				"swellDirection": 5.342,
+				"swellPeriod": 10.847,
+				"choppiness": 1.345
+			},
+			"light": {
+				"sunElevation": 41.151,
+				"sunAzimuth": 215.94,
+				"overcast": 0.405,
+				"haze": 0.637,
+				"exposure": 1
+			},
+			"trajectory": {
+				"seed": 751316786,
+				"pattern": {
+					"type": "lawnmower",
+					"legLength": 900,
+					"spacing": 200,
+					"legs": 4
+				},
+				"altitude": 37.344,
+				"airspeed": 32.564,
+				"turbulence": 0.599,
+				"start": {
+					"heading": 234.269
+				},
+				"gimbal": {
+					"pitch": -86.833,
+					"stabilized": 0.984
+				}
+			},
+			"render": {
+				"seaSeed": 771557397
+			},
+			"id": "w16-sun41-a37-v33-survey"
+		},
+		{
+			"sea": {
+				"windSpeed": 3.236,
+				"windDirection": 237.456,
+				"fetch": 574.889,
+				"spread": 8,
+				"swellHeight": 1.763,
+				"swellDirection": 264.24,
+				"swellPeriod": 14.552,
+				"choppiness": 0.68
+			},
+			"light": {
+				"sunElevation": 49.219,
+				"sunAzimuth": 259.532,
+				"overcast": 0.62,
+				"haze": 0.353,
+				"exposure": 1
+			},
+			"trajectory": {
+				"seed": 953233025,
+				"pattern": {
+					"type": "figure8",
+					"radius": 250
+				},
+				"altitude": 66.401,
+				"airspeed": 54.277,
+				"turbulence": 0.13,
+				"start": {
+					"heading": 64.326
+				},
+				"gimbal": {
+					"pitch": -76.114,
+					"stabilized": 0.363
+				}
+			},
+			"render": {
+				"seaSeed": 973473636
+			},
+			"id": "w3-sun49-a66-v54-figure8"
+		},
+		{
+			"sea": {
+				"windSpeed": 18.912,
+				"windDirection": 264.669,
+				"fetch": 468.404,
+				"spread": 8,
+				"swellHeight": 0.3,
+				"swellDirection": 303.413,
+				"swellPeriod": 15.638,
+				"choppiness": 0.662
+			},
+			"light": {
+				"sunElevation": 6.143,
+				"sunAzimuth": 280.667,
+				"overcast": 0.96,
+				"haze": 0.62,
+				"exposure": 1
+			},
+			"trajectory": {
+				"seed": 728773791,
+				"pattern": {
+					"type": "random",
+					"legLength": [
+						300,
+						900
+					],
+					"turn": [
+						-150,
+						150
+					]
+				},
+				"altitude": 68.664,
+				"airspeed": 44.767,
+				"turbulence": 0.348,
+				"start": {
+					"heading": 201.675
+				},
+				"gimbal": {
+					"pitch": -76.399,
+					"stabilized": 0.309
+				}
+			},
+			"render": {
+				"seaSeed": 749014402
+			},
+			"id": "w19-sun6-a69-v45-random"
+		},
+		{
+			"sea": {
+				"windSpeed": 16.969,
+				"windDirection": 331.064,
+				"fetch": 247.855,
+				"spread": 8,
+				"swellHeight": 0,
+				"swellDirection": 276.658,
+				"swellPeriod": 12.53,
+				"choppiness": 0.962
+			},
+			"light": {
+				"sunElevation": 61.778,
+				"sunAzimuth": 302.569,
+				"overcast": 0.988,
+				"haze": 0.37,
+				"exposure": 1
+			},
+			"trajectory": {
+				"seed": 351909042,
+				"pattern": {
+					"type": "racetrack",
+					"length": 900,
+					"radius": 200,
+					"direction": 1
+				},
+				"altitude": 54.529,
+				"airspeed": 57.437,
+				"turbulence": 0.199,
+				"start": {
+					"heading": 64.018
+				},
+				"gimbal": {
+					"pitch": -72.348,
+					"stabilized": 0.91
+				}
+			},
+			"render": {
+				"seaSeed": 372149653
+			},
+			"id": "w17-sun62-a55-v57-racetrack"
+		},
+		{
+			"sea": {
+				"windSpeed": 5.736,
+				"windDirection": 33.629,
+				"fetch": 70.669,
+				"spread": 8,
+				"swellHeight": 1.599,
+				"swellDirection": 347.997,
+				"swellPeriod": 14.085,
+				"choppiness": 1.223
+			},
+			"light": {
+				"sunElevation": 40.234,
+				"sunAzimuth": 352.202,
+				"overcast": 0.123,
+				"haze": 0.373,
+				"exposure": 1
+			},
+			"trajectory": {
+				"seed": 333692073,
+				"pattern": {
+					"type": "figure8",
+					"radius": 250
+				},
+				"altitude": 62.801,
+				"airspeed": 18.601,
+				"turbulence": 0.375,
+				"start": {
+					"heading": 263.501
+				},
+				"gimbal": {
+					"pitch": -87.552,
+					"stabilized": 0.627
+				}
+			},
+			"render": {
+				"seaSeed": 353932684
+			},
+			"id": "w6-sun40-a63-v19-figure8"
+		},
+		{
+			"sea": {
+				"windSpeed": 14.378,
+				"windDirection": 208.4,
+				"fetch": 538.657,
+				"spread": 8,
+				"swellHeight": 1.826,
+				"swellDirection": 194.922,
+				"swellPeriod": 15.933,
+				"choppiness": 0.716
+			},
+			"light": {
+				"sunElevation": 59.479,
+				"sunAzimuth": 238.392,
+				"overcast": 0.179,
+				"haze": 0.594,
+				"exposure": 1
+			},
+			"trajectory": {
+				"seed": 584755460,
+				"pattern": {
+					"type": "racetrack",
+					"length": 900,
+					"radius": 200,
+					"direction": 1
+				},
+				"altitude": 43.217,
+				"airspeed": 41.056,
+				"turbulence": 0.635,
+				"start": {
+					"heading": 219.715
+				},
+				"gimbal": {
+					"pitch": -67.916,
+					"stabilized": 0.44
+				}
+			},
+			"render": {
+				"seaSeed": 604996071
+			},
+			"id": "w14-sun59-a43-v41-racetrack"
+		},
+		{
+			"sea": {
+				"windSpeed": 16.181,
+				"windDirection": 74.283,
+				"fetch": 73.423,
+				"spread": 8,
+				"swellHeight": 2.47,
+				"swellDirection": 49.559,
+				"swellPeriod": 13.27,
+				"choppiness": 0.944
+			},
+			"light": {
+				"sunElevation": 9.337,
+				"sunAzimuth": 265.982,
+				"overcast": 0.654,
+				"haze": 0.688,
+				"exposure": 1
+			},
+			"trajectory": {
+				"seed": 682007808,
+				"pattern": {
+					"type": "straight"
+				},
+				"altitude": 106.372,
+				"airspeed": 33.771,
+				"turbulence": 0.428,
+				"start": {
+					"heading": 45.088
+				},
+				"gimbal": {
+					"pitch": -64.388,
+					"stabilized": 0.464
+				}
+			},
+			"render": {
+				"seaSeed": 702248419
+			},
+			"id": "w16-sun9-a106-v34-transit"
+		},
+		{
+			"sea": {
+				"windSpeed": 18.443,
+				"windDirection": 163.232,
+				"fetch": 102.636,
+				"spread": 8,
+				"swellHeight": 0,
+				"swellDirection": 194.253,
+				"swellPeriod": 13.214,
+				"choppiness": 1.083
+			},
+			"light": {
+				"sunElevation": 31.951,
+				"sunAzimuth": 266.19,
+				"overcast": 0.487,
+				"haze": 0.789,
+				"exposure": 1
+			},
+			"trajectory": {
+				"seed": 317599371,
+				"pattern": {
+					"type": "random",
+					"legLength": [
+						300,
+						900
+					],
+					"turn": [
+						-150,
+						150
+					]
+				},
+				"altitude": 53.452,
+				"airspeed": 30.817,
+				"turbulence": 0.372,
+				"start": {
+					"heading": 261.462
+				},
+				"gimbal": {
+					"pitch": -75.439,
+					"stabilized": 0.854
+				}
+			},
+			"render": {
+				"seaSeed": 337839982
+			},
+			"id": "w18-sun32-a53-v31-random"
+		},
+		{
+			"sea": {
+				"windSpeed": 18.901,
+				"windDirection": 311.554,
+				"fetch": 197.681,
+				"spread": 8,
+				"swellHeight": 1.656,
+				"swellDirection": 18.028,
+				"swellPeriod": 8.91,
+				"choppiness": 1.195
+			},
+			"light": {
+				"sunElevation": 14.342,
+				"sunAzimuth": 156.59,
+				"overcast": 0.16,
+				"haze": 0.449,
+				"exposure": 1
+			},
+			"trajectory": {
+				"seed": 909956352,
+				"pattern": {
+					"type": "orbit",
+					"radius": 250,
+					"direction": 1
+				},
+				"altitude": 30.1,
+				"airspeed": 51.378,
+				"turbulence": 0.203,
+				"start": {
+					"heading": 316.128
+				},
+				"gimbal": {
+					"pitch": -73.54,
+					"stabilized": 0.894
+				}
+			},
+			"render": {
+				"seaSeed": 930196963
+			},
+			"id": "w19-sun14-a30-v51-loiter"
+		},
+		{
+			"sea": {
+				"windSpeed": 17.085,
+				"windDirection": 195.891,
+				"fetch": 76.386,
+				"spread": 8,
+				"swellHeight": 1.153,
+				"swellDirection": 219.224,
+				"swellPeriod": 11.915,
+				"choppiness": 1.352
+			},
+			"light": {
+				"sunElevation": 39.389,
+				"sunAzimuth": 162.92,
+				"overcast": 0.873,
+				"haze": 0.3,
+				"exposure": 1
+			},
+			"trajectory": {
+				"seed": 460233328,
+				"pattern": {
+					"type": "random",
+					"legLength": [
+						300,
+						900
+					],
+					"turn": [
+						-150,
+						150
+					]
+				},
+				"altitude": 74.788,
+				"airspeed": 39.502,
+				"turbulence": 0.558,
+				"start": {
+					"heading": 21.232
+				},
+				"gimbal": {
+					"pitch": -60.991,
+					"stabilized": 0.72
+				}
+			},
+			"render": {
+				"seaSeed": 480473939
+			},
+			"id": "w17-sun39-a75-v40-random"
+		},
+		{
+			"sea": {
+				"windSpeed": 17.921,
+				"windDirection": 348.572,
+				"fetch": 182.057,
+				"spread": 8,
+				"swellHeight": 2.29,
+				"swellDirection": 32.74,
+				"swellPeriod": 13.847,
+				"choppiness": 0.798
+			},
+			"light": {
+				"sunElevation": 10.427,
+				"sunAzimuth": 189.211,
+				"overcast": 0.023,
+				"haze": 0.749,
+				"exposure": 1
+			},
+			"trajectory": {
+				"seed": 685380543,
+				"pattern": {
+					"type": "straight"
+				},
+				"altitude": 178.786,
+				"airspeed": 47.59,
+				"turbulence": 0.297,
+				"start": {
+					"heading": 133.955
+				},
+				"gimbal": {
+					"pitch": -73.101,
+					"stabilized": 0.741
+				}
+			},
+			"render": {
+				"seaSeed": 705621154
+			},
+			"id": "w18-sun10-a179-v48-transit"
+		},
+		{
+			"sea": {
+				"windSpeed": 18.059,
+				"windDirection": 25.8,
+				"fetch": 224.044,
+				"spread": 8,
+				"swellHeight": 1.452,
+				"swellDirection": 39.072,
+				"swellPeriod": 11.436,
+				"choppiness": 1.023
+			},
+			"light": {
+				"sunElevation": 41.778,
+				"sunAzimuth": 95.835,
+				"overcast": 0.203,
+				"haze": 0.202,
+				"exposure": 1
+			},
+			"trajectory": {
+				"seed": 157524658,
+				"pattern": {
+					"type": "orbit",
+					"radius": 250,
+					"direction": 1
+				},
+				"altitude": 158.301,
+				"airspeed": 30.864,
+				"turbulence": 0.457,
+				"start": {
+					"heading": 154.621
+				},
+				"gimbal": {
+					"pitch": -78.395,
+					"stabilized": 0.81
+				}
+			},
+			"render": {
+				"seaSeed": 177765269
+			},
+			"id": "w18-sun42-a158-v31-loiter"
+		},
+		{
+			"sea": {
+				"windSpeed": 18.91,
+				"windDirection": 103.149,
+				"fetch": 337.462,
+				"spread": 8,
+				"swellHeight": 1.544,
+				"swellDirection": 120.547,
+				"swellPeriod": 12.132,
+				"choppiness": 0.835
+			},
+			"light": {
+				"sunElevation": -2.498,
+				"sunAzimuth": 15.7,
+				"overcast": 0.38,
+				"haze": 0.209,
+				"exposure": 1
+			},
+			"trajectory": {
+				"seed": 408971982,
+				"pattern": {
+					"type": "random",
+					"legLength": [
+						300,
+						900
+					],
+					"turn": [
+						-150,
+						150
+					]
+				},
+				"altitude": 156.226,
+				"airspeed": 38.701,
+				"turbulence": 0.738,
+				"start": {
+					"heading": 247.806
+				},
+				"gimbal": {
+					"pitch": -64.548,
+					"stabilized": 0.537
+				}
+			},
+			"render": {
+				"seaSeed": 429212593
+			},
+			"id": "w19-sun-2-a156-v39-random"
+		},
+		{
+			"sea": {
+				"windSpeed": 19.653,
+				"windDirection": 147.686,
+				"fetch": 670.119,
+				"spread": 8,
+				"swellHeight": 0,
+				"swellDirection": 200.752,
+				"swellPeriod": 12.228,
+				"choppiness": 1.102
+			},
+			"light": {
+				"sunElevation": 52.184,
+				"sunAzimuth": 165.954,
+				"overcast": 0.023,
+				"haze": 0.226,
+				"exposure": 1
+			},
+			"trajectory": {
+				"seed": 388211348,
+				"pattern": {
+					"type": "random",
+					"legLength": [
+						300,
+						900
+					],
+					"turn": [
+						-150,
+						150
+					]
+				},
+				"altitude": 35.537,
+				"airspeed": 52.685,
+				"turbulence": 0.134,
+				"start": {
+					"heading": 110.561
+				},
+				"gimbal": {
+					"pitch": -73.565,
+					"stabilized": 0.519
+				}
+			},
+			"render": {
+				"seaSeed": 408451959
+			},
+			"id": "w20-sun52-a36-v53-random"
+		},
+		{
+			"sea": {
+				"windSpeed": 12.656,
+				"windDirection": 12.894,
+				"fetch": 63.926,
+				"spread": 8,
+				"swellHeight": 1.418,
+				"swellDirection": 75.953,
+				"swellPeriod": 14.139,
+				"choppiness": 0.722
+			},
+			"light": {
+				"sunElevation": 11.197,
+				"sunAzimuth": 329.406,
+				"overcast": 0.346,
+				"haze": 0.044,
+				"exposure": 1
+			},
+			"trajectory": {
+				"seed": 751074724,
+				"pattern": {
+					"type": "figure8",
+					"radius": 250
+				},
+				"altitude": 135.27,
+				"airspeed": 53.4,
+				"turbulence": 0.299,
+				"start": {
+					"heading": 75.936
+				},
+				"gimbal": {
+					"pitch": -89.016,
+					"stabilized": 0.364
+				}
+			},
+			"render": {
+				"seaSeed": 771315335
+			},
+			"id": "w13-sun11-a135-v53-figure8"
+		},
+		{
+			"sea": {
+				"windSpeed": 18.109,
+				"windDirection": 49.599,
+				"fetch": 210.375,
+				"spread": 8,
+				"swellHeight": 0.936,
+				"swellDirection": 348.481,
+				"swellPeriod": 15.282,
+				"choppiness": 0.603
+			},
+			"light": {
+				"sunElevation": 11.513,
+				"sunAzimuth": 75.272,
+				"overcast": 0.097,
+				"haze": 0.249,
+				"exposure": 1
+			},
+			"trajectory": {
+				"seed": 126020284,
+				"pattern": {
+					"type": "orbit",
+					"radius": 250,
+					"direction": 1
+				},
+				"altitude": 49.136,
+				"airspeed": 32.498,
+				"turbulence": 0.71,
+				"start": {
+					"heading": 238.127
+				},
+				"gimbal": {
+					"pitch": -74.57,
+					"stabilized": 0.444
+				}
+			},
+			"render": {
+				"seaSeed": 146260895
+			},
+			"id": "w18-sun12-a49-v32-loiter"
+		},
+		{
+			"sea": {
+				"windSpeed": 16.794,
+				"windDirection": 183.09,
+				"fetch": 116.844,
+				"spread": 8,
+				"swellHeight": 2.061,
+				"swellDirection": 164.238,
+				"swellPeriod": 8.414,
+				"choppiness": 1.072
+			},
+			"light": {
+				"sunElevation": 46.883,
+				"sunAzimuth": 103.978,
+				"overcast": 0.197,
+				"haze": 0.422,
+				"exposure": 1
+			},
+			"trajectory": {
+				"seed": 269226377,
+				"pattern": {
+					"type": "orbit",
+					"radius": 250,
+					"direction": 1
+				},
+				"altitude": 54.504,
+				"airspeed": 41.645,
+				"turbulence": 0.793,
+				"start": {
+					"heading": 248.507
+				},
+				"gimbal": {
+					"pitch": -78.258,
+					"stabilized": 0.68
+				}
+			},
+			"render": {
+				"seaSeed": 289466988
+			},
+			"id": "w17-sun47-a55-v42-loiter"
+		},
+		{
+			"sea": {
+				"windSpeed": 10.155,
+				"windDirection": 35.243,
+				"fetch": 72.504,
+				"spread": 8,
+				"swellHeight": 0.761,
+				"swellDirection": 81.503,
+				"swellPeriod": 14.438,
+				"choppiness": 0.777
+			},
+			"light": {
+				"sunElevation": 4.994,
+				"sunAzimuth": 22.684,
+				"overcast": 0.327,
+				"haze": 0.737,
+				"exposure": 1
+			},
+			"trajectory": {
+				"seed": 395885686,
+				"pattern": {
+					"type": "orbit",
+					"radius": 250,
+					"direction": 1
+				},
+				"altitude": 166.132,
+				"airspeed": 24.65,
+				"turbulence": 0.406,
+				"start": {
+					"heading": 286.232
+				},
+				"gimbal": {
+					"pitch": -81.439,
+					"stabilized": 0.301
+				}
+			},
+			"render": {
+				"seaSeed": 416126297
+			},
+			"id": "w10-sun5-a166-v25-loiter"
+		},
+		{
+			"sea": {
+				"windSpeed": 19.387,
+				"windDirection": 178.667,
+				"fetch": 181.391,
+				"spread": 8,
+				"swellHeight": 0,
+				"swellDirection": 150.659,
+				"swellPeriod": 8.048,
+				"choppiness": 1.075
+			},
+			"light": {
+				"sunElevation": 8.71,
+				"sunAzimuth": 77.535,
+				"overcast": 0.803,
+				"haze": 0.3,
+				"exposure": 1
+			},
+			"trajectory": {
+				"seed": 707940976,
+				"pattern": {
+					"type": "figure8",
+					"radius": 250
+				},
+				"altitude": 45.801,
+				"airspeed": 53.856,
+				"turbulence": 0.764,
+				"start": {
+					"heading": 102.934
+				},
+				"gimbal": {
+					"pitch": -83.085,
+					"stabilized": 0.639
+				}
+			},
+			"render": {
+				"seaSeed": 728181587
+			},
+			"id": "w19-sun9-a46-v54-figure8"
+		},
+		{
+			"sea": {
+				"windSpeed": 16.91,
+				"windDirection": 204.396,
+				"fetch": 389.081,
+				"spread": 8,
+				"swellHeight": 1.472,
+				"swellDirection": 119.839,
+				"swellPeriod": 8.855,
+				"choppiness": 1.346
+			},
+			"light": {
+				"sunElevation": 3.001,
+				"sunAzimuth": 41.894,
+				"overcast": 0.072,
+				"haze": 0.189,
+				"exposure": 1
+			},
+			"trajectory": {
+				"seed": 559379422,
+				"pattern": {
+					"type": "figure8",
+					"radius": 250
+				},
+				"altitude": 35.545,
+				"airspeed": 47.698,
+				"turbulence": 0.336,
+				"start": {
+					"heading": 44.14
+				},
+				"gimbal": {
+					"pitch": -76.991,
+					"stabilized": 0.99
+				}
+			},
+			"render": {
+				"seaSeed": 579620033
+			},
+			"id": "w17-sun3-a36-v48-figure8"
+		},
+		{
+			"sea": {
+				"windSpeed": 13.712,
+				"windDirection": 146.844,
+				"fetch": 659.703,
+				"spread": 8,
+				"swellHeight": 1.182,
+				"swellDirection": 231.893,
+				"swellPeriod": 14.176,
+				"choppiness": 0.784
+			},
+			"light": {
+				"sunElevation": 33.544,
+				"sunAzimuth": 86.948,
+				"overcast": 0.16,
+				"haze": 0.285,
+				"exposure": 1
+			},
+			"trajectory": {
+				"seed": 697495103,
+				"pattern": {
+					"type": "straight"
+				},
+				"altitude": 153.274,
+				"airspeed": 26.279,
+				"turbulence": 0.782,
+				"start": {
+					"heading": 184.015
+				},
+				"gimbal": {
+					"pitch": -63.911,
+					"stabilized": 0.421
+				}
+			},
+			"render": {
+				"seaSeed": 717735714
+			},
+			"id": "w14-sun34-a153-v26-transit"
+		},
+		{
+			"sea": {
+				"windSpeed": 16.433,
+				"windDirection": 204.653,
+				"fetch": 124.118,
+				"spread": 8,
+				"swellHeight": 1.027,
+				"swellDirection": 282.361,
+				"swellPeriod": 8.272,
+				"choppiness": 0.757
+			},
+			"light": {
+				"sunElevation": 38.84,
+				"sunAzimuth": 98.709,
+				"overcast": 0.752,
+				"haze": 0.3,
+				"exposure": 1
+			},
+			"trajectory": {
+				"seed": 114670715,
+				"pattern": {
+					"type": "lawnmower",
+					"legLength": 900,
+					"spacing": 200,
+					"legs": 4
+				},
+				"altitude": 57.147,
+				"airspeed": 36.19,
+				"turbulence": 0.043,
+				"start": {
+					"heading": 210.303
+				},
+				"gimbal": {
+					"pitch": -69.5,
+					"stabilized": 0.555
+				}
+			},
+			"render": {
+				"seaSeed": 134911326
+			},
+			"id": "w16-sun39-a57-v36-survey"
+		},
+		{
+			"sea": {
+				"windSpeed": 14.906,
+				"windDirection": 238.078,
+				"fetch": 238.089,
+				"spread": 8,
+				"swellHeight": 0.647,
+				"swellDirection": 171.707,
+				"swellPeriod": 14.917,
+				"choppiness": 1.292
+			},
+			"light": {
+				"sunElevation": 16.142,
+				"sunAzimuth": 203.218,
+				"overcast": 0.017,
+				"haze": 0.034,
+				"exposure": 1
+			},
+			"trajectory": {
+				"seed": 624005377,
+				"pattern": {
+					"type": "random",
+					"legLength": [
+						300,
+						900
+					],
+					"turn": [
+						-150,
+						150
+					]
+				},
+				"altitude": 189.336,
+				"airspeed": 31.612,
+				"turbulence": 0.003,
+				"start": {
+					"heading": 32.163
+				},
+				"gimbal": {
+					"pitch": -79.149,
+					"stabilized": 0.346
+				}
+			},
+			"render": {
+				"seaSeed": 644245988
+			},
+			"id": "w15-sun16-a189-v32-random"
+		},
+		{
+			"sea": {
+				"windSpeed": 13.907,
+				"windDirection": 250.401,
+				"fetch": 65.917,
+				"spread": 8,
+				"swellHeight": 1.583,
+				"swellDirection": 210.985,
+				"swellPeriod": 14.101,
+				"choppiness": 1.138
+			},
+			"light": {
+				"sunElevation": 18.577,
+				"sunAzimuth": 275.687,
+				"overcast": 0.118,
+				"haze": 0.651,
+				"exposure": 1
+			},
+			"trajectory": {
+				"seed": 163607356,
+				"pattern": {
+					"type": "orbit",
+					"radius": 250,
+					"direction": 1
+				},
+				"altitude": 170.391,
+				"airspeed": 49.763,
+				"turbulence": 0.748,
+				"start": {
+					"heading": 121.002
+				},
+				"gimbal": {
+					"pitch": -61.658,
+					"stabilized": 0.623
+				}
+			},
+			"render": {
+				"seaSeed": 183847967
+			},
+			"id": "w14-sun19-a170-v50-loiter"
+		},
+		{
+			"sea": {
+				"windSpeed": 19.504,
+				"windDirection": 165.853,
+				"fetch": 127.032,
+				"spread": 8,
+				"swellHeight": 1.649,
+				"swellDirection": 115.274,
+				"swellPeriod": 15.116,
+				"choppiness": 1.2
+			},
+			"light": {
+				"sunElevation": 36.999,
+				"sunAzimuth": 332.22,
+				"overcast": 0.13,
+				"haze": 0.161,
+				"exposure": 1
+			},
+			"trajectory": {
+				"seed": 360137998,
+				"pattern": {
+					"type": "straight"
+				},
+				"altitude": 61.355,
+				"airspeed": 51.205,
+				"turbulence": 0.687,
+				"start": {
+					"heading": 93.296
+				},
+				"gimbal": {
+					"pitch": -83.603,
+					"stabilized": 0.406
+				}
+			},
+			"render": {
+				"seaSeed": 380378609
+			},
+			"id": "w20-sun37-a61-v51-transit"
+		},
+		{
+			"sea": {
+				"windSpeed": 18.402,
+				"windDirection": 78.795,
+				"fetch": 493.854,
+				"spread": 8,
+				"swellHeight": 1.673,
+				"swellDirection": 148.761,
+				"swellPeriod": 14.244,
+				"choppiness": 0.873
+			},
+			"light": {
+				"sunElevation": 50.031,
+				"sunAzimuth": 316.68,
+				"overcast": 0.818,
+				"haze": 0.3,
+				"exposure": 1
+			},
+			"trajectory": {
+				"seed": 987874119,
+				"pattern": {
+					"type": "racetrack",
+					"length": 900,
+					"radius": 200,
+					"direction": 1
+				},
+				"altitude": 48.623,
+				"airspeed": 43.653,
+				"turbulence": 0.645,
+				"start": {
+					"heading": 82.609
+				},
+				"gimbal": {
+					"pitch": -65.669,
+					"stabilized": 0.862
+				}
+			},
+			"render": {
+				"seaSeed": 1008114730
+			},
+			"id": "w18-sun50-a49-v44-racetrack"
+		},
+		{
+			"sea": {
+				"windSpeed": 8.944,
+				"windDirection": 332.785,
+				"fetch": 106.932,
+				"spread": 8,
+				"swellHeight": 2.414,
+				"swellDirection": 9.929,
+				"swellPeriod": 14.733,
+				"choppiness": 0.723
+			},
+			"light": {
+				"sunElevation": 32.737,
+				"sunAzimuth": 239.17,
+				"overcast": 0.853,
+				"haze": 0.51,
+				"exposure": 1
+			},
+			"trajectory": {
+				"seed": 586231715,
+				"pattern": {
+					"type": "orbit",
+					"radius": 250,
+					"direction": 1
+				},
+				"altitude": 32.904,
+				"airspeed": 59.288,
+				"turbulence": 0.439,
+				"start": {
+					"heading": 74.115
+				},
+				"gimbal": {
+					"pitch": -88.267,
+					"stabilized": 0.526
+				}
+			},
+			"render": {
+				"seaSeed": 606472326
+			},
+			"id": "w9-sun33-a33-v59-loiter"
+		},
+		{
+			"sea": {
+				"windSpeed": 12.665,
+				"windDirection": 191.668,
+				"fetch": 764.667,
+				"spread": 8,
+				"swellHeight": 1.893,
+				"swellDirection": 268.841,
+				"swellPeriod": 14.409,
+				"choppiness": 0.765
+			},
+			"light": {
+				"sunElevation": 14.07,
+				"sunAzimuth": 140.692,
+				"overcast": 0.873,
+				"haze": 0.525,
+				"exposure": 1
+			},
+			"trajectory": {
+				"seed": 165510154,
+				"pattern": {
+					"type": "figure8",
+					"radius": 250
+				},
+				"altitude": 94.009,
+				"airspeed": 59.56,
+				"turbulence": 0.792,
+				"start": {
+					"heading": 161.063
+				},
+				"gimbal": {
+					"pitch": -68.109,
+					"stabilized": 0.331
+				}
+			},
+			"render": {
+				"seaSeed": 185750765
+			},
+			"id": "w13-sun14-a94-v60-figure8"
+		},
+		{
+			"sea": {
+				"windSpeed": 17.433,
+				"windDirection": 49.559,
+				"fetch": 627.63,
+				"spread": 8,
+				"swellHeight": 2.439,
+				"swellDirection": 115.375,
+				"swellPeriod": 9.844,
+				"choppiness": 1.002
+			},
+			"light": {
+				"sunElevation": 49.607,
+				"sunAzimuth": 345.817,
+				"overcast": 0.002,
+				"haze": 0.406,
+				"exposure": 1
+			},
+			"trajectory": {
+				"seed": 50751067,
+				"pattern": {
+					"type": "orbit",
+					"radius": 250,
+					"direction": 1
+				},
+				"altitude": 89.215,
+				"airspeed": 29.486,
+				"turbulence": 0.539,
+				"start": {
+					"heading": 272.412
+				},
+				"gimbal": {
+					"pitch": -60.661,
+					"stabilized": 0.783
+				}
+			},
+			"render": {
+				"seaSeed": 70991678
+			},
+			"id": "w17-sun50-a89-v29-loiter"
+		},
+		{
+			"sea": {
+				"windSpeed": 10.17,
+				"windDirection": 337.276,
+				"fetch": 106.079,
+				"spread": 8,
+				"swellHeight": 1.689,
+				"swellDirection": 292.868,
+				"swellPeriod": 14.69,
+				"choppiness": 1.027
+			},
+			"light": {
+				"sunElevation": 26.44,
+				"sunAzimuth": 62.694,
+				"overcast": 0.089,
+				"haze": 0.084,
+				"exposure": 1
+			},
+			"trajectory": {
+				"seed": 734915891,
+				"pattern": {
+					"type": "racetrack",
+					"length": 900,
+					"radius": 200,
+					"direction": 1
+				},
+				"altitude": 58.483,
+				"airspeed": 52.545,
+				"turbulence": 0.69,
+				"start": {
+					"heading": 212.503
+				},
+				"gimbal": {
+					"pitch": -87.502,
+					"stabilized": 0.378
+				}
+			},
+			"render": {
+				"seaSeed": 755156502
+			},
+			"id": "w10-sun26-a58-v53-racetrack"
+		},
+		{
+			"sea": {
+				"windSpeed": 17.872,
+				"windDirection": 165.651,
+				"fetch": 632.996,
+				"spread": 8,
+				"swellHeight": 0.928,
+				"swellDirection": 236.796,
+				"swellPeriod": 9.783,
+				"choppiness": 1.05
+			},
+			"light": {
+				"sunElevation": 17.152,
+				"sunAzimuth": 89.196,
+				"overcast": 0.272,
+				"haze": 0.618,
+				"exposure": 1
+			},
+			"trajectory": {
+				"seed": 365872553,
+				"pattern": {
+					"type": "figure8",
+					"radius": 250
+				},
+				"altitude": 195.415,
+				"airspeed": 44.017,
+				"turbulence": 0.499,
+				"start": {
+					"heading": 205.824
+				},
+				"gimbal": {
+					"pitch": -64.099,
+					"stabilized": 0.373
+				}
+			},
+			"render": {
+				"seaSeed": 386113164
+			},
+			"id": "w18-sun17-a195-v44-figure8"
+		},
+		{
+			"sea": {
+				"windSpeed": 14.012,
+				"windDirection": 301.852,
+				"fetch": 166.74,
+				"spread": 8,
+				"swellHeight": 1.308,
+				"swellDirection": 315.34,
+				"swellPeriod": 14.608,
+				"choppiness": 1.238
+			},
+			"light": {
+				"sunElevation": 31.372,
+				"sunAzimuth": 186.737,
+				"overcast": 0.182,
+				"haze": 0.113,
+				"exposure": 1
+			},
+			"trajectory": {
+				"seed": 467889574,
+				"pattern": {
+					"type": "straight"
+				},
+				"altitude": 82.14,
+				"airspeed": 53.467,
+				"turbulence": 0.108,
+				"start": {
+					"heading": 335.521
+				},
+				"gimbal": {
+					"pitch": -74.374,
+					"stabilized": 0.627
+				}
+			},
+			"render": {
+				"seaSeed": 488130185
+			},
+			"id": "w14-sun31-a82-v53-transit"
+		},
+		{
+			"sea": {
+				"windSpeed": 4.972,
+				"windDirection": 189.293,
+				"fetch": 489.051,
+				"spread": 8,
+				"swellHeight": 0.121,
+				"swellDirection": 119.159,
+				"swellPeriod": 15.414,
+				"choppiness": 1.227
+			},
+			"light": {
+				"sunElevation": -1.646,
+				"sunAzimuth": 53.745,
+				"overcast": 0.4,
+				"haze": 0.02,
+				"exposure": 1
+			},
+			"trajectory": {
+				"seed": 530318292,
+				"pattern": {
+					"type": "lawnmower",
+					"legLength": 900,
+					"spacing": 200,
+					"legs": 4
+				},
+				"altitude": 144.918,
+				"airspeed": 29.872,
+				"turbulence": 0.315,
+				"start": {
+					"heading": 219.356
+				},
+				"gimbal": {
+					"pitch": -65.207,
+					"stabilized": 0.886
+				}
+			},
+			"render": {
+				"seaSeed": 550558903
+			},
+			"id": "w5-sun-2-a145-v30-survey"
+		},
+		{
+			"sea": {
+				"windSpeed": 17.243,
+				"windDirection": 186.048,
+				"fetch": 74.284,
+				"spread": 8,
+				"swellHeight": 0.758,
+				"swellDirection": 242.434,
+				"swellPeriod": 13.075,
+				"choppiness": 0.763
+			},
+			"light": {
+				"sunElevation": 2.487,
+				"sunAzimuth": 213.272,
+				"overcast": 0.4,
+				"haze": 0.341,
+				"exposure": 1
+			},
+			"trajectory": {
+				"seed": 463093241,
+				"pattern": {
+					"type": "straight"
+				},
+				"altitude": 87.635,
+				"airspeed": 46.335,
+				"turbulence": 0.651,
+				"start": {
+					"heading": 281.524
+				},
+				"gimbal": {
+					"pitch": -80.932,
+					"stabilized": 0.431
+				}
+			},
+			"render": {
+				"seaSeed": 483333852
+			},
+			"id": "w17-sun2-a88-v46-transit"
+		},
+		{
+			"sea": {
+				"windSpeed": 19.183,
+				"windDirection": 62.999,
+				"fetch": 185.097,
+				"spread": 8,
+				"swellHeight": 1.079,
+				"swellDirection": 344.061,
+				"swellPeriod": 14.136,
+				"choppiness": 1.367
+			},
+			"light": {
+				"sunElevation": 11.665,
+				"sunAzimuth": 129.732,
+				"overcast": 0.01,
+				"haze": 0.151,
+				"exposure": 1
+			},
+			"trajectory": {
+				"seed": 172791776,
+				"pattern": {
+					"type": "random",
+					"legLength": [
+						300,
+						900
+					],
+					"turn": [
+						-150,
+						150
+					]
+				},
+				"altitude": 117.662,
+				"airspeed": 40.916,
+				"turbulence": 0.552,
+				"start": {
+					"heading": 237.341
+				},
+				"gimbal": {
+					"pitch": -81.692,
+					"stabilized": 0.968
+				}
+			},
+			"render": {
+				"seaSeed": 193032387
+			},
+			"id": "w19-sun12-a118-v41-random"
+		},
+		{
+			"sea": {
+				"windSpeed": 14.042,
+				"windDirection": 195.113,
+				"fetch": 99.241,
+				"spread": 8,
+				"swellHeight": 0.318,
+				"swellDirection": 217.067,
+				"swellPeriod": 14.859,
+				"choppiness": 0.987
+			},
+			"light": {
+				"sunElevation": -0.448,
+				"sunAzimuth": 158.213,
+				"overcast": 0.275,
+				"haze": 0.528,
+				"exposure": 1
+			},
+			"trajectory": {
+				"seed": 12791507,
+				"pattern": {
+					"type": "random",
+					"legLength": [
+						300,
+						900
+					],
+					"turn": [
+						-150,
+						150
+					]
+				},
+				"altitude": 50.786,
+				"airspeed": 57.434,
+				"turbulence": 0.535,
+				"start": {
+					"heading": 140.005
+				},
+				"gimbal": {
+					"pitch": -72.514,
+					"stabilized": 0.787
+				}
+			},
+			"render": {
+				"seaSeed": 33032118
+			},
+			"id": "w14-sun0-a51-v57-random"
+		},
+		{
+			"sea": {
+				"windSpeed": 7.004,
+				"windDirection": 137.065,
+				"fetch": 70.661,
+				"spread": 8,
+				"swellHeight": 0.744,
+				"swellDirection": 84.905,
+				"swellPeriod": 15.217,
+				"choppiness": 1.088
+			},
+			"light": {
+				"sunElevation": 46.12,
+				"sunAzimuth": 349.618,
+				"overcast": 0.09,
+				"haze": 0.781,
+				"exposure": 1
+			},
+			"trajectory": {
+				"seed": 458276402,
+				"pattern": {
+					"type": "straight"
+				},
+				"altitude": 184.751,
+				"airspeed": 25.522,
+				"turbulence": 0.32,
+				"start": {
+					"heading": 210.491
+				},
+				"gimbal": {
+					"pitch": -89.861,
+					"stabilized": 0.911
+				}
+			},
+			"render": {
+				"seaSeed": 478517013
+			},
+			"id": "w7-sun46-a185-v26-transit"
+		},
+		{
+			"sea": {
+				"windSpeed": 3.642,
+				"windDirection": 357.386,
+				"fetch": 180.995,
+				"spread": 8,
+				"swellHeight": 2.474,
+				"swellDirection": 334.973,
+				"swellPeriod": 15.167,
+				"choppiness": 0.858
+			},
+			"light": {
+				"sunElevation": 1.077,
+				"sunAzimuth": 170.666,
+				"overcast": 0.4,
+				"haze": 0.063,
+				"exposure": 1
+			},
+			"trajectory": {
+				"seed": 481548649,
+				"pattern": {
+					"type": "figure8",
+					"radius": 250
+				},
+				"altitude": 125.869,
+				"airspeed": 29.371,
+				"turbulence": 0.712,
+				"start": {
+					"heading": 309.935
+				},
+				"gimbal": {
+					"pitch": -65.972,
+					"stabilized": 0.307
+				}
+			},
+			"render": {
+				"seaSeed": 501789260
+			},
+			"id": "w4-sun1-a126-v29-figure8"
+		},
+		{
+			"sea": {
+				"windSpeed": 17.417,
+				"windDirection": 204.449,
+				"fetch": 198.463,
+				"spread": 8,
+				"swellHeight": 0,
+				"swellDirection": 119.846,
+				"swellPeriod": 14.821,
+				"choppiness": 0.704
+			},
+			"light": {
+				"sunElevation": 63.995,
+				"sunAzimuth": 270.607,
+				"overcast": 0.235,
+				"haze": 0.425,
+				"exposure": 1
+			},
+			"trajectory": {
+				"seed": 2239259,
+				"pattern": {
+					"type": "straight"
+				},
+				"altitude": 190.613,
+				"airspeed": 40.47,
+				"turbulence": 0.795,
+				"start": {
+					"heading": 352.815
+				},
+				"gimbal": {
+					"pitch": -61.167,
+					"stabilized": 0.455
+				}
+			},
+			"render": {
+				"seaSeed": 22479870
+			},
+			"id": "w17-sun64-a191-v40-transit"
+		},
+		{
+			"sea": {
+				"windSpeed": 13.089,
+				"windDirection": 237.279,
+				"fetch": 664.467,
+				"spread": 8,
+				"swellHeight": 0.818,
+				"swellDirection": 210.21,
+				"swellPeriod": 15.525,
+				"choppiness": 1.266
+			},
+			"light": {
+				"sunElevation": 35.841,
+				"sunAzimuth": 74.047,
+				"overcast": 0.268,
+				"haze": 0.363,
+				"exposure": 1
+			},
+			"trajectory": {
+				"seed": 428910657,
+				"pattern": {
+					"type": "racetrack",
+					"length": 900,
+					"radius": 200,
+					"direction": 1
+				},
+				"altitude": 62.797,
+				"airspeed": 41.39,
+				"turbulence": 0.615,
+				"start": {
+					"heading": 143.849
+				},
+				"gimbal": {
+					"pitch": -75.608,
+					"stabilized": 0.518
+				}
+			},
+			"render": {
+				"seaSeed": 449151268
+			},
+			"id": "w13-sun36-a63-v41-racetrack"
+		},
+		{
+			"sea": {
+				"windSpeed": 17.296,
+				"windDirection": 303.776,
+				"fetch": 313.042,
+				"spread": 8,
+				"swellHeight": 0.342,
+				"swellDirection": 228.909,
+				"swellPeriod": 9.142,
+				"choppiness": 1.394
+			},
+			"light": {
+				"sunElevation": 33.186,
+				"sunAzimuth": 114.834,
+				"overcast": 0.372,
+				"haze": 0.091,
+				"exposure": 1
+			},
+			"trajectory": {
+				"seed": 690161904,
+				"pattern": {
+					"type": "straight"
+				},
+				"altitude": 109.054,
+				"airspeed": 46.795,
+				"turbulence": 0.281,
+				"start": {
+					"heading": 124.114
+				},
+				"gimbal": {
+					"pitch": -82.564,
+					"stabilized": 0.729
+				}
+			},
+			"render": {
+				"seaSeed": 710402515
+			},
+			"id": "w17-sun33-a109-v47-transit"
+		},
+		{
+			"sea": {
+				"windSpeed": 17.872,
+				"windDirection": 112.394,
+				"fetch": 771.294,
+				"spread": 8,
+				"swellHeight": 1.324,
+				"swellDirection": 108.935,
+				"swellPeriod": 15.623,
+				"choppiness": 1.368
+			},
+			"light": {
+				"sunElevation": 13.145,
+				"sunAzimuth": 46.678,
+				"overcast": 0.774,
+				"haze": 0.3,
+				"exposure": 1
+			},
+			"trajectory": {
+				"seed": 179020879,
+				"pattern": {
+					"type": "orbit",
+					"radius": 250,
+					"direction": 1
+				},
+				"altitude": 39.254,
+				"airspeed": 44.974,
+				"turbulence": 0.54,
+				"start": {
+					"heading": 245.472
+				},
+				"gimbal": {
+					"pitch": -79.917,
+					"stabilized": 0.733
+				}
+			},
+			"render": {
+				"seaSeed": 199261490
+			},
+			"id": "w18-sun13-a39-v45-loiter"
+		},
+		{
+			"sea": {
+				"windSpeed": 16.061,
+				"windDirection": 190.911,
+				"fetch": 219.282,
+				"spread": 8,
+				"swellHeight": 0,
+				"swellDirection": 260.482,
+				"swellPeriod": 14.7,
+				"choppiness": 1.18
+			},
+			"light": {
+				"sunElevation": 61.417,
+				"sunAzimuth": 95.156,
+				"overcast": 0.199,
+				"haze": 0.039,
+				"exposure": 1
+			},
+			"trajectory": {
+				"seed": 918588830,
+				"pattern": {
+					"type": "lawnmower",
+					"legLength": 900,
+					"spacing": 200,
+					"legs": 4
+				},
+				"altitude": 40.048,
+				"airspeed": 54.944,
+				"turbulence": 0.471,
+				"start": {
+					"heading": 254.356
+				},
+				"gimbal": {
+					"pitch": -60.261,
+					"stabilized": 0.379
+				}
+			},
+			"render": {
+				"seaSeed": 938829441
+			},
+			"id": "w16-sun61-a40-v55-survey"
+		},
+		{
+			"sea": {
+				"windSpeed": 17.795,
+				"windDirection": 232.222,
+				"fetch": 54.49,
+				"spread": 8,
+				"swellHeight": 1.123,
+				"swellDirection": 245.481,
+				"swellPeriod": 15.809,
+				"choppiness": 0.856
+			},
+			"light": {
+				"sunElevation": 22.042,
+				"sunAzimuth": 282.257,
+				"overcast": 0.34,
+				"haze": 0.117,
+				"exposure": 1
+			},
+			"trajectory": {
+				"seed": 849614290,
+				"pattern": {
+					"type": "racetrack",
+					"length": 900,
+					"radius": 200,
+					"direction": 1
+				},
+				"altitude": 40.018,
+				"airspeed": 29.801,
+				"turbulence": 0.194,
+				"start": {
+					"heading": 155.626
+				},
+				"gimbal": {
+					"pitch": -84.708,
+					"stabilized": 0.578
+				}
+			},
+			"render": {
+				"seaSeed": 869854901
+			},
+			"id": "w18-sun22-a40-v30-racetrack"
+		},
+		{
+			"sea": {
+				"windSpeed": 19.507,
+				"windDirection": 56.236,
+				"fetch": 156.107,
+				"spread": 8,
+				"swellHeight": 0.531,
+				"swellDirection": 3.529,
+				"swellPeriod": 15.666,
+				"choppiness": 1.056
+			},
+			"light": {
+				"sunElevation": 9.514,
+				"sunAzimuth": 267.15,
+				"overcast": 0.607,
+				"haze": 0.791,
+				"exposure": 1
+			},
+			"trajectory": {
+				"seed": 578372731,
+				"pattern": {
+					"type": "racetrack",
+					"length": 900,
+					"radius": 200,
+					"direction": 1
+				},
+				"altitude": 74.916,
+				"airspeed": 32.986,
+				"turbulence": 0.793,
+				"start": {
+					"heading": 189.063
+				},
+				"gimbal": {
+					"pitch": -84.449,
+					"stabilized": 0.473
+				}
+			},
+			"render": {
+				"seaSeed": 598613342
+			},
+			"id": "w20-sun10-a75-v33-racetrack"
+		},
+		{
+			"sea": {
+				"windSpeed": 7.548,
+				"windDirection": 33.198,
+				"fetch": 83.776,
+				"spread": 8,
+				"swellHeight": 2.464,
+				"swellDirection": 66.179,
+				"swellPeriod": 15.747,
+				"choppiness": 1.122
+			},
+			"light": {
+				"sunElevation": 63.98,
+				"sunAzimuth": 338.196,
+				"overcast": 0.488,
+				"haze": 0.559,
+				"exposure": 1
+			},
+			"trajectory": {
+				"seed": 663072790,
+				"pattern": {
+					"type": "racetrack",
+					"length": 900,
+					"radius": 200,
+					"direction": 1
+				},
+				"altitude": 65.401,
+				"airspeed": 17.437,
+				"turbulence": 0.761,
+				"start": {
+					"heading": 316.233
+				},
+				"gimbal": {
+					"pitch": -76.274,
+					"stabilized": 0.641
+				}
+			},
+			"render": {
+				"seaSeed": 683313401
+			},
+			"id": "w8-sun64-a65-v17-racetrack"
+		},
+		{
+			"sea": {
+				"windSpeed": 18.91,
+				"windDirection": 23.271,
+				"fetch": 97.422,
+				"spread": 8,
+				"swellHeight": 1.865,
+				"swellDirection": 320.357,
+				"swellPeriod": 10.612,
+				"choppiness": 1.259
+			},
+			"light": {
+				"sunElevation": 15.098,
+				"sunAzimuth": 187.13,
+				"overcast": 0.072,
+				"haze": 0.499,
+				"exposure": 1
+			},
+			"trajectory": {
+				"seed": 216343221,
+				"pattern": {
+					"type": "orbit",
+					"radius": 250,
+					"direction": 1
+				},
+				"altitude": 56.144,
+				"airspeed": 38.364,
+				"turbulence": 0.705,
+				"start": {
+					"heading": 355.433
+				},
+				"gimbal": {
+					"pitch": -75.982,
+					"stabilized": 0.874
+				}
+			},
+			"render": {
+				"seaSeed": 236583832
+			},
+			"id": "w19-sun15-a56-v38-loiter"
+		},
+		{
+			"sea": {
+				"windSpeed": 4.298,
+				"windDirection": 153.24,
+				"fetch": 262.263,
+				"spread": 8,
+				"swellHeight": 1.565,
+				"swellDirection": 92.386,
+				"swellPeriod": 15.318,
+				"choppiness": 0.888
+			},
+			"light": {
+				"sunElevation": 13.378,
+				"sunAzimuth": 180.88,
+				"overcast": 0.098,
+				"haze": 0.177,
+				"exposure": 1
+			},
+			"trajectory": {
+				"seed": 47910285,
+				"pattern": {
+					"type": "straight"
+				},
+				"altitude": 179.958,
+				"airspeed": 41.611,
+				"turbulence": 0.604,
+				"start": {
+					"heading": 145.208
+				},
+				"gimbal": {
+					"pitch": -77.517,
+					"stabilized": 0.554
+				}
+			},
+			"render": {
+				"seaSeed": 68150896
+			},
+			"id": "w4-sun13-a180-v42-transit"
+		},
+		{
+			"sea": {
+				"windSpeed": 7.475,
+				"windDirection": 114.549,
+				"fetch": 494.393,
+				"spread": 8,
+				"swellHeight": 1.12,
+				"swellDirection": 198.934,
+				"swellPeriod": 15.351,
+				"choppiness": 1.388
+			},
+			"light": {
+				"sunElevation": 2.426,
+				"sunAzimuth": 138.817,
+				"overcast": 0.4,
+				"haze": 0.09,
+				"exposure": 1
+			},
+			"trajectory": {
+				"seed": 269634776,
+				"pattern": {
+					"type": "straight"
+				},
+				"altitude": 177.531,
+				"airspeed": 34.114,
+				"turbulence": 0.103,
+				"start": {
+					"heading": 82.96
+				},
+				"gimbal": {
+					"pitch": -70.148,
+					"stabilized": 0.815
+				}
+			},
+			"render": {
+				"seaSeed": 289875387
+			},
+			"id": "w7-sun2-a178-v34-transit"
+		},
+		{
+			"sea": {
+				"windSpeed": 19.325,
+				"windDirection": 153.108,
+				"fetch": 744.109,
+				"spread": 8,
+				"swellHeight": 1.84,
+				"swellDirection": 186.471,
+				"swellPeriod": 14.661,
+				"choppiness": 0.675
+			},
+			"light": {
+				"sunElevation": 39.173,
+				"sunAzimuth": 111.858,
+				"overcast": 0.198,
+				"haze": 0.015,
+				"exposure": 1
+			},
+			"trajectory": {
+				"seed": 193547304,
+				"pattern": {
+					"type": "random",
+					"legLength": [
+						300,
+						900
+					],
+					"turn": [
+						-150,
+						150
+					]
+				},
+				"altitude": 39.682,
+				"airspeed": 53.394,
+				"turbulence": 0.163,
+				"start": {
+					"heading": 170.742
+				},
+				"gimbal": {
+					"pitch": -70.46,
+					"stabilized": 0.579
+				}
+			},
+			"render": {
+				"seaSeed": 213787915
+			},
+			"id": "w19-sun39-a40-v53-random"
+		},
+		{
+			"sea": {
+				"windSpeed": 16.936,
+				"windDirection": 168.673,
+				"fetch": 123.51,
+				"spread": 8,
+				"swellHeight": 0,
+				"swellDirection": 205.376,
+				"swellPeriod": 8.685,
+				"choppiness": 1.353
+			},
+			"light": {
+				"sunElevation": 63.73,
+				"sunAzimuth": 48.574,
+				"overcast": 0.115,
+				"haze": 0.022,
+				"exposure": 1
+			},
+			"trajectory": {
+				"seed": 5856356,
+				"pattern": {
+					"type": "straight"
+				},
+				"altitude": 33.959,
+				"airspeed": 51.798,
+				"turbulence": 0.609,
+				"start": {
+					"heading": 214.727
+				},
+				"gimbal": {
+					"pitch": -65.775,
+					"stabilized": 0.393
+				}
+			},
+			"render": {
+				"seaSeed": 26096967
+			},
+			"id": "w17-sun64-a34-v52-transit"
+		},
+		{
+			"sea": {
+				"windSpeed": 19.939,
+				"windDirection": 245.492,
+				"fetch": 242.692,
+				"spread": 8,
+				"swellHeight": 0.358,
+				"swellDirection": 163.413,
+				"swellPeriod": 14.483,
+				"choppiness": 0.859
+			},
+			"light": {
+				"sunElevation": 8.605,
+				"sunAzimuth": 192.192,
+				"overcast": 0.558,
+				"haze": 0.22,
+				"exposure": 1
+			},
+			"trajectory": {
+				"seed": 272924122,
+				"pattern": {
+					"type": "random",
+					"legLength": [
+						300,
+						900
+					],
+					"turn": [
+						-150,
+						150
+					]
+				},
+				"altitude": 161.908,
+				"airspeed": 47.909,
+				"turbulence": 0.436,
+				"start": {
+					"heading": 347.531
+				},
+				"gimbal": {
+					"pitch": -72.712,
+					"stabilized": 0.943
+				}
+			},
+			"render": {
+				"seaSeed": 293164733
+			},
+			"id": "w20-sun9-a162-v48-random"
+		},
+		{
+			"sea": {
+				"windSpeed": 17.047,
+				"windDirection": 165.962,
+				"fetch": 86.364,
+				"spread": 8,
+				"swellHeight": 2.044,
+				"swellDirection": 92.801,
+				"swellPeriod": 13.604,
+				"choppiness": 0.921
+			},
+			"light": {
+				"sunElevation": 54.722,
+				"sunAzimuth": 49.573,
+				"overcast": 0.819,
+				"haze": 0.3,
+				"exposure": 1
+			},
+			"trajectory": {
+				"seed": 330812499,
+				"pattern": {
+					"type": "racetrack",
+					"length": 900,
+					"radius": 200,
+					"direction": 1
+				},
+				"altitude": 96.474,
+				"airspeed": 52.271,
+				"turbulence": 0.071,
+				"start": {
+					"heading": 248.141
+				},
+				"gimbal": {
+					"pitch": -78.179,
+					"stabilized": 0.657
+				}
+			},
+			"render": {
+				"seaSeed": 351053110
+			},
+			"id": "w17-sun55-a96-v52-racetrack"
+		},
+		{
+			"sea": {
+				"windSpeed": 2.468,
+				"windDirection": 320.514,
+				"fetch": 92.082,
+				"spread": 8,
+				"swellHeight": 0.609,
+				"swellDirection": 268.861,
+				"swellPeriod": 15.315,
+				"choppiness": 1.242
+			},
+			"light": {
+				"sunElevation": 15,
+				"sunAzimuth": 241.746,
+				"overcast": 0.902,
+				"haze": 0.3,
+				"exposure": 1
+			},
+			"trajectory": {
+				"seed": 987343258,
+				"pattern": {
+					"type": "lawnmower",
+					"legLength": 900,
+					"spacing": 200,
+					"legs": 4
+				},
+				"altitude": 101.532,
+				"airspeed": 38.657,
+				"turbulence": 0.748,
+				"start": {
+					"heading": 112.05
+				},
+				"gimbal": {
+					"pitch": -63.339,
+					"stabilized": 0.59
+				}
+			},
+			"render": {
+				"seaSeed": 1007583869
+			},
+			"id": "w2-sun15-a102-v39-survey"
+		},
+		{
+			"sea": {
+				"windSpeed": 11.024,
+				"windDirection": 210.489,
+				"fetch": 405.325,
+				"spread": 8,
+				"swellHeight": 2.322,
+				"swellDirection": 186.132,
+				"swellPeriod": 15.562,
+				"choppiness": 1.151
+			},
+			"light": {
+				"sunElevation": 9.677,
+				"sunAzimuth": 346.49,
+				"overcast": 0.24,
+				"haze": 0.101,
+				"exposure": 1
+			},
+			"trajectory": {
+				"seed": 828034116,
+				"pattern": {
+					"type": "lawnmower",
+					"legLength": 900,
+					"spacing": 200,
+					"legs": 4
+				},
+				"altitude": 69.553,
+				"airspeed": 30.076,
+				"turbulence": 0.479,
+				"start": {
+					"heading": 157.418
+				},
+				"gimbal": {
+					"pitch": -62.849,
+					"stabilized": 0.4
+				}
+			},
+			"render": {
+				"seaSeed": 848274727
+			},
+			"id": "w11-sun10-a70-v30-survey"
+		},
+		{
+			"sea": {
+				"windSpeed": 17.896,
+				"windDirection": 285.453,
+				"fetch": 508.689,
+				"spread": 8,
+				"swellHeight": 0,
+				"swellDirection": 310.806,
+				"swellPeriod": 11.599,
+				"choppiness": 0.858
+			},
+			"light": {
+				"sunElevation": -2.358,
+				"sunAzimuth": 150.142,
+				"overcast": 0.164,
+				"haze": 0.55,
+				"exposure": 1
+			},
+			"trajectory": {
+				"seed": 531184724,
+				"pattern": {
+					"type": "random",
+					"legLength": [
+						300,
+						900
+					],
+					"turn": [
+						-150,
+						150
+					]
+				},
+				"altitude": 94.412,
+				"airspeed": 46.195,
+				"turbulence": 0.141,
+				"start": {
+					"heading": 181.541
+				},
+				"gimbal": {
+					"pitch": -78.583,
+					"stabilized": 0.696
+				}
+			},
+			"render": {
+				"seaSeed": 551425335
+			},
+			"id": "w18-sun-2-a94-v46-random"
+		},
+		{
+			"sea": {
+				"windSpeed": 18.976,
+				"windDirection": 275.065,
+				"fetch": 459.771,
+				"spread": 8,
+				"swellHeight": 1.784,
+				"swellDirection": 252.534,
+				"swellPeriod": 15.484,
+				"choppiness": 0.865
+			},
+			"light": {
+				"sunElevation": 8.332,
+				"sunAzimuth": 247.898,
+				"overcast": 0.607,
+				"haze": 0.571,
+				"exposure": 1
+			},
+			"trajectory": {
+				"seed": 995165314,
+				"pattern": {
+					"type": "straight"
+				},
+				"altitude": 198.325,
+				"airspeed": 43.951,
+				"turbulence": 0.203,
+				"start": {
+					"heading": 300.622
+				},
+				"gimbal": {
+					"pitch": -78.724,
+					"stabilized": 0.871
+				}
+			},
+			"render": {
+				"seaSeed": 1015405925
+			},
+			"id": "w19-sun8-a198-v44-transit"
+		},
+		{
+			"sea": {
+				"windSpeed": 2.158,
+				"windDirection": 178.618,
+				"fetch": 261.064,
+				"spread": 8,
+				"swellHeight": 2.211,
+				"swellDirection": 226.789,
+				"swellPeriod": 14.238,
+				"choppiness": 1.011
+			},
+			"light": {
+				"sunElevation": 27.385,
+				"sunAzimuth": 141.477,
+				"overcast": 0.964,
+				"haze": 0.3,
+				"exposure": 1
+			},
+			"trajectory": {
+				"seed": 859043598,
+				"pattern": {
+					"type": "lawnmower",
+					"legLength": 900,
+					"spacing": 200,
+					"legs": 4
+				},
+				"altitude": 85.603,
+				"airspeed": 56.17,
+				"turbulence": 0.665,
+				"start": {
+					"heading": 146.811
+				},
+				"gimbal": {
+					"pitch": -78.939,
+					"stabilized": 0.926
+				}
+			},
+			"render": {
+				"seaSeed": 879284209
+			},
+			"id": "w2-sun27-a86-v56-survey"
+		},
+		{
+			"sea": {
+				"windSpeed": 19.471,
+				"windDirection": 8.722,
+				"fetch": 735.948,
+				"spread": 8,
+				"swellHeight": 0,
+				"swellDirection": 48.1,
+				"swellPeriod": 8.628,
+				"choppiness": 0.839
+			},
+			"light": {
+				"sunElevation": 44.379,
+				"sunAzimuth": 210.22,
+				"overcast": 0.046,
+				"haze": 0.066,
+				"exposure": 1
+			},
+			"trajectory": {
+				"seed": 281573787,
+				"pattern": {
+					"type": "racetrack",
+					"length": 900,
+					"radius": 200,
+					"direction": 1
+				},
+				"altitude": 126.151,
+				"airspeed": 48.002,
+				"turbulence": 0.711,
+				"start": {
+					"heading": 180.18
+				},
+				"gimbal": {
+					"pitch": -62.189,
+					"stabilized": 0.995
+				}
+			},
+			"render": {
+				"seaSeed": 301814398
+			},
+			"id": "w19-sun44-a126-v48-racetrack"
+		},
+		{
+			"sea": {
+				"windSpeed": 12.595,
+				"windDirection": 321.398,
+				"fetch": 58.518,
+				"spread": 8,
+				"swellHeight": 0.733,
+				"swellDirection": 22.914,
+				"swellPeriod": 15.43,
+				"choppiness": 0.631
+			},
+			"light": {
+				"sunElevation": 27.079,
+				"sunAzimuth": 352.367,
+				"overcast": 0.047,
+				"haze": 0.015,
+				"exposure": 1
+			},
+			"trajectory": {
+				"seed": 278362346,
+				"pattern": {
+					"type": "figure8",
+					"radius": 250
+				},
+				"altitude": 31.164,
+				"airspeed": 56.633,
+				"turbulence": 0.122,
+				"start": {
+					"heading": 303.491
+				},
+				"gimbal": {
+					"pitch": -83.69,
+					"stabilized": 0.769
+				}
+			},
+			"render": {
+				"seaSeed": 298602957
+			},
+			"id": "w13-sun27-a31-v57-figure8"
+		},
+		{
+			"sea": {
+				"windSpeed": 16.839,
+				"windDirection": 136.382,
+				"fetch": 183.448,
+				"spread": 8,
+				"swellHeight": 1.417,
+				"swellDirection": 157.51,
+				"swellPeriod": 14.37,
+				"choppiness": 1.372
+			},
+			"light": {
+				"sunElevation": -3.316,
+				"sunAzimuth": 208.55,
+				"overcast": 0.066,
+				"haze": 0.229,
+				"exposure": 1
+			},
+			"trajectory": {
+				"seed": 701609437,
+				"pattern": {
+					"type": "orbit",
+					"radius": 250,
+					"direction": 1
+				},
+				"altitude": 39.59,
+				"airspeed": 56.038,
+				"turbulence": 0.736,
+				"start": {
+					"heading": 294.793
+				},
+				"gimbal": {
+					"pitch": -80.069,
+					"stabilized": 0.638
+				}
+			},
+			"render": {
+				"seaSeed": 721850048
+			},
+			"id": "w17-sun-3-a40-v56-loiter"
+		},
+		{
+			"sea": {
+				"windSpeed": 3.543,
+				"windDirection": 71.387,
+				"fetch": 190.16,
+				"spread": 8,
+				"swellHeight": 0.913,
+				"swellDirection": 13.218,
+				"swellPeriod": 15.376,
+				"choppiness": 1.02
+			},
+			"light": {
+				"sunElevation": 4.565,
+				"sunAzimuth": 13.202,
+				"overcast": 0.4,
+				"haze": 0.287,
+				"exposure": 1
+			},
+			"trajectory": {
+				"seed": 885225935,
+				"pattern": {
+					"type": "random",
+					"legLength": [
+						300,
+						900
+					],
+					"turn": [
+						-150,
+						150
+					]
+				},
+				"altitude": 71.126,
+				"airspeed": 51.622,
+				"turbulence": 0.426,
+				"start": {
+					"heading": 195.944
+				},
+				"gimbal": {
+					"pitch": -79.046,
+					"stabilized": 0.546
+				}
+			},
+			"render": {
+				"seaSeed": 905466546
+			},
+			"id": "w4-sun5-a71-v52-random"
+		},
+		{
+			"sea": {
+				"windSpeed": 19.505,
+				"windDirection": 254.119,
+				"fetch": 156.714,
+				"spread": 8,
+				"swellHeight": 0,
+				"swellDirection": 270.749,
+				"swellPeriod": 8.759,
+				"choppiness": 0.866
+			},
+			"light": {
+				"sunElevation": 59.603,
+				"sunAzimuth": 36.756,
+				"overcast": 0.293,
+				"haze": 0.077,
+				"exposure": 1
+			},
+			"trajectory": {
+				"seed": 539128137,
+				"pattern": {
+					"type": "lawnmower",
+					"legLength": 900,
+					"spacing": 200,
+					"legs": 4
+				},
+				"altitude": 41.244,
+				"airspeed": 47.457,
+				"turbulence": 0.389,
+				"start": {
+					"heading": 341.667
+				},
+				"gimbal": {
+					"pitch": -85.162,
+					"stabilized": 0.332
+				}
+			},
+			"render": {
+				"seaSeed": 559368748
+			},
+			"id": "w20-sun60-a41-v47-survey"
+		},
+		{
+			"sea": {
+				"windSpeed": 18.938,
+				"windDirection": 271.298,
+				"fetch": 79.869,
+				"spread": 8,
+				"swellHeight": 0,
+				"swellDirection": 237.947,
+				"swellPeriod": 13.57,
+				"choppiness": 1.191
+			},
+			"light": {
+				"sunElevation": 41.211,
+				"sunAzimuth": 358.533,
+				"overcast": 0.048,
+				"haze": 0.673,
+				"exposure": 1
+			},
+			"trajectory": {
+				"seed": 186640974,
+				"pattern": {
+					"type": "orbit",
+					"radius": 250,
+					"direction": 1
+				},
+				"altitude": 32.203,
+				"airspeed": 46.215,
+				"turbulence": 0.424,
+				"start": {
+					"heading": 286.799
+				},
+				"gimbal": {
+					"pitch": -87.522,
+					"stabilized": 0.588
+				}
+			},
+			"render": {
+				"seaSeed": 206881585
+			},
+			"id": "w19-sun41-a32-v46-loiter"
+		},
+		{
+			"sea": {
+				"windSpeed": 4.521,
+				"windDirection": 16.586,
+				"fetch": 285.578,
+				"spread": 8,
+				"swellHeight": 0.49,
+				"swellDirection": 10.274,
+				"swellPeriod": 14.992,
+				"choppiness": 1.399
+			},
+			"light": {
+				"sunElevation": 47.2,
+				"sunAzimuth": 133.874,
+				"overcast": 0.563,
+				"haze": 0.283,
+				"exposure": 1
+			},
+			"trajectory": {
+				"seed": 749163976,
+				"pattern": {
+					"type": "straight"
+				},
+				"altitude": 33.942,
+				"airspeed": 31.511,
+				"turbulence": 0.675,
+				"start": {
+					"heading": 137.146
+				},
+				"gimbal": {
+					"pitch": -74.9,
+					"stabilized": 0.304
+				}
+			},
+			"render": {
+				"seaSeed": 769404587
+			},
+			"id": "w5-sun47-a34-v32-transit"
+		},
+		{
+			"sea": {
+				"windSpeed": 17.256,
+				"windDirection": 286.069,
+				"fetch": 305.453,
+				"spread": 8,
+				"swellHeight": 1.441,
+				"swellDirection": 236.472,
+				"swellPeriod": 10.023,
+				"choppiness": 0.831
+			},
+			"light": {
+				"sunElevation": 49.637,
+				"sunAzimuth": 329.956,
+				"overcast": 0.121,
+				"haze": 0.291,
+				"exposure": 1
+			},
+			"trajectory": {
+				"seed": 128048559,
+				"pattern": {
+					"type": "figure8",
+					"radius": 250
+				},
+				"altitude": 173.216,
+				"airspeed": 31.922,
+				"turbulence": 0.524,
+				"start": {
+					"heading": 251.743
+				},
+				"gimbal": {
+					"pitch": -68.916,
+					"stabilized": 0.813
+				}
+			},
+			"render": {
+				"seaSeed": 148289170
+			},
+			"id": "w17-sun50-a173-v32-figure8"
+		},
+		{
+			"sea": {
+				"windSpeed": 10.95,
+				"windDirection": 103.237,
+				"fetch": 774.729,
+				"spread": 8,
+				"swellHeight": 0.704,
+				"swellDirection": 191.409,
+				"swellPeriod": 15.191,
+				"choppiness": 1.306
+			},
+			"light": {
+				"sunElevation": 52.557,
+				"sunAzimuth": 71.877,
+				"overcast": 0.111,
+				"haze": 0.679,
+				"exposure": 1
+			},
+			"trajectory": {
+				"seed": 268772772,
+				"pattern": {
+					"type": "straight"
+				},
+				"altitude": 62.056,
+				"airspeed": 46.76,
+				"turbulence": 0.395,
+				"start": {
+					"heading": 1.382
+				},
+				"gimbal": {
+					"pitch": -78.476,
+					"stabilized": 0.996
+				}
+			},
+			"render": {
+				"seaSeed": 289013383
+			},
+			"id": "w11-sun53-a62-v47-transit"
+		},
+		{
+			"sea": {
+				"windSpeed": 13.642,
+				"windDirection": 141.646,
+				"fetch": 521.225,
+				"spread": 8,
+				"swellHeight": 2.389,
+				"swellDirection": 177.184,
+				"swellPeriod": 15.876,
+				"choppiness": 1.079
+			},
+			"light": {
+				"sunElevation": 43.149,
+				"sunAzimuth": 82.794,
+				"overcast": 0.875,
+				"haze": 0.425,
+				"exposure": 1
+			},
+			"trajectory": {
+				"seed": 9491064,
+				"pattern": {
+					"type": "lawnmower",
+					"legLength": 900,
+					"spacing": 200,
+					"legs": 4
+				},
+				"altitude": 54.37,
+				"airspeed": 50.33,
+				"turbulence": 0.083,
+				"start": {
+					"heading": 56.246
+				},
+				"gimbal": {
+					"pitch": -76.473,
+					"stabilized": 0.404
+				}
+			},
+			"render": {
+				"seaSeed": 29731675
+			},
+			"id": "w14-sun43-a54-v50-survey"
+		},
+		{
+			"sea": {
+				"windSpeed": 6.813,
+				"windDirection": 226.539,
+				"fetch": 87.533,
+				"spread": 8,
+				"swellHeight": 2.306,
+				"swellDirection": 309.333,
+				"swellPeriod": 14.107,
+				"choppiness": 1.157
+			},
+			"light": {
+				"sunElevation": 48.734,
+				"sunAzimuth": 151.741,
+				"overcast": 0.117,
+				"haze": 0.11,
+				"exposure": 1
+			},
+			"trajectory": {
+				"seed": 96321262,
+				"pattern": {
+					"type": "random",
+					"legLength": [
+						300,
+						900
+					],
+					"turn": [
+						-150,
+						150
+					]
+				},
+				"altitude": 93.734,
+				"airspeed": 44.53,
+				"turbulence": 0.097,
+				"start": {
+					"heading": 218.825
+				},
+				"gimbal": {
+					"pitch": -66.402,
+					"stabilized": 0.645
+				}
+			},
+			"render": {
+				"seaSeed": 116561873
+			},
+			"id": "w7-sun49-a94-v45-random"
+		},
+		{
+			"sea": {
+				"windSpeed": 5.43,
+				"windDirection": 78.779,
+				"fetch": 542.876,
+				"spread": 8,
+				"swellHeight": 0.208,
+				"swellDirection": 49.746,
+				"swellPeriod": 15.389,
+				"choppiness": 0.926
+			},
+			"light": {
+				"sunElevation": 26.291,
+				"sunAzimuth": 254.666,
+				"overcast": 0.02,
+				"haze": 0.409,
+				"exposure": 1
+			},
+			"trajectory": {
+				"seed": 293019616,
+				"pattern": {
+					"type": "straight"
+				},
+				"altitude": 133.671,
+				"airspeed": 32.317,
+				"turbulence": 0.473,
+				"start": {
+					"heading": 168.841
+				},
+				"gimbal": {
+					"pitch": -70.019,
+					"stabilized": 0.945
+				}
+			},
+			"render": {
+				"seaSeed": 313260227
+			},
+			"id": "w5-sun26-a134-v32-transit"
+		},
+		{
+			"sea": {
+				"windSpeed": 18.692,
+				"windDirection": 326.798,
+				"fetch": 149.976,
+				"spread": 8,
+				"swellHeight": 0,
+				"swellDirection": 253.334,
+				"swellPeriod": 9.151,
+				"choppiness": 0.985
+			},
+			"light": {
+				"sunElevation": 2.127,
+				"sunAzimuth": 234.405,
+				"overcast": 0.4,
+				"haze": 0.456,
+				"exposure": 1
+			},
+			"trajectory": {
+				"seed": 228054826,
+				"pattern": {
+					"type": "lawnmower",
+					"legLength": 900,
+					"spacing": 200,
+					"legs": 4
+				},
+				"altitude": 32.866,
+				"airspeed": 54.011,
+				"turbulence": 0.787,
+				"start": {
+					"heading": 301.716
+				},
+				"gimbal": {
+					"pitch": -81.817,
+					"stabilized": 0.542
+				}
+			},
+			"render": {
+				"seaSeed": 248295437
+			},
+			"id": "w19-sun2-a33-v54-survey"
+		},
+		{
+			"sea": {
+				"windSpeed": 17.474,
+				"windDirection": 151.036,
+				"fetch": 273.477,
+				"spread": 8,
+				"swellHeight": 0.552,
+				"swellDirection": 97.864,
+				"swellPeriod": 14.408,
+				"choppiness": 0.638
+			},
+			"light": {
+				"sunElevation": 37.166,
+				"sunAzimuth": 155.822,
+				"overcast": 0.334,
+				"haze": 0.163,
+				"exposure": 1
+			},
+			"trajectory": {
+				"seed": 735499922,
+				"pattern": {
+					"type": "racetrack",
+					"length": 900,
+					"radius": 200,
+					"direction": 1
+				},
+				"altitude": 55.417,
+				"airspeed": 43.196,
+				"turbulence": 0.118,
+				"start": {
+					"heading": 169.107
+				},
+				"gimbal": {
+					"pitch": -72.016,
+					"stabilized": 0.366
+				}
+			},
+			"render": {
+				"seaSeed": 755740533
+			},
+			"id": "w17-sun37-a55-v43-racetrack"
+		},
+		{
+			"sea": {
+				"windSpeed": 17.224,
+				"windDirection": 90.295,
+				"fetch": 179.855,
+				"spread": 8,
+				"swellHeight": 0,
+				"swellDirection": 120.27,
+				"swellPeriod": 15.164,
+				"choppiness": 1.218
+			},
+			"light": {
+				"sunElevation": 50.18,
+				"sunAzimuth": 222.315,
+				"overcast": 0.98,
+				"haze": 0.3,
+				"exposure": 1
+			},
+			"trajectory": {
+				"seed": 517247793,
+				"pattern": {
+					"type": "orbit",
+					"radius": 250,
+					"direction": 1
+				},
+				"altitude": 39.412,
+				"airspeed": 37.124,
+				"turbulence": 0.602,
+				"start": {
+					"heading": 176.102
+				},
+				"gimbal": {
+					"pitch": -77.712,
+					"stabilized": 0.985
+				}
+			},
+			"render": {
+				"seaSeed": 537488404
+			},
+			"id": "w17-sun50-a39-v37-loiter"
+		},
+		{
+			"sea": {
+				"windSpeed": 19.321,
+				"windDirection": 94.921,
+				"fetch": 64.723,
+				"spread": 8,
+				"swellHeight": 0.969,
+				"swellDirection": 29.147,
+				"swellPeriod": 12.726,
+				"choppiness": 1.282
+			},
+			"light": {
+				"sunElevation": 34.718,
+				"sunAzimuth": 69.312,
+				"overcast": 0.206,
+				"haze": 0.549,
+				"exposure": 1
+			},
+			"trajectory": {
+				"seed": 687216132,
+				"pattern": {
+					"type": "racetrack",
+					"length": 900,
+					"radius": 200,
+					"direction": 1
+				},
+				"altitude": 119.856,
+				"airspeed": 41.905,
+				"turbulence": 0.562,
+				"start": {
+					"heading": 155.733
+				},
+				"gimbal": {
+					"pitch": -72.76,
+					"stabilized": 0.463
+				}
+			},
+			"render": {
+				"seaSeed": 707456743
+			},
+			"id": "w19-sun35-a120-v42-racetrack"
+		},
+		{
+			"sea": {
+				"windSpeed": 17.885,
+				"windDirection": 124.306,
+				"fetch": 194.562,
+				"spread": 8,
+				"swellHeight": 0.867,
+				"swellDirection": 187.667,
+				"swellPeriod": 9.299,
+				"choppiness": 1.297
+			},
+			"light": {
+				"sunElevation": 50.252,
+				"sunAzimuth": 105.549,
+				"overcast": 0.256,
+				"haze": 0.117,
+				"exposure": 1
+			},
+			"trajectory": {
+				"seed": 98743759,
+				"pattern": {
+					"type": "figure8",
+					"radius": 250
+				},
+				"altitude": 98.005,
+				"airspeed": 46.875,
+				"turbulence": 0.733,
+				"start": {
+					"heading": 177.473
+				},
+				"gimbal": {
+					"pitch": -71.658,
+					"stabilized": 0.364
+				}
+			},
+			"render": {
+				"seaSeed": 118984370
+			},
+			"id": "w18-sun50-a98-v47-figure8"
+		},
+		{
+			"sea": {
+				"windSpeed": 18.382,
+				"windDirection": 142.909,
+				"fetch": 315.008,
+				"spread": 8,
+				"swellHeight": 0.34,
+				"swellDirection": 133.877,
+				"swellPeriod": 8.685,
+				"choppiness": 1.22
+			},
+			"light": {
+				"sunElevation": 1.353,
+				"sunAzimuth": 222.649,
+				"overcast": 0.035,
+				"haze": 0.19,
+				"exposure": 1
+			},
+			"trajectory": {
+				"seed": 814420004,
+				"pattern": {
+					"type": "figure8",
+					"radius": 250
+				},
+				"altitude": 70.313,
+				"airspeed": 42.896,
+				"turbulence": 0.642,
+				"start": {
+					"heading": 239.019
+				},
+				"gimbal": {
+					"pitch": -67.627,
+					"stabilized": 0.67
+				}
+			},
+			"render": {
+				"seaSeed": 834660615
+			},
+			"id": "w18-sun1-a70-v43-figure8"
+		},
+		{
+			"sea": {
+				"windSpeed": 18.298,
+				"windDirection": 35.514,
+				"fetch": 53.898,
+				"spread": 8,
+				"swellHeight": 1.617,
+				"swellDirection": 93.565,
+				"swellPeriod": 15.095,
+				"choppiness": 1.395
+			},
+			"light": {
+				"sunElevation": 20.947,
+				"sunAzimuth": 314.641,
+				"overcast": 0.332,
+				"haze": 0.02,
+				"exposure": 1
+			},
+			"trajectory": {
+				"seed": 199115307,
+				"pattern": {
+					"type": "lawnmower",
+					"legLength": 900,
+					"spacing": 200,
+					"legs": 4
+				},
+				"altitude": 124.808,
+				"airspeed": 33.106,
+				"turbulence": 0.28,
+				"start": {
+					"heading": 70.602
+				},
+				"gimbal": {
+					"pitch": -88.661,
+					"stabilized": 0.632
+				}
+			},
+			"render": {
+				"seaSeed": 219355918
+			},
+			"id": "w18-sun21-a125-v33-survey"
+		},
+		{
+			"sea": {
+				"windSpeed": 8.828,
+				"windDirection": 57.909,
+				"fetch": 295.521,
+				"spread": 8,
+				"swellHeight": 2.45,
+				"swellDirection": 103.538,
+				"swellPeriod": 15.9,
+				"choppiness": 1.375
+			},
+			"light": {
+				"sunElevation": 25.82,
+				"sunAzimuth": 40.189,
+				"overcast": 0.872,
+				"haze": 0.468,
+				"exposure": 1
+			},
+			"trajectory": {
+				"seed": 384456917,
+				"pattern": {
+					"type": "orbit",
+					"radius": 250,
+					"direction": 1
+				},
+				"altitude": 92.513,
+				"airspeed": 56.676,
+				"turbulence": 0.255,
+				"start": {
+					"heading": 61.17
+				},
+				"gimbal": {
+					"pitch": -88.25,
+					"stabilized": 0.398
+				}
+			},
+			"render": {
+				"seaSeed": 404697528
+			},
+			"id": "w9-sun26-a93-v57-loiter"
+		},
+		{
+			"sea": {
+				"windSpeed": 18.977,
+				"windDirection": 173.452,
+				"fetch": 55.719,
+				"spread": 8,
+				"swellHeight": 1.231,
+				"swellDirection": 202.65,
+				"swellPeriod": 10.927,
+				"choppiness": 0.716
+			},
+			"light": {
+				"sunElevation": 56.761,
+				"sunAzimuth": 76.289,
+				"overcast": 0.388,
+				"haze": 0.004,
+				"exposure": 1
+			},
+			"trajectory": {
+				"seed": 238031394,
+				"pattern": {
+					"type": "lawnmower",
+					"legLength": 900,
+					"spacing": 200,
+					"legs": 4
+				},
+				"altitude": 37.625,
+				"airspeed": 44.557,
+				"turbulence": 0.468,
+				"start": {
+					"heading": 24.825
+				},
+				"gimbal": {
+					"pitch": -82.524,
+					"stabilized": 0.99
+				}
+			},
+			"render": {
+				"seaSeed": 258272005
+			},
+			"id": "w19-sun57-a38-v45-survey"
+		},
+		{
+			"sea": {
+				"windSpeed": 18.505,
+				"windDirection": 353.361,
+				"fetch": 762.386,
+				"spread": 8,
+				"swellHeight": 1.617,
+				"swellDirection": 282.929,
+				"swellPeriod": 12.572,
+				"choppiness": 1.005
+			},
+			"light": {
+				"sunElevation": 63.603,
+				"sunAzimuth": 253.362,
+				"overcast": 0.85,
+				"haze": 0.3,
+				"exposure": 1
+			},
+			"trajectory": {
+				"seed": 632946127,
+				"pattern": {
+					"type": "lawnmower",
+					"legLength": 900,
+					"spacing": 200,
+					"legs": 4
+				},
+				"altitude": 40.933,
+				"airspeed": 46.425,
+				"turbulence": 0.507,
+				"start": {
+					"heading": 281.029
+				},
+				"gimbal": {
+					"pitch": -74.239,
+					"stabilized": 0.738
+				}
+			},
+			"render": {
+				"seaSeed": 653186738
+			},
+			"id": "w19-sun64-a41-v46-survey"
+		},
+		{
+			"sea": {
+				"windSpeed": 11.816,
+				"windDirection": 317.376,
+				"fetch": 114.091,
+				"spread": 8,
+				"swellHeight": 1.555,
+				"swellDirection": 289.908,
+				"swellPeriod": 15.406,
+				"choppiness": 1.373
+			},
+			"light": {
+				"sunElevation": 47.358,
+				"sunAzimuth": 41.56,
+				"overcast": 0.217,
+				"haze": 0.53,
+				"exposure": 1
+			},
+			"trajectory": {
+				"seed": 833618743,
+				"pattern": {
+					"type": "straight"
+				},
+				"altitude": 139.346,
+				"airspeed": 58.385,
+				"turbulence": 0.72,
+				"start": {
+					"heading": 20.947
+				},
+				"gimbal": {
+					"pitch": -84.418,
+					"stabilized": 0.464
+				}
+			},
+			"render": {
+				"seaSeed": 853859354
+			},
+			"id": "w12-sun47-a139-v58-transit"
+		},
+		{
+			"sea": {
+				"windSpeed": 18.349,
+				"windDirection": 344.994,
+				"fetch": 329.013,
+				"spread": 8,
+				"swellHeight": 0,
+				"swellDirection": 297.158,
+				"swellPeriod": 9.288,
+				"choppiness": 0.705
+			},
+			"light": {
+				"sunElevation": -0.399,
+				"sunAzimuth": 28.225,
+				"overcast": 0.4,
+				"haze": 0.359,
+				"exposure": 1
+			},
+			"trajectory": {
+				"seed": 742923139,
+				"pattern": {
+					"type": "straight"
+				},
+				"altitude": 66.92,
+				"airspeed": 37.832,
+				"turbulence": 0.184,
+				"start": {
+					"heading": 174.259
+				},
+				"gimbal": {
+					"pitch": -78.06,
+					"stabilized": 0.565
+				}
+			},
+			"render": {
+				"seaSeed": 763163750
+			},
+			"id": "w18-sun0-a67-v38-transit"
+		},
+		{
+			"sea": {
+				"windSpeed": 3.92,
+				"windDirection": 194.649,
+				"fetch": 443.189,
+				"spread": 8,
+				"swellHeight": 2.228,
+				"swellDirection": 111.056,
+				"swellPeriod": 15.445,
+				"choppiness": 0.982
+			},
+			"light": {
+				"sunElevation": 64.286,
+				"sunAzimuth": 260.575,
+				"overcast": 0.361,
+				"haze": 0.645,
+				"exposure": 1
+			},
+			"trajectory": {
+				"seed": 212932529,
+				"pattern": {
+					"type": "figure8",
+					"radius": 250
+				},
+				"altitude": 38.1,
+				"airspeed": 57.178,
+				"turbulence": 0.721,
+				"start": {
+					"heading": 206.4
+				},
+				"gimbal": {
+					"pitch": -66.5,
+					"stabilized": 0.498
+				}
+			},
+			"render": {
+				"seaSeed": 233173140
+			},
+			"id": "w4-sun64-a38-v57-figure8"
+		},
+		{
+			"sea": {
+				"windSpeed": 13.308,
+				"windDirection": 300.166,
+				"fetch": 55.551,
+				"spread": 8,
+				"swellHeight": 1.946,
+				"swellDirection": 0.618,
+				"swellPeriod": 15.528,
+				"choppiness": 1.314
+			},
+			"light": {
+				"sunElevation": 52.683,
+				"sunAzimuth": 331.225,
+				"overcast": 0.087,
+				"haze": 0.192,
+				"exposure": 1
+			},
+			"trajectory": {
+				"seed": 225687477,
+				"pattern": {
+					"type": "straight"
+				},
+				"altitude": 73.887,
+				"airspeed": 59.479,
+				"turbulence": 0.775,
+				"start": {
+					"heading": 68.699
+				},
+				"gimbal": {
+					"pitch": -66.286,
+					"stabilized": 0.381
+				}
+			},
+			"render": {
+				"seaSeed": 245928088
+			},
+			"id": "w13-sun53-a74-v59-transit"
+		},
+		{
+			"sea": {
+				"windSpeed": 12.064,
+				"windDirection": 181.708,
+				"fetch": 728.864,
+				"spread": 8,
+				"swellHeight": 0.291,
+				"swellDirection": 257.677,
+				"swellPeriod": 15.153,
+				"choppiness": 0.67
+			},
+			"light": {
+				"sunElevation": 34.138,
+				"sunAzimuth": 331.908,
+				"overcast": 0.452,
+				"haze": 0.164,
+				"exposure": 1
+			},
+			"trajectory": {
+				"seed": 958365428,
+				"pattern": {
+					"type": "straight"
+				},
+				"altitude": 185.149,
+				"airspeed": 37.753,
+				"turbulence": 0.163,
+				"start": {
+					"heading": 197.49
+				},
+				"gimbal": {
+					"pitch": -89.376,
+					"stabilized": 0.42
+				}
+			},
+			"render": {
+				"seaSeed": 978606039
+			},
+			"id": "w12-sun34-a185-v38-transit"
+		},
+		{
+			"sea": {
+				"windSpeed": 7.76,
+				"windDirection": 101.96,
+				"fetch": 98.84,
+				"spread": 8,
+				"swellHeight": 1.243,
+				"swellDirection": 59.211,
+				"swellPeriod": 14.504,
+				"choppiness": 0.653
+			},
+			"light": {
+				"sunElevation": 25.843,
+				"sunAzimuth": 165.404,
+				"overcast": 0.121,
+				"haze": 0.548,
+				"exposure": 1
+			},
+			"trajectory": {
+				"seed": 559210916,
+				"pattern": {
+					"type": "racetrack",
+					"length": 900,
+					"radius": 200,
+					"direction": 1
+				},
+				"altitude": 191.134,
+				"airspeed": 46.891,
+				"turbulence": 0.791,
+				"start": {
+					"heading": 200.576
+				},
+				"gimbal": {
+					"pitch": -76.692,
+					"stabilized": 0.417
+				}
+			},
+			"render": {
+				"seaSeed": 579451527
+			},
+			"id": "w8-sun26-a191-v47-racetrack"
+		},
+		{
+			"sea": {
+				"windSpeed": 17.883,
+				"windDirection": 291.414,
+				"fetch": 357.294,
+				"spread": 8,
+				"swellHeight": 2.462,
+				"swellDirection": 283.521,
+				"swellPeriod": 12.696,
+				"choppiness": 1.172
+			},
+			"light": {
+				"sunElevation": 36.231,
+				"sunAzimuth": 163.257,
+				"overcast": 0.726,
+				"haze": 0.3,
+				"exposure": 1
+			},
+			"trajectory": {
+				"seed": 181746618,
+				"pattern": {
+					"type": "lawnmower",
+					"legLength": 900,
+					"spacing": 200,
+					"legs": 4
+				},
+				"altitude": 149.736,
+				"airspeed": 56.739,
+				"turbulence": 0.137,
+				"start": {
+					"heading": 281.564
+				},
+				"gimbal": {
+					"pitch": -80.191,
+					"stabilized": 0.604
+				}
+			},
+			"render": {
+				"seaSeed": 201987229
+			},
+			"id": "w18-sun36-a150-v57-survey"
+		},
+		{
+			"sea": {
+				"windSpeed": 16.604,
+				"windDirection": 332.344,
+				"fetch": 162.276,
+				"spread": 8,
+				"swellHeight": 1.306,
+				"swellDirection": 329.42,
+				"swellPeriod": 11.658,
+				"choppiness": 1.315
+			},
+			"light": {
+				"sunElevation": 41.598,
+				"sunAzimuth": 217.243,
+				"overcast": 0.99,
+				"haze": 0.3,
+				"exposure": 1
+			},
+			"trajectory": {
+				"seed": 152272316,
+				"pattern": {
+					"type": "lawnmower",
+					"legLength": 900,
+					"spacing": 200,
+					"legs": 4
+				},
+				"altitude": 83.595,
+				"airspeed": 59.756,
+				"turbulence": 0.512,
+				"start": {
+					"heading": 329.498
+				},
+				"gimbal": {
+					"pitch": -86.767,
+					"stabilized": 0.854
+				}
+			},
+			"render": {
+				"seaSeed": 172512927
+			},
+			"id": "w17-sun42-a84-v60-survey"
+		},
+		{
+			"sea": {
+				"windSpeed": 18.599,
+				"windDirection": 241.545,
+				"fetch": 414.25,
+				"spread": 8,
+				"swellHeight": 0.325,
+				"swellDirection": 328.094,
+				"swellPeriod": 15.849,
+				"choppiness": 0.734
+			},
+			"light": {
+				"sunElevation": 55.417,
+				"sunAzimuth": 231.582,
+				"overcast": 0.653,
+				"haze": 0.354,
+				"exposure": 1
+			},
+			"trajectory": {
+				"seed": 772468130,
+				"pattern": {
+					"type": "random",
+					"legLength": [
+						300,
+						900
+					],
+					"turn": [
+						-150,
+						150
+					]
+				},
+				"altitude": 144.331,
+				"airspeed": 52.612,
+				"turbulence": 0.429,
+				"start": {
+					"heading": 114.17
+				},
+				"gimbal": {
+					"pitch": -86.886,
+					"stabilized": 0.472
+				}
+			},
+			"render": {
+				"seaSeed": 792708741
+			},
+			"id": "w19-sun55-a144-v53-random"
+		},
+		{
+			"sea": {
+				"windSpeed": 4.864,
+				"windDirection": 315.769,
+				"fetch": 198.179,
+				"spread": 8,
+				"swellHeight": 0.47,
+				"swellDirection": 334.661,
+				"swellPeriod": 14.658,
+				"choppiness": 1.113
+			},
+			"light": {
+				"sunElevation": 32.332,
+				"sunAzimuth": 272.995,
+				"overcast": 0.716,
+				"haze": 0.746,
+				"exposure": 1
+			},
+			"trajectory": {
+				"seed": 186272381,
+				"pattern": {
+					"type": "figure8",
+					"radius": 250
+				},
+				"altitude": 78.761,
+				"airspeed": 19.64,
+				"turbulence": 0.773,
+				"start": {
+					"heading": 78.76
+				},
+				"gimbal": {
+					"pitch": -73.22,
+					"stabilized": 0.661
+				}
+			},
+			"render": {
+				"seaSeed": 206512992
+			},
+			"id": "w5-sun32-a79-v20-figure8"
+		},
+		{
+			"sea": {
+				"windSpeed": 13.342,
+				"windDirection": 303.136,
+				"fetch": 320.649,
+				"spread": 8,
+				"swellHeight": 2.144,
+				"swellDirection": 331.034,
+				"swellPeriod": 15.603,
+				"choppiness": 0.665
+			},
+			"light": {
+				"sunElevation": 60.31,
+				"sunAzimuth": 204.819,
+				"overcast": 0.078,
+				"haze": 0.711,
+				"exposure": 1
+			},
+			"trajectory": {
+				"seed": 276873024,
+				"pattern": {
+					"type": "random",
+					"legLength": [
+						300,
+						900
+					],
+					"turn": [
+						-150,
+						150
+					]
+				},
+				"altitude": 61.536,
+				"airspeed": 53.667,
+				"turbulence": 0.445,
+				"start": {
+					"heading": 95.178
+				},
+				"gimbal": {
+					"pitch": -67.624,
+					"stabilized": 0.941
+				}
+			},
+			"render": {
+				"seaSeed": 297113635
+			},
+			"id": "w13-sun60-a62-v54-random"
+		},
+		{
+			"sea": {
+				"windSpeed": 18.846,
+				"windDirection": 13.585,
+				"fetch": 556.609,
+				"spread": 8,
+				"swellHeight": 2.421,
+				"swellDirection": 76.518,
+				"swellPeriod": 9.857,
+				"choppiness": 0.686
+			},
+			"light": {
+				"sunElevation": 12.095,
+				"sunAzimuth": 15.201,
+				"overcast": 0.703,
+				"haze": 0.383,
+				"exposure": 1
+			},
+			"trajectory": {
+				"seed": 298366547,
+				"pattern": {
+					"type": "figure8",
+					"radius": 250
+				},
+				"altitude": 57.35,
+				"airspeed": 32.935,
+				"turbulence": 0.702,
+				"start": {
+					"heading": 162.843
+				},
+				"gimbal": {
+					"pitch": -81.431,
+					"stabilized": 0.351
+				}
+			},
+			"render": {
+				"seaSeed": 318607158
+			},
+			"id": "w19-sun12-a57-v33-figure8"
+		},
+		{
+			"sea": {
+				"windSpeed": 17.521,
+				"windDirection": 92.94,
+				"fetch": 341.377,
+				"spread": 8,
+				"swellHeight": 1.851,
+				"swellDirection": 80.444,
+				"swellPeriod": 13.871,
+				"choppiness": 0.918
+			},
+			"light": {
+				"sunElevation": 27.502,
+				"sunAzimuth": 46.709,
+				"overcast": 0.2,
+				"haze": 0.165,
+				"exposure": 1
+			},
+			"trajectory": {
+				"seed": 20542483,
+				"pattern": {
+					"type": "lawnmower",
+					"legLength": 900,
+					"spacing": 200,
+					"legs": 4
+				},
+				"altitude": 136.07,
+				"airspeed": 41.582,
+				"turbulence": 0.664,
+				"start": {
+					"heading": 45.791
+				},
+				"gimbal": {
+					"pitch": -77.56,
+					"stabilized": 0.433
+				}
+			},
+			"render": {
+				"seaSeed": 40783094
+			},
+			"id": "w18-sun28-a136-v42-survey"
+		},
+		{
+			"sea": {
+				"windSpeed": 12.723,
+				"windDirection": 182.391,
+				"fetch": 224.395,
+				"spread": 8,
+				"swellHeight": 1.383,
+				"swellDirection": 98.278,
+				"swellPeriod": 14.283,
+				"choppiness": 1.379
+			},
+			"light": {
+				"sunElevation": 7.942,
+				"sunAzimuth": 12.796,
+				"overcast": 0.263,
+				"haze": 0.169,
+				"exposure": 1
+			},
+			"trajectory": {
+				"seed": 486437829,
+				"pattern": {
+					"type": "random",
+					"legLength": [
+						300,
+						900
+					],
+					"turn": [
+						-150,
+						150
+					]
+				},
+				"altitude": 41.187,
+				"airspeed": 46.02,
+				"turbulence": 0.009,
+				"start": {
+					"heading": 40.81
+				},
+				"gimbal": {
+					"pitch": -83.809,
+					"stabilized": 0.516
+				}
+			},
+			"render": {
+				"seaSeed": 506678440
+			},
+			"id": "w13-sun8-a41-v46-random"
+		},
+		{
+			"sea": {
+				"windSpeed": 17.352,
+				"windDirection": 333.006,
+				"fetch": 129.358,
+				"spread": 8,
+				"swellHeight": 0.379,
+				"swellDirection": 35.39,
+				"swellPeriod": 13.741,
+				"choppiness": 1.123
+			},
+			"light": {
+				"sunElevation": 9.354,
+				"sunAzimuth": 288.477,
+				"overcast": 0.595,
+				"haze": 0.303,
+				"exposure": 1
+			},
+			"trajectory": {
+				"seed": 631257138,
+				"pattern": {
+					"type": "lawnmower",
+					"legLength": 900,
+					"spacing": 200,
+					"legs": 4
+				},
+				"altitude": 129.029,
+				"airspeed": 35.122,
+				"turbulence": 0.468,
+				"start": {
+					"heading": 187.296
+				},
+				"gimbal": {
+					"pitch": -61.121,
+					"stabilized": 0.954
+				}
+			},
+			"render": {
+				"seaSeed": 651497749
+			},
+			"id": "w17-sun9-a129-v35-survey"
+		},
+		{
+			"sea": {
+				"windSpeed": 16.356,
+				"windDirection": 11.287,
+				"fetch": 428.285,
+				"spread": 8,
+				"swellHeight": 0,
+				"swellDirection": 350.897,
+				"swellPeriod": 12.823,
+				"choppiness": 0.982
+			},
+			"light": {
+				"sunElevation": 42.369,
+				"sunAzimuth": 140.424,
+				"overcast": 0.514,
+				"haze": 0.46,
+				"exposure": 1
+			},
+			"trajectory": {
+				"seed": 252798320,
+				"pattern": {
+					"type": "straight"
+				},
+				"altitude": 84.749,
+				"airspeed": 53.997,
+				"turbulence": 0.778,
+				"start": {
+					"heading": 59.958
+				},
+				"gimbal": {
+					"pitch": -87.77,
+					"stabilized": 0.936
+				}
+			},
+			"render": {
+				"seaSeed": 273038931
+			},
+			"id": "w16-sun42-a85-v54-transit"
+		},
+		{
+			"sea": {
+				"windSpeed": 2.819,
+				"windDirection": 242.781,
+				"fetch": 67.142,
+				"spread": 8,
+				"swellHeight": 0.943,
+				"swellDirection": 313.43,
+				"swellPeriod": 14.348,
+				"choppiness": 0.695
+			},
+			"light": {
+				"sunElevation": -0.862,
+				"sunAzimuth": 139.433,
+				"overcast": 0.392,
+				"haze": 0.55,
+				"exposure": 1
+			},
+			"trajectory": {
+				"seed": 552289892,
+				"pattern": {
+					"type": "straight"
+				},
+				"altitude": 147.13,
+				"airspeed": 15.279,
+				"turbulence": 0.116,
+				"start": {
+					"heading": 328.862
+				},
+				"gimbal": {
+					"pitch": -61.815,
+					"stabilized": 0.454
+				}
+			},
+			"render": {
+				"seaSeed": 572530503
+			},
+			"id": "w3-sun-1-a147-v15-transit"
+		},
+		{
+			"sea": {
+				"windSpeed": 16.627,
+				"windDirection": 35.057,
+				"fetch": 82.19,
+				"spread": 8,
+				"swellHeight": 2.337,
+				"swellDirection": 103.184,
+				"swellPeriod": 9.363,
+				"choppiness": 0.602
+			},
+			"light": {
+				"sunElevation": 50.769,
+				"sunAzimuth": 153.162,
+				"overcast": 0.45,
+				"haze": 0.359,
+				"exposure": 1
+			},
+			"trajectory": {
+				"seed": 78340249,
+				"pattern": {
+					"type": "racetrack",
+					"length": 900,
+					"radius": 200,
+					"direction": 1
+				},
+				"altitude": 31.143,
+				"airspeed": 57.098,
+				"turbulence": 0.647,
+				"start": {
+					"heading": 132.37
+				},
+				"gimbal": {
+					"pitch": -69.225,
+					"stabilized": 0.846
+				}
+			},
+			"render": {
+				"seaSeed": 98580860
+			},
+			"id": "w17-sun51-a31-v57-racetrack"
+		},
+		{
+			"sea": {
+				"windSpeed": 18.956,
+				"windDirection": 225.122,
+				"fetch": 218.027,
+				"spread": 8,
+				"swellHeight": 0,
+				"swellDirection": 162.39,
+				"swellPeriod": 10.901,
+				"choppiness": 1.301
+			},
+			"light": {
+				"sunElevation": 37.677,
+				"sunAzimuth": 357.503,
+				"overcast": 0.233,
+				"haze": 0.315,
+				"exposure": 1
+			},
+			"trajectory": {
+				"seed": 572639874,
+				"pattern": {
+					"type": "lawnmower",
+					"legLength": 900,
+					"spacing": 200,
+					"legs": 4
+				},
+				"altitude": 190.687,
+				"airspeed": 33.506,
+				"turbulence": 0.161,
+				"start": {
+					"heading": 57.668
+				},
+				"gimbal": {
+					"pitch": -73.647,
+					"stabilized": 0.374
+				}
+			},
+			"render": {
+				"seaSeed": 592880485
+			},
+			"id": "w19-sun38-a191-v34-survey"
+		},
+		{
+			"sea": {
+				"windSpeed": 16.227,
+				"windDirection": 48.659,
+				"fetch": 75.919,
+				"spread": 8,
+				"swellHeight": 0.124,
+				"swellDirection": 31.76,
+				"swellPeriod": 11.944,
+				"choppiness": 1.116
+			},
+			"light": {
+				"sunElevation": 18.352,
+				"sunAzimuth": 0.212,
+				"overcast": 0.257,
+				"haze": 0.439,
+				"exposure": 1
+			},
+			"trajectory": {
+				"seed": 155198246,
+				"pattern": {
+					"type": "orbit",
+					"radius": 250,
+					"direction": 1
+				},
+				"altitude": 78.836,
+				"airspeed": 30.689,
+				"turbulence": 0.295,
+				"start": {
+					"heading": 148.025
+				},
+				"gimbal": {
+					"pitch": -86.868,
+					"stabilized": 0.515
+				}
+			},
+			"render": {
+				"seaSeed": 175438857
+			},
+			"id": "w16-sun18-a79-v31-loiter"
+		},
+		{
+			"sea": {
+				"windSpeed": 18.847,
+				"windDirection": 173.576,
+				"fetch": 55.664,
+				"spread": 8,
+				"swellHeight": 1.148,
+				"swellDirection": 148.623,
+				"swellPeriod": 15.865,
+				"choppiness": 0.851
+			},
+			"light": {
+				"sunElevation": 7.993,
+				"sunAzimuth": 97.499,
+				"overcast": 0.175,
+				"haze": 0.208,
+				"exposure": 1
+			},
+			"trajectory": {
+				"seed": 37673548,
+				"pattern": {
+					"type": "racetrack",
+					"length": 900,
+					"radius": 200,
+					"direction": 1
+				},
+				"altitude": 39.324,
+				"airspeed": 57.1,
+				"turbulence": 0.582,
+				"start": {
+					"heading": 50.818
+				},
+				"gimbal": {
+					"pitch": -68.926,
+					"stabilized": 0.553
+				}
+			},
+			"render": {
+				"seaSeed": 57914159
+			},
+			"id": "w19-sun8-a39-v57-racetrack"
+		},
+		{
+			"sea": {
+				"windSpeed": 16.259,
+				"windDirection": 229.583,
+				"fetch": 484.519,
+				"spread": 8,
+				"swellHeight": 1.59,
+				"swellDirection": 313.953,
+				"swellPeriod": 8.445,
+				"choppiness": 1.37
+			},
+			"light": {
+				"sunElevation": 51.721,
+				"sunAzimuth": 259.433,
+				"overcast": 0.666,
+				"haze": 0.594,
+				"exposure": 1
+			},
+			"trajectory": {
+				"seed": 129720738,
+				"pattern": {
+					"type": "straight"
+				},
+				"altitude": 43.234,
+				"airspeed": 44.542,
+				"turbulence": 0.273,
+				"start": {
+					"heading": 1.646
+				},
+				"gimbal": {
+					"pitch": -67.699,
+					"stabilized": 0.972
+				}
+			},
+			"render": {
+				"seaSeed": 149961349
+			},
+			"id": "w16-sun52-a43-v45-transit"
+		},
+		{
+			"sea": {
+				"windSpeed": 12.001,
+				"windDirection": 187.134,
+				"fetch": 171.389,
+				"spread": 8,
+				"swellHeight": 0.244,
+				"swellDirection": 248.844,
+				"swellPeriod": 14.633,
+				"choppiness": 0.867
+			},
+			"light": {
+				"sunElevation": 48.062,
+				"sunAzimuth": 53.36,
+				"overcast": 0.237,
+				"haze": 0.117,
+				"exposure": 1
+			},
+			"trajectory": {
+				"seed": 931047801,
+				"pattern": {
+					"type": "racetrack",
+					"length": 900,
+					"radius": 200,
+					"direction": 1
+				},
+				"altitude": 122.458,
+				"airspeed": 22.881,
+				"turbulence": 0.267,
+				"start": {
+					"heading": 118.962
+				},
+				"gimbal": {
+					"pitch": -76.414,
+					"stabilized": 0.493
+				}
+			},
+			"render": {
+				"seaSeed": 951288412
+			},
+			"id": "w12-sun48-a122-v23-racetrack"
+		},
+		{
+			"sea": {
+				"windSpeed": 10.843,
+				"windDirection": 192.946,
+				"fetch": 52.273,
+				"spread": 8,
+				"swellHeight": 1.022,
+				"swellDirection": 188.813,
+				"swellPeriod": 14.883,
+				"choppiness": 1.353
+			},
+			"light": {
+				"sunElevation": 30.324,
+				"sunAzimuth": 19.341,
+				"overcast": 0.161,
+				"haze": 0.534,
+				"exposure": 1
+			},
+			"trajectory": {
+				"seed": 436720647,
+				"pattern": {
+					"type": "straight"
+				},
+				"altitude": 177.148,
+				"airspeed": 25.073,
+				"turbulence": 0.092,
+				"start": {
+					"heading": 109.35
+				},
+				"gimbal": {
+					"pitch": -89.924,
+					"stabilized": 0.849
+				}
+			},
+			"render": {
+				"seaSeed": 456961258
+			},
+			"id": "w11-sun30-a177-v25-transit"
+		},
+		{
+			"sea": {
+				"windSpeed": 17.088,
+				"windDirection": 30.045,
+				"fetch": 102.121,
+				"spread": 8,
+				"swellHeight": 1.001,
+				"swellDirection": 27.652,
+				"swellPeriod": 9.588,
+				"choppiness": 1.297
+			},
+			"light": {
+				"sunElevation": 38.69,
+				"sunAzimuth": 163.359,
+				"overcast": 0.238,
+				"haze": 0.104,
+				"exposure": 1
+			},
+			"trajectory": {
+				"seed": 542242007,
+				"pattern": {
+					"type": "straight"
+				},
+				"altitude": 59.222,
+				"airspeed": 59.478,
+				"turbulence": 0.456,
+				"start": {
+					"heading": 227.257
+				},
+				"gimbal": {
+					"pitch": -74.927,
+					"stabilized": 0.428
+				}
+			},
+			"render": {
+				"seaSeed": 562482618
+			},
+			"id": "w17-sun39-a59-v59-transit"
+		},
+		{
+			"sea": {
+				"windSpeed": 9.5,
+				"windDirection": 353.049,
+				"fetch": 72.149,
+				"spread": 8,
+				"swellHeight": 0.693,
+				"swellDirection": 339.225,
+				"swellPeriod": 15.739,
+				"choppiness": 1.162
+			},
+			"light": {
+				"sunElevation": 24.624,
+				"sunAzimuth": 336.247,
+				"overcast": 0.913,
+				"haze": 0.3,
+				"exposure": 1
+			},
+			"trajectory": {
+				"seed": 603874335,
+				"pattern": {
+					"type": "random",
+					"legLength": [
+						300,
+						900
+					],
+					"turn": [
+						-150,
+						150
+					]
+				},
+				"altitude": 194.684,
+				"airspeed": 37.211,
+				"turbulence": 0.38,
+				"start": {
+					"heading": 55.148
+				},
+				"gimbal": {
+					"pitch": -64.536,
+					"stabilized": 0.66
+				}
+			},
+			"render": {
+				"seaSeed": 624114946
+			},
+			"id": "w10-sun25-a195-v37-random"
+		},
+		{
+			"sea": {
+				"windSpeed": 7.659,
+				"windDirection": 289.749,
+				"fetch": 676.216,
+				"spread": 8,
+				"swellHeight": 1.76,
+				"swellDirection": 214.504,
+				"swellPeriod": 14.837,
+				"choppiness": 1.262
+			},
+			"light": {
+				"sunElevation": 55.578,
+				"sunAzimuth": 345.916,
+				"overcast": 0.786,
+				"haze": 0.523,
+				"exposure": 1
+			},
+			"trajectory": {
+				"seed": 594470264,
+				"pattern": {
+					"type": "orbit",
+					"radius": 250,
+					"direction": 1
+				},
+				"altitude": 90.599,
+				"airspeed": 55.845,
+				"turbulence": 0.757,
+				"start": {
+					"heading": 98.685
+				},
+				"gimbal": {
+					"pitch": -77.968,
+					"stabilized": 0.876
+				}
+			},
+			"render": {
+				"seaSeed": 614710875
+			},
+			"id": "w8-sun56-a91-v56-loiter"
+		},
+		{
+			"sea": {
+				"windSpeed": 16.201,
+				"windDirection": 143.359,
+				"fetch": 103.501,
+				"spread": 8,
+				"swellHeight": 0.646,
+				"swellDirection": 184.667,
+				"swellPeriod": 9.618,
+				"choppiness": 1.177
+			},
+			"light": {
+				"sunElevation": 37.411,
+				"sunAzimuth": 65.557,
+				"overcast": 0.22,
+				"haze": 0.497,
+				"exposure": 1
+			},
+			"trajectory": {
+				"seed": 150968427,
+				"pattern": {
+					"type": "racetrack",
+					"length": 900,
+					"radius": 200,
+					"direction": 1
+				},
+				"altitude": 53.343,
+				"airspeed": 26.297,
+				"turbulence": 0.794,
+				"start": {
+					"heading": 142.935
+				},
+				"gimbal": {
+					"pitch": -71.487,
+					"stabilized": 0.8
+				}
+			},
+			"render": {
+				"seaSeed": 171209038
+			},
+			"id": "w16-sun37-a53-v26-racetrack"
+		},
+		{
+			"sea": {
+				"windSpeed": 19.777,
+				"windDirection": 2.891,
+				"fetch": 57.869,
+				"spread": 8,
+				"swellHeight": 1.404,
+				"swellDirection": 293.703,
+				"swellPeriod": 8.798,
+				"choppiness": 1.125
+			},
+			"light": {
+				"sunElevation": 64.12,
+				"sunAzimuth": 96.725,
+				"overcast": 0.17,
+				"haze": 0.771,
+				"exposure": 1
+			},
+			"trajectory": {
+				"seed": 844904990,
+				"pattern": {
+					"type": "straight"
+				},
+				"altitude": 44.071,
+				"airspeed": 31.931,
+				"turbulence": 0.34,
+				"start": {
+					"heading": 48.472
+				},
+				"gimbal": {
+					"pitch": -86.25,
+					"stabilized": 0.354
+				}
+			},
+			"render": {
+				"seaSeed": 865145601
+			},
+			"id": "w20-sun64-a44-v32-transit"
+		},
+		{
+			"sea": {
+				"windSpeed": 17.868,
+				"windDirection": 183.795,
+				"fetch": 578.287,
+				"spread": 8,
+				"swellHeight": 0,
+				"swellDirection": 180.099,
+				"swellPeriod": 14.291,
+				"choppiness": 0.824
+			},
+			"light": {
+				"sunElevation": 45.678,
+				"sunAzimuth": 271.722,
+				"overcast": 0.033,
+				"haze": 0.489,
+				"exposure": 1
+			},
+			"trajectory": {
+				"seed": 436745010,
+				"pattern": {
+					"type": "orbit",
+					"radius": 250,
+					"direction": 1
+				},
+				"altitude": 100.399,
+				"airspeed": 35.161,
+				"turbulence": 0.298,
+				"start": {
+					"heading": 77.673
+				},
+				"gimbal": {
+					"pitch": -88.401,
+					"stabilized": 0.488
+				}
+			},
+			"render": {
+				"seaSeed": 456985621
+			},
+			"id": "w18-sun46-a100-v35-loiter"
+		},
+		{
+			"sea": {
+				"windSpeed": 16.714,
+				"windDirection": 263.282,
+				"fetch": 150.24,
+				"spread": 8,
+				"swellHeight": 0.14,
+				"swellDirection": 310.85,
+				"swellPeriod": 14.161,
+				"choppiness": 1.088
+			},
+			"light": {
+				"sunElevation": -0.135,
+				"sunAzimuth": 287.594,
+				"overcast": 0.4,
+				"haze": 0.299,
+				"exposure": 1
+			},
+			"trajectory": {
+				"seed": 103375926,
+				"pattern": {
+					"type": "figure8",
+					"radius": 250
+				},
+				"altitude": 44.845,
+				"airspeed": 35.694,
+				"turbulence": 0.027,
+				"start": {
+					"heading": 291.875
+				},
+				"gimbal": {
+					"pitch": -85.283,
+					"stabilized": 0.989
+				}
+			},
+			"render": {
+				"seaSeed": 123616537
+			},
+			"id": "w17-sun0-a45-v36-figure8"
+		},
+		{
+			"sea": {
+				"windSpeed": 6.325,
+				"windDirection": 140.834,
+				"fetch": 89.809,
+				"spread": 8,
+				"swellHeight": 0.351,
+				"swellDirection": 103.364,
+				"swellPeriod": 15.972,
+				"choppiness": 1.348
+			},
+			"light": {
+				"sunElevation": 7.446,
+				"sunAzimuth": 240.143,
+				"overcast": 0.148,
+				"haze": 0.356,
+				"exposure": 1
+			},
+			"trajectory": {
+				"seed": 811869154,
+				"pattern": {
+					"type": "random",
+					"legLength": [
+						300,
+						900
+					],
+					"turn": [
+						-150,
+						150
+					]
+				},
+				"altitude": 34.572,
+				"airspeed": 44.251,
+				"turbulence": 0.126,
+				"start": {
+					"heading": 41.063
+				},
+				"gimbal": {
+					"pitch": -79.626,
+					"stabilized": 0.545
+				}
+			},
+			"render": {
+				"seaSeed": 832109765
+			},
+			"id": "w6-sun7-a35-v44-random"
+		},
+		{
+			"sea": {
+				"windSpeed": 15.026,
+				"windDirection": 137.494,
+				"fetch": 60.33,
+				"spread": 8,
+				"swellHeight": 2.448,
+				"swellDirection": 167.443,
+				"swellPeriod": 14.227,
+				"choppiness": 0.733
+			},
+			"light": {
+				"sunElevation": 59.176,
+				"sunAzimuth": 284.611,
+				"overcast": 0.189,
+				"haze": 0.538,
+				"exposure": 1
+			},
+			"trajectory": {
+				"seed": 340967166,
+				"pattern": {
+					"type": "random",
+					"legLength": [
+						300,
+						900
+					],
+					"turn": [
+						-150,
+						150
+					]
+				},
+				"altitude": 99.239,
+				"airspeed": 26.364,
+				"turbulence": 0.252,
+				"start": {
+					"heading": 113.107
+				},
+				"gimbal": {
+					"pitch": -72.942,
+					"stabilized": 0.477
+				}
+			},
+			"render": {
+				"seaSeed": 361207777
+			},
+			"id": "w15-sun59-a99-v26-random"
+		},
+		{
+			"sea": {
+				"windSpeed": 9.344,
+				"windDirection": 235.287,
+				"fetch": 127.461,
+				"spread": 8,
+				"swellHeight": 2.328,
+				"swellDirection": 291.923,
+				"swellPeriod": 15.47,
+				"choppiness": 1.033
+			},
+			"light": {
+				"sunElevation": 44.252,
+				"sunAzimuth": 105.4,
+				"overcast": 0.994,
+				"haze": 0.425,
+				"exposure": 1
+			},
+			"trajectory": {
+				"seed": 660789490,
+				"pattern": {
+					"type": "racetrack",
+					"length": 900,
+					"radius": 200,
+					"direction": 1
+				},
+				"altitude": 79.478,
+				"airspeed": 36.944,
+				"turbulence": 0.188,
+				"start": {
+					"heading": 1.208
+				},
+				"gimbal": {
+					"pitch": -80.711,
+					"stabilized": 0.829
+				}
+			},
+			"render": {
+				"seaSeed": 681030101
+			},
+			"id": "w9-sun44-a79-v37-racetrack"
+		},
+		{
+			"sea": {
+				"windSpeed": 5.745,
+				"windDirection": 141.166,
+				"fetch": 503.27,
+				"spread": 8,
+				"swellHeight": 1.758,
+				"swellDirection": 168.456,
+				"swellPeriod": 14.407,
+				"choppiness": 1.054
+			},
+			"light": {
+				"sunElevation": 10.978,
+				"sunAzimuth": 281.374,
+				"overcast": 0.201,
+				"haze": 0.607,
+				"exposure": 1
+			},
+			"trajectory": {
+				"seed": 804754973,
+				"pattern": {
+					"type": "orbit",
+					"radius": 250,
+					"direction": 1
+				},
+				"altitude": 46.941,
+				"airspeed": 54.35,
+				"turbulence": 0.536,
+				"start": {
+					"heading": 117.802
+				},
+				"gimbal": {
+					"pitch": -80.559,
+					"stabilized": 0.635
+				}
+			},
+			"render": {
+				"seaSeed": 824995584
+			},
+			"id": "w6-sun11-a47-v54-loiter"
+		},
+		{
+			"sea": {
+				"windSpeed": 16.791,
+				"windDirection": 327.046,
+				"fetch": 325.932,
+				"spread": 8,
+				"swellHeight": 1.115,
+				"swellDirection": 39.164,
+				"swellPeriod": 14.495,
+				"choppiness": 1.239
+			},
+			"light": {
+				"sunElevation": 50.617,
+				"sunAzimuth": 139.299,
+				"overcast": 0.902,
+				"haze": 0.365,
+				"exposure": 1
+			},
+			"trajectory": {
+				"seed": 406681986,
+				"pattern": {
+					"type": "random",
+					"legLength": [
+						300,
+						900
+					],
+					"turn": [
+						-150,
+						150
+					]
+				},
+				"altitude": 33.655,
+				"airspeed": 36.38,
+				"turbulence": 0.052,
+				"start": {
+					"heading": 106.385
+				},
+				"gimbal": {
+					"pitch": -88.709,
+					"stabilized": 0.458
+				}
+			},
+			"render": {
+				"seaSeed": 426922597
+			},
+			"id": "w17-sun51-a34-v36-random"
+		}
+	]
+}

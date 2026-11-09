@@ -1,0 +1,5 @@
+set,model,windows_mine,matched,diff_median,diff_max
+test-iid,dispersive,36,36,0.0,0.0
+test-iid,static,36,36,0.0,0.0
+e1-core,dispersive,60,60,0.0,0.0
+e1-core,static,60,60,0.0,0.0

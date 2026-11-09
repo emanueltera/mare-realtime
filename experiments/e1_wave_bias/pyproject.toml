@@ -1,0 +1,27 @@
+[project]
+name = "e1-wave-bias"
+version = "0.1.0"
+description = "E1: bias in image-based velocity caused by the sea's own motion (flow models and dispersion-shell fit)"
+requires-python = ">=3.11"
+dependencies = [
+    "numpy",
+    "pillow",
+    "pandas",
+    "matplotlib",
+    "scipy",
+    "pytest",
+    # flow_bias.py (GPU box, /workspace/venv). torch/torchvision/torchaudio come from the
+    # CUDA 12.8 index (Blackwell, sm_120): uv pip install --index-url https://download.pytorch.org/whl/cu128 torch torchvision torchaudio
+    "torch",
+    "torchvision",
+    "opencv-python",
+    "einops",
+    "h5py",
+    "tqdm",
+    "huggingface_hub",
+    # UFM: uv pip install -e /workspace/models/UFM/UniCeption -e /workspace/models/UFM
+    # SEA-RAFT: cloned to /workspace/models/SEA-RAFT (not a package; flow_bias.py adds it to sys.path)
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

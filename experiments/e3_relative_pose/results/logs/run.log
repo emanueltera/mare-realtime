@@ -1,0 +1,9 @@
+=== train start 2026-10-30T22:21:41+00:00
+=== train done 2026-10-31T01:46:23+00:00
+/workspace/data/e3/preds/net-val.npz: 12000 pairs from 100 runs
+/workspace/data/e3/preds/blind-val.npz: 12000 pairs from 100 runs
+/workspace/data/e3/preds/net-test-long.npz: 72000 pairs from 120 runs
+/workspace/data/e3/preds/blind-test-long.npz: 72000 pairs from 120 runs
+/workspace/data/e3/preds/net-test-rate.npz: 18000 pairs from 90 runs
+/workspace/data/e3/preds/blind-test-rate.npz: 18000 pairs from 90 runs
+=== E3 done 2026-10-31T01:48:41+00:00

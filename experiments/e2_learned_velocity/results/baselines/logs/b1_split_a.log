@@ -1,0 +1,25 @@
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+/workspace/venv/lib/python3.12/site-packages/torch/functional.py:505: UserWarning: torch.meshgrid: in an upcoming release, it will be required to pass the indexing argument. (Triggered internally at /pytorch/aten/src/ATen/native/TensorShape.cpp:4381.)
+  return _VF.meshgrid(tensors, **kwargs)  # type: ignore[attr-defined]
+e1-core: 50/432 runs, 328 s, 18.3 pairs/s, GPU peak 2.08 GiB
+e1-core: 100/432 runs, 657 s, 18.3 pairs/s, GPU peak 2.08 GiB
+e1-core: 150/432 runs, 960 s, 18.7 pairs/s, GPU peak 2.08 GiB
+e1-core: 200/432 runs, 1355 s, 17.7 pairs/s, GPU peak 2.08 GiB
+e1-core: 250/432 runs, 1756 s, 17.1 pairs/s, GPU peak 2.08 GiB
+e1-core: 300/432 runs, 2161 s, 16.7 pairs/s, GPU peak 2.08 GiB
+e1-core: 350/432 runs, 2492 s, 16.9 pairs/s, GPU peak 2.08 GiB
+e1-core: 400/432 runs, 2821 s, 17.0 pairs/s, GPU peak 2.08 GiB
+e1-core: wrote 51840 pairs to /workspace/data/e2/baselines/pairs/searaft/e1-core.csv in 3087 s; GPU peak 2.08 GiB
+e1-core 3099 s
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+/workspace/venv/lib/python3.12/site-packages/torch/functional.py:505: UserWarning: torch.meshgrid: in an upcoming release, it will be required to pass the indexing argument. (Triggered internally at /pytorch/aten/src/ATen/native/TensorShape.cpp:4381.)
+  return _VF.meshgrid(tensors, **kwargs)  # type: ignore[attr-defined]
+test-iid: 50/300 runs, 270 s, 14.8 pairs/s, GPU peak 2.07 GiB
+test-iid: 100/300 runs, 519 s, 15.4 pairs/s, GPU peak 2.07 GiB
+test-iid: 150/300 runs, 754 s, 15.9 pairs/s, GPU peak 2.07 GiB
+test-iid: 200/300 runs, 1016 s, 15.8 pairs/s, GPU peak 2.07 GiB
+test-iid: 250/300 runs, 1295 s, 15.4 pairs/s, GPU peak 2.07 GiB
+test-iid: 300/300 runs, 1570 s, 15.3 pairs/s, GPU peak 2.07 GiB
+test-iid: wrote 24000 pairs to /workspace/data/e2/baselines/pairs/searaft/test-iid.csv in 1597 s; GPU peak 2.07 GiB
+test-iid 1608 s
+done

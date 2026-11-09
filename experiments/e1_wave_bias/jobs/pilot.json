@@ -1,0 +1,81 @@
+{
+	"name": "e1-pilot",
+	"description": "E1 pilot: 6 runs of the core camera (moderate and strong; 60 m/60 m/s down-wave, 120 m/30 m/s cross, 60 m/30 m/s up-wave), midday.",
+	"base": {
+		"light": "midday",
+		"render": {
+			"width": 720,
+			"height": 1280,
+			"fps": 10,
+			"warmup": 8
+		}
+	},
+	"sweep": {
+		"sea": [
+			"moderate",
+			"strong"
+		],
+		"trajectory": [
+			{
+				"duration": 12,
+				"pattern": "transit",
+				"wind": "none",
+				"turbulence": 0,
+				"airspeedVariation": 0,
+				"gimbal": {
+					"pitch": -90,
+					"yaw": 0,
+					"fov": 92,
+					"stabilized": 1
+				},
+				"altitude": 60,
+				"airspeed": 60,
+				"start": {
+					"x": 0,
+					"y": 0,
+					"heading": 60
+				}
+			},
+			{
+				"duration": 12,
+				"pattern": "transit",
+				"wind": "none",
+				"turbulence": 0,
+				"airspeedVariation": 0,
+				"gimbal": {
+					"pitch": -90,
+					"yaw": 0,
+					"fov": 92,
+					"stabilized": 1
+				},
+				"altitude": 120,
+				"airspeed": 30,
+				"start": {
+					"x": 0,
+					"y": 0,
+					"heading": 150
+				}
+			},
+			{
+				"duration": 12,
+				"pattern": "transit",
+				"wind": "none",
+				"turbulence": 0,
+				"airspeedVariation": 0,
+				"gimbal": {
+					"pitch": -90,
+					"yaw": 0,
+					"fov": 92,
+					"stabilized": 1
+				},
+				"altitude": 60,
+				"airspeed": 30,
+				"start": {
+					"x": 0,
+					"y": 0,
+					"heading": 240
+				}
+			}
+		]
+	}
+}

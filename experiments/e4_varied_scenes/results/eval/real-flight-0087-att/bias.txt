@@ -1,0 +1,14 @@
+stretch     track°  speed m/s   mean(pred−gnss) E,N m/s   along   left
+stretch-00   137.4    56.2      +1.40  -0.65            +1.43  +0.59
+stretch-01   340.1    60.0      +0.69  -2.87            -2.94  +0.33
+stretch-02   302.8    58.8      +0.40  -0.03            -0.35  -0.19
+stretch-03   123.7    62.4      +0.33  -0.16            +0.36  +0.05
+stretch-04   309.6    58.2      +1.48  +1.42            -0.24  -2.04
+stretch-05   292.0    55.7      +2.66  +1.62            -1.86  -2.50
+stretch-06   131.9    61.3      -0.66  -2.55            +1.21  -2.34
+stretch-07   310.3    57.7      +3.77  +0.42            -2.60  -2.76
+stretch-08   126.9    60.4      +0.75  -0.55            +0.93  +0.02
+scale per stretch only                 rms residual 5.960 m/s; 
++ fixed world vector (water drift)     rms residual 5.938 m/s; c = E -1.26, N +0.51 m/s (|c| 1.36)
++ fixed yaw offset (mount/stabiliser)  rms residual 5.932 m/s; delta = -0.80 deg
++ both                                 rms residual 5.901 m/s; c = E -1.40, N +0.40 m/s, delta = -0.91 deg

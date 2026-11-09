@@ -1,0 +1,39 @@
+finding,check,value,lo,hi,n,p,note
+F1,test-long spearman baro_bias_m vs alt_mean,-0.03761372317522049,,,120,0.6833696227073843,
+F1,test-long slope scale_h~baro_scale alt 0-50,0.6582641643220225,,,39,,R2 0.74; SD baro_scale 5.11 %
+F1,test-long slope scale_h~baro_scale alt 50-80,0.8249208579694846,,,24,,R2 0.80; SD baro_scale 2.84 %
+F1,test-long slope scale_h~baro_scale alt 80-120,0.8826105275812598,,,22,,R2 0.75; SD baro_scale 2.43 %
+F1,test-long slope scale_h~baro_scale alt 120-1000,1.1252624572631018,,,35,,R2 0.45; SD baro_scale 1.26 %
+F2,"test-long slope with baro height in (30, 200) only",0.7602872933174333,,,118,,dropped 2
+F2,"test-long slope with baro height in (33, 180) only",0.7826647639001006,,,105,,dropped 15
+F2,"test-long slope with baro height in (35, 175) only",0.7760537749185306,,,93,,dropped 27
+F3,test-long spearman |scale residual after baro fit| vs alt_mean,-0.24235710813250916,-0.39510310573843693,-0.06464036452836536,120,0.0076535303019798825,
+F3,test-long spearman signed scale residual vs alt_mean,-0.2636294187096326,-0.43801111487486405,-0.07698819226944971,120,0.0036219385889239633,
+F3,test-long spearman cross_abs vs alt_mean,0.13538440169456212,-0.049244035086453045,0.310454539805698,120,0.14039124755586715,
+F3,test-long spearman |cross_h| vs alt_mean,0.23368289464546144,0.05550650820715107,0.394582379938004,120,0.010206821978328817,
+F3,test-long spearman drift_noscale vs alt_mean,-0.07584554482950204,-0.2571373501290782,0.10831765434850622,120,0.4103165257574002,
+F1,val spearman baro_bias_m vs alt_mean,-0.14388238823882388,,,100,0.1532408748965476,
+F1,val slope scale_h~baro_scale alt 0-50,0.7640987126156046,,,27,,R2 0.77; SD baro_scale 4.95 %
+F1,val slope scale_h~baro_scale alt 50-80,0.8388549517444495,,,28,,R2 0.76; SD baro_scale 3.46 %
+F1,val slope scale_h~baro_scale alt 80-120,0.8488443233696463,,,18,,R2 0.65; SD baro_scale 2.69 %
+F1,val slope scale_h~baro_scale alt 120-1000,1.146679050968335,,,27,,R2 0.61; SD baro_scale 1.58 %
+F2,"val slope with baro height in (30, 200) only",0.8680282938004791,,,98,,dropped 2
+F2,"val slope with baro height in (33, 180) only",0.8820534196696486,,,91,,dropped 9
+F2,"val slope with baro height in (35, 175) only",0.8807142109969326,,,86,,dropped 14
+F3,val spearman |scale residual after baro fit| vs alt_mean,-0.24760876087608755,-0.4325681758456747,-0.03744148744950421,100,0.013000202060185944,
+F3,val spearman signed scale residual vs alt_mean,-0.31859585958595854,-0.4985209369502567,-0.10408533128909318,100,0.0012356517384364918,
+F3,val spearman cross_abs vs alt_mean,0.1711371137113711,-0.028244773693635775,0.3657148311373053,100,0.088673133255176,
+F3,val spearman |cross_h| vs alt_mean,0.2438643864386438,0.06084964435384925,0.4273328211105605,100,0.014484495801324411,
+F3,val spearman drift_noscale vs alt_mean,0.22395439543954393,0.03916912682273302,0.4022839249787505,100,0.025096135712912436,
+F4,median peak phase speed (m/s),17.106301984426775,,,30,,range 8.0 to 23.2
+F4,rate 0: spearman signed Δ along wind vs peak phase speed,0.061179087875417135,,,30,0.7480936237982676,
+F4,rate 0: spearman |Δ along wind| vs peak phase speed,0.07007786429365963,,,30,0.7128914578943151,
+F4,rate 0: median |Δ along wind| / median phase speed,0.04759059354276448,,,30,,
+F4,"rate 0: median Δ along wind, wind-swell > 60°",0.5850885339498652,,,8,,min -0.39 max 1.24
+F4,"rate 0: median Δ along swell, wind-swell > 60°",-0.031090633304586668,,,8,,min -0.94 max 1.04
+F4,rate 2: spearman signed Δ along wind vs peak phase speed,-0.22714126807563956,,,30,0.227395389721455,
+F4,rate 2: spearman |Δ along wind| vs peak phase speed,0.3027808676307008,,,30,0.10387170798379242,
+F4,rate 2: median |Δ along wind| / median phase speed,0.03793498526445828,,,30,,
+F4,"rate 2: median Δ along wind, wind-swell > 60°",-0.4712065806823045,,,8,,min -0.73 max 0.35
+F4,"rate 2: median Δ along swell, wind-swell > 60°",0.0018712029053108287,,,8,,min -2.30 max 0.70
+F5,"mean over conditions of mean cos(track, wind-sea direction)",-0.015870622421168823,-0.2287582638114415,0.17727680285872238,30,,median |cos| 0.56

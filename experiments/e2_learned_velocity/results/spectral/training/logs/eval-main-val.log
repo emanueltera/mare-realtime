@@ -1,0 +1,3 @@
+val: 7500 windows in 156s (checkpoint epoch 16, tta False); pattern missing 0.0000, truth inside stage-0 grid 1.0000
+set  K  runs  b_median    b_p90  b_pct_median  drift_pct_median  frac_b_le_017  frac_bpct_le_028
+val 32   150  0.337964 0.876647      0.998701          1.053258           0.22          0.086667

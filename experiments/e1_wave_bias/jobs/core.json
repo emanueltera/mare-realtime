@@ -1,0 +1,55 @@
+{
+	"name": "e1-core",
+	"description": "E1 core grid: nadir, portrait 720x1280, fov 92, 10 fps, 12 s straight, no wind; sea x altitude x airspeed x heading to the waves (60 down-wave, 150 cross, 240 up-wave) x sun. 432 runs.",
+	"base": {
+		"trajectory": {
+			"duration": 12,
+			"pattern": "transit",
+			"wind": "none",
+			"turbulence": 0,
+			"airspeedVariation": 0,
+			"gimbal": {
+				"pitch": -90,
+				"yaw": 0,
+				"fov": 92,
+				"stabilized": 1
+			}
+		},
+		"render": {
+			"width": 720,
+			"height": 1280,
+			"fps": 10,
+			"warmup": 8
+		}
+	},
+	"sweep": {
+		"sea": [
+			"calm",
+			"moderate",
+			"fresh",
+			"strong",
+			"moderate-swell",
+			"cross-swell"
+		],
+		"light": [
+			"midday",
+			"low-sun"
+		],
+		"trajectory.altitude": [
+			30,
+			60,
+			120,
+			250
+		],
+		"trajectory.airspeed": [
+			15,
+			30,
+			60
+		],
+		"trajectory.start.heading": [
+			60,
+			150,
+			240
+		]
+	}
+}

@@ -1,0 +1,15 @@
+wrote 66000 rows to /workspace/data/e2/preds/b1-searaft/test-iid.csv
+     set  K  runs  b_median    b_p90  b_pct_median  drift_pct_median  frac_b_le_017  frac_bpct_le_028
+test-iid  2   300  1.860414 3.085778      5.412975          5.412975            0.0               0.0
+test-iid  8   300  1.840773 3.018068      5.395238          5.414659            0.0               0.0
+test-iid 16   300  1.853630 2.981215      5.399903          5.387754            0.0               0.0
+wrote 33000 rows to /workspace/data/e2/preds/b1-searaft/test-sea.csv
+     set  K  runs  b_median    b_p90  b_pct_median  drift_pct_median  frac_b_le_017  frac_bpct_le_028
+test-sea  2   150  1.653978 3.255805      4.385835          4.385835            0.0               0.0
+test-sea  8   150  1.638392 3.009197      4.315790          4.288472            0.0               0.0
+test-sea 16   150  1.619530 3.031997      4.227405          4.292843            0.0               0.0
+wrote 33000 rows to /workspace/data/e2/preds/b1-searaft/test-alt.csv
+     set  K  runs  b_median    b_p90  b_pct_median  drift_pct_median  frac_b_le_017  frac_bpct_le_028
+test-alt  2   150  3.270934 4.279001      9.305137          9.305137            0.0               0.0
+test-alt  8   150  3.272104 4.280807      9.339458          9.313860            0.0               0.0
+test-alt 16   150  3.261855 4.284036      9.455625          9.463510            0.0               0.0

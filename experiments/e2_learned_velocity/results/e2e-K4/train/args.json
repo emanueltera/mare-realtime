@@ -1,0 +1,23 @@
+{
+ "out": "/workspace/data/e2/e2e/abl-K4",
+ "sets": "/workspace/data/e2/sets",
+ "K": 4,
+ "steps": 6412,
+ "batch": 16,
+ "lr": 0.0003,
+ "wd": 0.0001,
+ "warmup": 500,
+ "n_iter": 4,
+ "max_gap": 7,
+ "radius": 4,
+ "p_bin": 0.25,
+ "ema": 0.999,
+ "val_every": 700,
+ "val_step": 4,
+ "workers": 5,
+ "train_runs": null,
+ "val_on_train": false,
+ "max_hours": 1.5,
+ "gpu_mem_gb": 9.0,
+ "seed": 0
+}

@@ -1,0 +1,141 @@
+{
+ "b3_train_runs": 1500,
+ "b3_train_runs_are_first_1500": true,
+ "b3_train_windows": 111000,
+ "overlap": [
+  {
+   "set": "val",
+   "col": "run_id",
+   "overlap_with_train": 0
+  },
+  {
+   "set": "val",
+   "col": "traj_seed",
+   "overlap_with_train": 0
+  },
+  {
+   "set": "val",
+   "col": "sea_seed",
+   "overlap_with_train": 0
+  },
+  {
+   "set": "test-iid",
+   "col": "run_id",
+   "overlap_with_train": 0
+  },
+  {
+   "set": "test-iid",
+   "col": "traj_seed",
+   "overlap_with_train": 0
+  },
+  {
+   "set": "test-iid",
+   "col": "sea_seed",
+   "overlap_with_train": 0
+  },
+  {
+   "set": "test-sea",
+   "col": "run_id",
+   "overlap_with_train": 0
+  },
+  {
+   "set": "test-sea",
+   "col": "traj_seed",
+   "overlap_with_train": 0
+  },
+  {
+   "set": "test-sea",
+   "col": "sea_seed",
+   "overlap_with_train": 0
+  },
+  {
+   "set": "test-alt",
+   "col": "run_id",
+   "overlap_with_train": 0
+  },
+  {
+   "set": "test-alt",
+   "col": "traj_seed",
+   "overlap_with_train": 0
+  },
+  {
+   "set": "test-alt",
+   "col": "sea_seed",
+   "overlap_with_train": 0
+  },
+  {
+   "set": "test-rate",
+   "col": "run_id",
+   "overlap_with_train": 0
+  },
+  {
+   "set": "test-rate",
+   "col": "traj_seed",
+   "overlap_with_train": 0
+  },
+  {
+   "set": "test-rate",
+   "col": "sea_seed",
+   "overlap_with_train": 0
+  },
+  {
+   "set": "e1-core",
+   "col": "run_id",
+   "overlap_with_train": 0
+  },
+  {
+   "set": "e1-core",
+   "col": "traj_seed",
+   "overlap_with_train": 0
+  },
+  {
+   "set": "e1-core",
+   "col": "sea_seed",
+   "overlap_with_train": 0
+  }
+ ],
+ "theta_ks": {
+  "train": {
+   "n": 4500,
+   "ks_p": 0.7485335909461022,
+   "min": 0.1082566469445645,
+   "max": 359.8742705646334
+  },
+  "val": {
+   "n": 150,
+   "ks_p": 0.6049401249029411,
+   "min": 2.9373598369346654,
+   "max": 358.3517029728347
+  },
+  "test-iid": {
+   "n": 300,
+   "ks_p": 0.15267711003953932,
+   "min": 1.3307609848398227,
+   "max": 359.15431163255033
+  },
+  "test-sea": {
+   "n": 150,
+   "ks_p": 0.8311810766765115,
+   "min": 0.42753197430348777,
+   "max": 359.5579431159242
+  },
+  "test-alt": {
+   "n": 150,
+   "ks_p": 0.27653335783949895,
+   "min": 4.446258226485624,
+   "max": 354.4121048955016
+  },
+  "test-rate": {
+   "n": 400,
+   "ks_p": 3.508506950228224e-11,
+   "min": 0.4204927189814889,
+   "max": 358.5452456985427
+  },
+  "e1-core": {
+   "n": 432,
+   "ks_p": 0.8020422193207567,
+   "min": 0.2110851238432776,
+   "max": 358.85125704056713
+  }
+ }
+}

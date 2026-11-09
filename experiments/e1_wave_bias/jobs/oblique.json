@@ -1,0 +1,46 @@
+{
+	"name": "e1-oblique",
+	"description": "E1 oblique subset: the core camera pitched to -60. 36 runs.",
+	"base": {
+		"trajectory": {
+			"duration": 12,
+			"pattern": "transit",
+			"wind": "none",
+			"turbulence": 0,
+			"airspeedVariation": 0,
+			"gimbal": {
+				"pitch": -60,
+				"yaw": 0,
+				"fov": 92,
+				"stabilized": 1
+			}
+		},
+		"render": {
+			"width": 720,
+			"height": 1280,
+			"fps": 10,
+			"warmup": 8
+		},
+		"light": "midday"
+	},
+	"sweep": {
+		"sea": [
+			"moderate",
+			"strong",
+			"cross-swell"
+		],
+		"trajectory.altitude": [
+			60,
+			120
+		],
+		"trajectory.airspeed": [
+			30,
+			60
+		],
+		"trajectory.start.heading": [
+			60,
+			150,
+			240
+		]
+	}
+}

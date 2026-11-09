@@ -1,0 +1,13 @@
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+/workspace/venv/lib/python3.12/site-packages/torch/functional.py:505: UserWarning: torch.meshgrid: in an upcoming release, it will be required to pass the indexing argument. (Triggered internally at /pytorch/aten/src/ATen/native/TensorShape.cpp:4381.)
+  return _VF.meshgrid(tensors, **kwargs)  # type: ignore[attr-defined]
+test-iid: 5/12 runs, 29 s, 14.0 pairs/s, GPU peak 2.07 GiB
+test-iid: 10/12 runs, 43 s, 18.6 pairs/s, GPU peak 2.07 GiB
+test-iid: wrote 960 pairs to /workspace/data/e2/verify_baselines/b1_pairs/test-iid.csv in 56 s; GPU peak 2.07 GiB
+e1-core: 5/12 runs, 33 s, 18.2 pairs/s, GPU peak 2.08 GiB
+e1-core: 10/12 runs, 54 s, 22.1 pairs/s, GPU peak 2.08 GiB
+e1-core: wrote 1440 pairs to /workspace/data/e2/verify_baselines/b1_pairs/e1-core.csv in 73 s; GPU peak 2.08 GiB
+== b1_rerun_pairs
+     set  runs  pairs_mine  pairs_matched  nan_disagree  diff_median  diff_p99  diff_max
+test-iid    12         960            960             0          0.0       0.0       0.0
+ e1-core    12        1440           1440             0          0.0       0.0       0.0

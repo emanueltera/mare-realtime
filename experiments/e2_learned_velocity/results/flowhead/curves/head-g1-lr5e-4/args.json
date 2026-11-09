@@ -1,0 +1,22 @@
+{
+ "K": 8,
+ "gaps": "1",
+ "iters": 4,
+ "crop": 256,
+ "amp": 1,
+ "backbone": "frozen",
+ "trained_on": "cache",
+ "cache": "/workspace/data/e2/flowhead/cache",
+ "out": "/workspace/data/e2/flowhead/head-g1-lr5e-4",
+ "batch": 64,
+ "minutes": 40.0,
+ "steps": 40000,
+ "lr": 0.0005,
+ "wd": 0.0001,
+ "warmup": 300,
+ "nll_weight": 0.1,
+ "val_every": 500,
+ "train_limit": 0,
+ "val_on_train": false,
+ "seed": 0
+}

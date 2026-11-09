@@ -1,0 +1,32 @@
+=== /workspace/data/e3/sets/test-long: 120 of 120 runs
+=== /workspace/data/e3/sets/test-rate: 90 of 90 runs
+=== /workspace/data/e4/sets/val-varied: 100 of 100 runs
+=== /workspace/data/e4/sets/test-varied: 120 of 120 runs
+=== /workspace/data/e4/sets/train: 6000 of 6000 runs
+=== train start 2026-11-07T15:15:28+00:00
+=== trained var3k-s1 2026-11-08T01:53:45+00:00
+=== trained blind 2026-11-08T01:53:45+00:00
+=== trained var6k 2026-11-08T05:21:58+00:00
+=== trained var3k 2026-11-08T05:21:58+00:00
+=== train done 2026-11-08T05:21:58+00:00; scoring e3 var3k-s1 blind var6k var3k
+/workspace/data/e4/preds/e3-test-long.npz: 72000 pairs from 120 runs
+/workspace/data/e4/preds/var3k-s1-test-long.npz: 72000 pairs from 120 runs
+/workspace/data/e4/preds/blind-test-long.npz: 72000 pairs from 120 runs
+/workspace/data/e4/preds/var6k-test-long.npz: 72000 pairs from 120 runs
+/workspace/data/e4/preds/var3k-test-long.npz: 72000 pairs from 120 runs
+/workspace/data/e4/preds/e3-test-rate.npz: 18000 pairs from 90 runs
+/workspace/data/e4/preds/var3k-s1-test-rate.npz: 18000 pairs from 90 runs
+/workspace/data/e4/preds/blind-test-rate.npz: 18000 pairs from 90 runs
+/workspace/data/e4/preds/var6k-test-rate.npz: 18000 pairs from 90 runs
+/workspace/data/e4/preds/var3k-test-rate.npz: 18000 pairs from 90 runs
+/workspace/data/e4/preds/e3-test-varied.npz: 72000 pairs from 120 runs
+/workspace/data/e4/preds/var3k-s1-test-varied.npz: 72000 pairs from 120 runs
+/workspace/data/e4/preds/blind-test-varied.npz: 72000 pairs from 120 runs
+/workspace/data/e4/preds/var6k-test-varied.npz: 72000 pairs from 120 runs
+/workspace/data/e4/preds/var3k-test-varied.npz: 72000 pairs from 120 runs
+/workspace/data/e4/preds/e3-test-varied-fx.npz: 72000 pairs from 120 runs
+/workspace/data/e4/preds/var3k-s1-test-varied-fx.npz: 72000 pairs from 120 runs
+/workspace/data/e4/preds/blind-test-varied-fx.npz: 72000 pairs from 120 runs
+/workspace/data/e4/preds/var6k-test-varied-fx.npz: 72000 pairs from 120 runs
+/workspace/data/e4/preds/var3k-test-varied-fx.npz: 72000 pairs from 120 runs
+=== E4 done 2026-11-08T05:44:06+00:00

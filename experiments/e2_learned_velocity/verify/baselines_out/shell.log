@@ -1,0 +1,18 @@
+e2-test-iid-050-w5-sun28-a30-v36-survey: 12 fits, 36.5 s
+e2-test-iid-250-w6-sun60-a188-v46-loiter: 12 fits, 41.4 s
+e2-test-iid-100-w10-sun52-a67-v33-transit: 12 fits, 41.5 s
+e2-test-iid-150-w4-sun57-a52-v28-loiter: 12 fits, 42.1 s
+e2-test-iid-000-w5-sun16-a97-v42-figure8: 12 fits, 42.8 s
+e2-test-iid-200-w15-sun17-a187-v35-transit: 12 fits, 44.0 s
+e1-core-216-strong-midday-altitude30-airspeed15-heading60: 20 fits, 37.6 s
+e1-core-144-fresh-midday-altitude30-airspeed15-heading60: 20 fits, 38.7 s
+e1-core-288-moderate-swell-midday-altitude30-airspeed15-heading60: 20 fits, 39.9 s
+e1-core-000-calm-midday-altitude30-airspeed15-heading60: 20 fits, 41.6 s
+e1-core-072-moderate-midday-altitude30-airspeed15-heading60: 20 fits, 43.6 s
+e1-core-360-cross-swell-midday-altitude30-airspeed15-heading60: 20 fits, 44.7 s
+== b2_rerun
+     set      model  windows_mine  matched  diff_median  diff_max
+test-iid dispersive            36       36          0.0       0.0
+test-iid     static            36       36          0.0       0.0
+ e1-core dispersive            60       60          0.0       0.0
+ e1-core     static            60       60          0.0       0.0

@@ -1,0 +1,21 @@
+{
+ "out": "/workspace/data/e2/spectral/smoke",
+ "K": 32,
+ "stages": "reg",
+ "bin": 2,
+ "pad": 2,
+ "band": 1.0,
+ "hid": 96,
+ "bs": 12,
+ "lr": 0.001,
+ "epochs": 10,
+ "samples": 720,
+ "max_minutes": 150.0,
+ "teacher_steps": 300,
+ "val_step": 7,
+ "workers": 8,
+ "train_runs": 24,
+ "val_on_train": true,
+ "bench": 0,
+ "seed": 0
+}

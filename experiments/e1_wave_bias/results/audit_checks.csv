@@ -1,0 +1,934 @@
+check,slice,value,n
+searaft_g1_median_b_abs_by_light,light=low-sun,1.5559,216
+searaft_g1_median_b_abs_by_light,light=midday,1.8144,198
+searaft_g1_median_b_abs_matched_cells,light=midday,1.8144,198
+searaft_g1_median_b_abs_matched_cells,light=low-sun,1.6584,198
+searaft_g1_median_diff_lowsun_minus_midday_matched,all,-0.10215,198
+searaft_pairs_flagged_share,g=1 | altitude=30 | airspeed=15 | light=low-sun,0,414
+searaft_pairs_collapsed_share,g=1 | altitude=30 | airspeed=15 | light=low-sun,0,414
+searaft_flow_px_expected_median,g=1 | altitude=30 | airspeed=15 | light=low-sun,31.083,414
+searaft_flow_px_measured_median,g=1 | altitude=30 | airspeed=15 | light=low-sun,31.15,414
+searaft_runs_with_unflagged_pair,g=1 | altitude=30 | airspeed=15 | light=low-sun,18,18
+searaft_pairs_flagged_share,g=1 | altitude=30 | airspeed=15 | light=midday,0,414
+searaft_pairs_collapsed_share,g=1 | altitude=30 | airspeed=15 | light=midday,0,414
+searaft_flow_px_expected_median,g=1 | altitude=30 | airspeed=15 | light=midday,31.083,414
+searaft_flow_px_measured_median,g=1 | altitude=30 | airspeed=15 | light=midday,31.302,414
+searaft_runs_with_unflagged_pair,g=1 | altitude=30 | airspeed=15 | light=midday,18,18
+searaft_pairs_flagged_share,g=1 | altitude=30 | airspeed=30 | light=low-sun,0,414
+searaft_pairs_collapsed_share,g=1 | altitude=30 | airspeed=30 | light=low-sun,0,414
+searaft_flow_px_expected_median,g=1 | altitude=30 | airspeed=30 | light=low-sun,62.245,414
+searaft_flow_px_measured_median,g=1 | altitude=30 | airspeed=30 | light=low-sun,62.313,414
+searaft_runs_with_unflagged_pair,g=1 | altitude=30 | airspeed=30 | light=low-sun,18,18
+searaft_pairs_flagged_share,g=1 | altitude=30 | airspeed=30 | light=midday,0,414
+searaft_pairs_collapsed_share,g=1 | altitude=30 | airspeed=30 | light=midday,0,414
+searaft_flow_px_expected_median,g=1 | altitude=30 | airspeed=30 | light=midday,62.245,414
+searaft_flow_px_measured_median,g=1 | altitude=30 | airspeed=30 | light=midday,62.499,414
+searaft_runs_with_unflagged_pair,g=1 | altitude=30 | airspeed=30 | light=midday,18,18
+searaft_pairs_flagged_share,g=1 | altitude=30 | airspeed=60 | light=low-sun,0.016908,414
+searaft_pairs_collapsed_share,g=1 | altitude=30 | airspeed=60 | light=low-sun,0,414
+searaft_flow_px_expected_median,g=1 | altitude=30 | airspeed=60 | light=low-sun,124.53,414
+searaft_flow_px_measured_median,g=1 | altitude=30 | airspeed=60 | light=low-sun,124.45,414
+searaft_runs_with_unflagged_pair,g=1 | altitude=30 | airspeed=60 | light=low-sun,18,18
+searaft_pairs_flagged_share,g=1 | altitude=30 | airspeed=60 | light=midday,1,414
+searaft_pairs_collapsed_share,g=1 | altitude=30 | airspeed=60 | light=midday,0.89855,414
+searaft_flow_px_expected_median,g=1 | altitude=30 | airspeed=60 | light=midday,124.53,414
+searaft_flow_px_measured_median,g=1 | altitude=30 | airspeed=60 | light=midday,17.024,414
+searaft_runs_with_unflagged_pair,g=1 | altitude=30 | airspeed=60 | light=midday,0,18
+searaft_pairs_flagged_share,g=1 | altitude=60 | airspeed=15 | light=low-sun,0,414
+searaft_pairs_collapsed_share,g=1 | altitude=60 | airspeed=15 | light=low-sun,0,414
+searaft_flow_px_expected_median,g=1 | altitude=60 | airspeed=15 | light=low-sun,15.496,414
+searaft_flow_px_measured_median,g=1 | altitude=60 | airspeed=15 | light=low-sun,15.624,414
+searaft_runs_with_unflagged_pair,g=1 | altitude=60 | airspeed=15 | light=low-sun,18,18
+searaft_pairs_flagged_share,g=1 | altitude=60 | airspeed=15 | light=midday,0,414
+searaft_pairs_collapsed_share,g=1 | altitude=60 | airspeed=15 | light=midday,0,414
+searaft_flow_px_expected_median,g=1 | altitude=60 | airspeed=15 | light=midday,15.496,414
+searaft_flow_px_measured_median,g=1 | altitude=60 | airspeed=15 | light=midday,15.686,414
+searaft_runs_with_unflagged_pair,g=1 | altitude=60 | airspeed=15 | light=midday,18,18
+searaft_pairs_flagged_share,g=1 | altitude=60 | airspeed=30 | light=low-sun,0,414
+searaft_pairs_collapsed_share,g=1 | altitude=60 | airspeed=30 | light=low-sun,0,414
+searaft_flow_px_expected_median,g=1 | altitude=60 | airspeed=30 | light=low-sun,31.012,414
+searaft_flow_px_measured_median,g=1 | altitude=60 | airspeed=30 | light=low-sun,31.095,414
+searaft_runs_with_unflagged_pair,g=1 | altitude=60 | airspeed=30 | light=low-sun,18,18
+searaft_pairs_flagged_share,g=1 | altitude=60 | airspeed=30 | light=midday,0,414
+searaft_pairs_collapsed_share,g=1 | altitude=60 | airspeed=30 | light=midday,0,414
+searaft_flow_px_expected_median,g=1 | altitude=60 | airspeed=30 | light=midday,31.012,414
+searaft_flow_px_measured_median,g=1 | altitude=60 | airspeed=30 | light=midday,31.141,414
+searaft_runs_with_unflagged_pair,g=1 | altitude=60 | airspeed=30 | light=midday,18,18
+searaft_pairs_flagged_share,g=1 | altitude=60 | airspeed=60 | light=low-sun,0,414
+searaft_pairs_collapsed_share,g=1 | altitude=60 | airspeed=60 | light=low-sun,0,414
+searaft_flow_px_expected_median,g=1 | altitude=60 | airspeed=60 | light=low-sun,62.033,414
+searaft_flow_px_measured_median,g=1 | altitude=60 | airspeed=60 | light=low-sun,62.139,414
+searaft_runs_with_unflagged_pair,g=1 | altitude=60 | airspeed=60 | light=low-sun,18,18
+searaft_pairs_flagged_share,g=1 | altitude=60 | airspeed=60 | light=midday,0,414
+searaft_pairs_collapsed_share,g=1 | altitude=60 | airspeed=60 | light=midday,0,414
+searaft_flow_px_expected_median,g=1 | altitude=60 | airspeed=60 | light=midday,62.033,414
+searaft_flow_px_measured_median,g=1 | altitude=60 | airspeed=60 | light=midday,62.178,414
+searaft_runs_with_unflagged_pair,g=1 | altitude=60 | airspeed=60 | light=midday,18,18
+searaft_pairs_flagged_share,g=1 | altitude=120 | airspeed=15 | light=low-sun,0,414
+searaft_pairs_collapsed_share,g=1 | altitude=120 | airspeed=15 | light=low-sun,0,414
+searaft_flow_px_expected_median,g=1 | altitude=120 | airspeed=15 | light=low-sun,7.7367,414
+searaft_flow_px_measured_median,g=1 | altitude=120 | airspeed=15 | light=low-sun,7.7928,414
+searaft_runs_with_unflagged_pair,g=1 | altitude=120 | airspeed=15 | light=low-sun,18,18
+searaft_pairs_flagged_share,g=1 | altitude=120 | airspeed=15 | light=midday,0,414
+searaft_pairs_collapsed_share,g=1 | altitude=120 | airspeed=15 | light=midday,0,414
+searaft_flow_px_expected_median,g=1 | altitude=120 | airspeed=15 | light=midday,7.7367,414
+searaft_flow_px_measured_median,g=1 | altitude=120 | airspeed=15 | light=midday,7.8231,414
+searaft_runs_with_unflagged_pair,g=1 | altitude=120 | airspeed=15 | light=midday,18,18
+searaft_pairs_flagged_share,g=1 | altitude=120 | airspeed=30 | light=low-sun,0,414
+searaft_pairs_collapsed_share,g=1 | altitude=120 | airspeed=30 | light=low-sun,0,414
+searaft_flow_px_expected_median,g=1 | altitude=120 | airspeed=30 | light=low-sun,15.478,414
+searaft_flow_px_measured_median,g=1 | altitude=120 | airspeed=30 | light=low-sun,15.561,414
+searaft_runs_with_unflagged_pair,g=1 | altitude=120 | airspeed=30 | light=low-sun,18,18
+searaft_pairs_flagged_share,g=1 | altitude=120 | airspeed=30 | light=midday,0,414
+searaft_pairs_collapsed_share,g=1 | altitude=120 | airspeed=30 | light=midday,0,414
+searaft_flow_px_expected_median,g=1 | altitude=120 | airspeed=30 | light=midday,15.478,414
+searaft_flow_px_measured_median,g=1 | altitude=120 | airspeed=30 | light=midday,15.59,414
+searaft_runs_with_unflagged_pair,g=1 | altitude=120 | airspeed=30 | light=midday,18,18
+searaft_pairs_flagged_share,g=1 | altitude=120 | airspeed=60 | light=low-sun,0,414
+searaft_pairs_collapsed_share,g=1 | altitude=120 | airspeed=60 | light=low-sun,0,414
+searaft_flow_px_expected_median,g=1 | altitude=120 | airspeed=60 | light=low-sun,30.959,414
+searaft_flow_px_measured_median,g=1 | altitude=120 | airspeed=60 | light=low-sun,31.026,414
+searaft_runs_with_unflagged_pair,g=1 | altitude=120 | airspeed=60 | light=low-sun,18,18
+searaft_pairs_flagged_share,g=1 | altitude=120 | airspeed=60 | light=midday,0,414
+searaft_pairs_collapsed_share,g=1 | altitude=120 | airspeed=60 | light=midday,0,414
+searaft_flow_px_expected_median,g=1 | altitude=120 | airspeed=60 | light=midday,30.959,414
+searaft_flow_px_measured_median,g=1 | altitude=120 | airspeed=60 | light=midday,31.032,414
+searaft_runs_with_unflagged_pair,g=1 | altitude=120 | airspeed=60 | light=midday,18,18
+searaft_pairs_flagged_share,g=1 | altitude=250 | airspeed=15 | light=low-sun,0,414
+searaft_pairs_collapsed_share,g=1 | altitude=250 | airspeed=15 | light=low-sun,0,414
+searaft_flow_px_expected_median,g=1 | altitude=250 | airspeed=15 | light=low-sun,3.7108,414
+searaft_flow_px_measured_median,g=1 | altitude=250 | airspeed=15 | light=low-sun,3.7801,414
+searaft_runs_with_unflagged_pair,g=1 | altitude=250 | airspeed=15 | light=low-sun,18,18
+searaft_pairs_flagged_share,g=1 | altitude=250 | airspeed=15 | light=midday,0,414
+searaft_pairs_collapsed_share,g=1 | altitude=250 | airspeed=15 | light=midday,0,414
+searaft_flow_px_expected_median,g=1 | altitude=250 | airspeed=15 | light=midday,3.7108,414
+searaft_flow_px_measured_median,g=1 | altitude=250 | airspeed=15 | light=midday,3.7974,414
+searaft_runs_with_unflagged_pair,g=1 | altitude=250 | airspeed=15 | light=midday,18,18
+searaft_pairs_flagged_share,g=1 | altitude=250 | airspeed=30 | light=low-sun,0,414
+searaft_pairs_collapsed_share,g=1 | altitude=250 | airspeed=30 | light=low-sun,0,414
+searaft_flow_px_expected_median,g=1 | altitude=250 | airspeed=30 | light=low-sun,7.4228,414
+searaft_flow_px_measured_median,g=1 | altitude=250 | airspeed=30 | light=low-sun,7.4453,414
+searaft_runs_with_unflagged_pair,g=1 | altitude=250 | airspeed=30 | light=low-sun,18,18
+searaft_pairs_flagged_share,g=1 | altitude=250 | airspeed=30 | light=midday,0,414
+searaft_pairs_collapsed_share,g=1 | altitude=250 | airspeed=30 | light=midday,0,414
+searaft_flow_px_expected_median,g=1 | altitude=250 | airspeed=30 | light=midday,7.4228,414
+searaft_flow_px_measured_median,g=1 | altitude=250 | airspeed=30 | light=midday,7.4545,414
+searaft_runs_with_unflagged_pair,g=1 | altitude=250 | airspeed=30 | light=midday,18,18
+searaft_pairs_flagged_share,g=1 | altitude=250 | airspeed=60 | light=low-sun,0,414
+searaft_pairs_collapsed_share,g=1 | altitude=250 | airspeed=60 | light=low-sun,0,414
+searaft_flow_px_expected_median,g=1 | altitude=250 | airspeed=60 | light=low-sun,14.846,414
+searaft_flow_px_measured_median,g=1 | altitude=250 | airspeed=60 | light=low-sun,14.912,414
+searaft_runs_with_unflagged_pair,g=1 | altitude=250 | airspeed=60 | light=low-sun,18,18
+searaft_pairs_flagged_share,g=1 | altitude=250 | airspeed=60 | light=midday,0,414
+searaft_pairs_collapsed_share,g=1 | altitude=250 | airspeed=60 | light=midday,0,414
+searaft_flow_px_expected_median,g=1 | altitude=250 | airspeed=60 | light=midday,14.846,414
+searaft_flow_px_measured_median,g=1 | altitude=250 | airspeed=60 | light=midday,14.894,414
+searaft_runs_with_unflagged_pair,g=1 | altitude=250 | airspeed=60 | light=midday,18,18
+searaft_pairs_flagged_share,g=3 | altitude=30 | airspeed=15 | light=low-sun,0.31401,414
+searaft_pairs_collapsed_share,g=3 | altitude=30 | airspeed=15 | light=low-sun,0.0048309,414
+searaft_flow_px_expected_median,g=3 | altitude=30 | airspeed=15 | light=low-sun,93.248,414
+searaft_flow_px_measured_median,g=3 | altitude=30 | airspeed=15 | light=low-sun,87.575,414
+searaft_runs_with_unflagged_pair,g=3 | altitude=30 | airspeed=15 | light=low-sun,17,18
+searaft_pairs_flagged_share,g=3 | altitude=30 | airspeed=15 | light=midday,1,414
+searaft_pairs_collapsed_share,g=3 | altitude=30 | airspeed=15 | light=midday,0.92271,414
+searaft_flow_px_expected_median,g=3 | altitude=30 | airspeed=15 | light=midday,93.248,414
+searaft_flow_px_measured_median,g=3 | altitude=30 | airspeed=15 | light=midday,14.917,414
+searaft_runs_with_unflagged_pair,g=3 | altitude=30 | airspeed=15 | light=midday,0,18
+searaft_pairs_flagged_share,g=3 | altitude=30 | airspeed=30 | light=low-sun,1,414
+searaft_pairs_collapsed_share,g=3 | altitude=30 | airspeed=30 | light=low-sun,0.8913,414
+searaft_flow_px_expected_median,g=3 | altitude=30 | airspeed=30 | light=low-sun,186.74,414
+searaft_flow_px_measured_median,g=3 | altitude=30 | airspeed=30 | light=low-sun,48.191,414
+searaft_runs_with_unflagged_pair,g=3 | altitude=30 | airspeed=30 | light=low-sun,0,18
+searaft_pairs_flagged_share,g=3 | altitude=30 | airspeed=30 | light=midday,1,414
+searaft_pairs_collapsed_share,g=3 | altitude=30 | airspeed=30 | light=midday,1,414
+searaft_flow_px_expected_median,g=3 | altitude=30 | airspeed=30 | light=midday,186.74,414
+searaft_flow_px_measured_median,g=3 | altitude=30 | airspeed=30 | light=midday,12.276,414
+searaft_runs_with_unflagged_pair,g=3 | altitude=30 | airspeed=30 | light=midday,0,18
+searaft_pairs_flagged_share,g=3 | altitude=30 | airspeed=60 | light=low-sun,1,414
+searaft_pairs_collapsed_share,g=3 | altitude=30 | airspeed=60 | light=low-sun,1,414
+searaft_flow_px_expected_median,g=3 | altitude=30 | airspeed=60 | light=low-sun,373.59,414
+searaft_flow_px_measured_median,g=3 | altitude=30 | airspeed=60 | light=low-sun,46.552,414
+searaft_runs_with_unflagged_pair,g=3 | altitude=30 | airspeed=60 | light=low-sun,0,18
+searaft_pairs_flagged_share,g=3 | altitude=30 | airspeed=60 | light=midday,1,414
+searaft_pairs_collapsed_share,g=3 | altitude=30 | airspeed=60 | light=midday,1,414
+searaft_flow_px_expected_median,g=3 | altitude=30 | airspeed=60 | light=midday,373.59,414
+searaft_flow_px_measured_median,g=3 | altitude=30 | airspeed=60 | light=midday,13.423,414
+searaft_runs_with_unflagged_pair,g=3 | altitude=30 | airspeed=60 | light=midday,0,18
+searaft_pairs_flagged_share,g=3 | altitude=60 | airspeed=15 | light=low-sun,0,414
+searaft_pairs_collapsed_share,g=3 | altitude=60 | airspeed=15 | light=low-sun,0,414
+searaft_flow_px_expected_median,g=3 | altitude=60 | airspeed=15 | light=low-sun,46.488,414
+searaft_flow_px_measured_median,g=3 | altitude=60 | airspeed=15 | light=low-sun,46.567,414
+searaft_runs_with_unflagged_pair,g=3 | altitude=60 | airspeed=15 | light=low-sun,18,18
+searaft_pairs_flagged_share,g=3 | altitude=60 | airspeed=15 | light=midday,0,414
+searaft_pairs_collapsed_share,g=3 | altitude=60 | airspeed=15 | light=midday,0,414
+searaft_flow_px_expected_median,g=3 | altitude=60 | airspeed=15 | light=midday,46.488,414
+searaft_flow_px_measured_median,g=3 | altitude=60 | airspeed=15 | light=midday,46.892,414
+searaft_runs_with_unflagged_pair,g=3 | altitude=60 | airspeed=15 | light=midday,18,18
+searaft_pairs_flagged_share,g=3 | altitude=60 | airspeed=30 | light=low-sun,0.043478,414
+searaft_pairs_collapsed_share,g=3 | altitude=60 | airspeed=30 | light=low-sun,0,414
+searaft_flow_px_expected_median,g=3 | altitude=60 | airspeed=30 | light=low-sun,93.036,414
+searaft_flow_px_measured_median,g=3 | altitude=60 | airspeed=30 | light=low-sun,92.919,414
+searaft_runs_with_unflagged_pair,g=3 | altitude=60 | airspeed=30 | light=low-sun,18,18
+searaft_pairs_flagged_share,g=3 | altitude=60 | airspeed=30 | light=midday,1,414
+searaft_pairs_collapsed_share,g=3 | altitude=60 | airspeed=30 | light=midday,0.8913,414
+searaft_flow_px_expected_median,g=3 | altitude=60 | airspeed=30 | light=midday,93.036,414
+searaft_flow_px_measured_median,g=3 | altitude=60 | airspeed=30 | light=midday,12.918,414
+searaft_runs_with_unflagged_pair,g=3 | altitude=60 | airspeed=30 | light=midday,0,18
+searaft_pairs_flagged_share,g=3 | altitude=60 | airspeed=60 | light=low-sun,1,414
+searaft_pairs_collapsed_share,g=3 | altitude=60 | airspeed=60 | light=low-sun,0.95169,414
+searaft_flow_px_expected_median,g=3 | altitude=60 | airspeed=60 | light=low-sun,186.1,414
+searaft_flow_px_measured_median,g=3 | altitude=60 | airspeed=60 | light=low-sun,38.649,414
+searaft_runs_with_unflagged_pair,g=3 | altitude=60 | airspeed=60 | light=low-sun,0,18
+searaft_pairs_flagged_share,g=3 | altitude=60 | airspeed=60 | light=midday,1,414
+searaft_pairs_collapsed_share,g=3 | altitude=60 | airspeed=60 | light=midday,1,414
+searaft_flow_px_expected_median,g=3 | altitude=60 | airspeed=60 | light=midday,186.1,414
+searaft_flow_px_measured_median,g=3 | altitude=60 | airspeed=60 | light=midday,10.801,414
+searaft_runs_with_unflagged_pair,g=3 | altitude=60 | airspeed=60 | light=midday,0,18
+searaft_pairs_flagged_share,g=3 | altitude=120 | airspeed=15 | light=low-sun,0,414
+searaft_pairs_collapsed_share,g=3 | altitude=120 | airspeed=15 | light=low-sun,0,414
+searaft_flow_px_expected_median,g=3 | altitude=120 | airspeed=15 | light=low-sun,23.21,414
+searaft_flow_px_measured_median,g=3 | altitude=120 | airspeed=15 | light=low-sun,23.397,414
+searaft_runs_with_unflagged_pair,g=3 | altitude=120 | airspeed=15 | light=low-sun,18,18
+searaft_pairs_flagged_share,g=3 | altitude=120 | airspeed=15 | light=midday,0,414
+searaft_pairs_collapsed_share,g=3 | altitude=120 | airspeed=15 | light=midday,0,414
+searaft_flow_px_expected_median,g=3 | altitude=120 | airspeed=15 | light=midday,23.21,414
+searaft_flow_px_measured_median,g=3 | altitude=120 | airspeed=15 | light=midday,23.593,414
+searaft_runs_with_unflagged_pair,g=3 | altitude=120 | airspeed=15 | light=midday,18,18
+searaft_pairs_flagged_share,g=3 | altitude=120 | airspeed=30 | light=low-sun,0,414
+searaft_pairs_collapsed_share,g=3 | altitude=120 | airspeed=30 | light=low-sun,0,414
+searaft_flow_px_expected_median,g=3 | altitude=120 | airspeed=30 | light=low-sun,46.435,414
+searaft_flow_px_measured_median,g=3 | altitude=120 | airspeed=30 | light=low-sun,46.548,414
+searaft_runs_with_unflagged_pair,g=3 | altitude=120 | airspeed=30 | light=low-sun,18,18
+searaft_pairs_flagged_share,g=3 | altitude=120 | airspeed=30 | light=midday,0,414
+searaft_pairs_collapsed_share,g=3 | altitude=120 | airspeed=30 | light=midday,0,414
+searaft_flow_px_expected_median,g=3 | altitude=120 | airspeed=30 | light=midday,46.435,414
+searaft_flow_px_measured_median,g=3 | altitude=120 | airspeed=30 | light=midday,46.698,414
+searaft_runs_with_unflagged_pair,g=3 | altitude=120 | airspeed=30 | light=midday,18,18
+searaft_pairs_flagged_share,g=3 | altitude=120 | airspeed=60 | light=low-sun,0.055556,414
+searaft_pairs_collapsed_share,g=3 | altitude=120 | airspeed=60 | light=low-sun,0.036232,414
+searaft_flow_px_expected_median,g=3 | altitude=120 | airspeed=60 | light=low-sun,92.878,414
+searaft_flow_px_measured_median,g=3 | altitude=120 | airspeed=60 | light=low-sun,93.106,414
+searaft_runs_with_unflagged_pair,g=3 | altitude=120 | airspeed=60 | light=low-sun,17,18
+searaft_pairs_flagged_share,g=3 | altitude=120 | airspeed=60 | light=midday,0.96135,414
+searaft_pairs_collapsed_share,g=3 | altitude=120 | airspeed=60 | light=midday,0.60145,414
+searaft_flow_px_expected_median,g=3 | altitude=120 | airspeed=60 | light=midday,92.878,414
+searaft_flow_px_measured_median,g=3 | altitude=120 | airspeed=60 | light=midday,18.732,414
+searaft_runs_with_unflagged_pair,g=3 | altitude=120 | airspeed=60 | light=midday,6,18
+searaft_pairs_flagged_share,g=3 | altitude=250 | airspeed=15 | light=low-sun,0,414
+searaft_pairs_collapsed_share,g=3 | altitude=250 | airspeed=15 | light=low-sun,0,414
+searaft_flow_px_expected_median,g=3 | altitude=250 | airspeed=15 | light=low-sun,11.132,414
+searaft_flow_px_measured_median,g=3 | altitude=250 | airspeed=15 | light=low-sun,11.475,414
+searaft_runs_with_unflagged_pair,g=3 | altitude=250 | airspeed=15 | light=low-sun,18,18
+searaft_pairs_flagged_share,g=3 | altitude=250 | airspeed=15 | light=midday,0,414
+searaft_pairs_collapsed_share,g=3 | altitude=250 | airspeed=15 | light=midday,0,414
+searaft_flow_px_expected_median,g=3 | altitude=250 | airspeed=15 | light=midday,11.132,414
+searaft_flow_px_measured_median,g=3 | altitude=250 | airspeed=15 | light=midday,11.497,414
+searaft_runs_with_unflagged_pair,g=3 | altitude=250 | airspeed=15 | light=midday,18,18
+searaft_pairs_flagged_share,g=3 | altitude=250 | airspeed=30 | light=low-sun,0,414
+searaft_pairs_collapsed_share,g=3 | altitude=250 | airspeed=30 | light=low-sun,0,414
+searaft_flow_px_expected_median,g=3 | altitude=250 | airspeed=30 | light=low-sun,22.268,414
+searaft_flow_px_measured_median,g=3 | altitude=250 | airspeed=30 | light=low-sun,22.495,414
+searaft_runs_with_unflagged_pair,g=3 | altitude=250 | airspeed=30 | light=low-sun,18,18
+searaft_pairs_flagged_share,g=3 | altitude=250 | airspeed=30 | light=midday,0,414
+searaft_pairs_collapsed_share,g=3 | altitude=250 | airspeed=30 | light=midday,0,414
+searaft_flow_px_expected_median,g=3 | altitude=250 | airspeed=30 | light=midday,22.268,414
+searaft_flow_px_measured_median,g=3 | altitude=250 | airspeed=30 | light=midday,22.537,414
+searaft_runs_with_unflagged_pair,g=3 | altitude=250 | airspeed=30 | light=midday,18,18
+searaft_pairs_flagged_share,g=3 | altitude=250 | airspeed=60 | light=low-sun,0,414
+searaft_pairs_collapsed_share,g=3 | altitude=250 | airspeed=60 | light=low-sun,0,414
+searaft_flow_px_expected_median,g=3 | altitude=250 | airspeed=60 | light=low-sun,44.538,414
+searaft_flow_px_measured_median,g=3 | altitude=250 | airspeed=60 | light=low-sun,44.693,414
+searaft_runs_with_unflagged_pair,g=3 | altitude=250 | airspeed=60 | light=low-sun,18,18
+searaft_pairs_flagged_share,g=3 | altitude=250 | airspeed=60 | light=midday,0,414
+searaft_pairs_collapsed_share,g=3 | altitude=250 | airspeed=60 | light=midday,0,414
+searaft_flow_px_expected_median,g=3 | altitude=250 | airspeed=60 | light=midday,44.538,414
+searaft_flow_px_measured_median,g=3 | altitude=250 | airspeed=60 | light=midday,44.731,414
+searaft_runs_with_unflagged_pair,g=3 | altitude=250 | airspeed=60 | light=midday,18,18
+shell_disp_midday_runs_le_0.28pct,altitude=30 | airspeed=15 | T=1.6,1,18
+shell_disp_midday_runs_le_0.28pct_wilson95_lo,altitude=30 | airspeed=15 | T=1.6,0.0098749,18
+shell_disp_midday_runs_le_0.28pct_wilson95_hi,altitude=30 | airspeed=15 | T=1.6,0.25758,18
+shell_disp_midday_runs_le_0.28pct,altitude=30 | airspeed=15 | T=12,3,18
+shell_disp_midday_runs_le_0.28pct_wilson95_lo,altitude=30 | airspeed=15 | T=12,0.058365,18
+shell_disp_midday_runs_le_0.28pct_wilson95_hi,altitude=30 | airspeed=15 | T=12,0.39222,18
+shell_disp_midday_runs_le_0.28pct,altitude=30 | airspeed=15 | T=3.2,5,18
+shell_disp_midday_runs_le_0.28pct_wilson95_lo,altitude=30 | airspeed=15 | T=3.2,0.125,18
+shell_disp_midday_runs_le_0.28pct_wilson95_hi,altitude=30 | airspeed=15 | T=3.2,0.50873,18
+shell_disp_midday_runs_le_0.28pct,altitude=30 | airspeed=15 | T=6.4,4,18
+shell_disp_midday_runs_le_0.28pct_wilson95_lo,altitude=30 | airspeed=15 | T=6.4,0.090008,18
+shell_disp_midday_runs_le_0.28pct_wilson95_hi,altitude=30 | airspeed=15 | T=6.4,0.45215,18
+shell_disp_midday_runs_le_0.28pct,altitude=30 | airspeed=30 | T=1.6,2,18
+shell_disp_midday_runs_le_0.28pct_wilson95_lo,altitude=30 | airspeed=30 | T=1.6,0.031019,18
+shell_disp_midday_runs_le_0.28pct_wilson95_hi,altitude=30 | airspeed=30 | T=1.6,0.328,18
+shell_disp_midday_runs_le_0.28pct,altitude=30 | airspeed=30 | T=12,5,18
+shell_disp_midday_runs_le_0.28pct_wilson95_lo,altitude=30 | airspeed=30 | T=12,0.125,18
+shell_disp_midday_runs_le_0.28pct_wilson95_hi,altitude=30 | airspeed=30 | T=12,0.50873,18
+shell_disp_midday_runs_le_0.28pct,altitude=30 | airspeed=30 | T=3.2,5,18
+shell_disp_midday_runs_le_0.28pct_wilson95_lo,altitude=30 | airspeed=30 | T=3.2,0.125,18
+shell_disp_midday_runs_le_0.28pct_wilson95_hi,altitude=30 | airspeed=30 | T=3.2,0.50873,18
+shell_disp_midday_runs_le_0.28pct,altitude=30 | airspeed=30 | T=6.4,4,18
+shell_disp_midday_runs_le_0.28pct_wilson95_lo,altitude=30 | airspeed=30 | T=6.4,0.090008,18
+shell_disp_midday_runs_le_0.28pct_wilson95_hi,altitude=30 | airspeed=30 | T=6.4,0.45215,18
+shell_disp_midday_runs_le_0.28pct,altitude=30 | airspeed=60 | T=1.6,0,18
+shell_disp_midday_runs_le_0.28pct_wilson95_lo,altitude=30 | airspeed=60 | T=1.6,0,18
+shell_disp_midday_runs_le_0.28pct_wilson95_hi,altitude=30 | airspeed=60 | T=1.6,0.17588,18
+shell_disp_midday_runs_le_0.28pct,altitude=30 | airspeed=60 | T=12,0,18
+shell_disp_midday_runs_le_0.28pct_wilson95_lo,altitude=30 | airspeed=60 | T=12,0,18
+shell_disp_midday_runs_le_0.28pct_wilson95_hi,altitude=30 | airspeed=60 | T=12,0.17588,18
+shell_disp_midday_runs_le_0.28pct,altitude=30 | airspeed=60 | T=3.2,0,18
+shell_disp_midday_runs_le_0.28pct_wilson95_lo,altitude=30 | airspeed=60 | T=3.2,0,18
+shell_disp_midday_runs_le_0.28pct_wilson95_hi,altitude=30 | airspeed=60 | T=3.2,0.17588,18
+shell_disp_midday_runs_le_0.28pct,altitude=30 | airspeed=60 | T=6.4,0,18
+shell_disp_midday_runs_le_0.28pct_wilson95_lo,altitude=30 | airspeed=60 | T=6.4,0,18
+shell_disp_midday_runs_le_0.28pct_wilson95_hi,altitude=30 | airspeed=60 | T=6.4,0.17588,18
+shell_disp_midday_runs_le_0.28pct,altitude=60 | airspeed=15 | T=1.6,0,18
+shell_disp_midday_runs_le_0.28pct_wilson95_lo,altitude=60 | airspeed=15 | T=1.6,0,18
+shell_disp_midday_runs_le_0.28pct_wilson95_hi,altitude=60 | airspeed=15 | T=1.6,0.17588,18
+shell_disp_midday_runs_le_0.28pct,altitude=60 | airspeed=15 | T=12,2,18
+shell_disp_midday_runs_le_0.28pct_wilson95_lo,altitude=60 | airspeed=15 | T=12,0.031019,18
+shell_disp_midday_runs_le_0.28pct_wilson95_hi,altitude=60 | airspeed=15 | T=12,0.328,18
+shell_disp_midday_runs_le_0.28pct,altitude=60 | airspeed=15 | T=3.2,2,18
+shell_disp_midday_runs_le_0.28pct_wilson95_lo,altitude=60 | airspeed=15 | T=3.2,0.031019,18
+shell_disp_midday_runs_le_0.28pct_wilson95_hi,altitude=60 | airspeed=15 | T=3.2,0.328,18
+shell_disp_midday_runs_le_0.28pct,altitude=60 | airspeed=15 | T=6.4,3,18
+shell_disp_midday_runs_le_0.28pct_wilson95_lo,altitude=60 | airspeed=15 | T=6.4,0.058365,18
+shell_disp_midday_runs_le_0.28pct_wilson95_hi,altitude=60 | airspeed=15 | T=6.4,0.39222,18
+shell_disp_midday_runs_le_0.28pct,altitude=60 | airspeed=30 | T=1.6,3,18
+shell_disp_midday_runs_le_0.28pct_wilson95_lo,altitude=60 | airspeed=30 | T=1.6,0.058365,18
+shell_disp_midday_runs_le_0.28pct_wilson95_hi,altitude=60 | airspeed=30 | T=1.6,0.39222,18
+shell_disp_midday_runs_le_0.28pct,altitude=60 | airspeed=30 | T=12,8,18
+shell_disp_midday_runs_le_0.28pct_wilson95_lo,altitude=60 | airspeed=30 | T=12,0.24559,18
+shell_disp_midday_runs_le_0.28pct_wilson95_hi,altitude=60 | airspeed=30 | T=12,0.66284,18
+shell_disp_midday_runs_le_0.28pct,altitude=60 | airspeed=30 | T=3.2,9,18
+shell_disp_midday_runs_le_0.28pct_wilson95_lo,altitude=60 | airspeed=30 | T=3.2,0.29031,18
+shell_disp_midday_runs_le_0.28pct_wilson95_hi,altitude=60 | airspeed=30 | T=3.2,0.70969,18
+shell_disp_midday_runs_le_0.28pct,altitude=60 | airspeed=30 | T=6.4,8,18
+shell_disp_midday_runs_le_0.28pct_wilson95_lo,altitude=60 | airspeed=30 | T=6.4,0.24559,18
+shell_disp_midday_runs_le_0.28pct_wilson95_hi,altitude=60 | airspeed=30 | T=6.4,0.66284,18
+shell_disp_midday_runs_le_0.28pct,altitude=60 | airspeed=60 | T=1.6,0,18
+shell_disp_midday_runs_le_0.28pct_wilson95_lo,altitude=60 | airspeed=60 | T=1.6,0,18
+shell_disp_midday_runs_le_0.28pct_wilson95_hi,altitude=60 | airspeed=60 | T=1.6,0.17588,18
+shell_disp_midday_runs_le_0.28pct,altitude=60 | airspeed=60 | T=12,2,18
+shell_disp_midday_runs_le_0.28pct_wilson95_lo,altitude=60 | airspeed=60 | T=12,0.031019,18
+shell_disp_midday_runs_le_0.28pct_wilson95_hi,altitude=60 | airspeed=60 | T=12,0.328,18
+shell_disp_midday_runs_le_0.28pct,altitude=60 | airspeed=60 | T=3.2,0,18
+shell_disp_midday_runs_le_0.28pct_wilson95_lo,altitude=60 | airspeed=60 | T=3.2,0,18
+shell_disp_midday_runs_le_0.28pct_wilson95_hi,altitude=60 | airspeed=60 | T=3.2,0.17588,18
+shell_disp_midday_runs_le_0.28pct,altitude=60 | airspeed=60 | T=6.4,1,18
+shell_disp_midday_runs_le_0.28pct_wilson95_lo,altitude=60 | airspeed=60 | T=6.4,0.0098749,18
+shell_disp_midday_runs_le_0.28pct_wilson95_hi,altitude=60 | airspeed=60 | T=6.4,0.25758,18
+shell_disp_midday_runs_le_0.28pct,altitude=120 | airspeed=15 | T=1.6,0,18
+shell_disp_midday_runs_le_0.28pct_wilson95_lo,altitude=120 | airspeed=15 | T=1.6,0,18
+shell_disp_midday_runs_le_0.28pct_wilson95_hi,altitude=120 | airspeed=15 | T=1.6,0.17588,18
+shell_disp_midday_runs_le_0.28pct,altitude=120 | airspeed=15 | T=12,3,18
+shell_disp_midday_runs_le_0.28pct_wilson95_lo,altitude=120 | airspeed=15 | T=12,0.058365,18
+shell_disp_midday_runs_le_0.28pct_wilson95_hi,altitude=120 | airspeed=15 | T=12,0.39222,18
+shell_disp_midday_runs_le_0.28pct,altitude=120 | airspeed=15 | T=3.2,3,18
+shell_disp_midday_runs_le_0.28pct_wilson95_lo,altitude=120 | airspeed=15 | T=3.2,0.058365,18
+shell_disp_midday_runs_le_0.28pct_wilson95_hi,altitude=120 | airspeed=15 | T=3.2,0.39222,18
+shell_disp_midday_runs_le_0.28pct,altitude=120 | airspeed=15 | T=6.4,3,18
+shell_disp_midday_runs_le_0.28pct_wilson95_lo,altitude=120 | airspeed=15 | T=6.4,0.058365,18
+shell_disp_midday_runs_le_0.28pct_wilson95_hi,altitude=120 | airspeed=15 | T=6.4,0.39222,18
+shell_disp_midday_runs_le_0.28pct,altitude=120 | airspeed=30 | T=1.6,1,18
+shell_disp_midday_runs_le_0.28pct_wilson95_lo,altitude=120 | airspeed=30 | T=1.6,0.0098749,18
+shell_disp_midday_runs_le_0.28pct_wilson95_hi,altitude=120 | airspeed=30 | T=1.6,0.25758,18
+shell_disp_midday_runs_le_0.28pct,altitude=120 | airspeed=30 | T=12,3,18
+shell_disp_midday_runs_le_0.28pct_wilson95_lo,altitude=120 | airspeed=30 | T=12,0.058365,18
+shell_disp_midday_runs_le_0.28pct_wilson95_hi,altitude=120 | airspeed=30 | T=12,0.39222,18
+shell_disp_midday_runs_le_0.28pct,altitude=120 | airspeed=30 | T=3.2,5,18
+shell_disp_midday_runs_le_0.28pct_wilson95_lo,altitude=120 | airspeed=30 | T=3.2,0.125,18
+shell_disp_midday_runs_le_0.28pct_wilson95_hi,altitude=120 | airspeed=30 | T=3.2,0.50873,18
+shell_disp_midday_runs_le_0.28pct,altitude=120 | airspeed=30 | T=6.4,3,18
+shell_disp_midday_runs_le_0.28pct_wilson95_lo,altitude=120 | airspeed=30 | T=6.4,0.058365,18
+shell_disp_midday_runs_le_0.28pct_wilson95_hi,altitude=120 | airspeed=30 | T=6.4,0.39222,18
+shell_disp_midday_runs_le_0.28pct,altitude=120 | airspeed=60 | T=1.6,0,18
+shell_disp_midday_runs_le_0.28pct_wilson95_lo,altitude=120 | airspeed=60 | T=1.6,0,18
+shell_disp_midday_runs_le_0.28pct_wilson95_hi,altitude=120 | airspeed=60 | T=1.6,0.17588,18
+shell_disp_midday_runs_le_0.28pct,altitude=120 | airspeed=60 | T=12,10,18
+shell_disp_midday_runs_le_0.28pct_wilson95_lo,altitude=120 | airspeed=60 | T=12,0.33716,18
+shell_disp_midday_runs_le_0.28pct_wilson95_hi,altitude=120 | airspeed=60 | T=12,0.75441,18
+shell_disp_midday_runs_le_0.28pct,altitude=120 | airspeed=60 | T=3.2,6,18
+shell_disp_midday_runs_le_0.28pct_wilson95_lo,altitude=120 | airspeed=60 | T=3.2,0.16279,18
+shell_disp_midday_runs_le_0.28pct_wilson95_hi,altitude=120 | airspeed=60 | T=3.2,0.56251,18
+shell_disp_midday_runs_le_0.28pct,altitude=120 | airspeed=60 | T=6.4,9,18
+shell_disp_midday_runs_le_0.28pct_wilson95_lo,altitude=120 | airspeed=60 | T=6.4,0.29031,18
+shell_disp_midday_runs_le_0.28pct_wilson95_hi,altitude=120 | airspeed=60 | T=6.4,0.70969,18
+shell_disp_midday_runs_le_0.28pct,altitude=250 | airspeed=15 | T=1.6,0,18
+shell_disp_midday_runs_le_0.28pct_wilson95_lo,altitude=250 | airspeed=15 | T=1.6,0,18
+shell_disp_midday_runs_le_0.28pct_wilson95_hi,altitude=250 | airspeed=15 | T=1.6,0.17588,18
+shell_disp_midday_runs_le_0.28pct,altitude=250 | airspeed=15 | T=12,2,18
+shell_disp_midday_runs_le_0.28pct_wilson95_lo,altitude=250 | airspeed=15 | T=12,0.031019,18
+shell_disp_midday_runs_le_0.28pct_wilson95_hi,altitude=250 | airspeed=15 | T=12,0.328,18
+shell_disp_midday_runs_le_0.28pct,altitude=250 | airspeed=15 | T=3.2,0,18
+shell_disp_midday_runs_le_0.28pct_wilson95_lo,altitude=250 | airspeed=15 | T=3.2,0,18
+shell_disp_midday_runs_le_0.28pct_wilson95_hi,altitude=250 | airspeed=15 | T=3.2,0.17588,18
+shell_disp_midday_runs_le_0.28pct,altitude=250 | airspeed=15 | T=6.4,0,18
+shell_disp_midday_runs_le_0.28pct_wilson95_lo,altitude=250 | airspeed=15 | T=6.4,0,18
+shell_disp_midday_runs_le_0.28pct_wilson95_hi,altitude=250 | airspeed=15 | T=6.4,0.17588,18
+shell_disp_midday_runs_le_0.28pct,altitude=250 | airspeed=30 | T=1.6,0,18
+shell_disp_midday_runs_le_0.28pct_wilson95_lo,altitude=250 | airspeed=30 | T=1.6,0,18
+shell_disp_midday_runs_le_0.28pct_wilson95_hi,altitude=250 | airspeed=30 | T=1.6,0.17588,18
+shell_disp_midday_runs_le_0.28pct,altitude=250 | airspeed=30 | T=12,0,18
+shell_disp_midday_runs_le_0.28pct_wilson95_lo,altitude=250 | airspeed=30 | T=12,0,18
+shell_disp_midday_runs_le_0.28pct_wilson95_hi,altitude=250 | airspeed=30 | T=12,0.17588,18
+shell_disp_midday_runs_le_0.28pct,altitude=250 | airspeed=30 | T=3.2,0,18
+shell_disp_midday_runs_le_0.28pct_wilson95_lo,altitude=250 | airspeed=30 | T=3.2,0,18
+shell_disp_midday_runs_le_0.28pct_wilson95_hi,altitude=250 | airspeed=30 | T=3.2,0.17588,18
+shell_disp_midday_runs_le_0.28pct,altitude=250 | airspeed=30 | T=6.4,2,18
+shell_disp_midday_runs_le_0.28pct_wilson95_lo,altitude=250 | airspeed=30 | T=6.4,0.031019,18
+shell_disp_midday_runs_le_0.28pct_wilson95_hi,altitude=250 | airspeed=30 | T=6.4,0.328,18
+shell_disp_midday_runs_le_0.28pct,altitude=250 | airspeed=60 | T=1.6,0,18
+shell_disp_midday_runs_le_0.28pct_wilson95_lo,altitude=250 | airspeed=60 | T=1.6,0,18
+shell_disp_midday_runs_le_0.28pct_wilson95_hi,altitude=250 | airspeed=60 | T=1.6,0.17588,18
+shell_disp_midday_runs_le_0.28pct,altitude=250 | airspeed=60 | T=12,4,18
+shell_disp_midday_runs_le_0.28pct_wilson95_lo,altitude=250 | airspeed=60 | T=12,0.090008,18
+shell_disp_midday_runs_le_0.28pct_wilson95_hi,altitude=250 | airspeed=60 | T=12,0.45215,18
+shell_disp_midday_runs_le_0.28pct,altitude=250 | airspeed=60 | T=3.2,1,18
+shell_disp_midday_runs_le_0.28pct_wilson95_lo,altitude=250 | airspeed=60 | T=3.2,0.0098749,18
+shell_disp_midday_runs_le_0.28pct_wilson95_hi,altitude=250 | airspeed=60 | T=3.2,0.25758,18
+shell_disp_midday_runs_le_0.28pct,altitude=250 | airspeed=60 | T=6.4,3,18
+shell_disp_midday_runs_le_0.28pct_wilson95_lo,altitude=250 | airspeed=60 | T=6.4,0.058365,18
+shell_disp_midday_runs_le_0.28pct_wilson95_hi,altitude=250 | airspeed=60 | T=6.4,0.39222,18
+shell_b_abs_median,set=core | shell:dispersive | T=1.6 | light=low-sun,1.6386,216
+shell_b_abs_p90,set=core | shell:dispersive | T=1.6 | light=low-sun,2.7689,216
+shell_b_abs_max,set=core | shell:dispersive | T=1.6 | light=low-sun,3.9729,216
+shell_runs_le_0.17ms,set=core | shell:dispersive | T=1.6 | light=low-sun,17,216
+shell_b_abs_median,set=core | shell:dispersive | T=1.6 | light=midday,0.5172,216
+shell_b_abs_p90,set=core | shell:dispersive | T=1.6 | light=midday,2.5491,216
+shell_b_abs_max,set=core | shell:dispersive | T=1.6 | light=midday,2.9275,216
+shell_runs_le_0.17ms,set=core | shell:dispersive | T=1.6 | light=midday,38,216
+shell_b_abs_median,set=core | shell:dispersive | T=12 | light=low-sun,1.6417,216
+shell_b_abs_p90,set=core | shell:dispersive | T=12 | light=low-sun,2.5157,216
+shell_b_abs_max,set=core | shell:dispersive | T=12 | light=low-sun,4.7177,216
+shell_runs_le_0.17ms,set=core | shell:dispersive | T=12 | light=low-sun,15,216
+shell_b_abs_median,set=core | shell:dispersive | T=12 | light=midday,0.19198,216
+shell_b_abs_p90,set=core | shell:dispersive | T=12 | light=midday,1.0455,216
+shell_b_abs_max,set=core | shell:dispersive | T=12 | light=midday,4.7266,216
+shell_runs_le_0.17ms,set=core | shell:dispersive | T=12 | light=midday,99,216
+shell_b_abs_median,set=core | shell:dispersive | T=3.2 | light=low-sun,1.4615,216
+shell_b_abs_p90,set=core | shell:dispersive | T=3.2 | light=low-sun,2.3536,216
+shell_b_abs_max,set=core | shell:dispersive | T=3.2 | light=low-sun,2.771,216
+shell_runs_le_0.17ms,set=core | shell:dispersive | T=3.2 | light=low-sun,19,216
+shell_b_abs_median,set=core | shell:dispersive | T=3.2 | light=midday,0.2372,216
+shell_b_abs_p90,set=core | shell:dispersive | T=3.2 | light=midday,0.91442,216
+shell_b_abs_max,set=core | shell:dispersive | T=3.2 | light=midday,1.6902,216
+shell_runs_le_0.17ms,set=core | shell:dispersive | T=3.2 | light=midday,83,216
+shell_b_abs_median,set=core | shell:dispersive | T=6.4 | light=low-sun,1.3658,216
+shell_b_abs_p90,set=core | shell:dispersive | T=6.4 | light=low-sun,2.4043,216
+shell_b_abs_max,set=core | shell:dispersive | T=6.4 | light=low-sun,4.7328,216
+shell_runs_le_0.17ms,set=core | shell:dispersive | T=6.4 | light=low-sun,17,216
+shell_b_abs_median,set=core | shell:dispersive | T=6.4 | light=midday,0.20616,216
+shell_b_abs_p90,set=core | shell:dispersive | T=6.4 | light=midday,0.87307,216
+shell_b_abs_max,set=core | shell:dispersive | T=6.4 | light=midday,4.5652,216
+shell_runs_le_0.17ms,set=core | shell:dispersive | T=6.4 | light=midday,91,216
+shell_b_abs_median,set=core | shell:dispersive/energy | T=1.6 | light=low-sun,2.3686,216
+shell_b_abs_p90,set=core | shell:dispersive/energy | T=1.6 | light=low-sun,3.3697,216
+shell_b_abs_max,set=core | shell:dispersive/energy | T=1.6 | light=low-sun,3.809,216
+shell_runs_le_0.17ms,set=core | shell:dispersive/energy | T=1.6 | light=low-sun,0,216
+shell_b_abs_median,set=core | shell:dispersive/energy | T=1.6 | light=midday,2.4262,216
+shell_b_abs_p90,set=core | shell:dispersive/energy | T=1.6 | light=midday,3.7894,216
+shell_b_abs_max,set=core | shell:dispersive/energy | T=1.6 | light=midday,4.0639,216
+shell_runs_le_0.17ms,set=core | shell:dispersive/energy | T=1.6 | light=midday,15,216
+shell_b_abs_median,set=core | shell:dispersive/energy | T=12 | light=low-sun,2.6443,216
+shell_b_abs_p90,set=core | shell:dispersive/energy | T=12 | light=low-sun,3.683,216
+shell_b_abs_max,set=core | shell:dispersive/energy | T=12 | light=low-sun,6.9647,216
+shell_runs_le_0.17ms,set=core | shell:dispersive/energy | T=12 | light=low-sun,19,216
+shell_b_abs_median,set=core | shell:dispersive/energy | T=12 | light=midday,0.19007,216
+shell_b_abs_p90,set=core | shell:dispersive/energy | T=12 | light=midday,3.8168,216
+shell_b_abs_max,set=core | shell:dispersive/energy | T=12 | light=midday,4.7186,216
+shell_runs_le_0.17ms,set=core | shell:dispersive/energy | T=12 | light=midday,97,216
+shell_b_abs_median,set=core | shell:dispersive/energy | T=3.2 | light=low-sun,2.1776,216
+shell_b_abs_p90,set=core | shell:dispersive/energy | T=3.2 | light=low-sun,3.6833,216
+shell_b_abs_max,set=core | shell:dispersive/energy | T=3.2 | light=low-sun,5.1954,216
+shell_runs_le_0.17ms,set=core | shell:dispersive/energy | T=3.2 | light=low-sun,15,216
+shell_b_abs_median,set=core | shell:dispersive/energy | T=3.2 | light=midday,0.32824,216
+shell_b_abs_p90,set=core | shell:dispersive/energy | T=3.2 | light=midday,2.1681,216
+shell_b_abs_max,set=core | shell:dispersive/energy | T=3.2 | light=midday,4.925,216
+shell_runs_le_0.17ms,set=core | shell:dispersive/energy | T=3.2 | light=midday,69,216
+shell_b_abs_median,set=core | shell:dispersive/energy | T=6.4 | light=low-sun,2.1037,216
+shell_b_abs_p90,set=core | shell:dispersive/energy | T=6.4 | light=low-sun,3.19,216
+shell_b_abs_max,set=core | shell:dispersive/energy | T=6.4 | light=low-sun,4.7756,216
+shell_runs_le_0.17ms,set=core | shell:dispersive/energy | T=6.4 | light=low-sun,19,216
+shell_b_abs_median,set=core | shell:dispersive/energy | T=6.4 | light=midday,0.18637,216
+shell_b_abs_p90,set=core | shell:dispersive/energy | T=6.4 | light=midday,2.2837,216
+shell_b_abs_max,set=core | shell:dispersive/energy | T=6.4 | light=midday,4.6756,216
+shell_runs_le_0.17ms,set=core | shell:dispersive/energy | T=6.4 | light=midday,101,216
+shell_b_abs_median,set=core | shell:static | T=1.6 | light=low-sun,1.6909,216
+shell_b_abs_p90,set=core | shell:static | T=1.6 | light=low-sun,2.5923,216
+shell_b_abs_max,set=core | shell:static | T=1.6 | light=low-sun,2.8174,216
+shell_runs_le_0.17ms,set=core | shell:static | T=1.6 | light=low-sun,1,216
+shell_b_abs_median,set=core | shell:static | T=1.6 | light=midday,1.4164,216
+shell_b_abs_p90,set=core | shell:static | T=1.6 | light=midday,2.4318,216
+shell_b_abs_max,set=core | shell:static | T=1.6 | light=midday,2.5855,216
+shell_runs_le_0.17ms,set=core | shell:static | T=1.6 | light=midday,0,216
+shell_b_abs_median,set=core | shell:static | T=12 | light=low-sun,1.4702,216
+shell_b_abs_p90,set=core | shell:static | T=12 | light=low-sun,2.2712,216
+shell_b_abs_max,set=core | shell:static | T=12 | light=low-sun,3.3831,216
+shell_runs_le_0.17ms,set=core | shell:static | T=12 | light=low-sun,2,216
+shell_b_abs_median,set=core | shell:static | T=12 | light=midday,1.4535,216
+shell_b_abs_p90,set=core | shell:static | T=12 | light=midday,2.9022,216
+shell_b_abs_max,set=core | shell:static | T=12 | light=midday,3.0632,216
+shell_runs_le_0.17ms,set=core | shell:static | T=12 | light=midday,0,216
+shell_b_abs_median,set=core | shell:static | T=3.2 | light=low-sun,1.5481,216
+shell_b_abs_p90,set=core | shell:static | T=3.2 | light=low-sun,2.2212,216
+shell_b_abs_max,set=core | shell:static | T=3.2 | light=low-sun,2.9429,216
+shell_runs_le_0.17ms,set=core | shell:static | T=3.2 | light=low-sun,2,216
+shell_b_abs_median,set=core | shell:static | T=3.2 | light=midday,1.4378,216
+shell_b_abs_p90,set=core | shell:static | T=3.2 | light=midday,2.6407,216
+shell_b_abs_max,set=core | shell:static | T=3.2 | light=midday,2.8462,216
+shell_runs_le_0.17ms,set=core | shell:static | T=3.2 | light=midday,0,216
+shell_b_abs_median,set=core | shell:static | T=6.4 | light=low-sun,1.3921,216
+shell_b_abs_p90,set=core | shell:static | T=6.4 | light=low-sun,2.2287,216
+shell_b_abs_max,set=core | shell:static | T=6.4 | light=low-sun,2.9939,216
+shell_runs_le_0.17ms,set=core | shell:static | T=6.4 | light=low-sun,1,216
+shell_b_abs_median,set=core | shell:static | T=6.4 | light=midday,1.4544,216
+shell_b_abs_p90,set=core | shell:static | T=6.4 | light=midday,2.8454,216
+shell_b_abs_max,set=core | shell:static | T=6.4 | light=midday,2.979,216
+shell_runs_le_0.17ms,set=core | shell:static | T=6.4 | light=midday,0,216
+shell_b_abs_median,set=core | shell:static/energy | T=1.6 | light=low-sun,2.0109,216
+shell_b_abs_p90,set=core | shell:static/energy | T=1.6 | light=low-sun,2.7956,216
+shell_b_abs_max,set=core | shell:static/energy | T=1.6 | light=low-sun,5.5174,216
+shell_runs_le_0.17ms,set=core | shell:static/energy | T=1.6 | light=low-sun,1,216
+shell_b_abs_median,set=core | shell:static/energy | T=1.6 | light=midday,1.9922,216
+shell_b_abs_p90,set=core | shell:static/energy | T=1.6 | light=midday,3.1369,216
+shell_b_abs_max,set=core | shell:static/energy | T=1.6 | light=midday,3.4322,216
+shell_runs_le_0.17ms,set=core | shell:static/energy | T=1.6 | light=midday,0,216
+shell_b_abs_median,set=core | shell:static/energy | T=12 | light=low-sun,2.0294,216
+shell_b_abs_p90,set=core | shell:static/energy | T=12 | light=low-sun,3.464,216
+shell_b_abs_max,set=core | shell:static/energy | T=12 | light=low-sun,6.1275,216
+shell_runs_le_0.17ms,set=core | shell:static/energy | T=12 | light=low-sun,0,216
+shell_b_abs_median,set=core | shell:static/energy | T=12 | light=midday,2.8014,216
+shell_b_abs_p90,set=core | shell:static/energy | T=12 | light=midday,4.9225,216
+shell_b_abs_max,set=core | shell:static/energy | T=12 | light=midday,5.9669,216
+shell_runs_le_0.17ms,set=core | shell:static/energy | T=12 | light=midday,0,216
+shell_b_abs_median,set=core | shell:static/energy | T=3.2 | light=low-sun,1.9012,216
+shell_b_abs_p90,set=core | shell:static/energy | T=3.2 | light=low-sun,3.0153,216
+shell_b_abs_max,set=core | shell:static/energy | T=3.2 | light=low-sun,5.725,216
+shell_runs_le_0.17ms,set=core | shell:static/energy | T=3.2 | light=low-sun,0,216
+shell_b_abs_median,set=core | shell:static/energy | T=3.2 | light=midday,2.0841,216
+shell_b_abs_p90,set=core | shell:static/energy | T=3.2 | light=midday,3.5297,216
+shell_b_abs_max,set=core | shell:static/energy | T=3.2 | light=midday,3.8564,216
+shell_runs_le_0.17ms,set=core | shell:static/energy | T=3.2 | light=midday,0,216
+shell_b_abs_median,set=core | shell:static/energy | T=6.4 | light=low-sun,1.9576,216
+shell_b_abs_p90,set=core | shell:static/energy | T=6.4 | light=low-sun,3.213,216
+shell_b_abs_max,set=core | shell:static/energy | T=6.4 | light=low-sun,6.5861,216
+shell_runs_le_0.17ms,set=core | shell:static/energy | T=6.4 | light=low-sun,0,216
+shell_b_abs_median,set=core | shell:static/energy | T=6.4 | light=midday,2.4146,216
+shell_b_abs_p90,set=core | shell:static/energy | T=6.4 | light=midday,4.1239,216
+shell_b_abs_max,set=core | shell:static/energy | T=6.4 | light=midday,4.7522,216
+shell_runs_le_0.17ms,set=core | shell:static/energy | T=6.4 | light=midday,0,216
+shell_b_abs_median,set=decomp-foam | shell:dispersive | T=1.6 | light=low-sun,2.3783,16
+shell_b_abs_p90,set=decomp-foam | shell:dispersive | T=1.6 | light=low-sun,11.155,16
+shell_b_abs_max,set=decomp-foam | shell:dispersive | T=1.6 | light=low-sun,11.834,16
+shell_runs_le_0.17ms,set=decomp-foam | shell:dispersive | T=1.6 | light=low-sun,0,16
+shell_b_abs_median,set=decomp-foam | shell:dispersive | T=1.6 | light=midday,2.3783,16
+shell_b_abs_p90,set=decomp-foam | shell:dispersive | T=1.6 | light=midday,10.882,16
+shell_b_abs_max,set=decomp-foam | shell:dispersive | T=1.6 | light=midday,11.778,16
+shell_runs_le_0.17ms,set=decomp-foam | shell:dispersive | T=1.6 | light=midday,0,16
+shell_b_abs_median,set=decomp-foam | shell:dispersive | T=12 | light=low-sun,2.278,16
+shell_b_abs_p90,set=decomp-foam | shell:dispersive | T=12 | light=low-sun,12.602,16
+shell_b_abs_max,set=decomp-foam | shell:dispersive | T=12 | light=low-sun,15.718,16
+shell_runs_le_0.17ms,set=decomp-foam | shell:dispersive | T=12 | light=low-sun,0,16
+shell_b_abs_median,set=decomp-foam | shell:dispersive | T=12 | light=midday,2.278,16
+shell_b_abs_p90,set=decomp-foam | shell:dispersive | T=12 | light=midday,13.748,16
+shell_b_abs_max,set=decomp-foam | shell:dispersive | T=12 | light=midday,13.992,16
+shell_runs_le_0.17ms,set=decomp-foam | shell:dispersive | T=12 | light=midday,0,16
+shell_b_abs_median,set=decomp-foam | shell:dispersive | T=3.2 | light=low-sun,2.1645,16
+shell_b_abs_p90,set=decomp-foam | shell:dispersive | T=3.2 | light=low-sun,12.759,16
+shell_b_abs_max,set=decomp-foam | shell:dispersive | T=3.2 | light=low-sun,13.733,16
+shell_runs_le_0.17ms,set=decomp-foam | shell:dispersive | T=3.2 | light=low-sun,0,16
+shell_b_abs_median,set=decomp-foam | shell:dispersive | T=3.2 | light=midday,2.2265,16
+shell_b_abs_p90,set=decomp-foam | shell:dispersive | T=3.2 | light=midday,11.029,16
+shell_b_abs_max,set=decomp-foam | shell:dispersive | T=3.2 | light=midday,12.824,16
+shell_runs_le_0.17ms,set=decomp-foam | shell:dispersive | T=3.2 | light=midday,0,16
+shell_b_abs_median,set=decomp-foam | shell:dispersive | T=6.4 | light=low-sun,2.0722,16
+shell_b_abs_p90,set=decomp-foam | shell:dispersive | T=6.4 | light=low-sun,13.044,16
+shell_b_abs_max,set=decomp-foam | shell:dispersive | T=6.4 | light=low-sun,14.146,16
+shell_runs_le_0.17ms,set=decomp-foam | shell:dispersive | T=6.4 | light=low-sun,0,16
+shell_b_abs_median,set=decomp-foam | shell:dispersive | T=6.4 | light=midday,2.0721,16
+shell_b_abs_p90,set=decomp-foam | shell:dispersive | T=6.4 | light=midday,11.837,16
+shell_b_abs_max,set=decomp-foam | shell:dispersive | T=6.4 | light=midday,13.518,16
+shell_runs_le_0.17ms,set=decomp-foam | shell:dispersive | T=6.4 | light=midday,0,16
+shell_b_abs_median,set=decomp-foam | shell:static | T=1.6 | light=low-sun,2.1702,16
+shell_b_abs_p90,set=decomp-foam | shell:static | T=1.6 | light=low-sun,11.155,16
+shell_b_abs_max,set=decomp-foam | shell:static | T=1.6 | light=low-sun,11.834,16
+shell_runs_le_0.17ms,set=decomp-foam | shell:static | T=1.6 | light=low-sun,0,16
+shell_b_abs_median,set=decomp-foam | shell:static | T=1.6 | light=midday,2.1703,16
+shell_b_abs_p90,set=decomp-foam | shell:static | T=1.6 | light=midday,10.882,16
+shell_b_abs_max,set=decomp-foam | shell:static | T=1.6 | light=midday,11.778,16
+shell_runs_le_0.17ms,set=decomp-foam | shell:static | T=1.6 | light=midday,0,16
+shell_b_abs_median,set=decomp-foam | shell:static | T=12 | light=low-sun,1.932,16
+shell_b_abs_p90,set=decomp-foam | shell:static | T=12 | light=low-sun,12.602,16
+shell_b_abs_max,set=decomp-foam | shell:static | T=12 | light=low-sun,15.718,16
+shell_runs_le_0.17ms,set=decomp-foam | shell:static | T=12 | light=low-sun,0,16
+shell_b_abs_median,set=decomp-foam | shell:static | T=12 | light=midday,1.932,16
+shell_b_abs_p90,set=decomp-foam | shell:static | T=12 | light=midday,13.748,16
+shell_b_abs_max,set=decomp-foam | shell:static | T=12 | light=midday,13.992,16
+shell_runs_le_0.17ms,set=decomp-foam | shell:static | T=12 | light=midday,0,16
+shell_b_abs_median,set=decomp-foam | shell:static | T=3.2 | light=low-sun,2.0753,16
+shell_b_abs_p90,set=decomp-foam | shell:static | T=3.2 | light=low-sun,12.759,16
+shell_b_abs_max,set=decomp-foam | shell:static | T=3.2 | light=low-sun,13.733,16
+shell_runs_le_0.17ms,set=decomp-foam | shell:static | T=3.2 | light=low-sun,0,16
+shell_b_abs_median,set=decomp-foam | shell:static | T=3.2 | light=midday,2.0754,16
+shell_b_abs_p90,set=decomp-foam | shell:static | T=3.2 | light=midday,11.029,16
+shell_b_abs_max,set=decomp-foam | shell:static | T=3.2 | light=midday,12.824,16
+shell_runs_le_0.17ms,set=decomp-foam | shell:static | T=3.2 | light=midday,0,16
+shell_b_abs_median,set=decomp-foam | shell:static | T=6.4 | light=low-sun,1.9588,16
+shell_b_abs_p90,set=decomp-foam | shell:static | T=6.4 | light=low-sun,13.044,16
+shell_b_abs_max,set=decomp-foam | shell:static | T=6.4 | light=low-sun,14.146,16
+shell_runs_le_0.17ms,set=decomp-foam | shell:static | T=6.4 | light=low-sun,0,16
+shell_b_abs_median,set=decomp-foam | shell:static | T=6.4 | light=midday,1.9586,16
+shell_b_abs_p90,set=decomp-foam | shell:static | T=6.4 | light=midday,11.837,16
+shell_b_abs_max,set=decomp-foam | shell:static | T=6.4 | light=midday,13.518,16
+shell_runs_le_0.17ms,set=decomp-foam | shell:static | T=6.4 | light=midday,0,16
+shell_b_abs_median,set=decomp-normals | shell:dispersive | T=1.6 | light=low-sun,0.079792,16
+shell_b_abs_p90,set=decomp-normals | shell:dispersive | T=1.6 | light=low-sun,0.26453,16
+shell_b_abs_max,set=decomp-normals | shell:dispersive | T=1.6 | light=low-sun,3.5698,16
+shell_runs_le_0.17ms,set=decomp-normals | shell:dispersive | T=1.6 | light=low-sun,11,16
+shell_b_abs_median,set=decomp-normals | shell:dispersive | T=1.6 | light=midday,0.079795,16
+shell_b_abs_p90,set=decomp-normals | shell:dispersive | T=1.6 | light=midday,0.26445,16
+shell_b_abs_max,set=decomp-normals | shell:dispersive | T=1.6 | light=midday,3.5698,16
+shell_runs_le_0.17ms,set=decomp-normals | shell:dispersive | T=1.6 | light=midday,11,16
+shell_b_abs_median,set=decomp-normals | shell:dispersive | T=12 | light=low-sun,0.11615,16
+shell_b_abs_p90,set=decomp-normals | shell:dispersive | T=12 | light=low-sun,0.31381,16
+shell_b_abs_max,set=decomp-normals | shell:dispersive | T=12 | light=low-sun,0.55909,16
+shell_runs_le_0.17ms,set=decomp-normals | shell:dispersive | T=12 | light=low-sun,9,16
+shell_b_abs_median,set=decomp-normals | shell:dispersive | T=12 | light=midday,0.11621,16
+shell_b_abs_p90,set=decomp-normals | shell:dispersive | T=12 | light=midday,0.31392,16
+shell_b_abs_max,set=decomp-normals | shell:dispersive | T=12 | light=midday,0.55918,16
+shell_runs_le_0.17ms,set=decomp-normals | shell:dispersive | T=12 | light=midday,9,16
+shell_b_abs_median,set=decomp-normals | shell:dispersive | T=3.2 | light=low-sun,0.05805,16
+shell_b_abs_p90,set=decomp-normals | shell:dispersive | T=3.2 | light=low-sun,0.14864,16
+shell_b_abs_max,set=decomp-normals | shell:dispersive | T=3.2 | light=low-sun,0.23658,16
+shell_runs_le_0.17ms,set=decomp-normals | shell:dispersive | T=3.2 | light=low-sun,14,16
+shell_b_abs_median,set=decomp-normals | shell:dispersive | T=3.2 | light=midday,0.058042,16
+shell_b_abs_p90,set=decomp-normals | shell:dispersive | T=3.2 | light=midday,0.14863,16
+shell_b_abs_max,set=decomp-normals | shell:dispersive | T=3.2 | light=midday,0.23661,16
+shell_runs_le_0.17ms,set=decomp-normals | shell:dispersive | T=3.2 | light=midday,14,16
+shell_b_abs_median,set=decomp-normals | shell:dispersive | T=6.4 | light=low-sun,0.12338,16
+shell_b_abs_p90,set=decomp-normals | shell:dispersive | T=6.4 | light=low-sun,0.20647,16
+shell_b_abs_max,set=decomp-normals | shell:dispersive | T=6.4 | light=low-sun,0.51606,16
+shell_runs_le_0.17ms,set=decomp-normals | shell:dispersive | T=6.4 | light=low-sun,12,16
+shell_b_abs_median,set=decomp-normals | shell:dispersive | T=6.4 | light=midday,0.12325,16
+shell_b_abs_p90,set=decomp-normals | shell:dispersive | T=6.4 | light=midday,0.20651,16
+shell_b_abs_max,set=decomp-normals | shell:dispersive | T=6.4 | light=midday,0.51092,16
+shell_runs_le_0.17ms,set=decomp-normals | shell:dispersive | T=6.4 | light=midday,12,16
+shell_b_abs_median,set=decomp-normals | shell:dispersive/energy | T=1.6 | light=low-sun,2.9154,16
+shell_b_abs_p90,set=decomp-normals | shell:dispersive/energy | T=1.6 | light=low-sun,3.8903,16
+shell_b_abs_max,set=decomp-normals | shell:dispersive/energy | T=1.6 | light=low-sun,3.9314,16
+shell_runs_le_0.17ms,set=decomp-normals | shell:dispersive/energy | T=1.6 | light=low-sun,1,16
+shell_b_abs_median,set=decomp-normals | shell:dispersive/energy | T=1.6 | light=midday,2.9156,16
+shell_b_abs_p90,set=decomp-normals | shell:dispersive/energy | T=1.6 | light=midday,3.8909,16
+shell_b_abs_max,set=decomp-normals | shell:dispersive/energy | T=1.6 | light=midday,3.9309,16
+shell_runs_le_0.17ms,set=decomp-normals | shell:dispersive/energy | T=1.6 | light=midday,1,16
+shell_b_abs_median,set=decomp-normals | shell:dispersive/energy | T=12 | light=low-sun,0.1324,16
+shell_b_abs_p90,set=decomp-normals | shell:dispersive/energy | T=12 | light=low-sun,2.2031,16
+shell_b_abs_max,set=decomp-normals | shell:dispersive/energy | T=12 | light=low-sun,2.3766,16
+shell_runs_le_0.17ms,set=decomp-normals | shell:dispersive/energy | T=12 | light=low-sun,9,16
+shell_b_abs_median,set=decomp-normals | shell:dispersive/energy | T=12 | light=midday,0.1324,16
+shell_b_abs_p90,set=decomp-normals | shell:dispersive/energy | T=12 | light=midday,2.2031,16
+shell_b_abs_max,set=decomp-normals | shell:dispersive/energy | T=12 | light=midday,2.3764,16
+shell_runs_le_0.17ms,set=decomp-normals | shell:dispersive/energy | T=12 | light=midday,9,16
+shell_b_abs_median,set=decomp-normals | shell:dispersive/energy | T=3.2 | light=low-sun,0.079212,16
+shell_b_abs_p90,set=decomp-normals | shell:dispersive/energy | T=3.2 | light=low-sun,2.3549,16
+shell_b_abs_max,set=decomp-normals | shell:dispersive/energy | T=3.2 | light=low-sun,5.2519,16
+shell_runs_le_0.17ms,set=decomp-normals | shell:dispersive/energy | T=3.2 | light=low-sun,10,16
+shell_b_abs_median,set=decomp-normals | shell:dispersive/energy | T=3.2 | light=midday,0.079198,16
+shell_b_abs_p90,set=decomp-normals | shell:dispersive/energy | T=3.2 | light=midday,2.3543,16
+shell_b_abs_max,set=decomp-normals | shell:dispersive/energy | T=3.2 | light=midday,5.1923,16
+shell_runs_le_0.17ms,set=decomp-normals | shell:dispersive/energy | T=3.2 | light=midday,10,16
+shell_b_abs_median,set=decomp-normals | shell:dispersive/energy | T=6.4 | light=low-sun,0.085531,16
+shell_b_abs_p90,set=decomp-normals | shell:dispersive/energy | T=6.4 | light=low-sun,2.2759,16
+shell_b_abs_max,set=decomp-normals | shell:dispersive/energy | T=6.4 | light=low-sun,2.3809,16
+shell_runs_le_0.17ms,set=decomp-normals | shell:dispersive/energy | T=6.4 | light=low-sun,12,16
+shell_b_abs_median,set=decomp-normals | shell:dispersive/energy | T=6.4 | light=midday,0.08541,16
+shell_b_abs_p90,set=decomp-normals | shell:dispersive/energy | T=6.4 | light=midday,2.2755,16
+shell_b_abs_max,set=decomp-normals | shell:dispersive/energy | T=6.4 | light=midday,2.3807,16
+shell_runs_le_0.17ms,set=decomp-normals | shell:dispersive/energy | T=6.4 | light=midday,12,16
+shell_b_abs_median,set=decomp-normals | shell:static | T=1.6 | light=low-sun,1.3078,16
+shell_b_abs_p90,set=decomp-normals | shell:static | T=1.6 | light=low-sun,2.1884,16
+shell_b_abs_max,set=decomp-normals | shell:static | T=1.6 | light=low-sun,2.2167,16
+shell_runs_le_0.17ms,set=decomp-normals | shell:static | T=1.6 | light=low-sun,0,16
+shell_b_abs_median,set=decomp-normals | shell:static | T=1.6 | light=midday,1.3078,16
+shell_b_abs_p90,set=decomp-normals | shell:static | T=1.6 | light=midday,2.1884,16
+shell_b_abs_max,set=decomp-normals | shell:static | T=1.6 | light=midday,2.2167,16
+shell_runs_le_0.17ms,set=decomp-normals | shell:static | T=1.6 | light=midday,0,16
+shell_b_abs_median,set=decomp-normals | shell:static | T=12 | light=low-sun,1.3382,16
+shell_b_abs_p90,set=decomp-normals | shell:static | T=12 | light=low-sun,2.5951,16
+shell_b_abs_max,set=decomp-normals | shell:static | T=12 | light=low-sun,2.8346,16
+shell_runs_le_0.17ms,set=decomp-normals | shell:static | T=12 | light=low-sun,0,16
+shell_b_abs_median,set=decomp-normals | shell:static | T=12 | light=midday,1.3382,16
+shell_b_abs_p90,set=decomp-normals | shell:static | T=12 | light=midday,2.5949,16
+shell_b_abs_max,set=decomp-normals | shell:static | T=12 | light=midday,2.8345,16
+shell_runs_le_0.17ms,set=decomp-normals | shell:static | T=12 | light=midday,0,16
+shell_b_abs_median,set=decomp-normals | shell:static | T=3.2 | light=low-sun,1.3464,16
+shell_b_abs_p90,set=decomp-normals | shell:static | T=3.2 | light=low-sun,2.2519,16
+shell_b_abs_max,set=decomp-normals | shell:static | T=3.2 | light=low-sun,2.3962,16
+shell_runs_le_0.17ms,set=decomp-normals | shell:static | T=3.2 | light=low-sun,0,16
+shell_b_abs_median,set=decomp-normals | shell:static | T=3.2 | light=midday,1.3464,16
+shell_b_abs_p90,set=decomp-normals | shell:static | T=3.2 | light=midday,2.2519,16
+shell_b_abs_max,set=decomp-normals | shell:static | T=3.2 | light=midday,2.3962,16
+shell_runs_le_0.17ms,set=decomp-normals | shell:static | T=3.2 | light=midday,0,16
+shell_b_abs_median,set=decomp-normals | shell:static | T=6.4 | light=low-sun,1.3347,16
+shell_b_abs_p90,set=decomp-normals | shell:static | T=6.4 | light=low-sun,2.4012,16
+shell_b_abs_max,set=decomp-normals | shell:static | T=6.4 | light=low-sun,2.7399,16
+shell_runs_le_0.17ms,set=decomp-normals | shell:static | T=6.4 | light=low-sun,0,16
+shell_b_abs_median,set=decomp-normals | shell:static | T=6.4 | light=midday,1.3344,16
+shell_b_abs_p90,set=decomp-normals | shell:static | T=6.4 | light=midday,2.4011,16
+shell_b_abs_max,set=decomp-normals | shell:static | T=6.4 | light=midday,2.7398,16
+shell_runs_le_0.17ms,set=decomp-normals | shell:static | T=6.4 | light=midday,0,16
+shell_b_abs_median,set=decomp-normals | shell:static/energy | T=1.6 | light=low-sun,1.6795,16
+shell_b_abs_p90,set=decomp-normals | shell:static/energy | T=1.6 | light=low-sun,2.8243,16
+shell_b_abs_max,set=decomp-normals | shell:static/energy | T=1.6 | light=low-sun,2.8472,16
+shell_runs_le_0.17ms,set=decomp-normals | shell:static/energy | T=1.6 | light=low-sun,0,16
+shell_b_abs_median,set=decomp-normals | shell:static/energy | T=1.6 | light=midday,1.6795,16
+shell_b_abs_p90,set=decomp-normals | shell:static/energy | T=1.6 | light=midday,2.8242,16
+shell_b_abs_max,set=decomp-normals | shell:static/energy | T=1.6 | light=midday,2.8479,16
+shell_runs_le_0.17ms,set=decomp-normals | shell:static/energy | T=1.6 | light=midday,0,16
+shell_b_abs_median,set=decomp-normals | shell:static/energy | T=12 | light=low-sun,2.6526,16
+shell_b_abs_p90,set=decomp-normals | shell:static/energy | T=12 | light=low-sun,4.2335,16
+shell_b_abs_max,set=decomp-normals | shell:static/energy | T=12 | light=low-sun,4.4632,16
+shell_runs_le_0.17ms,set=decomp-normals | shell:static/energy | T=12 | light=low-sun,0,16
+shell_b_abs_median,set=decomp-normals | shell:static/energy | T=12 | light=midday,2.6431,16
+shell_b_abs_p90,set=decomp-normals | shell:static/energy | T=12 | light=midday,4.2326,16
+shell_b_abs_max,set=decomp-normals | shell:static/energy | T=12 | light=midday,4.4632,16
+shell_runs_le_0.17ms,set=decomp-normals | shell:static/energy | T=12 | light=midday,0,16
+shell_b_abs_median,set=decomp-normals | shell:static/energy | T=3.2 | light=low-sun,1.8226,16
+shell_b_abs_p90,set=decomp-normals | shell:static/energy | T=3.2 | light=low-sun,3.1101,16
+shell_b_abs_max,set=decomp-normals | shell:static/energy | T=3.2 | light=low-sun,3.143,16
+shell_runs_le_0.17ms,set=decomp-normals | shell:static/energy | T=3.2 | light=low-sun,0,16
+shell_b_abs_median,set=decomp-normals | shell:static/energy | T=3.2 | light=midday,1.8228,16
+shell_b_abs_p90,set=decomp-normals | shell:static/energy | T=3.2 | light=midday,3.11,16
+shell_b_abs_max,set=decomp-normals | shell:static/energy | T=3.2 | light=midday,3.1428,16
+shell_runs_le_0.17ms,set=decomp-normals | shell:static/energy | T=3.2 | light=midday,0,16
+shell_b_abs_median,set=decomp-normals | shell:static/energy | T=6.4 | light=low-sun,1.9228,16
+shell_b_abs_p90,set=decomp-normals | shell:static/energy | T=6.4 | light=low-sun,3.733,16
+shell_b_abs_max,set=decomp-normals | shell:static/energy | T=6.4 | light=low-sun,3.8421,16
+shell_runs_le_0.17ms,set=decomp-normals | shell:static/energy | T=6.4 | light=low-sun,0,16
+shell_b_abs_median,set=decomp-normals | shell:static/energy | T=6.4 | light=midday,1.9223,16
+shell_b_abs_p90,set=decomp-normals | shell:static/energy | T=6.4 | light=midday,3.7333,16
+shell_b_abs_max,set=decomp-normals | shell:static/energy | T=6.4 | light=midday,3.8418,16
+shell_runs_le_0.17ms,set=decomp-normals | shell:static/energy | T=6.4 | light=midday,0,16
+shell_b_abs_median,set=decomp-shaded | shell:dispersive | T=1.6 | light=low-sun,1.1505,16
+shell_b_abs_p90,set=decomp-shaded | shell:dispersive | T=1.6 | light=low-sun,2.6439,16
+shell_b_abs_max,set=decomp-shaded | shell:dispersive | T=1.6 | light=low-sun,3.9204,16
+shell_runs_le_0.17ms,set=decomp-shaded | shell:dispersive | T=1.6 | light=low-sun,3,16
+shell_b_abs_median,set=decomp-shaded | shell:dispersive | T=1.6 | light=midday,0.16396,16
+shell_b_abs_p90,set=decomp-shaded | shell:dispersive | T=1.6 | light=midday,2.814,16
+shell_b_abs_max,set=decomp-shaded | shell:dispersive | T=1.6 | light=midday,2.9251,16
+shell_runs_le_0.17ms,set=decomp-shaded | shell:dispersive | T=1.6 | light=midday,8,16
+shell_b_abs_median,set=decomp-shaded | shell:dispersive | T=12 | light=low-sun,1.0853,16
+shell_b_abs_p90,set=decomp-shaded | shell:dispersive | T=12 | light=low-sun,2.4047,16
+shell_b_abs_max,set=decomp-shaded | shell:dispersive | T=12 | light=low-sun,2.7431,16
+shell_runs_le_0.17ms,set=decomp-shaded | shell:dispersive | T=12 | light=low-sun,2,16
+shell_b_abs_median,set=decomp-shaded | shell:dispersive | T=12 | light=midday,0.13414,16
+shell_b_abs_p90,set=decomp-shaded | shell:dispersive | T=12 | light=midday,0.48555,16
+shell_b_abs_max,set=decomp-shaded | shell:dispersive | T=12 | light=midday,0.78891,16
+shell_runs_le_0.17ms,set=decomp-shaded | shell:dispersive | T=12 | light=midday,10,16
+shell_b_abs_median,set=decomp-shaded | shell:dispersive | T=3.2 | light=low-sun,0.78808,16
+shell_b_abs_p90,set=decomp-shaded | shell:dispersive | T=3.2 | light=low-sun,2.1821,16
+shell_b_abs_max,set=decomp-shaded | shell:dispersive | T=3.2 | light=low-sun,2.507,16
+shell_runs_le_0.17ms,set=decomp-shaded | shell:dispersive | T=3.2 | light=low-sun,3,16
+shell_b_abs_median,set=decomp-shaded | shell:dispersive | T=3.2 | light=midday,0.075914,16
+shell_b_abs_p90,set=decomp-shaded | shell:dispersive | T=3.2 | light=midday,0.32589,16
+shell_b_abs_max,set=decomp-shaded | shell:dispersive | T=3.2 | light=midday,0.67044,16
+shell_runs_le_0.17ms,set=decomp-shaded | shell:dispersive | T=3.2 | light=midday,12,16
+shell_b_abs_median,set=decomp-shaded | shell:dispersive | T=6.4 | light=low-sun,0.7211,16
+shell_b_abs_p90,set=decomp-shaded | shell:dispersive | T=6.4 | light=low-sun,2.4084,16
+shell_b_abs_max,set=decomp-shaded | shell:dispersive | T=6.4 | light=low-sun,2.6233,16
+shell_runs_le_0.17ms,set=decomp-shaded | shell:dispersive | T=6.4 | light=low-sun,3,16
+shell_b_abs_median,set=decomp-shaded | shell:dispersive | T=6.4 | light=midday,0.12733,16
+shell_b_abs_p90,set=decomp-shaded | shell:dispersive | T=6.4 | light=midday,0.37539,16
+shell_b_abs_max,set=decomp-shaded | shell:dispersive | T=6.4 | light=midday,0.79169,16
+shell_runs_le_0.17ms,set=decomp-shaded | shell:dispersive | T=6.4 | light=midday,10,16
+shell_b_abs_median,set=decomp-shaded | shell:static | T=1.6 | light=low-sun,1.2666,16
+shell_b_abs_p90,set=decomp-shaded | shell:static | T=1.6 | light=low-sun,2.3894,16
+shell_b_abs_max,set=decomp-shaded | shell:static | T=1.6 | light=low-sun,2.7651,16
+shell_runs_le_0.17ms,set=decomp-shaded | shell:static | T=1.6 | light=low-sun,0,16
+shell_b_abs_median,set=decomp-shaded | shell:static | T=1.6 | light=midday,1.3393,16
+shell_b_abs_p90,set=decomp-shaded | shell:static | T=1.6 | light=midday,2.4185,16
+shell_b_abs_max,set=decomp-shaded | shell:static | T=1.6 | light=midday,2.502,16
+shell_runs_le_0.17ms,set=decomp-shaded | shell:static | T=1.6 | light=midday,0,16
+shell_b_abs_median,set=decomp-shaded | shell:static | T=12 | light=low-sun,0.75187,16
+shell_b_abs_p90,set=decomp-shaded | shell:static | T=12 | light=low-sun,1.6331,16
+shell_b_abs_max,set=decomp-shaded | shell:static | T=12 | light=low-sun,2.9857,16
+shell_runs_le_0.17ms,set=decomp-shaded | shell:static | T=12 | light=low-sun,1,16
+shell_b_abs_median,set=decomp-shaded | shell:static | T=12 | light=midday,1.3436,16
+shell_b_abs_p90,set=decomp-shaded | shell:static | T=12 | light=midday,2.8986,16
+shell_b_abs_max,set=decomp-shaded | shell:static | T=12 | light=midday,2.9318,16
+shell_runs_le_0.17ms,set=decomp-shaded | shell:static | T=12 | light=midday,0,16
+shell_b_abs_median,set=decomp-shaded | shell:static | T=3.2 | light=low-sun,1.0659,16
+shell_b_abs_p90,set=decomp-shaded | shell:static | T=3.2 | light=low-sun,1.9651,16
+shell_b_abs_max,set=decomp-shaded | shell:static | T=3.2 | light=low-sun,2.9157,16
+shell_runs_le_0.17ms,set=decomp-shaded | shell:static | T=3.2 | light=low-sun,0,16
+shell_b_abs_median,set=decomp-shaded | shell:static | T=3.2 | light=midday,1.3782,16
+shell_b_abs_p90,set=decomp-shaded | shell:static | T=3.2 | light=midday,2.6715,16
+shell_b_abs_max,set=decomp-shaded | shell:static | T=3.2 | light=midday,2.7648,16
+shell_runs_le_0.17ms,set=decomp-shaded | shell:static | T=3.2 | light=midday,0,16
+shell_b_abs_median,set=decomp-shaded | shell:static | T=6.4 | light=low-sun,1.0672,16
+shell_b_abs_p90,set=decomp-shaded | shell:static | T=6.4 | light=low-sun,1.7625,16
+shell_b_abs_max,set=decomp-shaded | shell:static | T=6.4 | light=low-sun,2.9668,16
+shell_runs_le_0.17ms,set=decomp-shaded | shell:static | T=6.4 | light=low-sun,0,16
+shell_b_abs_median,set=decomp-shaded | shell:static | T=6.4 | light=midday,1.3043,16
+shell_b_abs_p90,set=decomp-shaded | shell:static | T=6.4 | light=midday,2.8359,16
+shell_b_abs_max,set=decomp-shaded | shell:static | T=6.4 | light=midday,2.9008,16
+shell_runs_le_0.17ms,set=decomp-shaded | shell:static | T=6.4 | light=midday,0,16
+shell_b_abs_median,set=frozen | shell:dispersive | T=1.6 | light=midday,1.084,24
+shell_b_abs_p90,set=frozen | shell:dispersive | T=1.6 | light=midday,1.5178,24
+shell_b_abs_max,set=frozen | shell:dispersive | T=1.6 | light=midday,1.5459,24
+shell_runs_le_0.17ms,set=frozen | shell:dispersive | T=1.6 | light=midday,0,24
+shell_b_abs_median,set=frozen | shell:dispersive | T=12 | light=midday,1.3099,24
+shell_b_abs_p90,set=frozen | shell:dispersive | T=12 | light=midday,1.5171,24
+shell_b_abs_max,set=frozen | shell:dispersive | T=12 | light=midday,1.538,24
+shell_runs_le_0.17ms,set=frozen | shell:dispersive | T=12 | light=midday,0,24
+shell_b_abs_median,set=frozen | shell:dispersive | T=3.2 | light=midday,1.2551,24
+shell_b_abs_p90,set=frozen | shell:dispersive | T=3.2 | light=midday,1.5446,24
+shell_b_abs_max,set=frozen | shell:dispersive | T=3.2 | light=midday,1.5587,24
+shell_runs_le_0.17ms,set=frozen | shell:dispersive | T=3.2 | light=midday,3,24
+shell_b_abs_median,set=frozen | shell:dispersive | T=6.4 | light=midday,1.2478,24
+shell_b_abs_p90,set=frozen | shell:dispersive | T=6.4 | light=midday,1.5217,24
+shell_b_abs_max,set=frozen | shell:dispersive | T=6.4 | light=midday,1.5338,24
+shell_runs_le_0.17ms,set=frozen | shell:dispersive | T=6.4 | light=midday,4,24
+shell_b_abs_median,set=frozen | shell:dispersive/energy | T=1.6 | light=midday,1.1916,24
+shell_b_abs_p90,set=frozen | shell:dispersive/energy | T=1.6 | light=midday,1.473,24
+shell_b_abs_max,set=frozen | shell:dispersive/energy | T=1.6 | light=midday,1.4989,24
+shell_runs_le_0.17ms,set=frozen | shell:dispersive/energy | T=1.6 | light=midday,0,24
+shell_b_abs_median,set=frozen | shell:dispersive/energy | T=12 | light=midday,1.6748,24
+shell_b_abs_p90,set=frozen | shell:dispersive/energy | T=12 | light=midday,2.489,24
+shell_b_abs_max,set=frozen | shell:dispersive/energy | T=12 | light=midday,2.785,24
+shell_runs_le_0.17ms,set=frozen | shell:dispersive/energy | T=12 | light=midday,0,24
+shell_b_abs_median,set=frozen | shell:dispersive/energy | T=3.2 | light=midday,1.4697,24
+shell_b_abs_p90,set=frozen | shell:dispersive/energy | T=3.2 | light=midday,2.0113,24
+shell_b_abs_max,set=frozen | shell:dispersive/energy | T=3.2 | light=midday,2.1228,24
+shell_runs_le_0.17ms,set=frozen | shell:dispersive/energy | T=3.2 | light=midday,2,24
+shell_b_abs_median,set=frozen | shell:dispersive/energy | T=6.4 | light=midday,1.4135,24
+shell_b_abs_p90,set=frozen | shell:dispersive/energy | T=6.4 | light=midday,2.3051,24
+shell_b_abs_max,set=frozen | shell:dispersive/energy | T=6.4 | light=midday,2.5149,24
+shell_runs_le_0.17ms,set=frozen | shell:dispersive/energy | T=6.4 | light=midday,4,24
+shell_b_abs_median,set=frozen | shell:dispersive/sqrt | T=1.6 | light=midday,1.2638,24
+shell_b_abs_p90,set=frozen | shell:dispersive/sqrt | T=1.6 | light=midday,1.5264,24
+shell_b_abs_max,set=frozen | shell:dispersive/sqrt | T=1.6 | light=midday,1.5395,24
+shell_runs_le_0.17ms,set=frozen | shell:dispersive/sqrt | T=1.6 | light=midday,0,24
+shell_b_abs_median,set=frozen | shell:dispersive/sqrt | T=12 | light=midday,1.3884,24
+shell_b_abs_p90,set=frozen | shell:dispersive/sqrt | T=12 | light=midday,1.7531,24
+shell_b_abs_max,set=frozen | shell:dispersive/sqrt | T=12 | light=midday,1.8177,24
+shell_runs_le_0.17ms,set=frozen | shell:dispersive/sqrt | T=12 | light=midday,0,24
+shell_b_abs_median,set=frozen | shell:dispersive/sqrt | T=3.2 | light=midday,1.16,24
+shell_b_abs_p90,set=frozen | shell:dispersive/sqrt | T=3.2 | light=midday,1.6539,24
+shell_b_abs_max,set=frozen | shell:dispersive/sqrt | T=3.2 | light=midday,1.6941,24
+shell_runs_le_0.17ms,set=frozen | shell:dispersive/sqrt | T=3.2 | light=midday,2,24
+shell_b_abs_median,set=frozen | shell:dispersive/sqrt | T=6.4 | light=midday,1.0341,24
+shell_b_abs_p90,set=frozen | shell:dispersive/sqrt | T=6.4 | light=midday,1.7066,24
+shell_b_abs_max,set=frozen | shell:dispersive/sqrt | T=6.4 | light=midday,1.8063,24
+shell_runs_le_0.17ms,set=frozen | shell:dispersive/sqrt | T=6.4 | light=midday,6,24
+shell_b_abs_median,set=frozen | shell:static | T=1.6 | light=midday,0.034308,24
+shell_b_abs_p90,set=frozen | shell:static | T=1.6 | light=midday,0.12366,24
+shell_b_abs_max,set=frozen | shell:static | T=1.6 | light=midday,0.26661,24
+shell_runs_le_0.17ms,set=frozen | shell:static | T=1.6 | light=midday,22,24
+shell_b_abs_median,set=frozen | shell:static | T=12 | light=midday,0.050182,24
+shell_b_abs_p90,set=frozen | shell:static | T=12 | light=midday,0.12678,24
+shell_b_abs_max,set=frozen | shell:static | T=12 | light=midday,0.13854,24
+shell_runs_le_0.17ms,set=frozen | shell:static | T=12 | light=midday,24,24
+shell_b_abs_median,set=frozen | shell:static | T=3.2 | light=midday,0.04921,24
+shell_b_abs_p90,set=frozen | shell:static | T=3.2 | light=midday,0.16855,24
+shell_b_abs_max,set=frozen | shell:static | T=3.2 | light=midday,0.26725,24
+shell_runs_le_0.17ms,set=frozen | shell:static | T=3.2 | light=midday,21,24
+shell_b_abs_median,set=frozen | shell:static | T=6.4 | light=midday,0.03647,24
+shell_b_abs_p90,set=frozen | shell:static | T=6.4 | light=midday,0.11362,24
+shell_b_abs_max,set=frozen | shell:static | T=6.4 | light=midday,0.1399,24
+shell_runs_le_0.17ms,set=frozen | shell:static | T=6.4 | light=midday,24,24
+shell_b_abs_median,set=frozen | shell:static/energy | T=1.6 | light=midday,0.047952,24
+shell_b_abs_p90,set=frozen | shell:static/energy | T=1.6 | light=midday,0.12857,24
+shell_b_abs_max,set=frozen | shell:static/energy | T=1.6 | light=midday,0.24321,24
+shell_runs_le_0.17ms,set=frozen | shell:static/energy | T=1.6 | light=midday,23,24
+shell_b_abs_median,set=frozen | shell:static/energy | T=12 | light=midday,0.15397,24
+shell_b_abs_p90,set=frozen | shell:static/energy | T=12 | light=midday,0.47228,24
+shell_b_abs_max,set=frozen | shell:static/energy | T=12 | light=midday,0.62471,24
+shell_runs_le_0.17ms,set=frozen | shell:static/energy | T=12 | light=midday,14,24
+shell_b_abs_median,set=frozen | shell:static/energy | T=3.2 | light=midday,0.072395,24
+shell_b_abs_p90,set=frozen | shell:static/energy | T=3.2 | light=midday,0.17897,24
+shell_b_abs_max,set=frozen | shell:static/energy | T=3.2 | light=midday,0.26383,24
+shell_runs_le_0.17ms,set=frozen | shell:static/energy | T=3.2 | light=midday,20,24
+shell_b_abs_median,set=frozen | shell:static/energy | T=6.4 | light=midday,0.077856,24
+shell_b_abs_p90,set=frozen | shell:static/energy | T=6.4 | light=midday,0.22678,24
+shell_b_abs_max,set=frozen | shell:static/energy | T=6.4 | light=midday,0.43919,24
+shell_runs_le_0.17ms,set=frozen | shell:static/energy | T=6.4 | light=midday,21,24
+shell_b_abs_median,set=frozen | shell:static/sqrt | T=1.6 | light=midday,0.030797,24
+shell_b_abs_p90,set=frozen | shell:static/sqrt | T=1.6 | light=midday,0.12532,24
+shell_b_abs_max,set=frozen | shell:static/sqrt | T=1.6 | light=midday,0.2645,24
+shell_runs_le_0.17ms,set=frozen | shell:static/sqrt | T=1.6 | light=midday,22,24
+shell_b_abs_median,set=frozen | shell:static/sqrt | T=12 | light=midday,0.056159,24
+shell_b_abs_p90,set=frozen | shell:static/sqrt | T=12 | light=midday,0.1155,24
+shell_b_abs_max,set=frozen | shell:static/sqrt | T=12 | light=midday,0.14618,24
+shell_runs_le_0.17ms,set=frozen | shell:static/sqrt | T=12 | light=midday,24,24
+shell_b_abs_median,set=frozen | shell:static/sqrt | T=3.2 | light=midday,0.052788,24
+shell_b_abs_p90,set=frozen | shell:static/sqrt | T=3.2 | light=midday,0.1715,24
+shell_b_abs_max,set=frozen | shell:static/sqrt | T=3.2 | light=midday,0.27065,24
+shell_runs_le_0.17ms,set=frozen | shell:static/sqrt | T=3.2 | light=midday,21,24
+shell_b_abs_median,set=frozen | shell:static/sqrt | T=6.4 | light=midday,0.046282,24
+shell_b_abs_p90,set=frozen | shell:static/sqrt | T=6.4 | light=midday,0.13289,24
+shell_b_abs_max,set=frozen | shell:static/sqrt | T=6.4 | light=midday,0.14964,24
+shell_runs_le_0.17ms,set=frozen | shell:static/sqrt | T=6.4 | light=midday,24,24
+shell_b_abs_median,set=oblique | shell:dispersive | T=1.6 | light=midday,0.8377,36
+shell_b_abs_p90,set=oblique | shell:dispersive | T=1.6 | light=midday,2.3294,36
+shell_b_abs_max,set=oblique | shell:dispersive | T=1.6 | light=midday,2.3675,36
+shell_runs_le_0.17ms,set=oblique | shell:dispersive | T=1.6 | light=midday,1,36
+shell_b_abs_median,set=oblique | shell:dispersive | T=12 | light=midday,0.35379,36
+shell_b_abs_p90,set=oblique | shell:dispersive | T=12 | light=midday,1.4972,36
+shell_b_abs_max,set=oblique | shell:dispersive | T=12 | light=midday,2.9503,36
+shell_runs_le_0.17ms,set=oblique | shell:dispersive | T=12 | light=midday,12,36
+shell_b_abs_median,set=oblique | shell:dispersive | T=3.2 | light=midday,0.34831,36
+shell_b_abs_p90,set=oblique | shell:dispersive | T=3.2 | light=midday,1.6316,36
+shell_b_abs_max,set=oblique | shell:dispersive | T=3.2 | light=midday,2.5725,36
+shell_runs_le_0.17ms,set=oblique | shell:dispersive | T=3.2 | light=midday,10,36
+shell_b_abs_median,set=oblique | shell:dispersive | T=6.4 | light=midday,0.27433,36
+shell_b_abs_p90,set=oblique | shell:dispersive | T=6.4 | light=midday,1.4292,36
+shell_b_abs_max,set=oblique | shell:dispersive | T=6.4 | light=midday,2.7863,36
+shell_runs_le_0.17ms,set=oblique | shell:dispersive | T=6.4 | light=midday,14,36
+shell_b_abs_median,set=oblique | shell:static | T=1.6 | light=midday,1.3788,36
+shell_b_abs_p90,set=oblique | shell:static | T=1.6 | light=midday,1.69,36
+shell_b_abs_max,set=oblique | shell:static | T=1.6 | light=midday,1.7651,36
+shell_runs_le_0.17ms,set=oblique | shell:static | T=1.6 | light=midday,0,36
+shell_b_abs_median,set=oblique | shell:static | T=12 | light=midday,1.3669,36
+shell_b_abs_p90,set=oblique | shell:static | T=12 | light=midday,1.7789,36
+shell_b_abs_max,set=oblique | shell:static | T=12 | light=midday,1.9222,36
+shell_runs_le_0.17ms,set=oblique | shell:static | T=12 | light=midday,0,36
+shell_b_abs_median,set=oblique | shell:static | T=3.2 | light=midday,1.2999,36
+shell_b_abs_p90,set=oblique | shell:static | T=3.2 | light=midday,1.7547,36
+shell_b_abs_max,set=oblique | shell:static | T=3.2 | light=midday,1.8184,36
+shell_runs_le_0.17ms,set=oblique | shell:static | T=3.2 | light=midday,0,36
+shell_b_abs_median,set=oblique | shell:static | T=6.4 | light=midday,1.3576,36
+shell_b_abs_p90,set=oblique | shell:static | T=6.4 | light=midday,1.7715,36
+shell_b_abs_max,set=oblique | shell:static | T=6.4 | light=midday,1.8276,36
+shell_runs_le_0.17ms,set=oblique | shell:static | T=6.4 | light=midday,0,36
+shell_windows_large_err_with_J_est_ge_J_truth,set=core | model=dispersive | light=low-sun | err_abs>0.5,1,3248
+shell_windows_large_err_with_J_est_ge_J_truth,set=core | model=dispersive | light=midday | err_abs>0.5,1,1465
+shell_windows_large_err_with_J_est_ge_J_truth,set=core | model=static | light=low-sun | err_abs>0.5,1,3518
+shell_windows_large_err_with_J_est_ge_J_truth,set=core | model=static | light=midday | err_abs>0.5,1,3808
+shell_windows_large_err_with_J_est_ge_J_truth,set=frozen | model=dispersive | light=midday | err_abs>0.15,1,432
+shell_windows_large_err_with_J_est_ge_J_truth,set=frozen | model=static | light=midday | err_abs>0.15,1,113
+shell_windows_large_err_with_J_est_ge_J_truth,set=decomp-normals | model=dispersive | light=low-sun | err_abs>0.5,1,18
+shell_windows_large_err_with_J_est_ge_J_truth,set=decomp-normals | model=dispersive | light=midday | err_abs>0.5,1,17
+shell_windows_large_err_with_J_est_ge_J_truth,set=decomp-normals | model=static | light=low-sun | err_abs>0.5,1,286
+shell_windows_large_err_with_J_est_ge_J_truth,set=decomp-normals | model=static | light=midday | err_abs>0.5,1,286
+searaft_g1_abs_a_over_foam_drift_cell_median_min,seas with foam,2.1481,20
+searaft_g1_abs_a_over_foam_drift_cell_median_max,seas with foam,12.915,20
+pilot_pairs_flagged_new_rule,flow-pilot.csv,135,828
+pilot_pairs_flagged_old_rule,flow-pilot.csv,124,828
+pilot_pairs_flagged_new_not_old,flow-pilot.csv,11,828
+pilot_pairs_flagged_new_rule,flow-pilot-frozen.csv,56,828
+pilot_pairs_flagged_old_rule,flow-pilot-frozen.csv,49,828
+pilot_pairs_flagged_new_not_old,flow-pilot-frozen.csv,7,828
+searaft_g1_a_bearing_median,sea=calm,60.21,69
+searaft_g1_a_along_wind_sea_median,sea=calm,1.8257,69
+searaft_g1_a_bearing_median,sea=cross-swell,65.203,69
+searaft_g1_a_along_wind_sea_median,sea=cross-swell,1.6207,69
+searaft_g1_a_along_swell_median,sea=cross-swell,0.43842,69
+searaft_g1_a_bearing_median,sea=fresh,60.761,69
+searaft_g1_a_along_wind_sea_median,sea=fresh,1.5483,69
+searaft_g1_a_bearing_median,sea=moderate,60.424,69
+searaft_g1_a_along_wind_sea_median,sea=moderate,1.6887,69
+searaft_g1_a_bearing_median,sea=moderate-swell,60.378,69
+searaft_g1_a_along_wind_sea_median,sea=moderate-swell,1.6535,69
+searaft_g1_a_along_swell_median,sea=moderate-swell,1.6016,69
+searaft_g1_a_bearing_median,sea=strong,60.926,69
+searaft_g1_a_along_wind_sea_median,sea=strong,1.4621,69

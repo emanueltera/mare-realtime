@@ -1,0 +1,19 @@
+item,kind,hours,source,steps,peak_gpu_gb,usd_at_5.33_per_h
+render train,render,2.4202777777777778,results/data_summary.csv render_wall_s,,,12.900080555555556
+render val,render,0.08527777777777777,results/data_summary.csv render_wall_s,,,0.45453055555555555
+render test-iid,render,0.16333333333333333,results/data_summary.csv render_wall_s,,,0.8705666666666667
+render test-sea,render,0.08638888888888889,results/data_summary.csv render_wall_s,,,0.46045277777777777
+render test-alt,render,0.08305555555555555,results/data_summary.csv render_wall_s,,,0.44268611111111106
+render test-rate,render,0.2175,results/data_summary.csv render_wall_s,,,1.159275
+train A e2e K=8,train,2.5000806838274,results/e2e/train/log.csv,6412.0,15.157060623168945,13.325430044800044
+train A e2e K=2,train,1.6236125587092505,results/e2e-K2/train/log.csv,7000.0,3.7292304039001465,8.653854937920306
+train A e2e K=4,train,0.9474660303857592,results/e2e-K4/train/log.csv,6412.0,7.538503170013428,5.049993941956096
+train C spectral K=32,train,2.3476722411314643,results/spectral/training/k32/curve.csv,20117.0,1.6633410560000002,12.513093045230706
+train C spectral K=16,train,0.9285475754737854,results/spectral/training/k16/curve.csv,8717.0,1.5890979840000001,4.949158577275276
+train C spectral noreg,train,1.424102250734965,results/spectral/training/k32-noreg/curve.csv,8037.0,2.1852846080000004,7.590464996417364
+train B flowhead on the fly,train,2.323388888888889,results/flowhead/curves/onthefly-main/train_log.csv,12000.0,5.941666304,12.38366277777778
+train B flowhead cached head (selected),train,0.6635833333333334,results/flowhead/curves/head-g1247-lr5e-4/train_log.csv,3800.0,,3.536899166666667
+train B flowhead cached head lr 1e-3,train,0.6647777777777777,results/flowhead/curves/head-g1247-lr1e-3/train_log.csv,3700.0,,3.5432655555555552
+train B flowhead gap-1 head,train,0.6515000000000001,results/flowhead/curves/head-g1-lr5e-4/train_log.csv,3700.0,,3.4724950000000003
+train B flowhead gap-1 head lr 1e-3,train,0.6659166666666667,results/flowhead/curves/head-g1-lr1e-3/train_log.csv,3700.0,,3.5493358333333336
+train B flowhead fine-tune,train,0.737,results/flowhead/curves/ft-update/train_log.csv,2000.0,10.567551488,3.92821

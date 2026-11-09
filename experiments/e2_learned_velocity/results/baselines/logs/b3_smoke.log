@@ -1,0 +1,19 @@
+/workspace/mare-realtime/experiments/e2_learned_velocity/baselines/correction.py:214: Pandas4Warning: Starting with pandas version 4.0 all arguments of all will be keyword-only.
+  tr = tr[np.isfinite(tr[["v_est_x", "v_est_y"]]).all(1)].sample(4096, random_state=0).reset_index(drop=True)
+/workspace/mare-realtime/experiments/e2_learned_velocity/baselines/correction.py:128: UserWarning: The given NumPy array is not writable, and PyTorch does not support non-writable tensors. This means writing to this tensor will result in undefined behavior. You may want to copy the array to protect its data or make it writable before converting it to a tensor. This type of warning will be suppressed for the rest of this program. (Triggered internally at /pytorch/torch/csrc/utils/tensor_numpy.cpp:213.)
+  vp = torch.as_tensor(train.loc[ok, ["v_est_x", "v_est_y"]].to_numpy(), dtype=torch.float32)
+/workspace/mare-realtime/experiments/e2_learned_velocity/baselines/correction.py:150: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:836.)
+  tot += float(l) * len(j)
+smoke n=64:
+ epoch  train_loss   val_mse  val_b_median
+     1   23.659082 47.319087      1.663609
+   301    1.917150  7.652259      1.637137
+  1501    1.387945  2.628084      1.271976
+  3000    1.159603  2.233931      1.198419
+smoke n=4096:
+ epoch  train_loss   val_mse  val_b_median
+     1   41.984699 83.967786      1.788823
+    31   40.416336 83.056219      1.843100
+   151   37.269190 75.498093      1.727502
+   300   36.744123 73.898803      1.724625

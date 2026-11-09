@@ -1,0 +1,57 @@
+{
+ "best": {
+  "config": {
+   "features": "radial",
+   "hidden": 128,
+   "depth": 2
+  },
+  "train_config": {
+   "features": "radial",
+   "hidden": 128,
+   "depth": 2,
+   "loss": "huber",
+   "epochs": 40
+  },
+  "const": [
+   -0.01296141163708328,
+   -0.008759931700996187
+  ]
+ },
+ "best-radial": {
+  "config": {
+   "features": "radial",
+   "hidden": 128,
+   "depth": 2
+  },
+  "train_config": {
+   "features": "radial",
+   "hidden": 128,
+   "depth": 2,
+   "loss": "huber",
+   "epochs": 40
+  },
+  "const": [
+   -0.01296141163708328,
+   -0.008759931700996187
+  ]
+ },
+ "best-full": {
+  "config": {
+   "features": "full",
+   "hidden": 128,
+   "depth": 2
+  },
+  "train_config": {
+   "features": "full",
+   "hidden": 128,
+   "depth": 2,
+   "loss": "huber",
+   "epochs": 40
+  },
+  "const": [
+   -0.01296141163708328,
+   -0.008759931700996187
+  ]
+ },
+ "best_equals_best_radial": true
+}

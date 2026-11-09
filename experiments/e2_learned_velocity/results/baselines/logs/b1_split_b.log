@@ -1,0 +1,30 @@
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+/workspace/venv/lib/python3.12/site-packages/torch/functional.py:505: UserWarning: torch.meshgrid: in an upcoming release, it will be required to pass the indexing argument. (Triggered internally at /pytorch/aten/src/ATen/native/TensorShape.cpp:4381.)
+  return _VF.meshgrid(tensors, **kwargs)  # type: ignore[attr-defined]
+test-rate: 50/400 runs, 296 s, 13.5 pairs/s, GPU peak 4.03 GiB
+test-rate: 100/400 runs, 588 s, 13.6 pairs/s, GPU peak 4.03 GiB
+test-rate: 150/400 runs, 874 s, 13.7 pairs/s, GPU peak 4.03 GiB
+test-rate: 200/400 runs, 1160 s, 13.8 pairs/s, GPU peak 4.03 GiB
+test-rate: 250/400 runs, 1396 s, 14.3 pairs/s, GPU peak 4.03 GiB
+test-rate: 300/400 runs, 1632 s, 14.7 pairs/s, GPU peak 4.03 GiB
+test-rate: 350/400 runs, 1866 s, 15.0 pairs/s, GPU peak 4.03 GiB
+test-rate: 400/400 runs, 2103 s, 15.2 pairs/s, GPU peak 4.03 GiB
+test-rate: wrote 32000 pairs to /workspace/data/e2/baselines/pairs/searaft/test-rate.csv in 2138 s; GPU peak 4.03 GiB
+test-rate 2151 s
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+/workspace/venv/lib/python3.12/site-packages/torch/functional.py:505: UserWarning: torch.meshgrid: in an upcoming release, it will be required to pass the indexing argument. (Triggered internally at /pytorch/aten/src/ATen/native/TensorShape.cpp:4381.)
+  return _VF.meshgrid(tensors, **kwargs)  # type: ignore[attr-defined]
+test-sea: 50/150 runs, 290 s, 13.8 pairs/s, GPU peak 4.03 GiB
+test-sea: 100/150 runs, 548 s, 14.6 pairs/s, GPU peak 4.03 GiB
+test-sea: 150/150 runs, 808 s, 14.8 pairs/s, GPU peak 4.03 GiB
+test-sea: wrote 12000 pairs to /workspace/data/e2/baselines/pairs/searaft/test-sea.csv in 823 s; GPU peak 4.03 GiB
+test-sea 837 s
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+/workspace/venv/lib/python3.12/site-packages/torch/functional.py:505: UserWarning: torch.meshgrid: in an upcoming release, it will be required to pass the indexing argument. (Triggered internally at /pytorch/aten/src/ATen/native/TensorShape.cpp:4381.)
+  return _VF.meshgrid(tensors, **kwargs)  # type: ignore[attr-defined]
+test-alt: 50/150 runs, 298 s, 13.4 pairs/s, GPU peak 4.03 GiB
+test-alt: 100/150 runs, 597 s, 13.4 pairs/s, GPU peak 4.03 GiB
+test-alt: 150/150 runs, 871 s, 13.8 pairs/s, GPU peak 4.03 GiB
+test-alt: wrote 12000 pairs to /workspace/data/e2/baselines/pairs/searaft/test-alt.csv in 884 s; GPU peak 4.03 GiB
+test-alt 898 s
+done

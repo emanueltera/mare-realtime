@@ -1,0 +1,30 @@
+{
+  "runs": 24,
+  "pairs_per_model": 1104,
+  "wall_s": 249.0786065198481,
+  "loader_wait_s": 12.435258787125349,
+  "models": {
+    "searaft": {
+      "model_ms_per_pair": 48.951410416824125,
+      "total_ms_per_pair": 53.3866767790101,
+      "desc": "SEA-RAFT-M MemorySlices/Tartan-C-T-TSKH-spring540x960-M, iters 4, scale 2^0"
+    },
+    "searaft_half": {
+      "model_ms_per_pair": 9.782529197316077,
+      "total_ms_per_pair": 13.97756260289959,
+      "desc": "SEA-RAFT-M MemorySlices/Tartan-C-T-TSKH-spring540x960-M, iters 4, scale 2^-1"
+    },
+    "ufm": {
+      "model_ms_per_pair": 25.016115177793942,
+      "total_ms_per_pair": 30.103228692694202,
+      "desc": "infinity1096/UFM-Base at its inference resolution [[560, 420]] (W\u00d7H) (crop rows 160-1119, transposed)"
+    },
+    "ufmrefine980": {
+      "model_ms_per_pair": 111.18246663355039,
+      "total_ms_per_pair": 116.04415462099259,
+      "desc": "infinity1096/UFM-Refine-980 at its inference resolution [[980, 644]] (W\u00d7H) (crop rows 160-1119, transposed)"
+    }
+  },
+  "gpu": "NVIDIA RTX PRO 6000 Blackwell Max-Q Workstation Edition",
+  "torch": "2.11.0+cu128"
+}

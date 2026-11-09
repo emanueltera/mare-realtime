@@ -1,0 +1,43 @@
+finding,check,value,lo,hi,n,note
+1 yaw table,sigma 0d: ahrs <= 1.1 x true (%),98.33333333333333,,,120.0,
+1 yaw table,sigma 0d: |ahrs/true - 1| <= 0.1 (%),98.33333333333333,,,120.0,
+1 yaw table,sigma 0.3d: ahrs <= 1.1 x true (%),84.16666666666667,,,120.0,
+1 yaw table,sigma 0.3d: |ahrs/true - 1| <= 0.1 (%),75.83333333333333,,,120.0,
+1 yaw table,sigma 0.5d: ahrs <= 1.1 x true (%),79.16666666666666,,,120.0,
+1 yaw table,sigma 0.5d: |ahrs/true - 1| <= 0.1 (%),70.0,,,120.0,
+1 yaw table,sigma 1d: ahrs <= 1.1 x true (%),60.83333333333333,,,120.0,
+1 yaw table,sigma 1d: |ahrs/true - 1| <= 0.1 (%),46.666666666666664,,,120.0,
+1 yaw table,sigma 2d: ahrs <= 1.1 x true (%),45.0,,,120.0,
+1 yaw table,sigma 2d: |ahrs/true - 1| <= 0.1 (%),29.166666666666668,,,120.0,
+1 yaw table,sigma 3d: ahrs <= 1.1 x true (%),37.5,,,120.0,
+1 yaw table,sigma 3d: |ahrs/true - 1| <= 0.1 (%),25.0,,,120.0,
+1 yaw table,sigma 5d: ahrs <= 1.1 x true (%),22.5,,,120.0,
+1 yaw table,sigma 5d: |ahrs/true - 1| <= 0.1 (%),14.166666666666666,,,120.0,
+2 altitude bins,"test-long runs at (29.999, 50.0]",39.0,,,,mean altitude from per_run.csv
+2 altitude bins,"test-long runs at (50.0, 80.0]",24.0,,,,mean altitude from per_run.csv
+2 altitude bins,"test-long runs at (80.0, 120.0]",22.0,,,,mean altitude from per_run.csv
+2 altitude bins,"test-long runs at (120.0, 200.0]",35.0,,,,mean altitude from per_run.csv
+2 altitude bins,"val runs at (29.999, 50.0]",22.0,,,,
+2 altitude bins,"val runs at (50.0, 80.0]",28.0,,,,
+2 altitude bins,"val runs at (80.0, 120.0]",19.0,,,,
+2 altitude bins,"val runs at (120.0, 200.0]",27.0,,,,
+2 altitude bins,max |per_run altitude - mean trajectory height| (m),2.247283955074863,,,,checks the binning variable; large value means per_run altitude is not the trajectory mean
+3 sea rate,ratio of median b rate0/rate1,1.6984724886368836,1.2808424274624368,2.189681289006606,30.0,
+3 sea rate,median of per-condition b ratios rate0/rate1,1.6303624453681096,1.2381428763022502,1.9439070277978843,30.0,
+3 sea rate,ratio of median b rate2/rate1,1.5775128654617556,1.165036875232631,2.102323432242295,30.0,
+3 sea rate,median of per-condition b ratios rate2/rate1,1.6589366761313715,1.2731618236004185,2.3461910494805993,30.0,
+3 sea rate,median b rate0 (m/s),1.269610065785606,,,30.0,
+3 sea rate,median b rate1 (m/s),0.7475011071886934,,,30.0,
+3 sea rate,median b rate2 (m/s),1.1791926135370707,,,30.0,
+5 random walk,"|E| / (sqrt(N) sigma, raw step error about run mean)",9.184303403511738,7.770169649110226,11.228933139106784,120.0,
+5 random walk,"|E| / (sqrt(N) sigma, affine-fit residual)",12.485195155278774,10.040603975528615,14.538118456115697,120.0,
+5 random walk,median acf lag1 of affine-fit residual (csv acf1),0.7119969541649305,,,120.0,
+5 random walk,median acf lag1 of raw per-step error (camera axes),0.7672602633304983,0.7578239031140421,0.79057217164744,120.0,
+4 training,val_t_err_m epoch 12,0.13953,,,,
+4 training,val_t_err_m epoch 13,0.13586,,,,
+4 training,val_t_err_m epoch 14,0.1371,,,,
+4 training,val_t_err_m epoch 15,0.13558,,,,
+6 conditions,spearman bank_abs_deg,-0.37307451906382383,-0.5285424000672806,-0.19806553507789224,120.0,perm p 0.0
+6 conditions,spearman bank_abs_deg | partial on disp_over_path,-0.09371371241895492,-0.2753640054595254,0.07306826111408336,120.0,perm p nan
+6 conditions,spearman airspeed,-0.2548024168345024,-0.4230864553076697,-0.0749823962724668,120.0,perm p 0.004
+6 conditions,spearman altitude,-0.28693659281894573,-0.4570256837945703,-0.10245588541767839,120.0,perm p 0.0015

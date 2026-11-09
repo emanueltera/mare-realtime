@@ -1,0 +1,235 @@
+section,set,quantity,rate,stat,value,ci_lo,ci_hi,n,p_value,note
+check,test-rate,max |drift_pct recomputed - per_run.csv|,,max,7.522354295019795e-09,,,90.0,,"net, true attitude"
+1 paired,test-rate,drift_pct (true),0.0,median,2.9141834982893653,2.2072205460622767,3.6023361428558998,30.0,,
+1 paired,test-rate,drift_pct (true),0.0,mean,4.096819058802742,3.0157658689646714,5.419556575653389,30.0,,
+1 paired,test-rate,drift_pct (true),1.0,median,1.8279611615325062,1.3462758695102433,2.3836831660267435,30.0,,
+1 paired,test-rate,drift_pct (true),1.0,mean,2.5301488970172032,1.7801680641915576,3.482095100860266,30.0,,
+1 paired,test-rate,drift_pct (true),2.0,median,3.360404815632039,2.5646179863200755,3.5736891632997696,30.0,,
+1 paired,test-rate,drift_pct (true),2.0,mean,3.782007693011188,2.985556543109162,4.834182244311124,30.0,,
+1 paired,test-rate,b_ms (true),0.0,median,1.269610066713851,0.9393912840348356,1.565244650441329,30.0,,
+1 paired,test-rate,b_ms (true),0.0,mean,1.3370398168141926,1.1229145842306396,1.5593958391551415,30.0,,
+1 paired,test-rate,b_ms (true),1.0,median,0.7475011065973682,0.5839785835439524,0.9481712155286282,30.0,,
+1 paired,test-rate,b_ms (true),1.0,mean,0.8473583670693766,0.6783577568105459,1.0258561188263036,30.0,,
+1 paired,test-rate,b_ms (true),2.0,median,1.1791926126084689,1.0253077188147075,1.3906236128815628,30.0,,
+1 paired,test-rate,b_ms (true),2.0,mean,1.3433683641602883,1.148709685491845,1.5535350452383754,30.0,,
+1 ratio,test-rate,drift ratio (true),0.0,ratio of medians,1.5942261573250298,1.1493678781753949,2.102011087549549,30.0,,"rate0/rate1, = b and end-error ratio (same path and duration per condition)"
+1 ratio,test-rate,drift ratio (true),0.0,geometric mean of per-condition ratios,1.691897807868801,1.3070671757269943,2.1960546307177884,30.0,1.0609626770019531e-05,"rate0/rate1, = b and end-error ratio (same path and duration per condition); p = Wilcoxon signed-rank on paired drift"
+1 ratio,test-rate,drift ratio (true),0.0,median of per-condition ratios,1.6303624425630139,1.2381428759660031,1.9439070264299256,30.0,,"rate0/rate1, = b and end-error ratio (same path and duration per condition)"
+1 ratio,test-rate,drift ratio (true),0.0,fraction of conditions worse than rate 1,0.7666666666666667,,,30.0,,
+1 ratio,test-rate,b_ms change (true),0.0,median paired difference (m/s),0.436463381267994,0.31189602693047247,0.6603435503625279,30.0,1.8244609236717224e-05,rate0 - rate1
+1 ratio,test-rate,drift ratio (true),2.0,ratio of medians,1.8383349090495882,1.2657763448810944,2.4124535431589393,30.0,,"rate2/rate1, = b and end-error ratio (same path and duration per condition)"
+1 ratio,test-rate,drift ratio (true),2.0,geometric mean of per-condition ratios,1.7799182873080808,1.4004000817758266,2.269103892391118,30.0,0.00023163668811321259,"rate2/rate1, = b and end-error ratio (same path and duration per condition); p = Wilcoxon signed-rank on paired drift"
+1 ratio,test-rate,drift ratio (true),2.0,median of per-condition ratios,1.65893667932216,1.2731618231895754,2.3461910503430596,30.0,,"rate2/rate1, = b and end-error ratio (same path and duration per condition)"
+1 ratio,test-rate,drift ratio (true),2.0,fraction of conditions worse than rate 1,0.8333333333333334,,,30.0,,
+1 ratio,test-rate,b_ms change (true),2.0,median paired difference (m/s),0.5334304325204153,0.27332512425744626,0.7227923418151053,30.0,0.00012333691120147705,rate2 - rate1
+1 ratio,test-rate,drift rate0 vs rate2 (true),,geometric mean ratio rate0/rate2,0.9505480223070237,0.7546337199832416,1.1865808799787194,30.0,0.7765688337385654,
+1 paired,test-rate,drift_pct (ahrs),0.0,median,3.7649527312320057,3.0334885012937143,5.961829326152067,30.0,,
+1 paired,test-rate,drift_pct (ahrs),1.0,median,3.5341803688859623,2.758480009670391,4.694457962214216,30.0,,
+1 paired,test-rate,drift_pct (ahrs),2.0,median,4.244286690382344,3.5885928328980157,5.343623890195073,30.0,,
+1 paired,test-rate,b_ms (ahrs),0.0,median,1.6485790900078938,1.3291818995142335,2.0028728507344917,30.0,,
+1 paired,test-rate,b_ms (ahrs),1.0,median,1.2479173310225113,1.0103448582423074,1.7695649593380653,30.0,,
+1 paired,test-rate,b_ms (ahrs),2.0,median,1.615393401832605,1.4398865011622473,2.243628582859679,30.0,,
+1 ratio,test-rate,drift ratio (ahrs),0.0,ratio of medians,1.065297279215771,0.860887764979935,1.5516016838095974,30.0,,"rate0/rate1, = b and end-error ratio (same path and duration per condition)"
+1 ratio,test-rate,drift ratio (ahrs),0.0,geometric mean of per-condition ratios,1.1288688777253002,0.8696009875296452,1.4962840670442608,30.0,0.03098480962216854,"rate0/rate1, = b and end-error ratio (same path and duration per condition); p = Wilcoxon signed-rank on paired drift"
+1 ratio,test-rate,drift ratio (ahrs),2.0,ratio of medians,1.200925319983094,0.9109019949653311,1.5824163823493882,30.0,,"rate2/rate1, = b and end-error ratio (same path and duration per condition)"
+1 ratio,test-rate,drift ratio (ahrs),2.0,geometric mean of per-condition ratios,1.3064215706100364,1.0793258182425538,1.6274137859917692,30.0,0.017453668639063835,"rate2/rate1, = b and end-error ratio (same path and duration per condition); p = Wilcoxon signed-rank on paired drift"
+1 paired,test-rate,drift_pct (chain),0.0,median,3.986797402896658,2.6896974589563554,5.062561644868477,30.0,,
+1 paired,test-rate,drift_pct (chain),1.0,median,3.179427779914154,2.3402871866887542,4.248423920242885,30.0,,
+1 paired,test-rate,drift_pct (chain),2.0,median,4.1317643142844425,3.553158023397061,4.946619081507061,30.0,,
+1 paired,test-rate,b_ms (chain),0.0,median,1.5386874988808201,1.1821453457728892,1.7742551785591392,30.0,,
+1 paired,test-rate,b_ms (chain),1.0,median,1.2424413044074516,1.0563882895642815,1.5920118908148777,30.0,,
+1 paired,test-rate,b_ms (chain),2.0,median,1.6197998545944174,1.3006055971956725,2.0276824135311164,30.0,,
+1 ratio,test-rate,drift ratio (chain),0.0,ratio of medians,1.2539355125733673,0.8393650266753312,1.7582213690268687,30.0,,"rate0/rate1, = b and end-error ratio (same path and duration per condition)"
+1 ratio,test-rate,drift ratio (chain),0.0,geometric mean of per-condition ratios,1.1647953593850993,0.9348633580653979,1.4666449734266513,30.0,0.03098480962216854,"rate0/rate1, = b and end-error ratio (same path and duration per condition); p = Wilcoxon signed-rank on paired drift"
+1 ratio,test-rate,drift ratio (chain),2.0,ratio of medians,1.2995307961975477,1.0078221934240628,1.9031745826403752,30.0,,"rate2/rate1, = b and end-error ratio (same path and duration per condition)"
+1 ratio,test-rate,drift ratio (chain),2.0,geometric mean of per-condition ratios,1.3108171945944564,1.0885511645182142,1.5905011107443658,30.0,0.0061949919909238815,"rate2/rate1, = b and end-error ratio (same path and duration per condition); p = Wilcoxon signed-rank on paired drift"
+check,test-rate,airspeed: max |drift(rate r) - drift(rate 1)|,,max,0.0,,,30.0,,
+check,test-rate,blind: max |drift(rate r) - drift(rate 1)|,,max,0.0,,,30.0,,
+2 per step,test-rate,step_err_m,0.0,median,0.16532305910460943,0.14099094274337207,0.18373972794303026,30.0,,"mean step error |dp_pred - dp_true| (m, as evaluate.py)"
+2 per step,test-rate,step_err_m,0.0,mean,0.17687782527733534,0.1584733992662678,0.19692317640586127,30.0,,"mean step error |dp_pred - dp_true| (m, as evaluate.py)"
+2 per step,test-rate,step_err_m,1.0,median,0.12275707222016369,0.11134541590323029,0.1510687951093151,30.0,,"mean step error |dp_pred - dp_true| (m, as evaluate.py)"
+2 per step,test-rate,step_err_m,1.0,mean,0.13768260459560283,0.12203850328503729,0.15428230134846554,30.0,,"mean step error |dp_pred - dp_true| (m, as evaluate.py)"
+2 per step,test-rate,step_err_m,2.0,median,0.1918274505911404,0.16433738805274173,0.22849231369585515,30.0,,"mean step error |dp_pred - dp_true| (m, as evaluate.py)"
+2 per step,test-rate,step_err_m,2.0,mean,0.19942376896211528,0.18120017114129916,0.21817551926748538,30.0,,"mean step error |dp_pred - dp_true| (m, as evaluate.py)"
+2 per step paired,test-rate,step_err_m,0.0,median paired difference,0.036361076378233895,0.02068672284923065,0.05208585501171387,30.0,5.973502993583679e-06,"rate0 - rate1; mean step error |dp_pred - dp_true| (m, as evaluate.py)"
+2 per step paired,test-rate,step_err_m,0.0,mean paired difference,0.0391952206817325,0.025828589453017213,0.052990001319114896,30.0,,rate0 - rate1
+2 per step paired,test-rate,step_err_m,2.0,median paired difference,0.06255725233576206,0.04169078633689013,0.07610986848513802,30.0,1.0244548320770264e-07,"rate2 - rate1; mean step error |dp_pred - dp_true| (m, as evaluate.py)"
+2 per step paired,test-rate,step_err_m,2.0,mean paired difference,0.06174116436651246,0.04515099928978192,0.07884836986256748,30.0,,rate2 - rate1
+2 per step,test-rate,along_bias_pct_eval,0.0,median,0.7746481717226164,0.02857074789353889,2.092355956012594,30.0,,along-track bias % (as evaluate.py)
+2 per step,test-rate,along_bias_pct_eval,0.0,mean,0.8914585005176906,-0.8831839476090292,2.5189812920481307,30.0,,along-track bias % (as evaluate.py)
+2 per step,test-rate,along_bias_pct_eval,1.0,median,0.43962118372154557,-0.9903708687016289,1.8234464770169223,30.0,,along-track bias % (as evaluate.py)
+2 per step,test-rate,along_bias_pct_eval,1.0,mean,0.3963479232819733,-0.9472401865918044,1.6358674601653795,30.0,,along-track bias % (as evaluate.py)
+2 per step,test-rate,along_bias_pct_eval,2.0,median,-0.15007679362846185,-2.5239895991277157,1.334727854080132,30.0,,along-track bias % (as evaluate.py)
+2 per step,test-rate,along_bias_pct_eval,2.0,mean,-1.0154866554636002,-2.565654059196735,0.336310416625017,30.0,,along-track bias % (as evaluate.py)
+2 per step paired,test-rate,along_bias_pct_eval,0.0,median paired difference,0.9613685577205502,0.19855243100325892,1.611047128930296,30.0,0.044907208532094955,rate0 - rate1; along-track bias % (as evaluate.py)
+2 per step paired,test-rate,along_bias_pct_eval,0.0,mean paired difference,0.49511057723571705,-0.3621211578231971,1.2215036847156062,30.0,,rate0 - rate1
+2 per step paired,test-rate,along_bias_pct_eval,2.0,median paired difference,-1.2242295867963988,-1.8094814715125902,-0.6688773632319786,30.0,0.000283263623714447,rate2 - rate1; along-track bias % (as evaluate.py)
+2 per step paired,test-rate,along_bias_pct_eval,2.0,mean paired difference,-1.4118345787455733,-2.2091520070564337,-0.6163884637796282,30.0,,rate2 - rate1
+2 per step,test-rate,along_track_ms,0.0,median,0.3161854087844913,0.04719593916079108,0.8781128833087505,30.0,,"along-track mean velocity error (m/s, world horizontal)"
+2 per step,test-rate,along_track_ms,0.0,mean,0.4951458622973281,0.09706444044593775,0.9026337320512445,30.0,,"along-track mean velocity error (m/s, world horizontal)"
+2 per step,test-rate,along_track_ms,1.0,median,0.25496140878844153,-0.3566827238090151,0.6795865982020763,30.0,,"along-track mean velocity error (m/s, world horizontal)"
+2 per step,test-rate,along_track_ms,1.0,mean,0.22081779078823657,-0.13004036086454995,0.5847094306598057,30.0,,"along-track mean velocity error (m/s, world horizontal)"
+2 per step,test-rate,along_track_ms,2.0,median,-0.08698394398147416,-1.1215484766650587,0.5035151037513895,30.0,,"along-track mean velocity error (m/s, world horizontal)"
+2 per step,test-rate,along_track_ms,2.0,mean,-0.3293396631259473,-0.798650298375883,0.12602537945608525,30.0,,"along-track mean velocity error (m/s, world horizontal)"
+2 per step paired,test-rate,along_track_ms,0.0,median paired difference,0.3901152947420842,0.099725146570537,0.6523068920744127,30.0,0.013663241639733315,"rate0 - rate1; along-track mean velocity error (m/s, world horizontal)"
+2 per step paired,test-rate,along_track_ms,0.0,mean paired difference,0.2743280715090916,0.03992636381611831,0.48549422388146046,30.0,,rate0 - rate1
+2 per step paired,test-rate,along_track_ms,0.0,fraction of conditions with positive difference,0.7333333333333333,,,30.0,,
+2 per step paired,test-rate,along_track_ms,2.0,median paired difference,-0.655628220746584,-0.7876468852599376,-0.3279778474800422,30.0,0.000283263623714447,"rate2 - rate1; along-track mean velocity error (m/s, world horizontal)"
+2 per step paired,test-rate,along_track_ms,2.0,mean paired difference,-0.5501574539141841,-0.7910754947661156,-0.31870583121237417,30.0,,rate2 - rate1
+2 per step paired,test-rate,along_track_ms,2.0,fraction of conditions with positive difference,0.2,,,30.0,,
+2 per step,test-rate,cross_track_ms,0.0,median,-0.12838209081021512,-0.49574126343696223,0.5480809129618891,30.0,,"cross-track mean velocity error (m/s, + left)"
+2 per step,test-rate,cross_track_ms,0.0,mean,-0.10774314711116903,-0.4229479788370687,0.21179860194963107,30.0,,"cross-track mean velocity error (m/s, + left)"
+2 per step,test-rate,cross_track_ms,1.0,median,-0.014339696005925074,-0.055769879810897,0.09650294410771006,30.0,,"cross-track mean velocity error (m/s, + left)"
+2 per step,test-rate,cross_track_ms,1.0,mean,-0.006998415262565431,-0.10055405152626591,0.08262695459952575,30.0,,"cross-track mean velocity error (m/s, + left)"
+2 per step,test-rate,cross_track_ms,2.0,median,-0.02128175375592206,-0.28754259786132796,0.4509384264260153,30.0,,"cross-track mean velocity error (m/s, + left)"
+2 per step,test-rate,cross_track_ms,2.0,mean,0.043444612645353105,-0.24844566870683568,0.3286476530215068,30.0,,"cross-track mean velocity error (m/s, + left)"
+2 per step paired,test-rate,cross_track_ms,0.0,median paired difference,-0.07533357992000353,-0.5114766193205792,0.46423039124839593,30.0,0.6554384250193834,"rate0 - rate1; cross-track mean velocity error (m/s, + left)"
+2 per step paired,test-rate,cross_track_ms,0.0,mean paired difference,-0.10074473184860364,-0.4410284168017044,0.23081190977092206,30.0,,rate0 - rate1
+2 per step paired,test-rate,cross_track_ms,2.0,median paired difference,-0.05481533146659671,-0.2580131041778434,0.4388388328415062,30.0,0.685047073289752,"rate2 - rate1; cross-track mean velocity error (m/s, + left)"
+2 per step paired,test-rate,cross_track_ms,2.0,mean paired difference,0.050443027907918526,-0.20069889658135392,0.29888279265501083,30.0,,rate2 - rate1
+2 per step,test-rate,along_wave_ms,0.0,median,0.8606313468422662,0.5320607852419958,1.115462247417255,30.0,,"along-wave mean velocity error (m/s, + toward windDirection)"
+2 per step,test-rate,along_wave_ms,0.0,mean,0.7271756922222962,0.38338876775892466,1.0458468509874328,30.0,,"along-wave mean velocity error (m/s, + toward windDirection)"
+2 per step,test-rate,along_wave_ms,1.0,median,-0.07783295926549874,-0.4088017501549441,-0.002684664744269415,30.0,,"along-wave mean velocity error (m/s, + toward windDirection)"
+2 per step,test-rate,along_wave_ms,1.0,mean,-0.10065501540550838,-0.3332811747893279,0.14849068243569938,30.0,,"along-wave mean velocity error (m/s, + toward windDirection)"
+2 per step,test-rate,along_wave_ms,2.0,median,-0.8412040417519535,-1.0195379922733714,-0.66324386900648,30.0,,"along-wave mean velocity error (m/s, + toward windDirection)"
+2 per step,test-rate,along_wave_ms,2.0,mean,-0.6933017891111334,-0.9992238005448748,-0.36497737626618887,30.0,,"along-wave mean velocity error (m/s, + toward windDirection)"
+2 per step paired,test-rate,along_wave_ms,0.0,median paired difference,0.8140990647606399,0.6043561939851964,1.1310022745094717,30.0,9.98377799987793e-07,"rate0 - rate1; along-wave mean velocity error (m/s, + toward windDirection)"
+2 per step paired,test-rate,along_wave_ms,0.0,mean paired difference,0.8278307076278046,0.5848718163712323,1.0770096522284531,30.0,,rate0 - rate1
+2 per step paired,test-rate,along_wave_ms,0.0,fraction of conditions with positive difference,0.8666666666666667,,,30.0,,
+2 per step paired,test-rate,along_wave_ms,2.0,median paired difference,-0.6489273137086031,-0.8632766811136501,-0.3813482868186914,30.0,9.220093488693237e-06,"rate2 - rate1; along-wave mean velocity error (m/s, + toward windDirection)"
+2 per step paired,test-rate,along_wave_ms,2.0,mean paired difference,-0.5926467737056252,-0.7979224978643155,-0.39624891699715664,30.0,,rate2 - rate1
+2 per step paired,test-rate,along_wave_ms,2.0,fraction of conditions with positive difference,0.2,,,30.0,,
+2 per step,test-rate,cross_wave_ms,0.0,median,-0.09385588576896256,-0.17929480936115316,0.06966117226443069,30.0,,cross-wave mean velocity error (m/s)
+2 per step,test-rate,cross_wave_ms,0.0,mean,-0.12939247665184575,-0.44154362376982936,0.17915145636010585,30.0,,cross-wave mean velocity error (m/s)
+2 per step,test-rate,cross_wave_ms,1.0,median,0.05797839153258729,-0.40382168170327765,0.22155833494123015,30.0,,cross-wave mean velocity error (m/s)
+2 per step,test-rate,cross_wave_ms,1.0,mean,-0.11206141284075581,-0.35647677145676354,0.1283776096123863,30.0,,cross-wave mean velocity error (m/s)
+2 per step,test-rate,cross_wave_ms,2.0,median,-0.0837021522048503,-0.41055768388027447,0.3568155129101085,30.0,,cross-wave mean velocity error (m/s)
+2 per step,test-rate,cross_wave_ms,2.0,mean,-0.08921726892943613,-0.4235034929112526,0.23647069401073914,30.0,,cross-wave mean velocity error (m/s)
+2 per step paired,test-rate,cross_wave_ms,0.0,median paired difference,-0.03695495127929939,-0.25924752188008254,0.2365322495791738,30.0,0.7000329215079546,rate0 - rate1; cross-wave mean velocity error (m/s)
+2 per step paired,test-rate,cross_wave_ms,0.0,mean paired difference,-0.017331063811089932,-0.17662394964978392,0.14902275963330366,30.0,,rate0 - rate1
+2 per step paired,test-rate,cross_wave_ms,2.0,median paired difference,-0.10274466496987267,-0.21093361165144228,0.20027636405676794,30.0,0.9032264724373817,rate2 - rate1; cross-wave mean velocity error (m/s)
+2 per step paired,test-rate,cross_wave_ms,2.0,mean paired difference,0.022844143911319736,-0.21838350551187408,0.2860430889598688,30.0,,rate2 - rate1
+2 per step,test-rate,along_swell_ms,0.0,median,0.8803376555834157,0.3150743723342593,1.1386039950385685,30.0,,"along-swell mean velocity error (m/s, + toward swellDirection)"
+2 per step,test-rate,along_swell_ms,0.0,mean,0.6939669839903296,0.4019517214991611,0.9695577489093612,30.0,,"along-swell mean velocity error (m/s, + toward swellDirection)"
+2 per step,test-rate,along_swell_ms,1.0,median,0.022709795431901346,-0.1502158580687764,0.47351964480880426,30.0,,"along-swell mean velocity error (m/s, + toward swellDirection)"
+2 per step,test-rate,along_swell_ms,1.0,mean,0.09377538917420059,-0.11328200222564941,0.3035637243502159,30.0,,"along-swell mean velocity error (m/s, + toward swellDirection)"
+2 per step,test-rate,along_swell_ms,2.0,median,-0.5533862009152419,-0.9769868532194681,-0.09768868356365745,30.0,,"along-swell mean velocity error (m/s, + toward swellDirection)"
+2 per step,test-rate,along_swell_ms,2.0,mean,-0.42804529243995343,-0.7611921403496094,-0.08627010186173145,30.0,,"along-swell mean velocity error (m/s, + toward swellDirection)"
+2 per step paired,test-rate,along_swell_ms,0.0,median paired difference,0.7013238013894616,0.09856970337509066,1.0479963243610424,30.0,0.00013739429414272308,"rate0 - rate1; along-swell mean velocity error (m/s, + toward swellDirection)"
+2 per step paired,test-rate,along_swell_ms,0.0,mean paired difference,0.6001915948161289,0.34481971555306107,0.8502152987753994,30.0,,rate0 - rate1
+2 per step paired,test-rate,along_swell_ms,0.0,fraction of conditions with positive difference,0.7666666666666667,,,30.0,,
+2 per step paired,test-rate,along_swell_ms,2.0,median paired difference,-0.5093330586533418,-0.8447462090269562,-0.18637218141557022,30.0,0.0006665531545877457,"rate2 - rate1; along-swell mean velocity error (m/s, + toward swellDirection)"
+2 per step paired,test-rate,along_swell_ms,2.0,mean paired difference,-0.521820681614154,-0.7825877592195822,-0.26865521736319636,30.0,,rate2 - rate1
+2 per step paired,test-rate,along_swell_ms,2.0,fraction of conditions with positive difference,0.23333333333333334,,,30.0,,
+2 per step,test-rate,bias_ms,0.0,median,1.269610065785606,0.9393912826122797,1.5652446499264883,30.0,,|mean horizontal step error| / DT (m/s)
+2 per step,test-rate,bias_ms,0.0,mean,1.3370398165483075,1.1207065419287456,1.5556603095207153,30.0,,|mean horizontal step error| / DT (m/s)
+2 per step,test-rate,bias_ms,1.0,median,0.7475011071886934,0.5828690119852233,0.9519031167151667,30.0,,|mean horizontal step error| / DT (m/s)
+2 per step,test-rate,bias_ms,1.0,mean,0.8473583669376709,0.6823086681396466,1.0245444329562594,30.0,,|mean horizontal step error| / DT (m/s)
+2 per step,test-rate,bias_ms,2.0,median,1.1791926135370707,1.0319462306333076,1.4094132040909448,30.0,,|mean horizontal step error| / DT (m/s)
+2 per step,test-rate,bias_ms,2.0,mean,1.343368364229197,1.1524308006804445,1.5575619617257404,30.0,,|mean horizontal step error| / DT (m/s)
+2 per step paired,test-rate,bias_ms,0.0,median paired difference,0.43646338270240975,0.3118960270185205,0.6603435492285081,30.0,1.8244609236717224e-05,rate0 - rate1; |mean horizontal step error| / DT (m/s)
+2 per step paired,test-rate,bias_ms,0.0,mean paired difference,0.4896814496106367,0.3069179121973364,0.6784669516098091,30.0,,rate0 - rate1
+2 per step paired,test-rate,bias_ms,2.0,median paired difference,0.5334304335694522,0.2733251241152159,0.7227923413521282,30.0,0.00012333691120147705,rate2 - rate1; |mean horizontal step error| / DT (m/s)
+2 per step paired,test-rate,bias_ms,2.0,mean paired difference,0.49600999729152634,0.27911946013105066,0.7129072957381767,30.0,,rate2 - rate1
+2 per step,test-rate,step_scatter_m,0.0,median,0.10541451417615405,0.08441953802445096,0.11495372439035623,30.0,,RMS step error about the run mean (m)
+2 per step,test-rate,step_scatter_m,0.0,mean,0.1061637677995942,0.08898911859784331,0.12558059333468374,30.0,,RMS step error about the run mean (m)
+2 per step,test-rate,step_scatter_m,1.0,median,0.08927833048947634,0.08136030520005544,0.1102853985825174,30.0,,RMS step error about the run mean (m)
+2 per step,test-rate,step_scatter_m,1.0,mean,0.10187735384306078,0.08772507412901225,0.11862453597055067,30.0,,RMS step error about the run mean (m)
+2 per step,test-rate,step_scatter_m,2.0,median,0.13053542617268876,0.11118587500887231,0.1544609945828454,30.0,,RMS step error about the run mean (m)
+2 per step,test-rate,step_scatter_m,2.0,mean,0.14163602376660675,0.12558842756877353,0.1586502369064273,30.0,,RMS step error about the run mean (m)
+2 per step paired,test-rate,step_scatter_m,0.0,median paired difference,0.0033181755863022702,-0.008872630462041502,0.01288854920009437,30.0,0.3284698575735092,rate0 - rate1; RMS step error about the run mean (m)
+2 per step paired,test-rate,step_scatter_m,0.0,mean paired difference,0.0042864139565334525,-0.0030758389255238134,0.011735579991997208,30.0,,rate0 - rate1
+2 per step paired,test-rate,step_scatter_m,2.0,median paired difference,0.03832658856106165,0.025990416068918026,0.0424127403538595,30.0,6.146728992462158e-08,rate2 - rate1; RMS step error about the run mean (m)
+2 per step paired,test-rate,step_scatter_m,2.0,mean paired difference,0.03975866992354602,0.029289284355889105,0.0509563044469656,30.0,,rate2 - rate1
+2 direction,test-rate,angle of rate-induced change Δ relative to wave travel,0.0,mean resultant length R,0.6806402206968171,0.49174120980902397,0.8550042045789882,30.0,1.5381963388408056e-07,mean angle -1.9 deg (0 = toward windDirection); p = Rayleigh
+2 direction,test-rate,|Δ| rate-induced change of mean step-error vector (m/s),0.0,median,1.1057358425014963,0.7742071403467499,1.204982667022502,30.0,,
+2 direction,test-rate,|Δ| rate-induced change of mean step-error vector (m/s),0.0,mean,1.032536345577372,0.8449357164421378,1.2254377999430637,30.0,,
+2 direction,test-rate,Δ along wave (m/s),0.0,median,0.8140990647606401,0.6043561939851965,1.1310022745094717,30.0,,
+2 direction,test-rate,Δ along wave (m/s),0.0,mean,0.8278307076278045,0.5934319914951003,1.0735062830655482,30.0,,
+2 direction,test-rate,|Δ cross wave| (m/s),0.0,median,0.3262431343383197,0.23653224957917376,0.38750848396991655,30.0,,
+2 direction,test-rate,median |Δ along| / median |Δ cross|,0.0,ratio,2.49537531697573,,,30.0,,
+2 direction,test-rate,Spearman |Δ along| vs peak phase speed gT/2π,0.0,rho,0.07007786429365963,,,30.0,0.7128914578943151,
+2 direction,test-rate,Spearman |Δ| vs altitude,0.0,rho,0.2800889877641824,,,30.0,0.13384378820520137,
+2 direction,test-rate,Spearman |Δ| vs ground speed,0.0,rho,-0.07808676307007786,,,30.0,0.6816940840224226,
+2 direction,test-rate,angle of rate-induced change Δ relative to wave travel,2.0,mean resultant length R,0.554544467102661,0.36473891186714424,0.7478869070048945,30.0,5.1527406583319045e-05,mean angle -178.7 deg (0 = toward windDirection); p = Rayleigh
+2 direction,test-rate,|Δ| rate-induced change of mean step-error vector (m/s),2.0,median,0.9206324334850925,0.7166151668225105,1.1002367960145198,30.0,,
+2 direction,test-rate,|Δ| rate-induced change of mean step-error vector (m/s),2.0,mean,0.9578029567347106,0.7909804198162773,1.1385756381139194,30.0,,
+2 direction,test-rate,Δ along wave (m/s),2.0,median,-0.6489273137086031,-0.8632766811136501,-0.3813482868186916,30.0,,
+2 direction,test-rate,Δ along wave (m/s),2.0,mean,-0.592646773705625,-0.7935859549711931,-0.39090471100572843,30.0,,
+2 direction,test-rate,|Δ cross wave| (m/s),2.0,median,0.37934034539410544,0.2002763640567679,0.6251522458427836,30.0,,
+2 direction,test-rate,median |Δ along| / median |Δ cross|,2.0,ratio,1.7106730712611589,,,30.0,,
+2 direction,test-rate,Spearman |Δ along| vs peak phase speed gT/2π,2.0,rho,0.3027808676307008,,,30.0,0.10387170798379242,
+2 direction,test-rate,Spearman |Δ| vs altitude,2.0,rho,0.064293659621802,,,30.0,0.7357121748697959,
+2 direction,test-rate,Spearman |Δ| vs ground speed,2.0,rho,0.08031145717463849,,,30.0,0.6731160927086494,
+2 direction,test-rate,Spearman Δ_along(rate0) vs Δ_along(rate2),,rho,-0.7561735261401556,,,30.0,1.3448222732499434e-06,a fixed rate-1 wave prior predicts a strong negative relation (Δ2 = -Δ0)
+2 direction,test-rate,fraction with Δ_along(rate0) > 0 and Δ_along(rate2) < 0,,fraction,0.7666666666666667,,,30.0,,
+2 bias vs noise,test-rate,end error from run-mean bias / from i.i.d. scatter alone,0.0,median,16.289112172662424,13.064418055427694,25.764097841782466,30.0,,
+2 bias vs noise,test-rate,end error from run-mean bias / from i.i.d. scatter alone,1.0,median,10.676718088517951,8.367237628193653,14.009867512838595,30.0,,
+2 bias vs noise,test-rate,end error from run-mean bias / from i.i.d. scatter alone,2.0,median,12.508325420321306,9.96977460172523,15.634688115156855,30.0,,
+3 vs E2,test-rate,E3 net median b ratio,0.0,rate0/rate1,1.6984724912222906,1.2851987016386355,2.179663239071736,30.0,,"chained drift, true attitude, 20 s"
+3 vs E2,test-rate,E3 net median signed along-wave error (m/s),0.0,median,0.8606313468422662,0.5320607852419958,1.115462247417255,30.0,,
+3 vs E2,test-rate,E2 A e2e K=8 median b ratio,0.0,rate0/rate1,6.824175824175824,,,,,from E2 RESULTS.md §2.4 (derived)
+3 vs E2,test-rate,E2 A e2e K=8 median b increase (m/s),0.0,rate0 - rate1,1.06,,,,,from E2 RESULTS.md §2.4 (derived)
+3 vs E2,test-rate,E2 A e2e K=2 median b ratio,0.0,rate0/rate1,2.59656652360515,,,,,from E2 RESULTS.md §2.4 (derived)
+3 vs E2,test-rate,E2 A e2e K=2 median b increase (m/s),0.0,rate0 - rate1,0.372,,,,,from E2 RESULTS.md §2.4 (derived)
+3 vs E2,test-rate,E2 C spectral K=32 median b ratio,0.0,rate0/rate1,1.1230283911671923,,,,,from E2 RESULTS.md §2.4 (derived)
+3 vs E2,test-rate,E2 C spectral K=32 median b increase (m/s),0.0,rate0 - rate1,0.03899999999999998,,,,,from E2 RESULTS.md §2.4 (derived)
+3 vs E2,test-rate,E2 B0 phase correlation median b ratio,0.0,rate0/rate1,0.06419939577039276,,,,,from E2 RESULTS.md §2.4 (derived)
+3 vs E2,test-rate,E2 B0 phase correlation median b increase (m/s),0.0,rate0 - rate1,-1.239,,,,,from E2 RESULTS.md §2.4 (derived)
+3 vs E2,test-rate,E3 net median b increase (m/s),0.0,rate0 - rate1 (of medians),0.5221089601164828,,,,,
+3 vs E2,test-rate,E3 net median b ratio,2.0,rate2/rate1,1.5775128654674029,1.1629062527083558,2.1217866849781477,30.0,,"chained drift, true attitude, 20 s"
+3 vs E2,test-rate,E3 net median signed along-wave error (m/s),2.0,median,-0.8412040417519535,-1.0197012204061904,-0.66324386900648,30.0,,
+3 vs E2,test-rate,E2 A e2e K=8 median b ratio,2.0,rate2/rate1,11.664835164835166,,,,,from E2 RESULTS.md §2.4 (derived)
+3 vs E2,test-rate,E2 A e2e K=8 median b increase (m/s),2.0,rate2 - rate1,1.9410000000000003,,,,,from E2 RESULTS.md §2.4 (derived)
+3 vs E2,test-rate,E2 A e2e K=2 median b ratio,2.0,rate2/rate1,4.665236051502146,,,,,from E2 RESULTS.md §2.4 (derived)
+3 vs E2,test-rate,E2 A e2e K=2 median b increase (m/s),2.0,rate2 - rate1,0.854,,,,,from E2 RESULTS.md §2.4 (derived)
+3 vs E2,test-rate,E2 C spectral K=32 median b ratio,2.0,rate2/rate1,5.195583596214511,,,,,from E2 RESULTS.md §2.4 (derived)
+3 vs E2,test-rate,E2 C spectral K=32 median b increase (m/s),2.0,rate2 - rate1,1.33,,,,,from E2 RESULTS.md §2.4 (derived)
+3 vs E2,test-rate,E2 B0 phase correlation median b ratio,2.0,rate2/rate1,1.768882175226586,,,,,from E2 RESULTS.md §2.4 (derived)
+3 vs E2,test-rate,E2 B0 phase correlation median b increase (m/s),2.0,rate2 - rate1,1.018,,,,,from E2 RESULTS.md §2.4 (derived)
+3 vs E2,test-rate,E3 net median b increase (m/s),2.0,rate2 - rate1 (of medians),0.4316915060111006,,,,,
+3 vs E2,test-rate,E3 net median along-wave error at rate 1 (m/s),1.0,median,-0.07783295926549874,-0.4088017501549441,-0.002684664744269415,30.0,,
+check,test-long,max |drift_pct recomputed - per_run.csv| (test-long),,max,6.388685913627512e-09,,,120.0,,
+4 length,test-rate,drift_pct test-rate rate1 (20 s),1.0,median,1.8279611653181438,1.3462758711761857,2.3871362772531777,30.0,,
+4 length,test-long,drift_pct test-long truncated at 5 s,,median,2.011596755847564,1.7898090658495462,2.491771426041476,120.0,,
+4 length,test-long,end_err_m test-long truncated at 5 s,,median,3.738214725481217,3.0530465752394953,4.413212016597312,120.0,,
+4 length,test-long,drift_pct test-long truncated at 10 s,,median,1.9668399411383182,1.5530790720274636,2.4266939219064976,120.0,,
+4 length,test-long,end_err_m test-long truncated at 10 s,,median,6.195199478171739,5.440145150240009,7.5579898344951255,120.0,,
+4 length,test-long,drift_pct test-long truncated at 12 s,,median,1.8075560373205166,1.6304255928189009,2.2178585738196848,120.0,,
+4 length,test-long,end_err_m test-long truncated at 12 s,,median,7.57295688385706,6.795164886296593,8.677865151998375,120.0,,
+4 length,test-long,drift_pct test-long truncated at 20 s,,median,1.8824263560631187,1.614320044689322,2.5119431916832737,120.0,,
+4 length,test-long,end_err_m test-long truncated at 20 s,,median,12.886422496466404,10.460901801545287,14.16338986615648,120.0,,
+4 length,test-long,drift_pct test-long truncated at 30 s,,median,1.8111680683531426,1.4664421424435299,1.999518533045268,120.0,,
+4 length,test-long,end_err_m test-long truncated at 30 s,,median,17.851594310729013,15.211070332987271,19.957672543098475,120.0,,
+4 length,test-long,drift_pct test-long truncated at 40 s,,median,1.4169217662589033,1.1807900854534887,1.8161652837744457,120.0,,
+4 length,test-long,end_err_m test-long truncated at 40 s,,median,19.83186169109993,17.20961872487188,21.74032598204697,120.0,,
+4 length,test-long,drift_pct test-long truncated at 50 s,,median,1.244620127969009,1.0533564240506479,1.429490694057944,120.0,,
+4 length,test-long,end_err_m test-long truncated at 50 s,,median,21.769783333937784,16.96163387103797,26.618113230466616,120.0,,
+4 length,test-long,drift_pct test-long truncated at 60 s,,median,1.1814833434729377,1.0752154467704413,1.392597878757897,120.0,,
+4 length,test-long,end_err_m test-long truncated at 60 s,,median,25.533227865845532,19.47129375918523,31.164459896209646,120.0,,
+4 length,test-rate,median drift: test-rate rate1 / test-long first 20 s,,ratio,0.9710664958713803,0.6515967643727985,1.3281436129391975,,,independent sets; bootstrap resamples each set's runs
+4 length,test-rate,test-rate rate1 vs test-long first 20 s drift,,Mann-Whitney U statistic,1744.0,,,120.0,0.7942762454736372,
+4 length,test-long,"growth exponent alpha, end error 20 s -> 60 s (per run)",,median,0.7215726938306675,0.5164360429941727,0.8200289763607032,120.0,,
+4 length,test-long,"pooled exponent, median end error 20 s -> 60 s",,alpha,0.62242742696094,0.42012013990722097,0.8325271453774696,120.0,,
+4 length,test-long,growth exponent of max error 20 s -> 60 s (per run),,median,0.7567363505201212,0.6133496660247433,0.8605542025554471,120.0,,
+4 length,test-long,"alpha end error 20->60 s, pattern figure8",,median,0.4662501148037879,-0.061810700472972525,0.6465959126990739,21.0,,
+4 length,test-long,"alpha end error 20->60 s, pattern lawnmower",,median,0.976349940836924,0.9002445233797168,1.1104895633906846,16.0,,
+4 length,test-long,"alpha end error 20->60 s, pattern orbit",,median,0.5035943747578556,0.25594532515753665,0.8587762334590701,29.0,,
+4 length,test-long,"alpha end error 20->60 s, pattern racetrack",,median,0.25718405691327034,-0.11665553448303453,0.7774678996362356,15.0,,
+4 length,test-long,"alpha end error 20->60 s, pattern random",,median,0.7188429985661563,0.48420076850734545,0.8913869067454576,26.0,,
+4 length,test-long,"alpha end error 20->60 s, pattern straight",,median,0.9539056353954167,0.7874123806902752,1.1322103052667265,13.0,,
+4 length,test-long,end error from run-mean bias / from i.i.d. scatter alone (60 s),,median,9.18430340639852,7.587470546316345,11.521695868218156,120.0,,
+4 length,test-long,|mean step error| / DT over 60 s (m/s),,median,0.4255537977640922,0.3245215626530871,0.5194076649368274,120.0,,
+4 length,test-long,end error / steps*DT over 60 s = b (m/s),,median,0.4255537977640922,0.3245215626530872,0.5194076649368274,120.0,,
+4 length,test-long,"median |track-frame mean error| vs |world-frame mean error| (m/s), pattern figure8",,track / world,0.43083799487654045,,,21.0,,world 0.344
+4 length,test-long,"median |track-frame mean error| vs |world-frame mean error| (m/s), pattern lawnmower",,track / world,0.6225089207041762,,,16.0,,world 0.609
+4 length,test-long,"median |track-frame mean error| vs |world-frame mean error| (m/s), pattern orbit",,track / world,0.5680116420502651,,,29.0,,world 0.365
+4 length,test-long,"median |track-frame mean error| vs |world-frame mean error| (m/s), pattern racetrack",,track / world,0.6493905838523655,,,15.0,,world 0.285
+4 length,test-long,"median |track-frame mean error| vs |world-frame mean error| (m/s), pattern random",,track / world,0.5387708760060179,,,26.0,,world 0.468
+4 length,test-long,"median |track-frame mean error| vs |world-frame mean error| (m/s), pattern straight",,track / world,0.6128289297190976,,,13.0,,world 0.613
+4 length,test-long,"track-frame mean error / world-frame mean error (60 s, per run)",,median,1.2247426861144333,1.0694594544496927,1.5357730562410572,120.0,,
+2 per step,test-rate,peak band counts (rate 1),,counts,,,,30.0,,"{""wind"": 15, ""swell"": 15}"
+4 length,test-rate,altitude median,,test-rate rate1 / test-long,56.15482,,,,,test-long 75.18
+4 length,test-rate,ground_speed median,,test-rate rate1 / test-long,44.03475573424159,,,,,test-long 39.33
+4 length,test-rate,wind median,,test-rate rate1 / test-long,10.951,,,,,test-long 10.39
+4 length,test-rate,pattern mix,,counts,,,,,,"test-rate {""orbit"": 8, ""figure8"": 6, ""racetrack"": 5, ""random"": 5, ""lawnmower"": 3, ""straight"": 3}; test-long {""orbit"": 29, ""random"": 26, ""figure8"": 21, ""lawnmower"": 16, ""racetrack"": 15, ""straight"": 13}"

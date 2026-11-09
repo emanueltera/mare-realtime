@@ -1,0 +1,20 @@
+{
+  "runs": 32,
+  "pairs_per_model": 1472,
+  "wall_s": 514.5888863457367,
+  "loader_wait_s": 14.515666364692152,
+  "models": {
+    "searaft": {
+      "model_ms_per_pair": 94.31094041666138,
+      "total_ms_per_pair": 103.35413111897651,
+      "desc": "SEA-RAFT-M MemorySlices/Tartan-C-T-TSKH-spring540x960-M, iters 4, scale 2^0"
+    },
+    "ufmrefine980": {
+      "model_ms_per_pair": 225.1266060920898,
+      "total_ms_per_pair": 235.39287212580624,
+      "desc": "infinity1096/UFM-Refine-980 at its inference resolution [[980, 644]] (W\u00d7H) (crop rows 160-1119, transposed)"
+    }
+  },
+  "gpu": "NVIDIA RTX PRO 6000 Blackwell Max-Q Workstation Edition",
+  "torch": "2.11.0+cu128"
+}

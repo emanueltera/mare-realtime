@@ -1,0 +1,18 @@
+set,slice,bin,runs,b_median,e1_searaft_median,frac_better
+test-iid,altitude,"(0, 50]",72,1.1163899014379113,,
+test-iid,altitude,"(50, 80]",68,1.2003887660598747,,
+test-iid,altitude,"(80, 130]",83,1.5253105415194101,,
+test-iid,altitude,"(130, 200]",77,1.9054675299181518,,
+test-iid,wind_speed,"(0, 6]",89,1.734151872973391,,
+test-iid,wind_speed,"(6, 10]",77,1.4595896236665336,,
+test-iid,wind_speed,"(10, 14]",83,1.2171140478701972,,
+test-iid,wind_speed,"(14, 16]",51,1.0992556837368805,,
+test-iid,sun_elevation,"(-90, 5]",29,1.2212240793262996,,
+test-iid,sun_elevation,"(5, 15]",46,1.341947420388839,,
+test-iid,sun_elevation,"(15, 35]",81,1.5074603897398478,,
+test-iid,sun_elevation,"(35, 90]",144,1.3842046306001188,,
+e1-core,all,frac b < e1 searaft g1,432,0.5046296296296297,,
+e1-core,altitude,30 flowhead / e1 searaft medians,108,1.2538779069953194,0.979312,0.2777777777777778
+e1-core,altitude,60 flowhead / e1 searaft medians,108,1.3451536060731901,1.3889049999999998,0.5462962962962963
+e1-core,altitude,120 flowhead / e1 searaft medians,108,1.9066714812065635,2.100755,0.5555555555555556
+e1-core,altitude,250 flowhead / e1 searaft medians,108,2.5716413804597824,3.0777099999999997,0.6388888888888888

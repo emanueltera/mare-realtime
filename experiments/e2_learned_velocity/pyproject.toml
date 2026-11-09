@@ -1,0 +1,10 @@
+[project]
+name = "e2-learned-velocity"
+version = "0.1.0"
+description = "E2: can a network trained on simulated sequences remove the waves' own motion and output the aircraft's velocity over water?"
+requires-python = ">=3.11"
+dependencies = ["numpy", "scipy", "pandas", "opencv-python-headless", "pytest", "torch"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]

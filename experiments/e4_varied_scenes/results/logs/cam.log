@@ -1,0 +1,15 @@
+=== /workspace/data/e4/sets/val-cam: 100 of 100 runs
+=== /workspace/data/e4/sets/test-cam: 120 of 120 runs
+=== /workspace/data/e4/sets/cam-train: 3000 of 3000 runs
+=== cam train start 2026-11-08T09:42:02+00:00
+=== trained cam3k-noair 2026-11-08T16:50:47+00:00
+=== trained blind-cam 2026-11-08T16:50:47+00:00
+=== trained cam3k 2026-11-08T16:50:47+00:00
+=== cam train done 2026-11-08T16:50:47+00:00; scoring cam3k-noair blind-cam cam3k
+/workspace/data/e4/preds/cam3k-noair-test-cam.npz: 72000 pairs from 120 runs
+/workspace/data/e4/preds/blind-cam-test-cam.npz: 72000 pairs from 120 runs
+/workspace/data/e4/preds/cam3k-test-cam.npz: 72000 pairs from 120 runs
+/workspace/data/e4/preds/cam3k-noair-test-cam-fx.npz: 72000 pairs from 120 runs
+/workspace/data/e4/preds/blind-cam-test-cam-fx.npz: 72000 pairs from 120 runs
+/workspace/data/e4/preds/cam3k-test-cam-fx.npz: 72000 pairs from 120 runs
+=== CAM done 2026-11-08T16:57:22+00:00

@@ -1,0 +1,4 @@
+model,selected_step,batch,windows_seen_at_selected,last_logged_step,windows_seen_at_end,source
+A K=8,6300,16,100800,6412,102592,"verify/e2e_out/repredict_vs_orig.csv, results/<model>/train/args.json, log.csv"
+A K=2,4200,16,67200,7000,112000,"verify/e2e_out/repredict_vs_orig.csv, results/<model>/train/args.json, log.csv"
+A K=4,2800,16,44800,6412,102592,"verify/e2e_out/repredict_vs_orig.csv, results/<model>/train/args.json, log.csv"

@@ -1,0 +1,46 @@
+{
+	"name": "e1-frozen",
+	"description": "E1 frozen-sea control: the core camera over a sea held still (render.seaRate 0) from frame 0; apparent water velocity should be ~0. 24 runs.",
+	"base": {
+		"trajectory": {
+			"duration": 12,
+			"pattern": "transit",
+			"wind": "none",
+			"turbulence": 0,
+			"airspeedVariation": 0,
+			"gimbal": {
+				"pitch": -90,
+				"yaw": 0,
+				"fov": 92,
+				"stabilized": 1
+			}
+		},
+		"render": {
+			"width": 720,
+			"height": 1280,
+			"fps": 10,
+			"warmup": 8,
+			"seaRate": 0
+		},
+		"light": "midday"
+	},
+	"sweep": {
+		"sea": [
+			"moderate",
+			"strong",
+			"moderate-swell"
+		],
+		"trajectory.altitude": [
+			60,
+			120
+		],
+		"trajectory.airspeed": [
+			30,
+			60
+		],
+		"trajectory.start.heading": [
+			60,
+			150
+		]
+	}
+}
