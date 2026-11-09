@@ -609,7 +609,8 @@ async function generateRun(run, ctx, getPage, label) {
 		seaTime: {
 			start: run.render.seaTime,
 			warmup: run.render.warmup,
-			atFrame0: render ? render.seaTimeAtFrame0 : run.render.seaTime + run.render.warmup
+			atFrame0: render ? render.seaTimeAtFrame0 : run.render.seaTime + run.render.warmup,
+			rate: run.render.seaRate
 		},
 		renderer: render
 			? { gpu: render.renderer, vendor: render.vendor, software: render.software, browser: ctx.browserVersion, console: render.console }

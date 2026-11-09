@@ -7,3 +7,13 @@ playwright-report
 .shots
 # Generated datasets (scripts/generate.mjs)
 /out
+
+# Off-box copy of the vast volume (models, predictions, logs); too big for git
+/vast-backup
+
+# Per-pair prediction tables and raw E1 flow tables (hundreds of MB); copies are in vast-backup/
+experiments/*/results/**/preds/
+experiments/e1_wave_bias/results/flow-core.csv
+experiments/e1_wave_bias/results/shell-core.csv
+experiments/e1_wave_bias/results/shell-core-energy.csv
+__pycache__/

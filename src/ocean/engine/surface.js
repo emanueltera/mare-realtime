@@ -157,6 +157,7 @@ uniform vec4 uFadeNear;
 uniform vec4 uFadeFar;
 uniform vec4 uJacWeights;   // each cascade's share in the Jacobian that breaks into whitecaps
 uniform vec2 uActiveFoam;   // J below x turns to fresh foam over 1/y
+uniform float uFoamGain;    // the look's multiplier on foam coverage
 uniform sampler2D uFoamField0;
 uniform sampler2D uFoamField1;
 uniform vec4 uFoamRect0;    // fine foam field: centre (from the origin), 1/extent, on
@@ -320,7 +321,7 @@ void main() {
 	// together, weighted toward the dominant waves), over the foam left on the water.
 	float J = (1.0 + jac.x) * (1.0 + jac.y) - jac.z * jac.z;
 	float breaking = clamp((uActiveFoam.x - J) * uActiveFoam.y, 0.0, 1.0) * breakGate(vEN);
-	float coverage = max(residualFoam(vEN), breaking);
+	float coverage = max(residualFoam(vEN), breaking) * uFoamGain;
 	float foamVis = foamMask(coverage, vEN);
 
 	gFoamAlbedo = mix(0.5, 1.0, foamDensity);
@@ -373,6 +374,7 @@ export class OceanSurface {
 			uFadeFar: { value: new THREE.Vector4(2e9, 2e9, 2e9, 2e9) },
 			uJacWeights: { value: new THREE.Vector4(...JACOBIAN_WEIGHTS) },
 			uActiveFoam: { value: new THREE.Vector2(-1, 1) },
+			uFoamGain: { value: 1 },
 			uFoamField0: { value: /** @type {THREE.Texture | null} */ (null) },
 			uFoamField1: { value: /** @type {THREE.Texture | null} */ (null) },
 			uFoamRect0: { value: new THREE.Vector4() },

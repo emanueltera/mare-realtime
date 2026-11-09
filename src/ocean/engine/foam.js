@@ -31,6 +31,27 @@ const RESIDUAL = 0.6;
 export const GATE_PERIOD = 768;
 
 /**
+ * How fast the break gate's pattern travels across the water, m/s, downwind (toward the
+ * wind sea's direction), so the crests picked to break change slowly. It used to scroll a
+ * fixed 1.7 m/s east and 1.02 m/s north whatever the wind (the pattern then travelled
+ * toward ~239°); the speed is that scroll's, kept.
+ */
+export const GATE_SPEED = 1.7 * Math.hypot(1, 0.6);
+
+/**
+ * The change in `uGateOffset` over `dt` seconds of sea time: the gate is sampled at
+ * `en + uGateOffset`, so a pattern that moves toward `windDirection` (compass degrees)
+ * needs an offset that moves the other way.
+ * @param {number} dt seconds
+ * @param {number} windDirection compass degrees the wind sea travels toward
+ * @returns {[number, number]} east, north metres
+ */
+export function gateStep(dt, windDirection) {
+	const dir = (windDirection * Math.PI) / 180;
+	return [-Math.sin(dir) * GATE_SPEED * dt, -Math.cos(dir) * GATE_SPEED * dt];
+}
+
+/**
  * Not every steep crest breaks. A pattern of cells about a dozen metres across, fixed on
  * the water and slowly changing, picks the crests that do: a crest breaks while it runs
  * through one, about a second, and leaves a trail about a cell long. Needs `uFoamTex`

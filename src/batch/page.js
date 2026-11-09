@@ -13,9 +13,11 @@
  * Time: frame i is the flight at t = i / fps. Before frame 0 the sea, its foam and the
  * camera rigs run for `render.warmup` seconds with the flight held at t = 0 (advance with
  * `flight: false`), then `seek(0)` restarts the rigs settled on the aircraft. So the
- * sea's clock at frame i is `render.seaTime + warmup + t` while the flight's starts at
- * 0, and every frame after the first is exactly one `advance(1 / fps)` from the one
- * before (docs/ARCHITECTURE.md, the manual engine's run sequence).
+ * sea's clock at frame i is `render.seaTime + warmup + seaRate · t` while the flight's
+ * starts at 0, and every frame after the first is exactly one `advance(1 / fps)` from the
+ * one before (docs/ARCHITECTURE.md, the manual engine's run sequence). `render.seaRate`
+ * applies from frame 0 on: the warm-up runs the sea at its own pace, so a frozen sea
+ * (seaRate 0) is a settled one, foam trails and all, held still under the flight.
  *
  * Ground truth is what was rendered: `truth` is the engine's own FrameTruth after the
  * frame was drawn, and `sample` is the trajectory at the t that frame actually drew
@@ -159,6 +161,7 @@ async function load(input) {
 				manual: true,
 				quality: /** @type {'high' | 'low'} */ (quality),
 				seed: seaSeed,
+				look: run.render.look,
 				size: [width, height],
 				preserveDrawingBuffer: false
 			}
@@ -224,7 +227,7 @@ async function frame(i) {
 	try {
 		const { engine, run } = c;
 		const step = 1 / run.render.fps;
-		for (; c.index < i; c.index++) engine.advance(step);
+		for (; c.index < i; c.index++) engine.advance(step, { seaRate: run.render.seaRate });
 
 		/** @type {FrameTruth | null} */
 		let truth = null;

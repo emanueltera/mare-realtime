@@ -131,6 +131,11 @@ A job is a base run plus what varies (see `jobs/`):
   fov 35–75°,
   stabilisation 0.3–1, turbulence 0–0.8, any start heading, any pattern preset. With both
   `sweep` and `random`, the random runs follow the grid's.
+- `runs: [ {...}, {...} ]` lists runs one by one, each laid over `base` (objects merged
+  key by key, anything else replaced). It is for runs a script draws with its own
+  distributions (e.g. `experiments/e2_learned_velocity/make_jobs.mjs`, which redraws
+  `randomRun`'s altitude, airspeed and gimbal); an entry's `id` becomes its run id's slug.
+  Listed runs follow the grid's and the random block's.
 - Run ids are stable: `<job>-<index>-<tokens>`, e.g.
   `conditions-grid-002-calm-midday-loiter-s1`; only axes with more than one value add a
   token.
@@ -155,7 +160,7 @@ repeated from its own file. Unknown fields and presets are errors that name the 
   "render": {
     "width": 1280, "height": 720, "fps": 10, "quality": "high",
     "modes": ["shaded", "height"], "view": "onboard",
-    "warmup": 8, "seaTime": 0, "seaSeed": 20240611, "frames": true
+    "warmup": 8, "seaTime": 0, "seaSeed": 20240611, "seaRate": 1, "frames": true
   },
   "imuRate": 200,
   "origin": { "lat": 43.3, "lon": 5.3 }
@@ -165,8 +170,12 @@ repeated from its own file. Unknown fields and presets are errors that name the 
 `render.modes` is any of `shaded`, `height`, `velocity`, `normals`, `foam`, `depth`;
 `render.view` is `onboard` (the gimbal camera) or `chase` (24 m behind the aircraft's
 right quarter, 12° above, aircraft centred). `warmup` is how long the sea and its foam run
-before frame 0 (the flight is held at t = 0 meanwhile). `origin` adds latitude and
-longitude columns.
+before frame 0 (the flight is held at t = 0 meanwhile). `seaRate` (≥ 0, default 1) is
+how fast the sea runs from frame 0 on, relative to the flight: `0` freezes the waves, the
+foam (and its downwind drift), the whitecaps' break gate and the clouds' drift, while the
+aircraft and camera fly on, so every frame is the same water seen from a moving camera (a
+control for motion estimators; the warm-up still runs at 1, so the frozen sea is a
+settled one). `origin` adds latitude and longitude columns.
 
 ### Output
 
@@ -184,7 +193,7 @@ out/<job>/<run-id>/
 ```
 
 Frame `i` is the flight at `t = i / fps`, for `i = 0 … floor(duration · fps)`. The sea's
-own clock at frame `i` is `render.seaTime + render.warmup + t`.
+own clock at frame `i` is `render.seaTime + render.warmup + render.seaRate · t`.
 
 **trajectory.csv**: `frame, t, x, y, altitude, vE, vN, vU, heading, course, pitch, bank,
 turnRate, airspeed, groundSpeed, windE, windN, windU, fx, fy, fz, p, q, r, gimbalPitch,
@@ -378,6 +387,10 @@ pnpm build       # the app and the batch page into dist/
   downwind in strong wind, and can nearly stall into it over a gale; only the lawnmower
   sizes its turns for the wind. Gusts are a frozen function of time, their intensity set
   at cruise altitude. A trajectory holds about 42 kB per second of flight in memory.
+- **Foam motion is a model.** Foam drifts downwind at 0.035 × the wind speed, and the
+  break gate (the cells that pick which steep crests break) travels downwind at about
+  1.98 m/s whatever the sea; frames rendered before the gate followed the wind (E1's)
+  have it travelling toward about 239° in every sea.
 - **Without frames there is no camera truth**: `frames.csv` is read off the rendered
   camera, so `--no-frames` writes the flight and IMU only.
 - Numbers describe the simulator (its spectrum, its sea state, its aircraft); they are

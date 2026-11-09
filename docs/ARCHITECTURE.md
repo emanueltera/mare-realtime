@@ -202,6 +202,7 @@ engine.setScene(spec);      // with manual: true the scene is entered at once (n
 engine.setSeaTime(seconds); // put the sea's clock at a given time (e.g. after warm-up)
 engine.advance(dt);         // step everything (sea, foam, flight, rigs, exposure) by dt seconds,
                             //   in sub-steps of at most 0.1 s (so the frame rate does not change the sea)
+engine.advance(dt, { seaRate: 0 });  // the same, the sea held still (see below)
 engine.renderFrame({ mode: 'shaded' });   // render now, synchronously; mode switches are instant
 engine.frameTruth();        // FrameTruth for what was just rendered
 await engine.capture();     // the frame just rendered as a PNG Blob
@@ -231,11 +232,26 @@ Details of the manual engine:
   instant's waves), so the same seaTime gives the same sea at any fps. Both clocks end
   exactly dt on; a flight's t is a float sum of the sub-steps.
 - `advance(dt, { flight: false })` holds the flights and recorded tracks while the sea,
-  foam and camera rigs run (a warm-up). `seek(t)` puts the current scene's flight at t
+  foam and camera rigs run (a warm-up).
+- `advance(dt, { seaRate })` (≥ 0, default 1) runs the sea at that rate while the flights,
+  the camera rigs and the exposure meter take the whole dt: the sea's clock (`seaTime`,
+  hence the waves and the clouds' drift) moves by `dt · seaRate`, and so do the foam's
+  step (decay, downwind drift, along-wind spread) and the break gate's scroll. With 0 the
+  sea is frozen: the same water, foam and cloud shadows, translated in the image only by
+  the camera's own motion. The foam field still follows the camera and still takes new
+  whitecaps, but from frozen crests under a frozen gate, so what it adds is fixed on the
+  water too. The film grain (the ±1 LSB dither) still changes from frame to frame. The
+  sub-steps follow dt, so the sea is stepped the same way at any rate. `seek(t)` puts the current scene's flight at t
   (any path; in the app it also works, and playback continues from there); in manual
   mode it also restarts the camera rigs there, settled: a chase rig takes the sample's
   `vE / vN / vU` as the motion it has been following, so it holds its framing from the
   first frame. Without them it eases in over about a second.
+- The whitecaps' break gate (foam.js, `breakGate`: the cells that pick which steep crests
+  break) travels downwind, toward the current sea's `windDirection`, at `GATE_SPEED`
+  (≈ 1.98 m/s) of sea time (`gateStep`). Before this it scrolled a fixed 1.7 m/s east and
+  1.02 m/s north whatever the wind, so its pattern travelled toward ≈ 239° (upwind for the
+  presets, whose wind sea travels toward 60°); renders made before the change (E1) carry
+  that artefact.
 - `renderFrame` brings the GPU sea to the current sea time if `advance` has not (after
   `setSeaTime`, or with no `advance` yet), but foam only builds up over `advance` steps.
   The exposure meter steps by the time advanced since the previous frame drawn (the
@@ -332,6 +348,13 @@ A **run** is one flight over one ocean, rendered:
  * @property {number} [render.warmup]    seconds the sea and foam run before frame 0; default 8
  * @property {number} [render.seaTime]   the sea's clock at the start of warm-up; default 0
  * @property {number} [render.seaSeed]   default 20240611
+ * @property {number} [render.seaRate]   how fast the sea runs from frame 0 on, relative to
+ *   the flight; default 1. 0 freezes the waves, foam, break gate and cloud drift while the
+ *   flight and camera move (a control for motion estimators); the warm-up always runs at 1.
+ *   Frame i's sea time is seaTime + warmup + seaRate · t
+ * @property {object} [render.look]      the water and cloud map, fixed for the run: `waterColor`,
+ *   `sssColor` (linear RGB), `foam` (multiplies coverage) and `cloudOffset` (east, north m);
+ *   default the clear open ocean (scene.js's lookDefaults), which leaves every pixel as it was
  * @property {boolean} [render.frames]   false writes the flight only (run.json, meta.json,
  *   trajectory.csv, imu.csv; no browser, so no frames.csv); default true
  * @property {number} [imuRate]          Hz of imu.csv; default 200
@@ -357,7 +380,10 @@ sets `trajectory.seed` and `render.seaSeed` together. `random` instead draws `co
 runs with domain-randomised sea (including fetch and swell), light, altitude, airspeed
 (at least `WIND_MARGIN` × the wind aloft),
 start heading, turbulence, gimbal (including its stabilisation) and pattern (seeded); with
-both blocks, the random runs follow the grid's in the same list. The expansion is pure
+both blocks, the random runs follow the grid's in the same list. `runs` lists runs one by
+one (for a script that draws its own distributions): each entry is laid over `base`
+(objects merged key by key, anything else replaced), its `id` becomes the slug of its run
+id, and listed runs come after the grid's and the random block's. The expansion is pure
 (`expandJob(job) → RunSpec[]`) and gives each run a stable id:
 `<slug(name)>-<index>-<tokens>`, where only axes with more than one value contribute a
 token.
@@ -427,8 +453,9 @@ window.mare.dispose()
   runs `render.warmup` seconds in steps of 1 / fps with the flight held
   (`advance(dt, { flight: false })`, the last step shorter if the warm-up is not a whole
   number of frames), then `seek(0)`. Frames are `floor(duration · fps) + 1`, at
-  t = i / fps; frame i's sea time is `seaTime + warmup + t`.
-- `frame(i)` goes forward only, one `advance(1 / fps)` per frame, renders every mode in
+  t = i / fps; frame i's sea time is `seaTime + warmup + seaRate · t`.
+- `frame(i)` goes forward only, one `advance(1 / fps, { seaRate: render.seaRate })` per
+  frame (the warm-up always runs the sea at rate 1, so a frozen sea is a settled one), renders every mode in
   `render.modes` (the truth is the first mode's; all modes draw the same camera) and
   captures each straight after drawing it. `sample` is `stateAt(truth.t)`: `truth.t` is a
   float sum of the steps (and sub-steps), within a few ulps of i / fps.

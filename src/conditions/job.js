@@ -35,6 +35,10 @@ import {
  *   combination is a run. `seed` sets `trajectory.seed` and `render.seaSeed` together.
  * @property {{ count: number, seed: number }} [random]  `count` domain-randomised runs on
  *   `base`. With a sweep as well, the random runs follow the grid's.
+ * @property {PartialRun[]} [runs]  runs listed one by one, each laid over `base` (objects
+ *   merged key by key, anything else replaced); an entry's `id` becomes its run id's slug.
+ *   For runs drawn by a script with its own distributions. They follow the sweep's and
+ *   the random block's.
  */
 
 /** No job expands past this many runs: a mistyped sweep should fail, not fill a disk. */
@@ -99,6 +103,22 @@ function setPath(target, path, value) {
 }
 
 /**
+ * `top` laid over `under`: objects merged key by key, anything else (numbers, strings,
+ * arrays, preset names) taken from `top`. Neither is changed.
+ * @param {Record<string, any>} under
+ * @param {Record<string, any>} top
+ * @returns {Record<string, any>}
+ */
+function overlay(under, top) {
+	const out = structuredClone(under);
+	for (const [key, value] of Object.entries(top)) {
+		if (key === '__proto__' || key === 'constructor' || key === 'prototype') fail(`runs: field '${key}' is not allowed`);
+		out[key] = isObject(value) && isObject(out[key]) ? overlay(out[key], value) : structuredClone(value);
+	}
+	return out;
+}
+
+/**
  * A short, file-name-safe token for one swept value, for the run id: preset names as
  * they are, numbers after their field name (`altitude120`, `s2` for a seed), anything
  * else by its type and a digest.
@@ -131,8 +151,8 @@ function token(path, value) {
 export function expandJob(job) {
 	if (!isObject(job)) fail('a job must be an object');
 	for (const key of Object.keys(job)) {
-		if (!['name', 'description', 'base', 'sweep', 'random'].includes(key)) {
-			fail(`unknown field '${key}' (expected name, description, base, sweep, random)`);
+		if (!['name', 'description', 'base', 'sweep', 'random', 'runs'].includes(key)) {
+			fail(`unknown field '${key}' (expected name, description, base, sweep, random, runs)`);
 		}
 	}
 	if (typeof job.name !== 'string' || !/[a-z0-9]/i.test(job.name)) fail('a job needs a name');
@@ -196,6 +216,18 @@ export function expandJob(job) {
 			const slug = `wind${Math.round(run.sea.windSpeed)}-sun${Math.round(run.light.sunElevation)}-${pattern}`;
 			runs.push({ partial: run, slug });
 		}
+	}
+
+	if (job.runs !== undefined) {
+		if (!Array.isArray(job.runs) || job.runs.length === 0) fail('runs must be a non-empty list of runs');
+		if (runs.length + job.runs.length > MAX_RUNS) fail(`the job has more than ${MAX_RUNS} runs`);
+		job.runs.forEach((entry, i) => {
+			if (!isObject(entry)) fail(`runs[${i}] must be an object`);
+			if (entry.id !== undefined && typeof entry.id !== 'string') fail(`runs[${i}].id must be a string`);
+			const partial = overlay(base, entry);
+			delete partial.id;
+			runs.push({ partial, slug: entry.id ?? '' });
+		});
 	}
 
 	if (runs.length === 0) runs.push({ partial: base, slug: '' });

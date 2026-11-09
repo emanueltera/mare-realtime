@@ -31,12 +31,12 @@
 import * as THREE from 'three';
 import { attitudeQuaternion, blendStates, createAircraftModel, createFlight, emptyState, trajectoryFlight } from '../aircraft.js';
 import { oceanControl, oceanReadout } from '../control.js';
-import { DEFAULT_TRANSITION } from '../scene.js';
+import { DEFAULT_TRANSITION, lookDefaults } from '../scene.js';
 import { seaStats } from '../spectrum.js';
 import { computeLight, pathTransmittance, skyRadiance, sunVisible } from './atmosphere.js';
 import { Bloom } from './bloom.js';
 import { FINE_SHARE, FlowField } from './flow.js';
-import { FoamField, GATE_PERIOD } from './foam.js';
+import { FoamField, GATE_PERIOD, gateStep } from './foam.js';
 import { HorizonHud } from './hud.js';
 import { LineSet } from './lines.js';
 import { Exposure, PostPass, modeIndex } from './post.js';
@@ -135,6 +135,7 @@ import { JACOBIAN_WEIGHTS, WaveSimulation } from './waves.js';
  *   run; default 'high' (its render scale is not applied: `size` is the buffer)
  * @property {number} [seed] the sea's Gaussian field (waves.js): the same seed and sea
  *   time give the same sea; default 20240611
+ * @property {Partial<import('../scene.js').Look>} [look] the water's colours, foam gain and cloud map offset; default scene.js's lookDefaults
  * @property {[number, number]} [size] manual: the drawing buffer, width and height in
  *   pixels, whatever the page layout; default [1280, 720]
  * @property {boolean} [preserveDrawingBuffer] keep the canvas after it is composited, so
@@ -246,7 +247,9 @@ export class OceanEngine {
 		/** Metres the foam (and its lace) has drifted downwind, east and north. */
 		this.foamShiftE = 0;
 		this.foamShiftN = 0;
-		this.gateScroll = 0;
+		/** How far the break gate's pattern has travelled (downwind), east and north, wrapped. */
+		this.gateScrollE = 0;
+		this.gateScrollN = 0;
 
 		// --- sky -------------------------------------------------------------------------
 		this.noiseTexture = createNoiseTexture();
@@ -300,6 +303,11 @@ export class OceanEngine {
 		this.mainScene = new THREE.Scene();
 		this.mainScene.matrixWorldAutoUpdate = true;
 		this.surface = new OceanSurface(this.skyUniforms, this.waves.count);
+		const look = { ...lookDefaults, ...options.look };
+		this.skyUniforms.uWaterColor.value.set(...look.waterColor);
+		this.skyUniforms.uSssColor.value.set(...look.sssColor);
+		this.surface.uniforms.uFoamGain.value = look.foam;
+		this.cloudOffset = look.cloudOffset;
 		this.dome = this.createDome();
 		this.mainScene.add(this.dome, this.surface.group);
 
@@ -556,18 +564,25 @@ export class OceanEngine {
 	 * same sea however it is sliced into frames. The exposure meter steps by the time
 	 * advanced since the last frame when the next frame is drawn (it meters that frame).
 	 * @param {number} dt seconds, >= 0
-	 * @param {{ flight?: boolean }} [options] `flight: false` holds the flights and recorded
-	 *   tracks where they are while the sea runs (a warm-up before frame 0)
+	 * @param {{ flight?: boolean, seaRate?: number }} [options] `flight: false` holds the
+	 *   flights and recorded tracks where they are while the sea runs (a warm-up before
+	 *   frame 0). `seaRate` (>= 0, default 1) runs the sea at that rate while the flights,
+	 *   rigs and exposure meter take the whole dt: the sea's clock (the waves, the clouds'
+	 *   drift) and the foam's own step (its decay, drift and spread, and the break gate's
+	 *   scroll) move by dt · seaRate. 0 freezes the sea while the camera flies over it.
 	 */
 	advance(dt, options = {}) {
 		this.assertManual('advance');
 		if (!(dt >= 0)) throw new Error(`advance(dt) needs dt >= 0, got ${dt}`);
+		const rate = options.seaRate ?? 1;
+		if (!(rate >= 0 && Number.isFinite(rate))) throw new Error(`advance(dt, { seaRate }) needs seaRate >= 0, got ${rate}`);
 		this.pendingDt += dt;
 		const hold = options.flight === false;
 		// In sub-steps of at most MAX_STEP, so a frame rate's step size does not change the
 		// sea: the foam's decay, drift and spread are first-order steps that only hold for
 		// short ones, and each whitecap it gathers belongs to the waves of its own instant.
-		// The step ends exactly dt after it began on both clocks.
+		// The step ends exactly dt after it began on the engine's clock, and dt · seaRate
+		// on the sea's.
 		const n = Math.max(1, Math.ceil(dt / MAX_STEP - 1e-9));
 		const clock0 = this.clock;
 		const sim0 = this.simTime;
@@ -577,9 +592,9 @@ export class OceanEngine {
 			const h = at - done;
 			done = at;
 			this.clock = clock0 + at;
-			this.simTime = sim0 + at;
+			this.simTime = sim0 + at * rate;
 			this.update(h, h, hold ? 0 : h);
-			this.simulate(h);
+			this.simulate(h * rate);
 		}
 	}
 
@@ -1379,11 +1394,13 @@ export class OceanEngine {
 		// --- simulation ------------------------------------------------------------------
 		this.waves.update(this.simTime);
 		this.simulatedAt = this.simTime;
-		// The break gate drifts slowly so the same water does not always break.
-		this.gateScroll = (this.gateScroll + dt * 1.7) % GATE_PERIOD;
+		// The break gate drifts slowly downwind so the same water does not always break.
+		const [gateE, gateN] = gateStep(dt, this.sea.windDirection);
+		this.gateScrollE = mod(this.gateScrollE + gateE, GATE_PERIOD);
+		this.gateScrollN = mod(this.gateScrollN + gateN, GATE_PERIOD);
 		this.surface.uniforms.uGateOffset.value.set(
-			mod(this.originE + this.gateScroll, GATE_PERIOD),
-			mod(this.originN + this.gateScroll * 0.6, GATE_PERIOD)
+			mod(this.originE + this.gateScrollE, GATE_PERIOD),
+			mod(this.originN + this.gateScrollN, GATE_PERIOD)
 		);
 		const su2 = this.surface.uniforms;
 		this.waves.offsets(this.originE, this.originN, [su2.uOffset0.value, su2.uOffset1.value, su2.uOffset2.value, su2.uOffset3.value]);
@@ -1468,8 +1485,8 @@ export class OceanEngine {
 		// The deck is read at (position + shift), so the drift is subtracted for it to move
 		// downwind, with the sea and the foam.
 		su.uCloudShift.value.set(
-			mod(this.originE - Math.sin(wind) * drift, CLOUD_PERIOD),
-			mod(this.originN - Math.cos(wind) * drift, CLOUD_PERIOD)
+			mod(this.originE + this.cloudOffset[0] - Math.sin(wind) * drift, CLOUD_PERIOD),
+			mod(this.originN + this.cloudOffset[1] - Math.cos(wind) * drift, CLOUD_PERIOD)
 		);
 		const mss = this.waves.meanSquareSlope;
 		su.uFarVariance.value.set(mss * 0.5, mss * 0.5, 0);

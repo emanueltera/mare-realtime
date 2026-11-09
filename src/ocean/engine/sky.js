@@ -9,6 +9,7 @@
  * by the analytic far ocean, and the PMREM environment the aircraft reflects.
  */
 import * as THREE from 'three';
+import { lookDefaults } from '../scene.js';
 import { ATMOSPHERE_GLSL, CLOUD_ALTITUDE, MS_FACTOR, MS_LIFT, MS_MU, R_GROUND, SUN_E0, TWILIGHT_GLOW } from './atmosphere.js';
 import { FullscreenPass } from './gpu.js';
 
@@ -111,11 +112,11 @@ export function createSkyUniforms() {
 		uCloudShift: { value: new THREE.Vector2() },
 		uSunDiscRadiance: { value: new THREE.Vector3() },
 		uSunVisible: { value: 1 },
-		uWaterColor: { value: new THREE.Vector3(0.0011, 0.0068, 0.0165) },
+		uWaterColor: { value: new THREE.Vector3(...lookDefaults.waterColor) },
 		// Light scattered back out of clear open-ocean water peaks in the blue, green well
 		// under it (as uWaterColor); a green-dominant tint reads as coastal, chlorophyll-rich
 		// water, and showed as teal halos round whitecaps and a teal cast looking down.
-		uSssColor: { value: new THREE.Vector3(0.045, 0.32, 0.56) },
+		uSssColor: { value: new THREE.Vector3(...lookDefaults.sssColor) },
 		uFoamTex: { value: /** @type {THREE.Texture | null} */ (null) },
 		uFarVariance: { value: new THREE.Vector3(0.01, 0.01, 0) },
 		uHs: { value: 1 }

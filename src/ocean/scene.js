@@ -254,6 +254,24 @@ export const seaDefaults = {
 /** @type {Required<Pick<Lighting, 'overcast' | 'haze' | 'exposure'>>} */
 export const lightDefaults = { overcast: 0, haze: 0.2, exposure: 1 };
 
+/**
+ * What the water and the sky's cloud map look like, fixed for an engine's life. The
+ * defaults are the clear open ocean the engine has always drawn.
+ * @typedef {object} Look
+ * @property {[number, number, number]} waterColor linear RGB light the water body sends back, per unit of irradiance
+ * @property {[number, number, number]} sssColor linear RGB tint of light through crests and bubble clouds
+ * @property {number} foam multiplies the foam's coverage (0 none, 1 as simulated); the foam field is unchanged
+ * @property {[number, number]} cloudOffset east, north metres added to where the cloud deck is read, so runs need not share a cloud map
+ */
+
+/** @type {Look} */
+export const lookDefaults = {
+	waterColor: [0.0011, 0.0068, 0.0165],
+	sssColor: [0.045, 0.32, 0.56],
+	foam: 1,
+	cloudOffset: [0, 0]
+};
+
 /** @type {Required<Pick<OceanCamera, 'fov' | 'x' | 'y' | 'drift' | 'orbit' | 'sway'>>} */
 export const cameraDefaults = { fov: 50, x: 0, y: 0, drift: 0, orbit: 0, sway: 0 };
 

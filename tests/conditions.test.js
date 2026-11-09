@@ -17,7 +17,7 @@ import {
 	seaSeedFor,
 	WIND_MARGIN
 } from '../src/conditions/index.js';
-import { seaDefaults, lightDefaults } from '../src/ocean/scene.js';
+import { seaDefaults, lightDefaults, lookDefaults } from '../src/ocean/scene.js';
 import { seaStats } from '../src/ocean/spectrum.js';
 import { createTrajectory, windAloft } from '../src/trajectory/index.js';
 
@@ -94,6 +94,12 @@ test('resolveRun fills every default and returns a fresh object', () => {
 	// An object sea is filled from the scene defaults.
 	assert.deepEqual(resolveRun({ sea: { windSpeed: 12, windDirection: 270 } }).sea, { ...seaDefaults, windSpeed: 12, windDirection: 270 });
 	assert.deepEqual(resolveRun({ origin: { lat: 43.1, lon: 5.9 } }).origin, { lat: 43.1, lon: 5.9 });
+	// The sea runs in real time unless a run freezes (0) or rescales it.
+	assert.equal(run.render.seaRate, 1);
+	assert.deepEqual(run.render.look, lookDefaults);
+	assert.deepEqual(resolveRun({ render: { look: { foam: 0.5 } } }).render.look, { ...lookDefaults, foam: 0.5 });
+	assert.equal(resolveRun({ render: { seaRate: 0 } }).render.seaRate, 0);
+	assert.equal(expandJob({ name: 'x', sweep: { 'render.seaRate': [0, 1] } })[0].render.seaRate, 0);
 });
 
 test('resolveRun rejects bad input, naming the field', () => {
@@ -117,6 +123,11 @@ test('resolveRun rejects bad input, naming the field', () => {
 		[{ render: { width: 640.5 } }, /render\.width must be an integer/],
 		[{ render: { quality: 'ultra' } }, /render\.quality/],
 		[{ render: { view: 'side' } }, /render\.view/],
+		[{ render: { seaRate: -0.5 } }, /render\.seaRate must be at least 0/],
+		[{ render: { look: { foam: -1 } } }, /render\.look\.foam must be at least 0/],
+		[{ render: { look: { waterColor: [0, 0] } } }, /render\.look\.waterColor must be a list of 3 numbers/],
+		[{ render: { look: { tint: 1 } } }, /tint/],
+		[{ render: { seaRate: '0' } }, /render\.seaRate must be a finite number/],
 		[{ sea: { windSpeed: 5 } }, /sea\.windDirection/],
 		[{ sea: { windSpeed: 5, windDirection: 0, choppiness: 3 } }, /sea\.choppiness/],
 		[{ light: { sunElevation: 10, sunAzimuth: 0, overcast: 1.5 } }, /light\.overcast/],
@@ -274,4 +285,34 @@ test('every shipped job flies in a wind its aircraft can outfly', () => {
 			assert.deepEqual(traj.warnings, [], `${run.id}`);
 		}
 	}
+});
+
+test('expandJob: listed runs lie over the base, keep their order, and take their ids as slugs', () => {
+	/** @type {import('../src/conditions/job.js').Job} */
+	const job = {
+		name: 'listed',
+		base: { trajectory: { duration: 8, gimbal: { fov: 92 } }, render: { fps: 10 } },
+		runs: [
+			{ id: 'first', trajectory: { altitude: 50, gimbal: { pitch: -70 } }, sea: 'calm' },
+			{ trajectory: { altitude: 300 }, render: { seaRate: 0 } }
+		]
+	};
+	const runs = expandJob(job);
+	assert.deepEqual(runs.map((r) => r.id), ['listed-000-first', 'listed-001']);
+	assert.equal(runs[0].trajectory.altitude, 50);
+	assert.equal(runs[0].trajectory.gimbal.pitch, -70);
+	assert.equal(runs[0].trajectory.gimbal.fov, 92, 'nested objects merge with the base');
+	assert.equal(runs[0].trajectory.duration, 8);
+	assert.deepEqual(runs[0].sea, resolveRun({ sea: 'calm' }).sea);
+	assert.equal(runs[1].render.seaRate, 0);
+	assert.equal(runs[1].render.fps, 10);
+	assert.deepEqual(expandJob(structuredClone(job)), runs, 'same job, same runs');
+	assert.equal(/** @type {any} */ (job.base).trajectory.gimbal.pitch, undefined, 'the base is not changed');
+	// A listed run is resolved like any other: a randomRun written out comes back as itself.
+	const drawn = randomRun(1234, { trajectory: { duration: 8 } });
+	const [again] = expandJob({ name: 'r', runs: [{ ...drawn, id: 'x' }] });
+	assert.deepEqual({ ...again, id: drawn.id }, drawn);
+	assert.throws(() => expandJob({ name: 'x', runs: [] }), /runs must be a non-empty list/);
+	assert.throws(() => expandJob({ name: 'x', runs: [{ render: { fsp: 5 } }] }), /render\.fsp/);
+	assert.throws(() => expandJob({ name: 'x', runs: [/** @type {any} */ (3)] }), /runs\[0\] must be an object/);
 });

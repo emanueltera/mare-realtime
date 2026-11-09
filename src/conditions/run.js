@@ -13,7 +13,7 @@
  * altitude metres above mean sea level, directions compass degrees (0 north, 90 east,
  * the way seas and wind travel toward).
  */
-import { seaDefaults, lightDefaults } from '../ocean/scene.js';
+import { seaDefaults, lightDefaults, lookDefaults } from '../ocean/scene.js';
 import { seaPresets, lightPresets, patternPresets } from './presets.js';
 import { trajectoryDefaults as flightDefaults } from '../trajectory/index.js';
 
@@ -85,7 +85,11 @@ import { trajectoryDefaults as flightDefaults } from '../trajectory/index.js';
  * @property {number} warmup    s the sea and foam run before frame 0
  * @property {number} seaTime   the sea's clock at the start of warm-up, s
  * @property {number} seaSeed   the sea's Gaussian field
+ * @property {number} seaRate   how fast the sea runs from frame 0 on, relative to the flight:
+ *   1 is real time, 0 freezes the waves, foam, break gate and clouds while the camera flies
+ *   over them (a control for motion estimators); the warm-up always runs at 1
  * @property {boolean} frames   false writes the flight only (trajectory.csv, imu.csv; no frames, no frames.csv)
+ * @property {import('../ocean/scene.js').Look} look   the water's colours, foam gain and cloud map offset
  */
 
 /**
@@ -131,7 +135,9 @@ export const renderDefaults = Object.freeze({
 	warmup: 8,
 	seaTime: 0,
 	seaSeed: DEFAULT_SEA_SEED,
-	frames: true
+	seaRate: 1,
+	frames: true,
+	look: Object.freeze({ ...lookDefaults })
 });
 
 /**
@@ -171,6 +177,7 @@ const KEYS = {
 	start: ['x', 'y', 'heading'],
 	gimbal: ['pitch', 'yaw', 'fov', 'stabilized'],
 	render: Object.keys(renderDefaults),
+	look: Object.keys(lookDefaults),
 	origin: ['lat', 'lon']
 };
 
@@ -450,6 +457,13 @@ export function resolveRender(input) {
 	}
 	if (new Set(r.modes).size !== r.modes.length) fail(`render.modes lists a mode twice (${r.modes.join(', ')})`);
 	if (typeof r.frames !== 'boolean') fail(`render.frames must be true or false (got ${show(r.frames)})`);
+	const look = { ...lookDefaults, ...obj(r.look, 'render.look') };
+	checkKeys(look, KEYS.look, 'render.look');
+	/** @param {unknown} v @param {string} name @param {number} n @param {{ min?: number }} [limits] */
+	const triple = (v, name, n, limits) => {
+		if (!Array.isArray(v) || v.length !== n) fail(`${name} must be a list of ${n} numbers (got ${show(v)})`);
+		return /** @type {any[]} */ (v).map((x, i) => num(x, `${name}[${i}]`, limits));
+	};
 	return {
 		width: num(r.width, 'render.width', { positive: true, integer: true, max: 8192 }),
 		height: num(r.height, 'render.height', { positive: true, integer: true, max: 8192 }),
@@ -460,7 +474,14 @@ export function resolveRender(input) {
 		warmup: num(r.warmup, 'render.warmup', { min: 0 }),
 		seaTime: num(r.seaTime, 'render.seaTime'),
 		seaSeed: num(r.seaSeed, 'render.seaSeed', { integer: true }),
-		frames: r.frames
+		seaRate: num(r.seaRate, 'render.seaRate', { min: 0 }),
+		frames: r.frames,
+		look: {
+			waterColor: /** @type {[number, number, number]} */ (triple(look.waterColor, 'render.look.waterColor', 3, { min: 0 })),
+			sssColor: /** @type {[number, number, number]} */ (triple(look.sssColor, 'render.look.sssColor', 3, { min: 0 })),
+			foam: num(look.foam, 'render.look.foam', { min: 0 }),
+			cloudOffset: /** @type {[number, number]} */ (triple(look.cloudOffset, 'render.look.cloudOffset', 2))
+		}
 	};
 }
 
