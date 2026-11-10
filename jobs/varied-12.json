@@ -1,0 +1,9 @@
+{
+	"name": "varied-12",
+	"description": "Twelve short flights over varied scenes: water drawn from six bodies, seas from glassy to storm, any sun, cloud and haze, seen by a camera fixed to the airframe and pointed steeply down. Drawn from seed 12.",
+	"base": {
+		"trajectory": { "duration": 12, "wind": "sea", "gimbal": { "yaw": 0, "fov": 61.04, "stabilized": 0 } },
+		"render": { "width": 1280, "height": 720, "fps": 10, "modes": ["shaded"] }
+	},
+	"varied": { "count": 12, "seed": 12 }
+}

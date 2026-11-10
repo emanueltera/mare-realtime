@@ -49,7 +49,9 @@ The app is where you design a run:
   **Import run.json**. The URL hash holds the whole run, so a link reproduces it.
 
 The app's chase preview is the batch's chase shot, with the aircraft moved clear of the
-panel; the onboard preview is the batch's onboard camera.
+panel; the onboard preview is the batch's onboard camera. The preview does not apply a
+run's `render.look` (water colours, foam gain, cloud offset): an imported run keeps its
+look and exports it again, but is shown over the default water.
 
 ## Generating a dataset
 
@@ -57,6 +59,7 @@ panel; the onboard preview is the batch's onboard camera.
 node scripts/generate.mjs jobs/quick.json                      # one 10 s run, 51 small frames
 node scripts/generate.mjs run.json --out out                   # a run.json from the app
 node scripts/generate.mjs jobs/conditions-grid.json --limit 3 --video
+node scripts/generate.mjs jobs/varied-12.json --concurrency 2    # twelve flights over varied scenes
 ```
 
 The generator expands the job in node, flies each run's trajectory and writes its IMU
@@ -131,11 +134,40 @@ A job is a base run plus what varies (see `jobs/`):
   fov 35–75°,
   stabilisation 0.3–1, turbulence 0–0.8, any start heading, any pattern preset. With both
   `sweep` and `random`, the random runs follow the grid's.
+- `varied: { "count": 3000, "seed": 5 }` draws runs over varied scenes, for training and
+  testing estimators that must not learn one sea. The sea: wind 2–20 m/s seven times in
+  ten, otherwise glassy (0.7–2) or a storm (20–28); fetch 5–800 km; a swell three times in
+  four, up to 4 m at 6–18 s from any direction; directional spread 2–24; choppiness
+  0.5–1.6. The sky: sun from 8° below the horizon to 88° up, overcast and haze each
+  anywhere from 0 to 1, with none of `random`'s rules that keep a frame worth looking at
+  (some frames are close to blank, on purpose); exposure ×0.5–2. The water (`render.look`):
+  one of six bodies (open ocean, indigo, turquoise, coastal green, grey, sediment), its
+  brightness ×0.6–1.6 and each channel ±15 %; foam coverage ×0.3–1.5; the cloud map moved
+  per run. The flight: altitude 30–400 m (log-uniform), airspeed 15–75 m/s (never under
+  1.3 × the sea's wind at that altitude), gimbal 60–90° down, turbulence 0–0.8, any start
+  heading, any pattern preset. Varied runs follow the grid's and the random block's.
+  - `altitude`, `airspeed` and `pitch` in the block replace those three ranges, each as
+    `[low, high]`. Pitch is written as in a run, in degrees and negative down
+    (`"pitch": [-90, -75]`); a range reaching above the horizon is refused.
+  - A sea whose wind the airspeed range cannot outfly by that margin is passed over for
+    the next seed, so a slow range draws fewer strong winds: at 18–30 m/s hardly any sea
+    has a wind over 20 m/s, where the default range has about one in seven.
+  - Each run is laid over `base` like a listed run, so the base sets what is not drawn:
+    the duration, the frame size and the camera's field of view, yaw and stabilisation
+    (`jobs/varied-12.json` fixes the camera to the airframe). `trajectory.wind` has to
+    stay `"sea"` (the default) or `"none"`: a wind given in numbers is refused, because
+    the airspeeds are drawn against each sea's own wind.
+  - A run depends only on the block's seed, its ranges and its place in the block, so a
+    longer block starts with the same runs. Their ids change, though: the index in an id
+    is as wide as the job needs (three digits up to 1000 runs, then four), and the
+    generator resumes by id. Give a block its final `count` before rendering, and extend
+    a rendered set with a second job on another seed, not by raising `count`.
+  - No two runs of a block share a seed. Two jobs could, though seeds have nine digits:
+    compare `trajectory.seed` across them where a test set must share nothing with a
+    training set.
 - `runs: [ {...}, {...} ]` lists runs one by one, each laid over `base` (objects merged
   key by key, anything else replaced). It is for runs a script draws with its own
-  distributions (e.g. `experiments/e2_learned_velocity/make_jobs.mjs`, which redraws
-  `randomRun`'s altitude, airspeed and gimbal); an entry's `id` becomes its run id's slug.
-  Listed runs follow the grid's and the random block's.
+  distributions; an entry's `id` becomes its run id's slug. Listed runs come last.
 - Run ids are stable: `<job>-<index>-<tokens>`, e.g.
   `conditions-grid-002-calm-midday-loiter-s1`; only axes with more than one value add a
   token.

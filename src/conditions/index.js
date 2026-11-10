@@ -23,7 +23,7 @@ export {
 	DEFAULT_SEA_SEED,
 	DEFAULT_IMU_RATE
 } from './run.js';
-export { expandJob, randomRun, WIND_MARGIN } from './job.js';
+export { expandJob, randomRun, variedRun, variedDefaults, variedWaters, WIND_MARGIN } from './job.js';
 export { runScene, chaseCamera, onboardCamera } from './views.js';
 
 /** @typedef {import('./run.js').RunSpec} RunSpec */
@@ -32,3 +32,4 @@ export { runScene, chaseCamera, onboardCamera } from './views.js';
 /** @typedef {import('./run.js').PatternSpec} PatternSpec */
 /** @typedef {import('./run.js').RenderSpec} RenderSpec */
 /** @typedef {import('./job.js').Job} Job */
+/** @typedef {import('./job.js').VariedBlock} VariedBlock */

@@ -164,8 +164,8 @@ function readInput(file) {
 	} catch (e) {
 		usage(`cannot read ${file}: ${e instanceof Error ? e.message : e}`);
 	}
-	// A RunSpec has none of a job's keys (name, base, sweep, random).
-	const isJob = json && typeof json === 'object' && ['name', 'base', 'sweep', 'random'].some((k) => k in json);
+	// A RunSpec has none of a job's keys (name, base, sweep, random, varied, runs).
+	const isJob = json && typeof json === 'object' && ['name', 'base', 'sweep', 'random', 'varied', 'runs'].some((k) => k in json);
 	try {
 		if (isJob) return { name: slugify(String(json.name ?? basename(file, extname(file)))), runs: expandJob(json) };
 		return { name: slugify(basename(file, extname(file))), runs: [resolveRun(json)] };

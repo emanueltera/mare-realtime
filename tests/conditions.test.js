@@ -15,9 +15,13 @@ import {
 	runSummary,
 	seaPresets,
 	seaSeedFor,
+	variedDefaults,
+	variedRun,
+	variedWaters,
 	WIND_MARGIN
 } from '../src/conditions/index.js';
 import { seaDefaults, lightDefaults, lookDefaults } from '../src/ocean/scene.js';
+import { CLOUD_PERIOD } from '../src/ocean/engine/sky.js';
 import { seaStats } from '../src/ocean/spectrum.js';
 import { createTrajectory, windAloft } from '../src/trajectory/index.js';
 
@@ -198,6 +202,24 @@ test('expandJob rejects bad jobs clearly', () => {
 	assert.throws(() => expandJob({ name: 'x', sweep: { '__proto__.polluted': [1] } }), /dotted path/);
 	assert.throws(() => expandJob({ name: 'x', sweep: { seed: [1.5] } }), /seed values must be integers/);
 	assert.throws(() => expandJob({ name: 'x', random: { count: 0, seed: 1 } }), /random\.count/);
+	assert.throws(() => expandJob({ name: 'x', varied: { count: 0, seed: 1 } }), /varied\.count/);
+	assert.throws(() => expandJob({ name: 'x', varied: /** @type {any} */ ({ count: 1 }) }), /varied\.seed/);
+	assert.throws(() => expandJob({ name: 'x', varied: /** @type {any} */ ({ count: 1, seed: 1, fov: [60, 90] }) }), /unknown field varied\.fov/);
+	assert.throws(() => expandJob({ name: 'x', varied: { count: 1, seed: 1, altitude: [200, 30] } }), /varied\.altitude must be \[low, high\]/);
+	assert.throws(() => expandJob({ name: 'x', varied: { count: 1, seed: 1, pitch: [-120, -60] } }), /varied\.pitch/);
+	// Pitch is negative down: a range written as angles below the horizon would film the sky.
+	assert.throws(() => expandJob({ name: 'x', varied: { count: 1, seed: 1, pitch: [60, 90] } }), /varied\.pitch must be \[low, high\] with -90 ≤ low ≤ high ≤ 0/);
+	assert.throws(() => expandJob({ name: 'x', varied: { count: 1, seed: 1, pitch: [-90, 1] } }), /varied\.pitch/);
+	assert.throws(() => expandJob({ name: 'x', varied: /** @type {any} */ ({ count: 1, seed: 1, altitude: [30, 100, 200] }) }), /varied\.altitude/);
+	assert.throws(() => expandJob({ name: 'x', varied: { count: 1, seed: 1, airspeed: [15, Infinity] } }), /varied\.airspeed/);
+	assert.throws(() => expandJob({ name: 'x', varied: { count: 1, seed: 1, altitude: [NaN, 50] } }), /varied\.altitude/);
+	assert.throws(() => expandJob({ name: 'x', varied: { count: 100001, seed: 1 } }), /more than 100000 runs/);
+	assert.throws(() => expandJob({ name: 'x', random: { count: 99999, seed: 1 }, varied: { count: 2, seed: 1 } }), /more than 100000 runs/);
+	// The block's airspeeds answer to the sea's wind, not to one given in numbers.
+	assert.throws(() => expandJob({ name: 'x', base: { trajectory: { wind: { speed: 40, direction: 0 } } }, varied: { count: 1, seed: 1 } }), /varied: base\.trajectory\.wind must be 'sea' or 'none'/);
+	assert.equal(expandJob({ name: 'x', base: { trajectory: { wind: 'none' } }, varied: { count: 2, seed: 1 } }).length, 2);
+	// An airspeed range hardly any wind lets through: the job is refused, not left short.
+	assert.throws(() => expandJob({ name: 'x', varied: { count: 200, seed: 1, airspeed: [1, 2] } }), /varied: no flight for run \d+/);
 	assert.throws(() => expandJob(/** @type {any} */ ({ sweep: {} })), /needs a name/);
 	assert.throws(() => expandJob(/** @type {any} */ ({ name: 'x', sweeps: {} })), /unknown field 'sweeps'/);
 	assert.equal(/** @type {any} */ ({}).polluted, undefined);
@@ -266,7 +288,7 @@ test('runSummary is short and names presets', () => {
 });
 
 test('the example job files expand', () => {
-	const expected = { 'quick.json': 1, 'sea-state-sweep.json': 14, 'conditions-grid.json': 72, 'random-100.json': 100 };
+	const expected = { 'quick.json': 1, 'sea-state-sweep.json': 14, 'conditions-grid.json': 72, 'random-100.json': 100, 'varied-12.json': 12 };
 	const files = readdirSync(jobsDir).filter((f) => f.endsWith('.json'));
 	for (const [file, count] of Object.entries(expected)) {
 		assert.ok(files.includes(file), file);
@@ -315,4 +337,176 @@ test('expandJob: listed runs lie over the base, keep their order, and take their
 	assert.throws(() => expandJob({ name: 'x', runs: [] }), /runs must be a non-empty list/);
 	assert.throws(() => expandJob({ name: 'x', runs: [{ render: { fsp: 5 } }] }), /render\.fsp/);
 	assert.throws(() => expandJob({ name: 'x', runs: [/** @type {any} */ (3)] }), /runs\[0\] must be an object/);
+});
+
+test('expandJob: varied runs are deterministic, lie over the base and come between the random block and the listed runs', () => {
+	/** @type {import('../src/conditions/job.js').Job} */
+	const job = {
+		name: 'mix',
+		base: { trajectory: { duration: 12, gimbal: { yaw: 0, fov: 61, stabilized: 0 } }, render: { width: 640, height: 360 } },
+		sweep: { light: ['midday', 'dusk'] },
+		random: { count: 2, seed: 7 },
+		varied: { count: 5, seed: 7 },
+		runs: [{ id: 'last' }]
+	};
+	const runs = expandJob(job);
+	assert.equal(runs.length, 10);
+	assert.deepEqual(expandJob(structuredClone(job)), runs);
+	assert.equal(new Set(runs.map((r) => r.id)).size, 10);
+	assert.equal(runs[9].id, 'mix-009-last');
+	const varied = runs.slice(4, 9);
+	for (const r of varied) {
+		assert.match(r.id, /^mix-00[4-8]-w\d+-sun-?\d+-a\d+-v\d+-[a-z]+-[a-z0-9]+$/);
+		// What the block does not draw is the base's.
+		assert.deepEqual([r.trajectory.duration, r.trajectory.gimbal.yaw, r.trajectory.gimbal.fov, r.trajectory.gimbal.stabilized], [12, 0, 61, 0]);
+		assert.deepEqual([r.render.width, r.render.height, r.render.seaRate], [640, 360, 1]);
+		assert.equal(r.render.seaSeed, seaSeedFor(r.trajectory.seed));
+	}
+	assert.equal(new Set(varied.map((r) => r.trajectory.seed)).size, 5);
+	// A different seed draws different runs; the block's own ranges are kept.
+	const other = expandJob({ name: 'mix', varied: { count: 5, seed: 8 } });
+	assert.notDeepEqual(other.map((r) => r.sea), varied.map((r) => r.sea));
+	for (const r of expandJob({ name: 'low', varied: { count: 40, seed: 3, altitude: [40, 60], airspeed: [50, 60], pitch: [-90, -85] } })) {
+		assert.ok(r.trajectory.altitude >= 40 && r.trajectory.altitude <= 60);
+		assert.ok(r.trajectory.airspeed >= 50 && r.trajectory.airspeed <= 60);
+		assert.ok(r.trajectory.gimbal.pitch >= -90 && r.trajectory.gimbal.pitch <= -85);
+	}
+	// Equal bounds give exactly that value.
+	for (const r of expandJob({ name: 'one', varied: { count: 20, seed: 3, altitude: [100, 100], airspeed: [60, 60], pitch: [-90, -90] } })) {
+		assert.deepEqual([r.trajectory.altitude, r.trajectory.airspeed, r.trajectory.gimbal.pitch], [100, 60, -90]);
+	}
+	// Whatever the block draws wins over the base: a base never changes what a seed draws.
+	const plain = expandJob({ name: 'b', varied: { count: 3, seed: 7 } });
+	const loud = expandJob({
+		name: 'b',
+		base: {
+			sea: 'gale',
+			light: 'dusk',
+			trajectory: { seed: 5, altitude: 1000, airspeed: 5, turbulence: 0.9, pattern: 'loiter', start: { heading: 1, x: 250 }, gimbal: { pitch: -10 } },
+			render: { seaSeed: 9, look: { foam: 0 } }
+		},
+		varied: { count: 3, seed: 7 }
+	});
+	loud.forEach((r, i) => {
+		assert.deepEqual([r.id, r.sea, r.light, r.render.look, r.render.seaSeed], [plain[i].id, plain[i].sea, plain[i].light, plain[i].render.look, plain[i].render.seaSeed]);
+		assert.deepEqual({ ...r.trajectory, start: { ...r.trajectory.start, x: 0 } }, { ...plain[i].trajectory, start: { ...plain[i].trajectory.start, x: 0 } });
+		assert.equal(r.trajectory.start.x, 250, 'what is not drawn is still the base\'s');
+	});
+});
+
+test('expandJob: a varied block still draws the runs it always drew', () => {
+	// Sets rendered from this draw have been trained on: a seed must keep giving its run.
+	const [first, , third] = expandJob({ name: 'pinned', varied: { count: 3, seed: 4919 } });
+	assert.equal(first.id, 'pinned-000-w13-sun-2-a288-v50-grey-random');
+	assert.deepEqual(first.sea, {
+		...seaDefaults,
+		windSpeed: 13.085,
+		windDirection: 235.798,
+		fetch: 194.512,
+		spread: 5.495,
+		swellHeight: 3.343,
+		swellPeriod: 14.352,
+		swellDirection: 217.559,
+		choppiness: 0.568
+	});
+	assert.deepEqual(first.light, { ...lightDefaults, sunElevation: -2.318, sunAzimuth: 204.742, overcast: 0.195, haze: 0.775, exposure: 0.602 });
+	assert.deepEqual(
+		[first.trajectory.seed, first.trajectory.altitude, first.trajectory.airspeed, first.trajectory.turbulence, first.trajectory.start.heading, first.trajectory.gimbal.pitch],
+		[282719779, 287.782, 50.16, 0.16, 314.843, -65.765]
+	);
+	assert.deepEqual(first.render.look, { waterColor: [0.00239, 0.0052, 0.00508], sssColor: [0.15284, 0.19357, 0.20308], foam: 0.321, cloudOffset: [9216.949, 7431.567] });
+	assert.equal(first.render.seaSeed, 302960390);
+	assert.equal(third.id, 'pinned-002-w1-sun51-a308-v31-sediment-survey');
+
+	// Many runs at once, by a digest of everything expandJob gives back (FNV-1a over its JSON):
+	// the default ranges, another altitude and airspeed range, and a range slow enough that
+	// seeds are refused and the next candidate is taken.
+	/** @param {import('../src/conditions/job.js').Job} job */
+	const digest = (job) => {
+		const text = JSON.stringify(expandJob(job));
+		let h = 0x811c9dc5;
+		for (let i = 0; i < text.length; i++) h = Math.imul(h ^ text.charCodeAt(i), 0x01000193);
+		return (h >>> 0).toString(16).padStart(8, '0');
+	};
+	assert.equal(digest({ name: 'pinned', varied: { count: 500, seed: 4919 } }), '0a7ff29a');
+	assert.equal(digest({ name: 'pinned', varied: { count: 500, seed: 4101, altitude: [30, 200], airspeed: [15, 60] } }), '1bddf3d9');
+	const slow = { name: 'z', varied: { count: 50, seed: 11, airspeed: /** @type {[number, number]} */ ([15, 25]) } };
+	assert.equal(digest(slow), '01a25372');
+	assert.deepEqual(expandJob(slow).slice(0, 4).map((r) => r.trajectory.seed), [356300964, 165193558, 713914631, 246432354]);
+
+	// Which seed a run takes: never 0 (block seed 0 would give it to run 0), never one the
+	// block has used (block seed 323 would give run 2644 the seed of run 1232).
+	assert.equal(expandJob({ name: 'z', varied: { count: 1, seed: 0 } })[0].trajectory.seed, 301794027);
+	const long = expandJob({ name: 'z', varied: { count: 2645, seed: 323 } });
+	assert.equal(new Set(long.map((r) => r.trajectory.seed)).size, 2645);
+	assert.deepEqual([long[1232].trajectory.seed, long[2644].trajectory.seed], [931771976, 411740409]);
+});
+
+test('variedRun stays within its ranges and reaches every water, pattern and wind band', () => {
+	assert.deepEqual(variedRun(42), variedRun(42));
+	assert.throws(() => variedRun(1.5), /seed must be an integer/);
+	assert.throws(() => variedRun(5, { altitude: [-1, -1] }), /variedRun: altitude must be \[low, high\]/);
+	assert.throws(() => variedRun(5, { airspeed: [75, 15] }), /variedRun: airspeed must be \[low, high\]/);
+	assert.throws(() => variedRun(5, { pitch: [60, 90] }), /variedRun: pitch must be \[low, high\]/);
+	assert.equal(variedRun(5, { airspeed: [1, 2] }), null, 'no airspeed in the range outflies this wind');
+	const waters = new Set();
+	const patterns = new Set();
+	const bands = { glassy: 0, usual: 0, storm: 0 };
+	let swells = 0;
+	let drawn = 0;
+	let refused = 0;
+	const N = 1500;
+	for (let seed = 1; seed <= N; seed++) {
+		const run = variedRun(seed);
+		if (!run) {
+			refused++;
+			continue;
+		}
+		drawn++;
+		const { water, ...partial } = run;
+		const r = resolveRun(partial);
+		const { sea, light, trajectory } = r;
+		assert.equal(trajectory.seed, seed);
+		assert.equal(r.render.seaSeed, seaSeedFor(seed));
+		assert.ok(sea.windSpeed >= 0.7 && sea.windSpeed <= 28);
+		bands[sea.windSpeed < 2 ? 'glassy' : sea.windSpeed <= 20 ? 'usual' : 'storm']++;
+		assert.ok(sea.fetch >= 5 && sea.fetch <= 800);
+		assert.ok(sea.spread >= 2 && sea.spread <= 24);
+		assert.ok(sea.choppiness >= 0.5 && sea.choppiness <= 1.6);
+		assert.ok(sea.swellDirection >= 0 && sea.swellDirection <= 360);
+		if (sea.swellHeight > 0) swells++;
+		assert.ok(sea.swellHeight === 0 || (sea.swellHeight >= 0.1 && sea.swellHeight <= 4 && sea.swellPeriod >= 6 && sea.swellPeriod <= 18));
+		assert.ok(light.sunElevation >= -8 && light.sunElevation <= 88);
+		assert.ok(light.overcast >= 0 && light.overcast <= 1 && light.haze >= 0 && light.haze <= 1);
+		assert.ok(light.exposure >= 0.5 && light.exposure <= 2);
+		// The water: one of the bodies, each channel within its gain and its ±15 %.
+		const body = variedWaters[water];
+		for (const key of /** @type {const} */ (['waterColor', 'sssColor'])) {
+			r.render.look[key].forEach((x, c) => assert.ok(x >= body[key][c] * 0.6 * 0.85 - 1e-5 && x <= body[key][c] * 1.6 * 1.15 + 1e-5, `${water} ${key}`));
+		}
+		assert.ok(r.render.look.foam >= 0.3 && r.render.look.foam <= 1.5);
+		// The cloud map never starts within a minute's flight and drift of its wrap.
+		for (const x of r.render.look.cloudOffset) assert.ok(x >= 6000 && x <= CLOUD_PERIOD - 6000, `cloud offset ${x} of a ${CLOUD_PERIOD} m map`);
+		assert.ok(trajectory.altitude >= variedDefaults.altitude[0] && trajectory.altitude <= variedDefaults.altitude[1]);
+		assert.ok(trajectory.airspeed >= variedDefaults.airspeed[0] && trajectory.airspeed <= variedDefaults.airspeed[1]);
+		const aloft = windAloft(sea, trajectory.altitude).speed;
+		assert.ok(trajectory.airspeed >= WIND_MARGIN * aloft - 0.01, `seed ${seed}: airspeed ${trajectory.airspeed} in a ${aloft.toFixed(1)} m/s wind`);
+		assert.deepEqual(createTrajectory({ ...trajectory, duration: 1 }, { sea }).warnings, [], `seed ${seed}`);
+		assert.ok(trajectory.gimbal.pitch >= -90 && trajectory.gimbal.pitch <= -60);
+		assert.ok(trajectory.turbulence >= 0 && trajectory.turbulence <= 0.8);
+		waters.add(water);
+		patterns.add(trajectory.pattern.type);
+	}
+	assert.deepEqual([...waters].sort(), Object.keys(variedWaters).sort(), 'every water is drawn');
+	assert.equal(patterns.size, Object.keys(patternPresets).length, 'every pattern preset is drawn');
+	assert.deepEqual(variedWaters.ocean, { waterColor: lookDefaults.waterColor, sssColor: lookDefaults.sssColor });
+	// Seven in ten in the usual band, the rest split between glassy and storm; three in four with a swell.
+	assert.ok(bands.usual > drawn * 0.64 && bands.usual < drawn * 0.78, `usual ${bands.usual}/${drawn}`);
+	assert.ok(bands.glassy > drawn * 0.1 && bands.glassy < drawn * 0.2, `glassy ${bands.glassy}/${drawn}`);
+	assert.ok(bands.storm > drawn * 0.08 && bands.storm < drawn * 0.2, `storm ${bands.storm}/${drawn}`);
+	assert.ok(swells > drawn * 0.7 && swells < drawn * 0.8, `swell ${swells}/${drawn}`);
+	// With the default ranges no seed is refused: 1.3 × the strongest wind at the greatest
+	// height is still well under the top airspeed.
+	assert.equal(refused, 0);
+	assert.ok(WIND_MARGIN * windAloft({ windSpeed: 28, windDirection: 0 }, variedDefaults.altitude[1]).speed < variedDefaults.airspeed[1]);
 });

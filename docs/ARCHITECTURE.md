@@ -380,10 +380,22 @@ sets `trajectory.seed` and `render.seaSeed` together. `random` instead draws `co
 runs with domain-randomised sea (including fetch and swell), light, altitude, airspeed
 (at least `WIND_MARGIN` × the wind aloft),
 start heading, turbulence, gimbal (including its stabilisation) and pattern (seeded); with
-both blocks, the random runs follow the grid's in the same list. `runs` lists runs one by
+both blocks, the random runs follow the grid's in the same list. `varied`
+(`{ count, seed, altitude?, airspeed?, pitch? }`) draws `count` runs over varied scenes
+with `variedRun`: a wider sea and sky than `random`'s, with none of its rules that keep a
+frame worth looking at, one of six bodies of water and a moved cloud map through
+`render.look`, and a flight in the block's altitude, airspeed and gimbal pitch ranges
+(default 30–400 m, 15–75 m/s, −90° to −60°; a pitch range may not reach above 0). Each is
+laid over `base` like a listed run, so the base keeps the duration, the frame size and the
+camera's field of view, yaw and stabilisation; what the block draws replaces the base's.
+The airspeed is sized against the drawn sea's wind aloft, so a base `trajectory.wind`
+given in numbers is refused. Run `i` takes the first of the seeds `mixSeed(seed, 64·i + j) % 1e9`
+(`j` = 0…63) that is not 0, not already used in the block, and whose wind the airspeed
+range can outfly; the job is refused if none is. The draw is frozen: sets rendered from it
+have been trained on, and a test pins the runs a seed gives. `runs` lists runs one by
 one (for a script that draws its own distributions): each entry is laid over `base`
 (objects merged key by key, anything else replaced), its `id` becomes the slug of its run
-id, and listed runs come after the grid's and the random block's. The expansion is pure
+id, and listed runs come after every other block's. The expansion is pure
 (`expandJob(job) → RunSpec[]`) and gives each run a stable id:
 `<slug(name)>-<index>-<tokens>`, where only axes with more than one value contribute a
 token.
@@ -409,6 +421,8 @@ renderDefaults  // the RunSpec.render defaults above
 resolveRun(partial)       // RunSpec with presets looked up and every default filled in
 expandJob(job)            // RunSpec[] (resolved), stable ids
 randomRun(seed, base?)    // one domain-randomised RunSpec
+variedRun(seed, ranges?)  // one varied-scene run to lay over a base, with the name of its
+                          //   water; null if the airspeed range cannot outfly its wind
 runSummary(run)           // short human label, e.g. "moderate · low-sun · survey · s1"
 runScene(run, trajectory) // the SceneSpec the batch renders a run from (views.js)
 chaseCamera(frame?)       // render.view 'chase': the batch's chase rig (the app's too)
@@ -417,7 +431,8 @@ onboardCamera(stabilized) // render.view 'onboard'
 
 Also exported: `trajectoryDefaults`, `renderModes`, `seaSeedFor(seed)` (= 20240611 +
 seed), `describeSea`, `WIND_MARGIN` (a random run's airspeed is at least 1.3 × its wind
-aloft) and the `DEFAULT_*` names.
+aloft), `variedWaters` (the six bodies of water a varied run draws from), `variedDefaults`
+(its altitude, airspeed and pitch ranges) and the `DEFAULT_*` names.
 
 `scripts/generate.mjs` starts the app (or takes `--url`), opens `batch.html` in headless
 Chromium on the real GPU, and for each run writes:
@@ -472,8 +487,9 @@ window.mare.dispose()
 
 `scripts/generate.mjs`:
 
-- Input: a job file (it has `name`, `base`, `sweep` or `random`) or a single RunSpec (a
-  job of one, named after the file). `--only <text>` and `--limit N` pick runs by id.
+- Input: a job file (it has `name`, `base`, `sweep`, `random`, `varied` or `runs`) or a
+  single RunSpec (a job of one, named after the file). `--only <text>` and `--limit N` pick
+  runs by id.
 - Without `--url` it runs vite in its own process (`scripts/serve.mjs`) on `--port`
   (strict), **without hot reload**: vite reloads every open page when an HTML file under
   the root changes (a `vite build` into dist/), which would lose a run. A page lost under

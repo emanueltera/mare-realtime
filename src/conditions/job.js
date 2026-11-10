@@ -35,10 +35,20 @@ import {
  *   combination is a run. `seed` sets `trajectory.seed` and `render.seaSeed` together.
  * @property {{ count: number, seed: number }} [random]  `count` domain-randomised runs on
  *   `base`. With a sweep as well, the random runs follow the grid's.
+ * @property {VariedBlock} [varied]  `count` runs over varied scenes (variedRun), each laid
+ *   over `base` like a listed run. They follow the sweep's and the random block's.
  * @property {PartialRun[]} [runs]  runs listed one by one, each laid over `base` (objects
  *   merged key by key, anything else replaced); an entry's `id` becomes its run id's slug.
- *   For runs drawn by a script with its own distributions. They follow the sweep's and
- *   the random block's.
+ *   For runs drawn by a script with its own distributions. They come last.
+ */
+
+/**
+ * @typedef {object} VariedBlock
+ * @property {number} count
+ * @property {number} seed
+ * @property {[number, number]} [altitude]  metres, log-uniform; default 30–400
+ * @property {[number, number]} [airspeed]  m/s; default 15–75
+ * @property {[number, number]} [pitch]     gimbal pitch in degrees, negative down and never above 0; default −90 to −60
  */
 
 /** No job expands past this many runs: a mistyped sweep should fail, not fill a disk. */
@@ -46,6 +56,34 @@ const MAX_RUNS = 100000;
 
 /** A random run's airspeed is at least this many times the mean wind at its cruise altitude. */
 export const WIND_MARGIN = 1.3;
+
+/** What a varied block draws its flights from, unless it says otherwise. */
+export const variedDefaults = Object.freeze({
+	altitude: /** @type {[number, number]} */ ([30, 400]),
+	airspeed: /** @type {[number, number]} */ ([15, 75]),
+	pitch: /** @type {[number, number]} */ ([-90, -60])
+});
+
+/**
+ * The water bodies a varied run draws from: what `render.look` takes as `waterColor` and
+ * `sssColor`, linear RGB. Simulator values chosen to look different from each other, not
+ * measurements of a real sea. `ocean` is scene.js's lookDefaults.
+ */
+export const variedWaters = Object.freeze({
+	ocean: { waterColor: [0.0011, 0.0068, 0.0165], sssColor: [0.045, 0.32, 0.56] },
+	indigo: { waterColor: [0.0006, 0.0028, 0.0085], sssColor: [0.03, 0.16, 0.42] },
+	turquoise: { waterColor: [0.002, 0.02, 0.025], sssColor: [0.05, 0.55, 0.55] },
+	coastal: { waterColor: [0.003, 0.014, 0.008], sssColor: [0.15, 0.5, 0.25] },
+	grey: { waterColor: [0.004, 0.008, 0.007], sssColor: [0.2, 0.3, 0.28] },
+	sediment: { waterColor: [0.02, 0.02, 0.01], sssColor: [0.5, 0.45, 0.2] }
+});
+
+/** How many metres the cloud map repeats over: sky.js's CLOUD_PERIOD, which cannot be imported here (it needs three.js). */
+const CLOUD_MAP = 24576;
+/** A varied run's cloud map starts at least this far from where it wraps, so a minute's flight and cloud drift never cross the wrap. */
+const CLOUD_MARGIN = 6000;
+/** How many candidate seeds a varied run may try before the job is refused. */
+const VARIED_TRIES = 64;
 
 /**
  * The paths that also accept preset names, with the presets, the field each preset
@@ -142,6 +180,21 @@ function token(path, value) {
 }
 
 /**
+ * A `[low, high]` pair of a varied block, checked.
+ * @param {unknown} value
+ * @param {string} what
+ * @param {number} min
+ * @param {number} max
+ * @param {string} [who] the function the error is reported under
+ * @returns {[number, number]}
+ */
+function range(value, what, min, max, who = 'expandJob') {
+	const ok = Array.isArray(value) && value.length === 2 && value.every((x) => typeof x === 'number' && Number.isFinite(x) && x >= min && x <= max) && value[0] <= value[1];
+	if (!ok) throw new Error(`${who}: ${what} must be [low, high] with ${min} ≤ low ≤ high${max === Infinity ? '' : ` ≤ ${max}`} (got ${JSON.stringify(value)})`);
+	return /** @type {[number, number]} */ (value);
+}
+
+/**
  * Expand a job into resolved runs with stable ids `<job>-<index>-<what varies>`, the
  * index zero-padded to the width of the largest. The grid varies its last key fastest,
  * like nested loops written in the order of the sweep's keys.
@@ -151,8 +204,8 @@ function token(path, value) {
 export function expandJob(job) {
 	if (!isObject(job)) fail('a job must be an object');
 	for (const key of Object.keys(job)) {
-		if (!['name', 'description', 'base', 'sweep', 'random', 'runs'].includes(key)) {
-			fail(`unknown field '${key}' (expected name, description, base, sweep, random, runs)`);
+		if (!['name', 'description', 'base', 'sweep', 'random', 'varied', 'runs'].includes(key)) {
+			fail(`unknown field '${key}' (expected name, description, base, sweep, random, varied, runs)`);
 		}
 	}
 	if (typeof job.name !== 'string' || !/[a-z0-9]/i.test(job.name)) fail('a job needs a name');
@@ -215,6 +268,44 @@ export function expandJob(job) {
 			const pattern = presetName(patternPresets, 'pattern', run.trajectory.pattern) ?? run.trajectory.pattern.type;
 			const slug = `wind${Math.round(run.sea.windSpeed)}-sun${Math.round(run.light.sunElevation)}-${pattern}`;
 			runs.push({ partial: run, slug });
+		}
+	}
+
+	if (job.varied !== undefined) {
+		const varied = job.varied;
+		if (!isObject(varied)) fail('varied must be { count, seed } and, optionally, altitude, airspeed and pitch ranges');
+		for (const key of Object.keys(varied)) {
+			if (!['count', 'seed', 'altitude', 'airspeed', 'pitch'].includes(key)) fail(`unknown field varied.${key} (expected count, seed, altitude, airspeed, pitch)`);
+		}
+		if (!Number.isSafeInteger(varied.count) || varied.count < 1) fail(`varied.count must be a positive integer (got ${JSON.stringify(varied.count)})`);
+		if (!Number.isSafeInteger(varied.seed)) fail(`varied.seed must be an integer (got ${JSON.stringify(varied.seed)})`);
+		if (runs.length + varied.count > MAX_RUNS) fail(`the job has more than ${MAX_RUNS} runs`);
+		const ranges = {
+			altitude: range(varied.altitude ?? variedDefaults.altitude, 'varied.altitude', 1e-3, Infinity),
+			airspeed: range(varied.airspeed ?? variedDefaults.airspeed, 'varied.airspeed', 1e-3, Infinity),
+			pitch: range(varied.pitch ?? variedDefaults.pitch, 'varied.pitch', -90, 0)
+		};
+		// The airspeeds are drawn against the wind of each run's own sea (variedRun), so a
+		// wind given in numbers would leave them unchecked.
+		if (isObject(base.trajectory) && isObject(base.trajectory.wind)) {
+			fail("varied: base.trajectory.wind must be 'sea' or 'none', since each airspeed is drawn against its own sea's wind");
+		}
+		// No two runs of the block share a seed, so none share a flight or a sea.
+		const used = new Set();
+		for (let i = 0; i < varied.count; i++) {
+			let run = null;
+			for (let j = 0; j < VARIED_TRIES && !run; j++) {
+				// Nine-digit run seeds, as in the random block. Seed 0 is left out.
+				const seed = mixSeed(varied.seed, VARIED_TRIES * i + j) % 1e9;
+				if (seed === 0 || used.has(seed)) continue;
+				run = variedRun(seed, ranges);
+			}
+			if (!run) fail(`varied: no flight for run ${i} in ${VARIED_TRIES} tries (airspeed ${ranges.airspeed.join('–')} m/s rarely outflies the wind at ${ranges.altitude.join('–')} m)`);
+			used.add(run.trajectory.seed);
+			const { water, ...drawn } = run;
+			const pattern = /** @type {string} */ (drawn.trajectory.pattern);
+			const slug = `w${Math.round(drawn.sea.windSpeed)}-sun${Math.round(drawn.light.sunElevation)}-a${Math.round(drawn.trajectory.altitude)}-v${Math.round(drawn.trajectory.airspeed)}-${water}-${pattern}`;
+			runs.push({ partial: overlay(base, drawn), slug });
 		}
 	}
 
@@ -351,4 +442,111 @@ export function randomRun(seed, base = {}) {
 		},
 		render: { ...render, seaSeed: seaSeedFor(seed) }
 	});
+}
+
+/**
+ * One run over a varied scene: far more kinds of water and sky than `randomRun` draws,
+ * for a camera pointed steeply down. Sets drawn this way have been rendered and trained
+ * on, so the draw stays as it is: a seed gives the run it always gave.
+ *
+ * - the sea: wind 2–20 m/s seven times in ten, otherwise glassy (0.7–2, log-uniform) or a
+ *   storm (20–28), half each; fetch 5–800 km; a swell three times in four, up to 4 m at
+ *   6–18 s from any direction; directional spread 2–24; choppiness 0.5–1.6;
+ * - the sky: sun from 8° below the horizon to 88° up, overcast and haze each anywhere from
+ *   0 to 1 and independent, without `randomRun`'s rules that keep a frame worth looking at
+ *   (the blank, low-texture frames are wanted here); exposure ×0.5–2;
+ * - the water (`render.look`): one of `variedWaters`, its brightness ×0.6–1.6 and each
+ *   channel ±15 %; foam coverage ×0.3–1.5; the cloud map moved, never so near its wrap
+ *   that a minute's flight crosses it;
+ * - the flight: altitude log-uniform and airspeed uniform in the given ranges, the
+ *   airspeed never under WIND_MARGIN × this sea's wind aloft (the wind the flight meets
+ *   under `trajectory.wind: 'sea'`); gimbal pitch in its range; turbulence 0–0.8; any
+ *   heading; one of the pattern presets.
+ *
+ * Nothing fixed to the water is drawn (slicks, debris): nothing in the simulator drifts
+ * with a current, so such a thing would be a ground reference real water does not offer.
+ *
+ * What comes back is laid over a job's base like a listed run, so the base supplies what
+ * is not drawn: the duration, the frame size and the camera's field of view, yaw and
+ * stabilisation.
+ * @param {number} seed integer; `trajectory.seed` is set to it, and `render.seaSeed` to seaSeedFor(seed)
+ * @param {{ altitude?: [number, number], airspeed?: [number, number], pitch?: [number, number] }} [ranges]
+ * @returns {(PartialRun & { water: keyof typeof variedWaters, sea: Record<string, number>, light: Record<string, number>, trajectory: Record<string, any> }) | null}
+ *   `water` names the body drawn and is not a run field: take it off before resolving.
+ *   null when even the top of the airspeed range cannot outfly this run's wind.
+ */
+export function variedRun(seed, ranges = {}) {
+	if (!Number.isSafeInteger(seed)) throw new Error(`variedRun: seed must be an integer (got ${JSON.stringify(seed)})`);
+	if (!isObject(ranges)) throw new Error('variedRun: ranges must be an object');
+	const ALT = range(ranges.altitude ?? variedDefaults.altitude, 'altitude', 1e-3, Infinity, 'variedRun');
+	const AIRSPEED = range(ranges.airspeed ?? variedDefaults.airspeed, 'airspeed', 1e-3, Infinity, 'variedRun');
+	const PITCH = range(ranges.pitch ?? variedDefaults.pitch, 'pitch', -90, 0, 'variedRun');
+	const { random, uniform, logUniform, pick } = sampler(mixSeed(seed, 0xe4));
+	/** @param {number} x */
+	const r3 = (x) => Math.round(x * 1000) / 1000;
+	/** @param {number} x */
+	const r5 = (x) => Math.round(x * 100000) / 100000;
+
+	// Every draw below is made in this order whatever its value: do not reorder them.
+	const band = random();
+	const windSpeed = band < 0.7 ? uniform(2, 20) : band < 0.85 ? logUniform(0.7, 2) : uniform(20, 28);
+	const windDirection = uniform(0, 360);
+	const hasSwell = random() >= 0.25;
+	const swellHeight = uniform(0.1, 4);
+	const swellOffset = uniform(-180, 180);
+	const sea = {
+		windSpeed: r3(windSpeed),
+		windDirection: r3(windDirection),
+		fetch: r3(logUniform(5, 800)),
+		spread: r3(logUniform(2, 24)),
+		swellHeight: hasSwell ? r3(swellHeight) : 0,
+		swellPeriod: r3(uniform(6, 18)),
+		swellDirection: r3((((windDirection + swellOffset) % 360) + 360) % 360),
+		choppiness: r3(uniform(0.5, 1.6))
+	};
+	const light = {
+		sunElevation: r3(uniform(-8, 88)),
+		sunAzimuth: r3(uniform(0, 360)),
+		overcast: r3(random()),
+		haze: r3(random()),
+		exposure: r3(logUniform(0.5, 2))
+	};
+	const water = pick(/** @type {Array<keyof typeof variedWaters>} */ (Object.keys(variedWaters)));
+	const gain = logUniform(0.6, 1.6);
+	/** @param {number[]} c */
+	const channels = (c) => c.map((x) => r5(x * gain * uniform(0.85, 1.15)));
+	const look = {
+		waterColor: channels(variedWaters[water].waterColor),
+		sssColor: channels(variedWaters[water].sssColor),
+		foam: r3(logUniform(0.3, 1.5)),
+		cloudOffset: [r3(uniform(CLOUD_MARGIN, CLOUD_MAP - CLOUD_MARGIN)), r3(uniform(CLOUD_MARGIN, CLOUD_MAP - CLOUD_MARGIN))]
+	};
+	const pitch = uniform(PITCH[0], PITCH[1]);
+	const altitude = logUniform(ALT[0], ALT[1]);
+	const u = uniform(0, 1);
+	const turbulence = uniform(0, 0.8);
+	const heading = uniform(0, 360);
+	const pattern = pick(Object.keys(patternPresets));
+
+	// The airspeed is drawn between the range's top and whichever is higher, its bottom or
+	// what outflies the wind aloft (see randomRun). A wind nothing in the range outflies
+	// gives no run, and the caller moves to another seed.
+	const aloft = windAloft({ windSpeed: sea.windSpeed, windDirection: 0 }, r3(altitude)).speed;
+	const lo = Math.max(AIRSPEED[0], WIND_MARGIN * aloft);
+	if (lo > AIRSPEED[1]) return null;
+	return {
+		sea,
+		light,
+		trajectory: {
+			seed,
+			pattern,
+			altitude: r3(altitude),
+			airspeed: r3(lo + (AIRSPEED[1] - lo) * u),
+			turbulence: r3(turbulence),
+			start: { heading: r3(heading) },
+			gimbal: { pitch: r3(pitch) }
+		},
+		render: { seaSeed: seaSeedFor(seed), look },
+		water
+	};
 }
